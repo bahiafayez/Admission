@@ -9,10 +9,25 @@ class ApplicantsController < ApplicationController
   end
 
   def create
+    
     @applicant = Applicant.new( params[:applicant] )
     @attachment = Attachment.new(params[:attachment])
     @applicant.attachment = @attachment
-
+    
+    if params[:save]
+      
+      respond_to do |format|
+      if @applicant.save(:validate => false)
+        format.html { redirect_to @applicant, notice: 'Product was successfully created.' }
+        format.json { render json: @applicant, status: :created, location: @applicant }
+      else
+        format.html { render action: "new" }
+        format.json { render json: @applicant.errors, status: :unprocessable_entity }
+      end
+    end
+    
+    else
+  
     respond_to do |format|
       if @applicant.save
         format.html { redirect_to @applicant, notice: 'Product was successfully created.' }
@@ -22,6 +37,8 @@ class ApplicantsController < ApplicationController
         format.json { render json: @applicant.errors, status: :unprocessable_entity }
       end
     end
+   end
+    
   end
 
   def destroy
