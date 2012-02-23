@@ -5,10 +5,13 @@ class ApplicantsController < ApplicationController
   def new
     #don't need to write anything here, since it creates (new+save) in the create action
     @applicant = Applicant.new
+    @attachment = Attachment.new
   end
 
   def create
     @applicant = Applicant.new( params[:applicant] )
+    @attachment = Attachment.new(params[:attachment])
+    @applicant.attachment = @attachment
 
     respond_to do |format|
       if @applicant.save

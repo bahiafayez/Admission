@@ -1,3 +1,7 @@
 <%= image_tag @applicant.photo.url %>
 <%= image_tag @applicant.photo.url(:medium) %>
 <%= image_tag @applicant.photo.url(:thumb) %>
+
+<%= image_tag @applicant.attachment.additional_information.url(:thumb) %>
+
+<%= link_to "Download", @applicant.attachment.additional_information.url %>

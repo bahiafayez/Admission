@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  hear_of_uni: MyString
+  factors: MyText
+  majors: MyText
+  other_universities: MyText
+  factors_other_universities: MyText
+  applicant_id: 1
+
+two:
+  hear_of_uni: MyString
+  factors: MyText
+  majors: MyText
+  other_universities: MyText
+  factors_other_universities: MyText
+  applicant_id: 1

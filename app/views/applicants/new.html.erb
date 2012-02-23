@@ -1,6 +1,20 @@
 <%= form_for(@applicant, :html => { :multipart => true }) do |f| %>
+	
 	<%= f.file_field :photo %>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+	
+	<%= fields_for @attachment do |u| %>
+    <p>
+        <%= u.label :personal_experience %><br />
+    <%= u.file_field :personal_experience %>
+    </p>
+    <p>
+        <%= u.label :additional_information %><br />
+    <%= u.file_field :additional_information %>
+    </p>
+	<% end %>
+	
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+    
 <% end %>
