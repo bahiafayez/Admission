@@ -13,6 +13,10 @@ class CreateApplicants < ActiveRecord::Migration
       t.string :passport_number
       t.string :country_of_issuance
       t.date :passport_expiry_date
+      t.text :academic_honours
+      t.text :extra_activities
+      t.string :transportation
+      t.has_attached_file :photo
 
       t.timestamps
     end

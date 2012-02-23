@@ -1,4 +1,15 @@
 Admission::Application.routes.draw do
+  
+  #get "applicants/index"
+
+  #get "applicants/new"
+
+  #get "applicants/create"
+
+  #get "applicants/destroy"
+
+  resources :applicants
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
