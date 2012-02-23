@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  first_name: MyString
+  middle_name: MyString
+  last_name: MyString
+  date_of_birth: 2012-02-23
+  place_of_birth: MyString
+  gender: MyString
+  military_status: MyString
+  national_id: MyString
+  national_id_expiry_date: 2012-02-23
+  passport_number: MyString
+  country_of_issuance: MyString
+  passport_expiry_date: 2012-02-23
+
+two:
+  first_name: MyString
+  middle_name: MyString
+  last_name: MyString
+  date_of_birth: 2012-02-23
+  place_of_birth: MyString
+  gender: MyString
+  military_status: MyString
+  national_id: MyString
+  national_id_expiry_date: 2012-02-23
+  passport_number: MyString
+  country_of_issuance: MyString
+  passport_expiry_date: 2012-02-23
