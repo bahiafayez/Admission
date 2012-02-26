@@ -1,0 +1,31 @@
+<%= f.fields_for :admission_information do |u| %>
+    <div class="field">
+        <%= u.label :semester %><br />
+    	<%= u.select :semester, options_for_select(["Winter 2012","Spring 2012"]) %>
+    </div>
+    <div class="field">
+        <%= u.label :applying_to %><br />
+    	<%=  u.text_field :applying_to %>
+    </div>
+<div class="field">
+	<%= u.label :intended_major %><br />
+	<%= u.text_field :intended_major %>
+</div>
+<div class="field">
+	<%= u.label :toefl_test_results %><br />
+	<%= u.text_field :toefl_test_results %>
+</div>
+<div class="field">
+	<%= u.label :toefl_test_date %><br />
+	<%= u.date_select :toefl_test_date %>
+</div>
+<div class="field">
+	<%= u.label :proficiency_test , "Are you applying to Nu's Proficiency Test"%><br />
+	<%= u.select :proficiency_test , options_for_select(["Yes", "No"]) %>
+</div>
+
+<% end %>
+
+   
+    
+   

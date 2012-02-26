@@ -1,0 +1,27 @@
+<%= f.fields_for :works do |u| %>
+    <div class="field">
+        <%= u.label :employer %><br />
+    	<%= u.text_field :employer %>
+    </div>
+    <div class="field">
+	<%= u.label :worked_from %><br />
+	<%= u.date_select :worked_from %>
+</div>
+<div class="field">
+	<%= u.label :worked_to %><br />
+	<%= u.date_select :worked_to %>
+</div>
+<div class="field">
+    <%= u.label :tasks %><br />
+    <%=  u.text_area :tasks, :rows=>4, :cols=>5 %>
+</div>
+
+<% end %>
+
+
+    
+    
+    
+  
+    
+    

@@ -1,7 +1,37 @@
-<h1>New Applicant</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Back', applicants_path %>
-
+<h3>New Application </h3>
+<%=session[:applicant_params]%>
+<%=session[:address_params]%>
+Applicant addresses <%= @applicant.addresses%>
+<%= form_for @applicant do |f| %>
+  
+  
+  <% if @applicant.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@applicant.errors.count, "error") %> prohibited this product from being saved:</h2>
+      <ul>
+      <% @applicant.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <%= render "#{@applicant.current_step}_step", :f => f %>
+  <p><%= f.submit "Continue", :name => "forward_button" unless @applicant.last_step? %></p>
+  <p><%= f.submit "Back", :name => "back_button" unless @applicant.first_step? %></p>
+	
+	<!--  <%= f.fields_for :addresses do |u| %>
+    
+        <%= u.label :address %><br />
+    	<%= u.text_area :address , :cols=> 20, :rows=>5%>
+    
+   <% end %>  -->
+	
+	<div class="actions">
+      <%= f.submit "Save", :name => "save" %>
+	  <%= f.submit "Submit", :name => "submit" %>
+	  <%= f.submit "add actor", :name=>"add" %>
+    </div>	
+		<!-- <%= f.hidden_field :addresses, :value => :addresses %> -->
+<% end %>
 

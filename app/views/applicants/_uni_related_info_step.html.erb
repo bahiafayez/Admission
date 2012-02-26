@@ -1,0 +1,81 @@
+
+<%= fields_for :reasons do |u| %>
+
+<div class="field">
+	<%= u.label :How, "How did you hear of Nile University?" %></br>
+	
+	<%= u.label :Internet %>
+	<%= u.check_box :Internet%><br />
+	<%= u.label :Email %>
+	<%= u.check_box :Email%><br />
+	<%= u.label :Radio %>
+	<%= u.check_box :Radio %><br />
+	<%= u.label :School, "School Visits" %>
+	<%= u.check_box :School %><br />
+	<%= u.label :NUStaff, "Nile University Faculty/Staff" %>
+	<%= u.check_box :NUStaff %><br />
+	<%= u.label :NUStudent, "Nile University Student/Alumni" %>
+	<%= u.check_box :NUStudent %><br />
+	<%= u.label :PrintAd, "Print Advertisement" %>
+	<%= u.check_box :PrintAd %><br />
+		<%= u.label :specify, "Please Specify" %>
+		<%= u.text_field :PrintAdSpecify %><br />
+	<%= u.label :NUSeminar, "NU Seminar, Workshop, Conference" %>
+	<%= u.check_box :NUSeminar %><br />
+		<%= u.label :specify, "Please Specify" %>
+		<%= u.text_field :NUSeminarSpecify %><br />
+	<%= u.label :Other, "Other" %>
+	<%= u.check_box :Other %><br />
+		<%= u.label :specify, "Please Specify" %>
+		<%= u.text_field :OtherSpecify %><br />
+		
+</div>
+<% end %>
+
+
+<%= f.fields_for :uni_related_info do |u| %>
+   
+    <div class="field">
+        <%= u.label :factors , "What were the most important factors that influenced your decision to apply to NU?"%><br />
+    	<%=  u.text_area :factors, :rows=>5, :cols =>20 %>
+    </div>
+    <div class="field">
+        <%= u.label :majors , "What majors/specializations at NU attract you the most?"%><br />
+    	<%=  u.text_area :majors, :rows=>5, :cols =>20 %>
+    </div>
+    
+	<div class="field">
+		<%= u.label :other_universities, "What other universities are you applying to?" %><br />
+		<%=  u.text_area :other_universities, :rows=>5, :cols =>20 %>
+	</div>
+
+<% end %>
+
+
+<%= fields_for :reasons2 do |u| %>
+
+<div class="field">
+	<%= u.label :What, "What was the most important factor that infuenced your decision to apply to other universities?" %><br />
+	
+	<%= u.label :Quality, "Quality of education" %>
+	<%= u.check_box :quality%><br />
+	<%= u.label :Reputation %>
+	<%= u.check_box :reputation%><br />
+	<%= u.label :Facilities %>
+	<%= u.check_box :facilities%><br />
+	<%= u.label :Location %>
+	<%= u.check_box :location%><br />
+	
+	<%= u.label :fieldsOfStudy, "Fields of study (programs and specializations)" %>
+	<%= u.check_box :fieldsOfStudy %><br />
+		<%= u.label :specify, "Please Specify" %>
+		<%= u.text_field :fieldsOfStudySpecify %><br />
+	<%= u.label :Other, "Other" %>
+	<%= u.check_box :Other2 %><br />
+		<%= u.label :specify, "Please Specify" %>
+		<%= u.text_field :OtherSpecify2 %><br />
+</div>
+<% end %>	
+    
+    
+  
