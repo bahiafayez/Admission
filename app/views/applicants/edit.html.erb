@@ -1,7 +1,6 @@
-<h3>New Application </h3>
-<!-- <%=session[:applicant_params]%>
-<%=session[:address_params]%> -->
-<!-- Applicant addresses <%= @applicant.addresses%> -->
+<h1>Editing Applicant</h1>
+
+
 <%= form_for @applicant do |f| %>
   
   
@@ -21,7 +20,7 @@
   <div id="applicantform">
   <%= render "applicant_step", :f => f %>
   </div>
-  <div id="addressform" class="fields">
+  <div id="addressform">
   <%= render "address_step", :f => f %>
   </div>
   <div id="admissionform">
@@ -77,6 +76,3 @@
 <button id="healthbutton">Health</button>
 <button id="attachmentbutton">Attachments</button>
 <button id="unirelatedinfobutton">University Related Information</button>
-
-
-

@@ -1,0 +1,25 @@
+<%= f.fields_for :attachment do |u| %>
+    
+    <%= u.hidden_field :id %> <!-- If not there disappers if empty -->
+    <div class="field">
+        <%= u.label :additional_information %><br />
+    	<%= u.file_field :additional_information %>
+    	<%= image_tag @applicant.attachment.additional_information.url %>
+    </div>
+    
+     <div class="field">
+        <%= u.label :personal_experience %><br />
+    	<%= u.file_field :personal_experience %>
+    	<%= image_tag @applicant.attachment.personal_experience.url %>
+    </div>
+
+<% end %>
+
+
+    
+    
+    
+    
+  
+    
+    

@@ -1,0 +1,71 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1038\cocoasubrtf360
+{\fonttbl\f0\fmodern\fcharset0 Courier;\f1\froman\fcharset0 Times-Roman;}
+{\colortbl;\red255\green255\blue255;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww9000\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720\ql\qnatural
+
+\f0\fs24 \cf0 git clone http://github.com/mozilla/chromeless.git\
+Initialized empty Git repository in /home/user/experiments/git/chromeless/.git/\
+remote: Counting objects: 6865, done.\
+remote: Compressing objects: 100% (4446/4446), done.\
+remote: Total 6865 (delta 2272), reused 6435 (delta 2063)\
+Receiving objects: 100% (6865/6865), 2.46 MiB | 29 KiB/s, done.\
+Resolving deltas: 100% (2272/2272), done.\
+\
+\
+\pard\pardeftab720\sa280\ql\qnatural
+
+\f1\b\fs36 \cf0 Git \'96 setting up a remote repository and doing an initial \'91push\'92\
+\pard\pardeftab720\sa240\ql\qnatural
+
+\b0\fs24 \cf0 There is loads of documentation and posts on Git out there so this is more of a note to self as I keep forgetting the steps to setting up a remote repository and doing an initial \'91push\'92.\
+So, firstly setup the remote repository:\
+\pard\pardeftab720\ql\qnatural
+
+\f0 \cf0 ssh git@example.com\
+mkdir my_project.git\
+cd my_project.git\
+git init --bare\
+git-update-server-info # If planning to serve via HTTP\
+exit\
+\pard\pardeftab720\sa240\ql\qnatural
+
+\f1 \cf0 On local machine:\
+\pard\pardeftab720\ql\qnatural
+
+\f0 \cf0 cd my_project\
+git init\
+git add *\
+git commit -m "My initial commit message"\
+git remote add origin git@example.com:my_project.git\
+git push origin master\
+\pard\pardeftab720\sa240\ql\qnatural
+
+\f1 \cf0 Done!\
+Team members can now clone and track the remote repository using the following:\
+\pard\pardeftab720\ql\qnatural
+
+\f0 \cf0 git clone git@example.com:my_project.git\
+cd my_project\
+\
+Then to pull the new version, just do:\
+\
+git pull\
+\
+When you're done and want to commit and push back to server:\
+git commit -a -m "did bla bla"\
+git push\
+\
+That's it!\
+\
+\
+\
+To know more about branching and merging:\
+\
+http://book.git-scm.com/3_basic_branching_and_merging.html\
+\
+so basically, pull, update, add, commit, and push\
+then could also checkout a branch.. do everything there.. then go back to master branch.. then merge the other branch.. works well if no conflicts. If there are.. just resolve them then commit again.\
+To show a graph gitk\
+}

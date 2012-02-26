@@ -1,4 +1,5 @@
 <%= f.fields_for :guardians do |u| %>
+<div>
     <div class="field">
 	<%= u.label :first_name %><br />
 	<%= u.text_field :first_name ,:width=>'10px', :size=>"20", :maxlength=>"20" %>
@@ -54,23 +55,23 @@
 
 <div class="field">
 	<%= u.label :relation %><br />
-	<%= u.select :relation, options_for_select(["Mother", "Father", "Other"]) %>
+	<%= u.select :relation, options_for_select(["Mother", "Father", "Other"]),{}, {:class=> "relation"} %>
 </div>
 <!-- If other will enable a text field to write in -->
 
 
-<div class="field">
+<div class="relation3">
 	<%= u.label :relation, "Please Specify" %><br />
-	<%= u.text_field :relation %>
+	<%= u.text_field :relation2 , :class => "relation2"%>
 </div>
 
 <!--  -->
 
 <div class="field">
 	<%= u.label :financial , "Will that person be responsible for your financial expenses"%><br />
-	<%= u.select :financial, options_for_select(["Yes","No"]) %>
+	<%= u.select :financial, options_for_select([["Yes","true"],["No","false"]]) %>
 </div>
-
+</div>
 <% end %>
 
 

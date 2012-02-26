@@ -1,5 +1,9 @@
 <div class="field">
+	
 	<%= f.label :photo %><br />
+	<%= image_tag @applicant.photo.url(:medium) %>
+	
+	
 	<%= f.file_field :photo %>
 </div>
 <div class="field">

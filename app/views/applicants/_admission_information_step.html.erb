@@ -21,7 +21,7 @@
 </div>
 <div class="field">
 	<%= u.label :proficiency_test , "Are you applying to Nu's Proficiency Test"%><br />
-	<%= u.select :proficiency_test , options_for_select(["Yes", "No"]) %>
+	<%= u.select :proficiency_test , options_for_select([["Yes","true"],["No","false"]]) %>
 </div>
 
 <% end %>

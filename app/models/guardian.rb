@@ -8,6 +8,8 @@ class Guardian < ActiveRecord::Base
   validates :email, :format => {:with => /\A[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]+\z/, :message => "Invalid E-mail"}
   
   
+  attr_accessor :relation2
+  
   private
    
   def a_number_present 

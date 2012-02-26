@@ -1,11 +1,11 @@
 
-<%= fields_for :reasons do |u| %>
+<%= f.fields_for :reasons do |u| %>
 
 <div class="field">
 	<%= u.label :How, "How did you hear of Nile University?" %></br>
 	
 	<%= u.label :Internet %>
-	<%= u.check_box :Internet%><br />
+	<%= u.check_box :Internet %><br />
 	<%= u.label :Email %>
 	<%= u.check_box :Email%><br />
 	<%= u.label :Radio %>
@@ -18,22 +18,30 @@
 	<%= u.check_box :NUStudent %><br />
 	<%= u.label :PrintAd, "Print Advertisement" %>
 	<%= u.check_box :PrintAd %><br />
+	<div id="printAd">
 		<%= u.label :specify, "Please Specify" %>
 		<%= u.text_field :PrintAdSpecify %><br />
+	</div>
 	<%= u.label :NUSeminar, "NU Seminar, Workshop, Conference" %>
 	<%= u.check_box :NUSeminar %><br />
+	<div id="NuSeminar">
 		<%= u.label :specify, "Please Specify" %>
 		<%= u.text_field :NUSeminarSpecify %><br />
+	</div>
 	<%= u.label :Other, "Other" %>
 	<%= u.check_box :Other %><br />
+	<div id="other">
 		<%= u.label :specify, "Please Specify" %>
 		<%= u.text_field :OtherSpecify %><br />
+	</div>
 		
 </div>
 <% end %>
 
 
 <%= f.fields_for :uni_related_info do |u| %>
+   
+   
    
     <div class="field">
         <%= u.label :factors , "What were the most important factors that influenced your decision to apply to NU?"%><br />
@@ -52,7 +60,7 @@
 <% end %>
 
 
-<%= fields_for :reasons2 do |u| %>
+<%= f.fields_for :reasons2 do |u| %>
 
 <div class="field">
 	<%= u.label :What, "What was the most important factor that infuenced your decision to apply to other universities?" %><br />
@@ -68,12 +76,16 @@
 	
 	<%= u.label :fieldsOfStudy, "Fields of study (programs and specializations)" %>
 	<%= u.check_box :fieldsOfStudy %><br />
+	<div id="fieldsofstudy">
 		<%= u.label :specify, "Please Specify" %>
 		<%= u.text_field :fieldsOfStudySpecify %><br />
+	</div>
 	<%= u.label :Other, "Other" %>
-	<%= u.check_box :Other2 %><br />
+	<%= u.check_box :Other %><br />
+	<div id="other2">
 		<%= u.label :specify, "Please Specify" %>
 		<%= u.text_field :OtherSpecify2 %><br />
+	</div>
 </div>
 <% end %>	
     
