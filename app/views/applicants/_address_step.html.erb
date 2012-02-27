@@ -1,5 +1,5 @@
 <%= f.fields_for :addresses do |u| %>
-
+<div>
     <div class="field">
         <%= u.label :address %><br />
     	<%= u.text_area :address , :cols=> 20, :rows=>5%>
@@ -24,6 +24,6 @@
 	<%= u.label :address_type %><br />
 	<%= u.select :address_type , options_for_select(["Home Address", "Mailing Address", "Both"]) %>
 </div>
-
+</div>
 
 <% end %>

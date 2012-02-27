@@ -1,4 +1,5 @@
 <%= f.fields_for :colleges do |u| %>
+<div>
     <div class="field">
         <%= u.label :name %><br />
     	<%= u.text_field :name %>
@@ -21,11 +22,11 @@
 </div>
 <div class="field">
 	<%= u.label :attended_from %><br />
-	<%= u.date_select :attended_from %>
+	<%= u.date_select :attended_from,  :start_year => Time.now.year - 30, :end_year => Time.now.year + 1 %>
 </div>
 <div class="field">
 	<%= u.label :attended_to %><br />
-	<%= u.date_select :attended_to %>
+	<%= u.date_select :attended_to, :start_year => Time.now.year - 30, :end_year => Time.now.year + 1  %>
 </div>
 <div class="field">
 	<%= u.label :language %><br />
@@ -35,12 +36,18 @@
 	<%= u.label :gpa, "GPA" %><br />
 	<%= u.text_field :gpa  %>
 </div>
-
+</div>
 <% end %>
 
 
     
-    
+<%= f.fields_for :checkCollege do |u| %>
+
+<div class="field">
+	<%= u.label :another2 , "Only one college"%>
+	<%= u.check_box :oneCollege %><br />
+</div>
+<% end %>  
     
     
   

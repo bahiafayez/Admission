@@ -1,25 +1,32 @@
 <%= f.fields_for :works do |u| %>
+<div>
     <div class="field">
         <%= u.label :employer %><br />
     	<%= u.text_field :employer %>
     </div>
     <div class="field">
 	<%= u.label :worked_from %><br />
-	<%= u.date_select :worked_from %>
+	<%= u.date_select :worked_from ,:start_year => Time.now.year - 30, :end_year => Time.now.year + 1 %>
 </div>
 <div class="field">
 	<%= u.label :worked_to %><br />
-	<%= u.date_select :worked_to %>
+	<%= u.date_select :worked_to ,:start_year => Time.now.year - 30, :end_year => Time.now.year + 1 %>
 </div>
 <div class="field">
     <%= u.label :tasks %><br />
     <%=  u.text_area :tasks, :rows=>4, :cols=>5 %>
 </div>
-
+</div>
 <% end %>
 
 
-    
+<%= f.fields_for :checkWork do |u| %>
+
+<div class="field">
+	<%= u.label :another3 , "Only worked in one company"%>
+	<%= u.check_box :oneWork %><br />
+</div>
+<% end %>     
     
     
   

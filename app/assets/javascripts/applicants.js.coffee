@@ -41,6 +41,26 @@ $ ->
       console.log("in male")
       $('#applicant_military_status').removeAttr('disabled')
       
+  $('#applicant_addresses_attributes_0_address_type').change ->
+    #console.log("in here")
+    console.log $(this).val()
+    if $(this).val()=="Both"
+      console.log("in Both")
+      $(this).parent().parent().parent().children('div').eq(1).hide()
+    else
+      $(this).parent().parent().parent().children('div').eq(1).show()
+      
+  $('#applicant_addresses_attributes_1_address_type').change ->
+    #console.log("in here")
+    console.log $(this).val()
+    if $(this).val()=="Both"
+      console.log("in Both")
+      $(this).parent().parent().parent().children('div').eq(0).hide()
+    else
+      $(this).parent().parent().parent().children('div').eq(0).show()
+      
+  
+      
   $('.relation').each ->
     $(this).change ->
       console.log "relation was clicked"
@@ -160,5 +180,28 @@ $ ->
       $('#other2').show()
     else  
       $('#other2').hide()
-  
-  
+      
+  $('#applicant_checkSecondary_oneSchool').click ->
+    console.log "wohoo"
+    if $(this).is(':checked')
+      console.log "over here"
+      $('#applicant_checkSecondary_oneSchool').parent().parent().children('div').eq(1).hide()
+    else  
+      $('#applicant_checkSecondary_oneSchool').parent().parent().children('div').eq(1).show()
+      
+  $('#applicant_checkCollege_oneCollege').click ->
+    console.log "wohoo"
+    if $(this).is(':checked')
+      console.log "over here"
+      $('#applicant_checkCollege_oneCollege').parent().parent().children('div').eq(1).hide()
+    else  
+      $('#applicant_checkCollege_oneCollege').parent().parent().children('div').eq(1).show()
+      
+  $('#applicant_checkWork_oneWork').click ->
+    console.log "wohoo"
+    if $(this).is(':checked')
+      console.log "over here"
+      $('#applicant_checkWork_oneWork').parent().parent().children('div').eq(1).hide()
+    else  
+      $('#applicant_checkWork_oneWork').parent().parent().children('div').eq(1).show()
+      

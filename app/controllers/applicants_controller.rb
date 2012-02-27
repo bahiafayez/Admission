@@ -1,5 +1,13 @@
 class ApplicantsController < ApplicationController
   def index
+    
+    @applications = Applicant.paginate(:page => params[:page], :per_page => 10)
+  
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @applications }
+    end
+    
   end
 
   def new
@@ -92,6 +100,49 @@ class ApplicantsController < ApplicationController
       end
    else
     
+     #before validation..
+     # delete extra address
+     logger.debug "Before Validation"
+     if @applicant.addresses[0].address_type=="Both"
+       @b=@applicant.addresses[1]
+       if @b != nil
+         @applicant.addresses.destroy(@b)
+       end
+     elsif @applicant.addresses[1].address_type=="Both"
+       @b=@applicant.addresses[0]
+       if @b != nil
+         @applicant.addresses.destroy(@b)     
+       end
+     end
+     # delete extra secondary schools
+     if params[:applicant][:checkSecondary][:oneSchool]=="1"
+       @b=@applicant.secondary_schools[1]
+       if @b != nil
+         @applicant.secondary_schools.destroy(@b)
+       end
+     end
+     
+     # delete extra Colleges 
+     if params[:applicant][:checkCollege][:oneCollege]=="1"
+       @b=@applicant.colleges[1]
+       if @b != nil
+         @applicant.colleges.destroy(@b)
+       end
+     end
+     
+     # delete extra Work
+     if params[:applicant][:checkWork][:oneWork]=="1"
+       @b=@applicant.works[1]
+       if @b != nil
+         @applicant.works.destroy(@b)
+       end
+     end
+       
+     
+     logger.debug @applicant.addresses    
+     logger.debug "checking!!!!!!!!!!!!!!!!!!!!!!!"
+    logger.debug params[:applicant][:checkSecondary][:oneSchool]
+    
       respond_to do |format|
         if @user.save
           format.html { redirect_to @user.applicant, notice: 'Applicant was successfully created.' }
@@ -135,7 +186,7 @@ class ApplicantsController < ApplicationController
        end
      end 
      
-     
+     @reasons2=""
      params[:applicant][:reasons2].each do |parameter, value|
        if value == "1"
          @reasons2<<"#{parameter} "
@@ -161,6 +212,50 @@ class ApplicantsController < ApplicationController
         end
       end
    else
+     
+     
+     #before validation..
+     # delete extra address
+     logger.debug "Before Validation"
+     if @applicant.addresses[0].address_type=="Both"
+       @b=@applicant.addresses[1]
+       if @b != nil
+         @applicant.addresses.destroy(@b)
+       end
+     elsif @applicant.addresses[1]!=nil and @applicant.addresses[1].address_type=="Both"
+       @b=@applicant.addresses[0]
+       if @b != nil
+         @applicant.addresses.destroy(@b)     
+       end
+     end
+     # delete extra secondary schools
+     if params[:applicant][:checkSecondary][:oneSchool]=="1"
+       @b=@applicant.secondary_schools[1]
+       if @b != nil
+         @applicant.secondary_schools.destroy(@b)
+       end
+     end
+     
+     # delete extra Colleges 
+     if params[:applicant][:checkCollege][:oneCollege]=="1"
+       @b=@applicant.colleges[1]
+       if @b != nil
+         @applicant.colleges.destroy(@b)
+       end
+     end
+     
+     # delete extra Work
+     if params[:applicant][:checkWork][:oneWork]=="1"
+       @b=@applicant.works[1]
+       if @b != nil
+         @applicant.works.destroy(@b)
+       end
+     end
+     
+     logger.debug @applicant.addresses    
+     logger.debug "checking!!!!!!!!!!!!!!!!!!!!!!!"
+    logger.debug params[:applicant][:checkSecondary][:oneSchool]
+    
     
       respond_to do |format|
         if @user.save
