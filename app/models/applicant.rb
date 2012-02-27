@@ -1,3 +1,4 @@
+#Omnia Commenting to test git
 class Applicant < ActiveRecord::Base
   belongs_to :user
   
