@@ -7,12 +7,14 @@ gem 'rails', '3.2.1'
 
 
 gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
+#gem 'activeadmin'
 gem 'activeadmin'
 gem 'sass-rails'
 gem "meta_search", '>= 1.1.0.pre'
 gem 'validates_timeliness', '~> 3.0.2'
 gem "bcrypt-ruby", :require => "bcrypt"
-gem 'will_paginate'
+#gem 'will_paginate'
+gem 'kaminari'
 #gem "breadcrumbs_on_rails"
 
 # Gems used only for assets and not required

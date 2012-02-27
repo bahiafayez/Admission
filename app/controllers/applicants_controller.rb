@@ -1,7 +1,7 @@
 class ApplicantsController < ApplicationController
   def index
     
-    @applications = Applicant.paginate(:page => params[:page], :per_page => 10)
+    @applications =  Applicant.order('created_at DESC').page params[:page]
   
     respond_to do |format|
       format.html # index.html.erb
