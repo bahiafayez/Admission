@@ -14,5 +14,5 @@ class Address < ActiveRecord::Base
     errors.add(:telephone, "can't be blank") if telephone.blank? && mobile.blank? 
     errors.add(:mobile, "can't be blank") if telephone.blank? && mobile.blank? 
   end 
-
+#comment
 end
