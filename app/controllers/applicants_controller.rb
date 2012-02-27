@@ -4,9 +4,10 @@ class ApplicantsController < ApplicationController
 
   def new
     #session[:applicant_params] ||= {}
+    @user=User.find(session[:user_id])
     
     #don't need to write anything here, since it creates (new+save) in the create action
-    @applicant = Applicant.new()
+    @applicant = @user.build_applicant
     #2.times do
     
     #end
@@ -31,8 +32,9 @@ class ApplicantsController < ApplicationController
 
   def create
     
-    
-     @applicant = Applicant.new( params[:applicant] )
+     @user=User.find(session[:user_id])
+     @applicant= @user.build_applicant(params[:applicant])
+     #@applicant = Applicant.new( params[:applicant] )
      #logger.debug "Applicant isssssssssssssss"
      #logger.debug @applicant.attributes
      #parameters=params[:applicant][:guardian_attributes]
@@ -80,8 +82,8 @@ class ApplicantsController < ApplicationController
       if params[:save]
         
         respond_to do |format|
-        if @applicant.save(:validate => false)
-          format.html { redirect_to @applicant, notice: 'Applicant was successfully created.' }
+        if @user.save(:validate => false)
+          format.html { redirect_to @user.applicant, notice: 'Applicant was successfully created.' }
           format.json { render json: @applicant, status: :created, location: @applicant }
         else
           format.html { render action: "new" }
@@ -91,8 +93,8 @@ class ApplicantsController < ApplicationController
    else
     
       respond_to do |format|
-        if @applicant.save
-          format.html { redirect_to @applicant, notice: 'Applicant was successfully created.' }
+        if @user.save
+          format.html { redirect_to @user.applicant, notice: 'Applicant was successfully created.' }
           format.json { render json: @applicant, status: :created, location: @applicant }
         else
           format.html { render action: "new" }
@@ -107,7 +109,12 @@ class ApplicantsController < ApplicationController
   end
   
   def update
-    @applicant = Applicant.find(params[:id])
+    
+    @user=User.find(session[:user_id])
+    #@applicant= @user.build_applicant(params[:applicant])
+    @applicant=@user.applicant 
+     
+    #@applicant = Applicant.find(params[:id])
     @applicant.attributes=params[:applicant]
 
     @applicant.guardians.each do |guardian|
@@ -145,8 +152,8 @@ class ApplicantsController < ApplicationController
       if params[:save]
         
         respond_to do |format|
-        if @applicant.save(:validate => false)
-          format.html { redirect_to @applicant, notice: 'Applicant was successfully created.' }
+        if @user.save(:validate => false)
+          format.html { redirect_to @user.applicant, notice: 'Applicant was successfully created.' }
           format.json { render json: @applicant, status: :created, location: @applicant }
         else
           format.html { render action: "new" }
@@ -156,8 +163,8 @@ class ApplicantsController < ApplicationController
    else
     
       respond_to do |format|
-        if @applicant.save
-          format.html { redirect_to @applicant, notice: 'Applicant was successfully created.' }
+        if @user.save
+          format.html { redirect_to @user.applicant, notice: 'Applicant was successfully created.' }
           format.json { render json: @applicant, status: :created, location: @applicant }
         else
           format.html { render action: "new" }
