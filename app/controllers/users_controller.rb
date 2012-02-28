@@ -24,7 +24,7 @@ class UsersController < ApplicationController
   end
   
   def application  #ADJUST THIS!!!!   
-    @user = User.find(session[:user_id])
+    @user = User.find(params[:id])
     if @user.applicant == nil
       redirect_to new_applicant_url
     else
