@@ -6,7 +6,7 @@ class Address < ActiveRecord::Base
   validates :email, :format => {:with => /\A[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]+\z/, :message => "Invalid E-mail"}
   validates :fax, :mobile, :telephone, :format => {:with => /^[0-9]+$/ , :message => "Invalid Number"}
   validate :a_number_present #either telephone or mobile must be present
-
+  validates_uniqueness_of :email, :case_sensitive => false, :message => "email has already taken"
 
   private
    

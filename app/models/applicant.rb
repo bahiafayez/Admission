@@ -16,6 +16,8 @@ class Applicant < ActiveRecord::Base
   validates_inclusion_of :gender, :in => ["female", "male"]
   validates_inclusion_of :military_status, :in => ["completed", "exempted","postponed", "does not apply"]
   validates_inclusion_of :transportation, :in => ["private", "Nu buses"]
+  validates_uniqueness_of :passport_number, :case_sensitive => false, :message => "passport number has already been taken"
+
   #CONTINUE VALIDATION  
    
 end
