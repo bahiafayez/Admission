@@ -1,0 +1,65 @@
+<%= f.fields_for :secondary_schools do |u| %>
+<div>
+    <div class="field">
+        <%= u.label :name %><br />
+    	<%= u.text_field :name %>
+    </div>
+    <div class="field">
+        <%= u.label :address %><br />
+    	<%=  u.text_area :address, :rows => 3, :cols => 5 %>
+    </div>
+<div class="field">
+	<%= u.label :language %><br />
+	<%= u.text_field :language %>
+</div>
+<div class="field">
+	<%= u.label :attended_from %><br />
+	<%= u.date_select :attended_from , :start_year => Time.now.year - 30, :end_year => Time.now.year + 1 %>
+</div>
+<div class="field">
+	<%= u.label :attended_to %><br />
+	<%= u.date_select :attended_to , :start_year => Time.now.year - 30, :end_year => Time.now.year + 1 %>
+</div>
+
+<div class="field">
+	<%= u.label :certificate_type%><br />
+	<%= u.text_field :certificate_type %>
+</div>
+<div class="field">
+	<%= u.label :graduation_date %><br />
+	<%= u.date_select :graduation_date, :start_year => Time.now.year - 30, :end_year => Time.now.year + 1 %>
+</div>
+<div class="field">
+	<%= u.label :division , "If Sanaweya Amma Please specify division"%><br />
+	<%= u.text_field :division %>
+</div>
+<div class="field">
+	<%= u.label :school_type , "Was your school"%><br />
+	<%= u.select :school_type, options_for_select(["Private", "Public"])  %>?
+</div>
+
+</div>
+
+<% end %>
+
+<%= f.fields_for :checkSecondary do |u| %>
+
+<div class="field">
+	<%= u.label :another , "Only one school"%>
+	<%= u.check_box :oneSchool %><br />
+</div>
+<% end %>   
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    

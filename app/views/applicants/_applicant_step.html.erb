@@ -1,0 +1,72 @@
+<div class="field">
+	
+	<%= f.label :photo %><br />
+	<%= image_tag @applicant.photo.url(:medium) %>
+	
+	
+	<%= f.file_field :photo %>
+</div>
+<div class="field">
+	<%= f.label :first_name %><br />
+	<%= f.text_field :first_name ,:width=>'10px', :size=>"20", :maxlength=>"20" %>
+</div>
+<div class="field">
+	<%= f.label :middle_name %><br />
+	<%= f.text_field :middle_name %>
+</div>
+<div class="field">
+	<%= f.label :last_name %><br />
+	<%= f.text_field :last_name %>
+</div>
+<div class="field">
+	<%= f.label :date_of_birth %><br />
+	<%= f.date_select :date_of_birth, :start_year => Time.now.year - 110, :end_year => Time.now.year - 10 %>
+</div>
+<div class="field">
+	<%= f.label :place_of_birth %><br />
+	<%= f.text_field :place_of_birth %>
+</div>
+<div class="field">
+	<%= f.label :gender %><br />
+	<%= f.select :gender, options_for_select(["Male", "Female"])%>
+</div>
+<div class="field">
+	<%= f.label :military_status %><br />
+	<%= f.select :military_status, options_for_select(["Does not apply", "Exempted", "Completed", "Postponed"]) %>
+</div>    
+ 
+<div class="field">
+	<%= f.label :national_id , "National ID"%><br />
+	<%= f.text_field :national_id %>
+</div>
+<div class="field">
+	<%= f.label :national_id_expiry_date %><br />
+	<%= f.date_select :national_id_expiry_date, :start_year => Time.now.year - 5, :end_year => Time.now.year + 10 %>
+</div>    
+<div class="field">
+	<%= f.label :passport_number %><br />
+	<%= f.text_field :passport_number %>
+</div>  
+<div class="field">
+	<%= f.label :country_of_issuance %><br />
+	<%= f.text_field :country_of_issuance %>
+</div>
+<div class="field">
+	<%= f.label :passport_expiry_date %><br />
+	<%= f.date_select :passport_expiry_date , :start_year => Time.now.year - 5, :end_year => Time.now.year + 30 %>
+</div>     
+<div class="field">
+	<%= f.label :academic_honours %><br />
+	<%= f.text_area :academic_honours, :cols=> 20, :rows=> 10 %>
+</div>
+<div class="field">
+	<%= f.label :extra_activities %><br />
+	<%= f.text_area :extra_activities, :cols=> 20, :rows=> 10 %>
+</div>    
+<div class="field">
+	<%= f.label :transportation %><br />
+	<%= f.select :transportation, options_for_select(["Private", "Nu buses"])%>
+</div> 
+    
+    
+   

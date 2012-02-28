@@ -1,0 +1,20 @@
+<%= f.fields_for :healths do |u| %>
+    <div class="field">
+        <%= u.label :illness %><br />
+    	<%= u.text_field :illness %>
+    </div>
+    <div class="field">
+        <%= u.label :description %><br />
+    	<%=  u.text_area :description, :rows=>4, :cols => 5 %>
+    </div>
+
+<% end %>
+
+
+    
+    
+    
+    
+  
+    
+    

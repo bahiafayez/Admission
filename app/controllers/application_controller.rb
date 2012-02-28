@@ -1,7 +1,23 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
+  before_filter :authorize
   #somthing
   #blabla
   #something else
+  helper_method :current_user  #to make it available in the view.. i think an alternative would be to implement it in the application_helper directly..
+
+  private
+  
+  def current_user
+    @current_user ||= User.find(session[:user_id]) if session[:user_id]
+  end
+  
+  protected
+    
+  def authorize
+    unless User.find_by_id(session[:user_id])
+      redirect_to log_in_url, notice: "Please Log in"
+    end
+  end
 
 end
