@@ -24,21 +24,12 @@
 	<%= f.text_field :place_of_birth,{:class => 'span3'}%>
 </div>
 <div class="field">
-<<<<<<< HEAD
-	<%= f.label :gender %><br />
+	<%= f.label :gender, {:class => 'label'}%> &nbsp;
 	<%= f.select :gender, options_for_select(["Male", "Female"], @applicant.gender)%>
 </div>
 <div class="field">
-	<%= f.label :military_status %><br />
-	<%= f.select :military_status, options_for_select(["Does not apply", "Exempted", "Completed", "Postponed"],  @applicant.military_status) %>
-=======
-	<%= f.label :gender, {:class => 'label'}%> &nbsp;
-	<%= f.select :gender, options_for_select(["Male", "Female"])%>
-</div>
-<div class="field">
 	<%= f.label :military_status, {:class => 'label'}%> &nbsp;
-	<%= f.select :military_status, options_for_select(["Does not apply", "Exempted", "Completed", "Postponed"]) %>
->>>>>>> 14eb2b16c883d4d163497d7e83cd3e0b63d8be06
+	<%= f.select :military_status, options_for_select(["Does not apply", "Exempted", "Completed", "Postponed"],  @applicant.military_status) %>
 </div>    
  
 <div class="field">
