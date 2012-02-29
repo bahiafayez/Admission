@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  employer: MyString
+  worked_from: 2012-02-23
+  worked_to: 2012-02-23
+  tasks: MyString
+
+two:
+  employer: MyString
+  worked_from: 2012-02-23
+  worked_to: 2012-02-23
+  tasks: MyString

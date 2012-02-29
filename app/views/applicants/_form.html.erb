@@ -1,0 +1,50 @@
+<%= form_for(@applicant, :html => { :multipart => true }) do |f| %>
+	<% if @applicant.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@applicant.errors.count, "error") %> prohibited this product from being saved:</h2>
+      <ul>
+      <% @applicant.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  
+  	<div class="field">
+    <%= f.label :photo %><br />
+    <%= f.file_field :photo %>
+  </div>
+  <div class="field">
+    <%= f.label :first_name %><br />
+    <%= f.text_field :first_name ,:width=>'10px', :size=>"20", :maxlength=>"20" %>
+  </div>
+  <div class="field">
+    <%= f.label :middle_name %><br />
+    <%= f.text_field :middle_name %>
+  </div>
+  <div class="field">
+    <%= f.label :last_name %><br />
+    <%= f.text_field :last_name %>
+  </div>
+	
+	<%= fields_for @attachment do |u| %>
+    <div class="field">
+        <%= u.label :personal_experience %><br />
+    	<%= u.file_field :personal_experience %>
+    </div>
+    <div class="field">
+        <%= u.label :additional_information %><br />
+    	<%= u.file_field :additional_information %>
+    </div>
+	<% end %>
+	
+    <div class="actions">
+      <%= f.submit "Save", :name => "save" %>
+	  <%= f.submit "Submit", :name => "submit" %>
+    </div>
+    
+<% end %>
+
+
+

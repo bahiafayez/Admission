@@ -1,0 +1,100 @@
+<h2 style="font-size: 30px; color:#999999;">New Application</h2>
+	<!-- <%=session[:applicant_params]%>
+	<%=session[:address_params]%> -->
+	<!-- Applicant addresses <%= @applicant.addresses%> -->
+	<%= form_for @applicant do |f| %> 
+	
+	<div class="btn-group">
+		<button class="btn-small active" id="applicantbutton">
+		Applicant
+	</button>
+	<button class="btn-small" id="addressbutton">
+		Address
+	</button>
+	<button class="btn-small" id="admissioninformationbutton">
+		Admission Information
+	</button>
+	<button class="btn-small" id="guardianbutton">
+		Guardians
+	</button>
+	<button class="btn-small" id="secondaryschoolbutton">
+		Secondary School
+	</button>
+	<button class="btn-small" id="collegebutton">
+		College
+	</button>
+	<button class="btn-small" id="workbutton">
+		Work
+	</button>
+	<button class="btn-small" id="healthbutton">
+		Health
+	</button>
+	<button class="btn-small" id="attachmentbutton">
+		Attachments
+	</button>
+	<button class="btn-small" id="unirelatedinfobutton">
+		University Related Information
+	</button>
+	</div>
+	<br /><br />
+	<div class="well">
+	<% if @applicant.errors.any? %>
+	<div id="error_explanation">
+		<h2><%= pluralize(@applicant.errors.count, "error") %> prohibited this product from being saved:</h2>
+		<ul>
+			<% @applicant.errors.full_messages.each do |msg| %>
+			<li>
+				<%= msg %>
+			</li>
+			<% end %>
+		</ul>
+	</div>
+	<% end %>
+	<div id="allforms">
+		<div id="applicantform">
+			<%= render "applicant_step", :f => f %>
+		</div>
+		<div id="addressform" class="fields">
+			<%= render "address_step", :f => f %>
+		</div>
+		<div id="admissionform">
+			<%= render "admission_information_step", :f => f %>
+		</div>
+		<div id="workform">
+			<%= render "work_step", :f => f %>
+		</div>
+		<div id="secondaryform">
+			<%= render "secondary_school_step", :f => f %>
+		</div>
+		<div id="collegeform">
+			<%= render "college_step", :f => f %>
+		</div>
+		<div id="uniform">
+			<%= render "uni_related_info_step", :f => f %>
+		</div>
+		<div id="healthform">
+			<%= render "health_step", :f => f %>
+		</div>
+		<div id="attachmentform">
+			<%= render "attachment_step", :f => f %>
+		</div>
+		<div id="guardianform">
+			<%= render "guardian_step", :f => f %>
+		</div>
+	</div>
+	<!-- <p><%= f.submit "Continue", :name => "forward_button" unless @applicant.last_step? %></p>
+	<p><%= f.submit "Back", :name => "back_button" unless @applicant.first_step? %></p>
+	-->
+	<!--  <%= f.fields_for :addresses do |u| %>
+
+	<%= u.label :address %><br />
+	<%= u.text_area :address , :cols=> 20, :rows=>5%>
+
+	<% end %>  -->
+	<div class="actions" style="padding-left: 350px;">
+		<%= f.submit "Save", :name => "save", :class => 'btn'%> &nbsp;&nbsp;&nbsp;
+		<%= f.submit "Submit", :name => "submit", :class => 'btn' %> <!--  <%= f.submit "add actor", :name=>"add" %> -->
+	</div>
+	<!-- <%= f.hidden_field :addresses, :value => :addresses %> -->
+	<% end %>
+	</div>

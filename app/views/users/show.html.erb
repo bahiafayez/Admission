@@ -1,0 +1,9 @@
+<p id="notice" align="center">
+	<%= notice %>
+	<%= @user.email %>
+</p>
+<p align="center" style="padding-top:50px; padding-bottom: 190px;">
+<%= link_to 'Application', application_user_url, :class => 'btn btn-primary btn-large'%>
+<%= link_to 'Edit', edit_user_path(@user), :class => 'btn btn-primary btn-large' %> 
+<%= link_to 'Back', users_path, :class => 'btn btn-primary btn-large' %>
+</p>

@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  semester: MyString
+  applying_to: MyString
+  intended_major: MyString
+  toefl_test_results: MyString
+  toefl_test_date: 2012-02-23
+  proficiency_test: false
+
+two:
+  semester: MyString
+  applying_to: MyString
+  intended_major: MyString
+  toefl_test_results: MyString
+  toefl_test_date: 2012-02-23
+  proficiency_test: false
