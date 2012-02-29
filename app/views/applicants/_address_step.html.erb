@@ -22,7 +22,7 @@
 </div>
 <div class="field">
 	<%= u.label :address_type %><br />
-	<%= u.select :address_type , options_for_select(["Home Address", "Mailing Address", "Both"]) %>
+	<%= u.select :address_type , options_for_select(["Home Address", "Mailing Address", "Both"], u.object.address_type) %>
 </div>
 </div>
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120226232710) do
+ActiveRecord::Schema.define(:version => 20120229212634) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -90,9 +90,13 @@ ActiveRecord::Schema.define(:version => 20120226232710) do
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
-    t.datetime "created_at",              :null => false
-    t.datetime "updated_at",              :null => false
+    t.datetime "created_at",                                          :null => false
+    t.datetime "updated_at",                                          :null => false
     t.integer  "user_id"
+    t.string   "status",                  :default => "Just Created"
+    t.boolean  "checkSecondary"
+    t.boolean  "checkCollege"
+    t.boolean  "checkWork"
   end
 
   create_table "attachments", :force => true do |t|
@@ -152,6 +156,20 @@ ActiveRecord::Schema.define(:version => 20120226232710) do
     t.datetime "updated_at",   :null => false
   end
 
+  create_table "other_choices", :force => true do |t|
+    t.boolean  "quality"
+    t.boolean  "reputation"
+    t.boolean  "facilities"
+    t.boolean  "location"
+    t.boolean  "fields_of_study"
+    t.string   "specify_fields_of_study"
+    t.boolean  "other"
+    t.string   "specify_other"
+    t.integer  "uni_related_info_id"
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
+  end
+
   create_table "secondary_schools", :force => true do |t|
     t.string   "name"
     t.text     "address"
@@ -176,6 +194,24 @@ ActiveRecord::Schema.define(:version => 20120226232710) do
 
   add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
   add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
+
+  create_table "uni_choices", :force => true do |t|
+    t.boolean  "internet"
+    t.boolean  "email"
+    t.boolean  "radio"
+    t.boolean  "school_visits"
+    t.boolean  "nile_university_faculty_and_staff"
+    t.boolean  "nile_university_student_and_alumni"
+    t.boolean  "print_advertisements"
+    t.string   "specify_print_advertisements"
+    t.boolean  "nu_seminar_workshop_and_conference"
+    t.string   "specify_nu_seminar"
+    t.boolean  "other"
+    t.string   "specify_other"
+    t.integer  "uni_related_info_id"
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
+  end
 
   create_table "uni_related_infos", :force => true do |t|
     t.string   "hear_of_uni"

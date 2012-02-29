@@ -17,7 +17,8 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :applicant
   
   def self.authenticate(email, password) #class method
-    user = find_by_email(email)
+    #user = find_by_email(email)
+    user= find(:all, :conditions => [ "lower(email) = ?", email.downcase ]).first
     if user && user.password_hash == BCrypt::Engine.hash_secret(password, user.password_salt)
       user
     else

@@ -28,11 +28,11 @@
 </div>
 <div class="field">
 	<%= f.label :gender %><br />
-	<%= f.select :gender, options_for_select(["Male", "Female"])%>
+	<%= f.select :gender, options_for_select(["Male", "Female"], @applicant.gender)%>
 </div>
 <div class="field">
 	<%= f.label :military_status %><br />
-	<%= f.select :military_status, options_for_select(["Does not apply", "Exempted", "Completed", "Postponed"]) %>
+	<%= f.select :military_status, options_for_select(["Does not apply", "Exempted", "Completed", "Postponed"],  @applicant.military_status) %>
 </div>    
  
 <div class="field">
@@ -65,7 +65,7 @@
 </div>    
 <div class="field">
 	<%= f.label :transportation %><br />
-	<%= f.select :transportation, options_for_select(["Private", "Nu buses"])%>
+	<%= f.select :transportation, options_for_select(["Private", "Nu buses"], @applicant.transportation)%>
 </div> 
     
     
