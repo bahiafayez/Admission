@@ -14,7 +14,8 @@ class SessionsController < ApplicationController
     user = User.authenticate(params[:email], params[:password])
     if user
       session[:user_id] = user.id  #to save in session..
-      redirect_to user, :notice => "Logged in!"
+      redirect_to user, :notice => "Thanks for signing in, "
+
     else
       flash.now.alert = "Invalid email or password" #flash because i won't use redirect.. (so can't set in redirect)
       render "new"

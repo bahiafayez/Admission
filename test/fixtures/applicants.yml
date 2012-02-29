@@ -27,3 +27,31 @@ two:
   passport_number: MyString
   country_of_issuance: MyString
   passport_expiry_date: 2012-02-23
+
+person:
+  first_name: 122Ahmed
+  middle_name: Mohamed
+  last_name: Yassen
+  date_of_birth: sagfg2012-02-23
+  place_of_birth: Cairo
+  gender: Male
+  military_status: Exempted
+  national_id: 1111111111
+  national_id_expiry_date: 2012-02-23
+  passport_number: 18971
+  country_of_issuance: Egypt
+  passport_expiry_date: 2012-02-23
+  
+person2:
+  first_name: Ahmed
+  middle_name: Mohamed
+  last_name: Yassen
+  date_of_birth: sagfg2012-02-23
+  place_of_birth: Cairo
+  gender: Male
+  military_status: Exempted
+  national_id: 1111111111
+  national_id_expiry_date: 2012-02-23
+  passport_number: 18971
+  country_of_issuance: Egypt
+  passport_expiry_date: 2012-02-23

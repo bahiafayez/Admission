@@ -2,7 +2,7 @@
 class Applicant < ActiveRecord::Base
   belongs_to :user
   
-  has_attached_file :photo, :styles => { :medium => "300x300>", :thumb => "100x100>" }
+  has_attached_file :photo, :styles => {:original=>"500x500>" ,:medium => "300x300>", :thumb => "100x100>" }
   has_many :addresses, :dependent => :destroy
   has_one :admission_information, :dependent => :destroy
   has_many :secondary_schools, :dependent => :destroy
@@ -18,12 +18,14 @@ class Applicant < ActiveRecord::Base
   validates_attachment_presence :photo
   validates_attachment_content_type :photo, :content_type=>['image/jpeg', 'image/png', 'image/gif'], :message => 'Image must be of type jpeg, png or gif'
   validates_date :date_of_birth, :passport_expiry_date, :national_id_expiry_date
+
   validates_inclusion_of :gender, :in => ["Female", "Male"]
   validates_inclusion_of :military_status, :in => ["Completed", "Exempted","Postponed", "Does not apply"]
   validates_inclusion_of :transportation, :in => ["Private", "Nu buses"]
   
   validates_uniqueness_of :national_id, :case_sensitive => false, :message => "National ID has already taken"
   validates_uniqueness_of :passport_number, :case_sensitive => false, :message => "Passport Number has already taken"
+  
   #CONTINUE VALIDATION  
   
   

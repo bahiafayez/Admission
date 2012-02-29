@@ -1,13 +1,24 @@
-<h1>Log in</h1>
-
-<%= form_tag sessions_path do %>
-  <p>
-    <%= label_tag :email %><br />
-    <%= text_field_tag :email, params[:email] %> <!-- we put params[:email] to remember (this is the text displayed) -->
-  </p>
-  <p>
-    <%= label_tag :password %><br />
-    <%= password_field_tag :password %>
-  </p>
-  <p class="button"><%= submit_tag "Log in" %></p>
-<% end %>
+<div class="log_in_bg">
+	<h2>Sign in</h2>
+	<div class="log_in_bg_text">
+		New User?
+		<%= link_to "Sign Up", sign_up_url%>
+	</div>
+	<div class="log_in">
+		<%= form_tag sessions_path do %>
+		<p>
+			<%= label_tag :email %>
+			<br />
+			<%= text_field_tag :email, params[:email],{:class => 'span3', :placeholder => "example@example.com"}%> <!-- we put params[:email] to remember (this is the text displayed) -->
+		</p>
+		<p>
+			<%= label_tag :password %>
+			<br />
+			<%= password_field_tag :password%>
+		</p>
+		<p class="button">
+			<%= submit_tag "Log in",{:class => 'btn'} %>
+		</p>
+		<% end %>
+	</div>
+</div>

@@ -1,29 +1,72 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Admission</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-
-
-<div id="user_nav">
-  <% if current_user %>
-    Logged in as <%= current_user.email %>.
-    <%= link_to "Log out", log_out_path %>
-  <% else %>
-    <%= link_to "Sign up", sign_up_path %> or
-    <%= link_to "log in", log_in_path %>
-  <% end %>
-</div>
-
-<% flash.each do |name, msg| %>
-  <%= content_tag :div, msg, :id => "flash_#{name}" %>
-<% end %>
-
-<%= yield %>
-
-</body>
+	<head>
+		<title>Undergraduate Student Addmission</title>
+		<%= stylesheet_link_tag  'style', :media => 'all' %>
+		<%= javascript_include_tag "application" %>
+		<%= csrf_meta_tags %>
+	</head>
+	<body>
+		<!--Omnia -->
+		<p align="right">
+			<% if current_user %>
+			Logged in as <%= current_user.email %>.
+			<%= link_to "Log out", log_out_path %>
+			<% else %>
+			<%= link_to "Sign up", sign_up_path %> or
+			<%= link_to "log in", log_in_path %>
+			<% end %>
+			<!--<% flash.each do |name, msg| %>
+			<%= content_tag :div, msg, :id => "flash_#{name}" %>
+			<% end %>-->
+		</p>
+		<div id="wrapper">
+			<div id="header">
+				<div id="logo">
+					<a href="#"><%= image_tag ('Nu-Logo.png'),{:height => 72, :width => 101, :alt => "Nile University Logo"} %></a>
+				</div>
+				<div id="slogan">
+					<h2>Creating a Learning Culture</h2>
+				</div>
+				<div id="slogan2">
+					<h2>Undergraduate Student Addmission</h2>
+				</div>
+			</div>
+			<div id="menu">
+				<ul>
+					<li class="first current_page_item">
+						<%= link_to "Home", '/home/index' %>
+					</li>
+					<li>
+						<a href="#">Discover</a>
+					</li>
+					<li>
+						<a href="#">Visit</a>
+					</li>
+					<li>
+						<a href="#">Afford</a>
+					</li>
+					<li>
+						<a href="#">About</a>
+					</li>
+					<li class="last">
+						<%= link_to "MyNU", log_in_url%>
+					</li>
+				</ul>
+			<br class="clearfix" />
+			</div>
+			<div id="page">
+			
+						<!--<%= image_tag ('DSC_0242.jpg'),{:height => 230, :width => 687, :alt => "NU",:class => 'pic'} %>-->
+						
+							<%= yield %>
+											
+			</div>
+			<p></p>
+		<div id="footer">
+			Copyright (c) 2012 Sitename.com. All rights reserved. Design by <a href="http://www.freecsstemplates.org/">Free CSS Templates</a>.
+		</div>
+		
+		<!--end omnia-->
+	</body>
 </html>
