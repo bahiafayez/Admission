@@ -263,7 +263,7 @@ class ApplicantsController < ApplicationController
           format.html { redirect_to @user.applicant, notice: 'Applicant was successfully created.' }
           format.json { render json: @applicant, status: :created, location: @applicant }
         else
-          format.html { render action: "new" }
+          format.html { render action: "edit" }
           format.json { render json: @applicant.errors, status: :unprocessable_entity }
         end
       end
@@ -318,7 +318,7 @@ class ApplicantsController < ApplicationController
           format.html { redirect_to @user.applicant, notice: 'Applicant was successfully created.' }
           format.json { render json: @applicant, status: :created, location: @applicant }
         else
-          format.html { render action: "new" }
+          format.html { render action: "edit" }
           format.json { render json: @applicant.errors, status: :unprocessable_entity }
         end
       end

@@ -1,5 +1,5 @@
 ActiveAdmin.register Applicant do
-  menu :parent => "Applicant Information"
+  #menu :parent => "Applicant Information"
  
   show do |app|
     h3 applicant.first_name

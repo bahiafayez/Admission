@@ -43,15 +43,14 @@
 	<div class="well">
 	<% if @applicant.errors.any? %>
 	<div id="error_explanation">
-		<h2><%= pluralize(@applicant.errors.count, "error") %> prohibited this product from being saved:</h2>
-		<ul>
-			<% @applicant.errors.full_messages.each do |msg| %>
+		<h2><%= pluralize(@applicant.errors.count, "error") %> prohibited this applicant from being saved</h2>
+<!-- 		<ul>
+			<% @applicant.errors.full_messages.uniq.each do |msg| %>
 			<li>
-				<%= msg %>
+ 				<%= msg %>
 			</li>
 			<% end %>
-		</ul>
-	</div>
+		</ul> -->	</div>
 	<% end %>
 	<div id="allforms">
 		<div id="applicantform">
@@ -97,7 +96,9 @@
 	<div class="actions" style="padding-left: 350px;">
 		<%= f.submit "Save", :name => "save", :class => 'btn'%> &nbsp;&nbsp;&nbsp;
 		<%= f.submit "Submit", :name => "submit", :class => 'btn' %> <!--  <%= f.submit "add actor", :name=>"add" %> -->
+	    
 	</div>
 	<!-- <%= f.hidden_field :addresses, :value => :addresses %> -->
 	<% end %>
 	</div>
+	

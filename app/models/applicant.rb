@@ -40,8 +40,8 @@ class Applicant < ActiveRecord::Base
   # attr_accessor :checkWork
   
   #validates_presence_of :addresses, :message => "not exist in the DB"
-  validates_associated :addresses, :admission_information,:guardians, :secondary_schools, :colleges, :works, :attachment, :healths, :uni_related_info
-  
+  #validates_associated :addresses, :admission_information,:guardians, :secondary_schools, :colleges, :works, :attachment, :healths, :uni_related_info #,  :update
+  validates_associated :addresses,:guardians, :secondary_schools, :colleges, :works, :healths #,  :update
   
   def to_s
     return "#{first_name} #{last_name}"

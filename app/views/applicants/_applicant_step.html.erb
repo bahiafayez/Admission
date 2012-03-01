@@ -1,11 +1,11 @@
-<div class="field">	
+ <div class="field"> 
 	<%= f.label :photo, {:class => 'label'}%> &nbsp;	
 	<%= image_tag @applicant.photo.url(:medium) %> &nbsp; &nbsp; &nbsp;
 	<%= f.file_field :photo%>
 </div>
 <div class="field">
 	<%= f.label :first_name, {:class => 'label'}%> &nbsp;
-	<%= f.text_field :first_name ,{:class => 'span3'}%>
+	<%= f.text_field :first_name ,{:class => 'span3'}%>  
 </div>
 <div class="field">
 	<%= f.label :middle_name, {:class => 'label'}%> &nbsp;

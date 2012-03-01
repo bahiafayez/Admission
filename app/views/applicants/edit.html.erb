@@ -7,11 +7,11 @@
   <% if @applicant.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@applicant.errors.count, "error") %> prohibited this product from being saved:</h2>
-      <ul>
-      <% @applicant.errors.full_messages.each do |msg| %>
+      <!-- <ul>
+      <% @applicant.errors.full_messages.uniq.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
-      </ul>
+      </ul> -->
     </div>
   <% end %>
   

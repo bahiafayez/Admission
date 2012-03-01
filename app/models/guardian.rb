@@ -1,7 +1,7 @@
 class Guardian < ActiveRecord::Base
   belongs_to :applicant
   
-  validates :first_name, :last_name, :address, :occupation, :company_name, :business_address, :relation, :financial, :presence => true
+  validates :first_name, :last_name, :address, :occupation, :company_name, :business_address, :presence => true #:relation, :financial,
   validate :a_number_present #either telephone or mobile must be present
   validates :fax, :mobile, :telephone, :business_telephone, :format => {:with => /^[0-9]+$/ , :message => "Invalid Number"}
   validate :a_contact_present
