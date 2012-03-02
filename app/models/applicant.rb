@@ -2,7 +2,8 @@
 class Applicant < ActiveRecord::Base
   belongs_to :user
   
-  has_attached_file :photo, :styles => {:original=>"500x500>" ,:medium => "300x300>", :thumb => "100x100>" }
+  has_attached_file :photo,  :styles => {:original=>"500x500>" ,:medium => "300x300>", :thumb => "100x100>" }
+
   has_many :addresses, :dependent => :destroy
   has_one :admission_information, :dependent => :destroy
   has_many :secondary_schools, :dependent => :destroy

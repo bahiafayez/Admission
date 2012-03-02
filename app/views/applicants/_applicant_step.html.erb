@@ -1,7 +1,8 @@
+<p align="center" style="font-size: 14px; color:#999999;">Applicant Information</p>
  <div class="field"> 
 	<%= f.label :photo, {:class => 'label'}%> &nbsp;	
 	<%= image_tag @applicant.photo.url(:medium) %> &nbsp; &nbsp; &nbsp;
-	<%= f.file_field :photo%>
+	<%= f.file_field :photo, :accept => 'image/png,image/gif,image/jpeg' %>
 </div>
 <div class="field">
 	<%= f.label :first_name, {:class => 'label'}%> &nbsp;

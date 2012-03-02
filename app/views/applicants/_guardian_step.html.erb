@@ -1,3 +1,4 @@
+<p align="center" style="font-size: 14px; color:#999999;">Guardian Information</p>
 <%= f.fields_for :guardians do |u| %>
 <div>
     <div class="field">
@@ -19,11 +20,11 @@
     
    <div class="field">
         <%= u.label :telephone, "Telephone Number" , {:class => 'label'}%> &nbsp;
-    	<%=  u.text_field :telephone ,{:class => 'span3'}%>
+    	<%=  u.telephone_field :telephone ,{:class => 'span3'}%>
     </div>
 <div class="field">
 	<%= u.label :mobile, "Mobile Number" , {:class => 'label'}%> &nbsp;
-	<%= u.text_field :mobile ,{:class => 'span3'}%>
+	<%= u.telephone_field :mobile ,{:class => 'span3'}%>
 </div>
 
 <div class="field">
@@ -36,15 +37,15 @@
 </div>
 <div class="field">
 	<%= u.label :business_telephone , {:class => 'label'}%> &nbsp;
-	<%= u.text_field :business_telephone ,{:class => 'span3'}%>
+	<%= u.telephone_field :business_telephone ,{:class => 'span3'}%>
 </div>
 <div class="field">
 	<%= u.label :email, "E-mail" , {:class => 'label'}%> &nbsp;
-	<%= u.text_field :email ,{:class => 'span3'}%>
+	<%= u.email_field :email ,{:class => 'span3'}%>
 </div>
 <div class="field">
 	<%= u.label :fax, "Fax Number", {:class => 'label'}%> &nbsp;
-	<%= u.text_field :fax ,{:class => 'span3'}%>
+	<%= u.telephone_field :fax ,{:class => 'span3'}%>
 </div>
  
 <div class="field">

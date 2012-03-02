@@ -4,7 +4,7 @@
 	<!-- Applicant addresses <%= @applicant.addresses%> -->
 	
 	<div class="btn-group">
-		<button class="btn-small active" id="applicantbutton">
+		<button class="btn-small" id="applicantbutton">
 		Applicant
 	</button>
 	<button class="btn-small" id="addressbutton">
@@ -37,7 +37,7 @@
 	</div>
 	<br /><br />
 	
-	<%= form_for @applicant do |f| %> 
+	<%= form_for @applicant, :html => { :multipart => true }  do |f| %> 
 	
 	
 	<div class="well">
@@ -45,7 +45,7 @@
 	<div id="error_explanation">
 		<h5 align="center" style="color:#F5071D; font-size:18px; "> You've got some validation errors </h5><br />
 		<!-- <h2><%= pluralize(@applicant.errors.count, "error") %> prohibited this applicant from being saved</h2> -->
-<!-- 		<ul>
+		<!-- <ul>
 			<% @applicant.errors.full_messages.uniq.each do |msg| %>
 			<li>
  				<%= msg %>

@@ -1,3 +1,4 @@
+<p align="center" style="font-size: 14px; color:#999999;">Secondary School Information</p>
 <%= f.fields_for :secondary_schools do |u| %>
 <div>
     <div class="field">
@@ -30,8 +31,8 @@
 	<%= u.date_select :graduation_date, :start_year => Time.now.year - 30, :end_year => Time.now.year + 1 %>
 </div>
 <div class="field">
-	<%= u.label :division , "If Sanaweya Amma Please specify division", {:class => 'label'}%> <br /> &nbsp;
-	<%= u.text_field :division ,{:class => 'span3'}%>
+	<%= u.label :division , "If Sanaweya Amma Please specify division", {:class => 'label'}%> <br /><br /> &nbsp;
+	<%= u.text_field :division ,{:class => 'span3'}%><br />
 </div>
 <div class="field">
 	<%= u.label :school_type , "Was your school", {:class => 'label'}%> &nbsp;

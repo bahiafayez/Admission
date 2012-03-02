@@ -54,6 +54,10 @@ class ApplicantsController < ApplicationController
      # end
      #logger.debug ""
      
+     #Saving here, to save the image incase submission fails
+     #To save image
+     @applicant.save(:validate => false)
+     
      @applicant.guardians.each do |guardian|
        if guardian.relation=="Other"
          guardian.relation=guardian.relation2
@@ -116,7 +120,14 @@ class ApplicantsController < ApplicationController
      @applicant.uni_related_info.hear_of_uni=@reasons
      @applicant.uni_related_info.factors_other_universities=@reasons2
      
-      
+     if @applicant.military_status==nil
+       @applicant.military_status="Does not apply"
+     end 
+     
+      if @applicant.gender=="Female"
+       @applicant.military_status="Does not apply"
+     end
+     
      #@applicant.guardians[0].relation="Mother"
      #logger.debug @applicant.guardians[0].relation
       if params[:save]
@@ -178,13 +189,19 @@ class ApplicantsController < ApplicationController
      logger.debug "checking!!!!!!!!!!!!!!!!!!!!!!!"
     #logger.debug params[:applicant][:checkSecondary][:oneSchool]
     @applicant.status="Submitted"
+    logger.debug @user.attributes
     
       respond_to do |format|
-        if @user.save
+        if @applicant.save
           format.html { redirect_to @user.applicant, notice: 'Applicant was successfully created.' }
           format.json { render json: @applicant, status: :created, location: @applicant }
         else
-          format.html { render action: "new" }
+          #@user.save(:validate => false)
+          logger.debug "ERRORS IN NEW!!!!!!!!!!"
+          logger.debug @user.errors
+          #error was becasue of password.. so instead saving applicant, since don't need to save user.
+          @user.errors.each{|attr,msg| logger.debug "#{attr} - #{msg}" } 
+          format.html { render action: "new", notice: "errorrrrrrrrrrr" }
           format.json { render json: @applicant.errors, status: :unprocessable_entity }
         end
       end
@@ -218,6 +235,9 @@ class ApplicantsController < ApplicationController
     
     @applicant.attributes=params[:applicant]
 
+    #To save image
+    @applicant.save(:validate => false)
+    
     @applicant.guardians.each do |guardian|
        if guardian.relation=="Other"
          guardian.relation=guardian.relation2
@@ -255,6 +275,13 @@ class ApplicantsController < ApplicationController
      @applicant.uni_related_info.hear_of_uni=@reasons
      @applicant.uni_related_info.factors_other_universities=@reasons2
      
+     if @applicant.military_status==nil
+       @applicant.military_status="Does not apply"
+     end
+     
+     if @applicant.gender=="Female"
+       @applicant.military_status="Does not apply"
+     end
      
       if params[:save]
         @applicant.status="Saved"
@@ -314,11 +341,15 @@ class ApplicantsController < ApplicationController
     
       @applicant.status="Submitted"
       respond_to do |format|
-        if @user.save
+        if @applicant.save 
+          logger.debug "NO ERRORRSSSSSSSSSSS"
           format.html { redirect_to @user.applicant, notice: 'Applicant was successfully created.' }
           format.json { render json: @applicant, status: :created, location: @applicant }
         else
-          format.html { render action: "edit" }
+          logger.debug "ERRORS!!!!!!!!!!!!!!!!!!!"
+          #To save image
+          #@user.save(:validate => false)
+          format.html { render action: "edit", notice: 'errors' }
           format.json { render json: @applicant.errors, status: :unprocessable_entity }
         end
       end
