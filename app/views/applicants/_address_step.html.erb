@@ -1,28 +1,28 @@
 <%= f.fields_for :addresses do |u| %>
 <div>
     <div class="field">
-        <%= u.label :address %><br />
-    	<%= u.text_area :address , :cols=> 20, :rows=>5%>
+        <%= u.label :address, {:class => 'label'}%> &nbsp;
+    	<%= u.text_area :address , :cols=> 20, :rows=>5,:class => 'input-xlarge'%>
     </div>
     <div class="field">
-        <%= u.label :telephone, "Telephone Number" %><br />
-    	<%=  u.telephone_field :telephone %>
+        <%= u.label :telephone, "Telephone Number", {:class => 'label'}%> &nbsp;
+    	<%=  u.telephone_field :telephone,{:class => 'span3'}%>
     </div>
 <div class="field">
-	<%= u.label :mobile, "Mobile Number" %><br />
-	<%= u.telephone_field :mobile %>
+	<%= u.label :mobile, "Mobile Number" ,{:class => 'label'}%> &nbsp;
+	<%= u.telephone_field :mobile,{:class => 'span3'}%>
 </div>
 <div class="field">
-	<%= u.label :fax, "Fax Number" %><br />
-	<%= u.telephone_field :fax %>
+	<%= u.label :fax, "Fax Number", {:class => 'label'}%> &nbsp;
+	<%= u.telephone_field :fax,{:class => 'span3'}%>
 </div>
 <div class="field">
-	<%= u.label :email , "Email"%><br />
-	<%= u.email_field :email %>
+	<%= u.label :email , "Email",{:class => 'label'}%> &nbsp;
+	<%= u.email_field :email,{:class => 'span3'}%>
 </div>
 <div class="field">
-	<%= u.label :address_type %><br />
-	<%= u.select :address_type , options_for_select(["Home Address", "Mailing Address", "Both"], u.object.address_type) %>
+	<%= u.label :address_type,{:class => 'label'}%> &nbsp;
+	<%= u.select :address_type, options_for_select(["Home Address", "Mailing Address", "Both"], u.object.address_type)%>
 </div>
 </div>
 

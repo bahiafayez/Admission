@@ -1,40 +1,40 @@
 <%= f.fields_for :colleges do |u| %>
 <div>
     <div class="field">
-        <%= u.label :name %><br />
-    	<%= u.text_field :name %>
+        <%= u.label :name , {:class => 'label'}%> &nbsp;
+    	<%= u.text_field :name,{:class => 'span3'}%>  
     </div>
     <div class="field">
-        <%= u.label :faculty %><br />
-    	<%=  u.text_field :faculty %>
+        <%= u.label :faculty , {:class => 'label'}%> &nbsp;
+    	<%=  u.text_field :faculty ,{:class => 'span3'}%>  
     </div>
 <div class="field">
-	<%= u.label :major %><br />
-	<%= u.text_field :major %>
+	<%= u.label :major , {:class => 'label'}%> &nbsp;
+	<%= u.text_field :major,{:class => 'span3'}%>  
 </div>
 <div class="field">
-	<%= u.label :city%><br />
-	<%= u.text_field :city %>
+	<%= u.label :city, {:class => 'label'}%> &nbsp;
+	<%= u.text_field :city ,{:class => 'span3'}%>  
 </div>
 <div class="field">
-	<%= u.label :country %><br />
-	<%= u.text_field :country %>
+	<%= u.label :country, {:class => 'label'}%> &nbsp;
+	<%= u.text_field :country,{:class => 'span3'}%>  
 </div>
 <div class="field">
-	<%= u.label :attended_from %><br />
+	<%= u.label :attended_from , {:class => 'label'}%> &nbsp;
 	<%= u.date_select :attended_from,  :start_year => Time.now.year - 30, :end_year => Time.now.year + 1 %>
 </div>
 <div class="field">
-	<%= u.label :attended_to %><br />
+	<%= u.label :attended_to, {:class => 'label'}%> &nbsp;
 	<%= u.date_select :attended_to, :start_year => Time.now.year - 30, :end_year => Time.now.year + 1  %>
 </div>
 <div class="field">
-	<%= u.label :language %><br />
-	<%= u.text_field :language %>
+	<%= u.label :language, {:class => 'label'}%> &nbsp;
+	<%= u.text_field :language ,{:class => 'span3'}%>  
 </div>
 <div class="field">
-	<%= u.label :gpa, "GPA" %><br />
-	<%= u.text_field :gpa  %>
+	<%= u.label :gpa, "GPA" , {:class => 'label'}%> &nbsp;
+	<%= u.text_field :gpa ,{:class => 'span3'}%>  
 </div>
 </div>
 <% end %>
@@ -43,7 +43,7 @@
     
 
 <div class="field">
-	<%= f.label :another2 , "Only one college"%>
+	<%= f.label :another2 , "Only one college", {:class => 'label'}%> &nbsp;
 	<%= f.check_box :checkCollege %><br />
 </div>
 

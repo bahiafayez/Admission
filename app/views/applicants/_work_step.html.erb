@@ -1,20 +1,20 @@
 <%= f.fields_for :works do |u| %>
 <div>
     <div class="field">
-        <%= u.label :employer %><br />
-    	<%= u.text_field :employer %>
+        <%= u.label :employer , {:class => 'label'}%> &nbsp;
+    	<%= u.text_field :employer ,{:class => 'span3'}%>
     </div>
     <div class="field">
-	<%= u.label :worked_from %><br />
+	<%= u.label :worked_from , {:class => 'label'}%> &nbsp;
 	<%= u.date_select :worked_from ,:start_year => Time.now.year - 30, :end_year => Time.now.year + 1 %>
 </div>
 <div class="field">
-	<%= u.label :worked_to %><br />
+	<%= u.label :worked_to, {:class => 'label'}%> &nbsp;
 	<%= u.date_select :worked_to ,:start_year => Time.now.year - 30, :end_year => Time.now.year + 1 %>
 </div>
 <div class="field">
-    <%= u.label :tasks %><br />
-    <%=  u.text_area :tasks, :rows=>4, :cols=>5 %>
+    <%= u.label :tasks , {:class => 'label'}%> &nbsp;
+    <%=  u.text_area :tasks, :rows=>4, :cols=>5 , :class => 'input-xlarge'%>
 </div>
 </div>
 <% end %>
@@ -23,7 +23,7 @@
 
 
 <div class="field">
-	<%= f.label :another3 , "Only worked in one company"%>
+	<%= f.label :another3 , "Only worked in one company?", {:class => 'label'}%><br /> &nbsp;
 	<%= f.check_box :checkWork %><br />
 </div>
   

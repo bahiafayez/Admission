@@ -2,15 +2,15 @@
     
     <%= u.hidden_field :id %> <!-- If not there disappers if empty -->
     <div class="field">
-        <%= u.label :additional_information %><br />
-    	<%= u.file_field :additional_information %>
-    	<%= image_tag @applicant.attachment.additional_information.url %>
+        <%= u.label :additional_information , {:class => 'label1'}%> <br />	&nbsp;
+    	<%= image_tag @applicant.attachment.additional_information.url %>&nbsp; &nbsp; &nbsp;
+    	<%= u.file_field :additional_information %> <br /><br />
     </div>
     
      <div class="field">
-        <%= u.label :personal_experience %><br />
-    	<%= u.file_field :personal_experience %>
-    	<%= image_tag @applicant.attachment.personal_experience.url %>
+        <%= u.label :personal_experience , {:class => 'label1'}%> &nbsp;    	
+    	<%= image_tag @applicant.attachment.personal_experience.url %>&nbsp; &nbsp; &nbsp;
+    	<%= u.file_field :personal_experience %> <br /><br />
     </div>
 
 <% end %>

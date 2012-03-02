@@ -12,36 +12,36 @@
   
   
   	<div class="field">
-    <%= f.label :photo %><br />
+    <%= f.label :photo, {:class => 'label'}%> &nbsp;	
     <%= f.file_field :photo %>
   </div>
   <div class="field">
-    <%= f.label :first_name %><br />
-    <%= f.text_field :first_name ,:width=>'10px', :size=>"20", :maxlength=>"20" %>
+    <%= f.label :first_name , {:class => 'label'}%> &nbsp;	
+    <%= f.text_field :first_name ,:width=>'10px', :size=>"20", :maxlength=>"20" ,{:class => 'span3'}%> 
   </div>
   <div class="field">
-    <%= f.label :middle_name %><br />
-    <%= f.text_field :middle_name %>
+    <%= f.label :middle_name , {:class => 'label'}%> &nbsp;	
+    <%= f.text_field :middle_name,{:class => 'span3'}%> 
   </div>
   <div class="field">
-    <%= f.label :last_name %><br />
-    <%= f.text_field :last_name %>
+    <%= f.label :last_name , {:class => 'label'}%> &nbsp;	
+    <%= f.text_field :last_name,{:class => 'span3'}%> 
   </div>
 	
 	<%= fields_for @attachment do |u| %>
     <div class="field">
-        <%= u.label :personal_experience %><br />
+        <%= u.label :personal_experience , {:class => 'label'}%> &nbsp;	
     	<%= u.file_field :personal_experience %>
     </div>
     <div class="field">
-        <%= u.label :additional_information %><br />
+        <%= u.label :additional_information , {:class => 'label'}%> &nbsp;	
     	<%= u.file_field :additional_information %>
     </div>
 	<% end %>
 	
-    <div class="actions">
-      <%= f.submit "Save", :name => "save" %>
-	  <%= f.submit "Submit", :name => "submit" %>
+    <div class="actions" style="padding-left: 350px;">
+      <%= f.submit "Save", :name => "save", :class => 'btn'%> &nbsp;&nbsp;&nbsp;
+	  <%= f.submit "Submit", :name => "submit", :class => 'btn'%>
     </div>
     
 <% end %>

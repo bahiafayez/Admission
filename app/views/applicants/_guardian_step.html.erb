@@ -1,74 +1,75 @@
 <%= f.fields_for :guardians do |u| %>
 <div>
     <div class="field">
-	<%= u.label :first_name %><br />
-	<%= u.text_field :first_name ,:width=>'10px', :size=>"20", :maxlength=>"20" %>
+	<%= u.label :first_name , {:class => 'label'}%> &nbsp;
+	<%= u.text_field :first_name ,:width=>'10px', :size=>"20", :maxlength=>"20", :class => 'span3'%>
 </div>
 <div class="field">
-	<%= u.label :middle_name %><br />
-	<%= u.text_field :middle_name %>
+	<%= u.label :middle_name, {:class => 'label'}%> &nbsp;
+	<%= u.text_field :middle_name ,{:class => 'span3'}%>
 </div>
 <div class="field">
-	<%= u.label :last_name %><br />
-	<%= u.text_field :last_name %>
+	<%= u.label :last_name , {:class => 'label'}%> &nbsp;
+	<%= u.text_field :last_name,{:class => 'span3'}%>
 </div>
     <div class="field">
-        <%= u.label :address %><br />
-    	<%=  u.text_area :address, :rows=>3, :cols => 5 %>
+        <%= u.label :address , {:class => 'label'}%> &nbsp;
+    	<%=  u.text_area :address, :rows=>3, :cols => 5 , :class => 'input-xlarge'%>
     </div>
     
    <div class="field">
-        <%= u.label :telephone, "Telephone Number" %><br />
-    	<%=  u.text_field :telephone %>
+        <%= u.label :telephone, "Telephone Number" , {:class => 'label'}%> &nbsp;
+    	<%=  u.text_field :telephone ,{:class => 'span3'}%>
     </div>
 <div class="field">
-	<%= u.label :mobile, "Mobile Number" %><br />
-	<%= u.text_field :mobile %>
+	<%= u.label :mobile, "Mobile Number" , {:class => 'label'}%> &nbsp;
+	<%= u.text_field :mobile ,{:class => 'span3'}%>
 </div>
 
 <div class="field">
-        <%= u.label :occupation %><br />
-    	<%=  u.text_field :occupation %>
+        <%= u.label :occupation , {:class => 'label'}%> &nbsp;
+    	<%=  u.text_field :occupation ,{:class => 'span3'}%>
     </div>
 <div class="field">
-	<%= u.label :company_name %><br />
-	<%= u.text_field :company_name %>
+	<%= u.label :company_name , {:class => 'label'}%> &nbsp;
+	<%= u.text_field :company_name ,{:class => 'span3'}%>
 </div>
 <div class="field">
-	<%= u.label :business_telephone %><br />
-	<%= u.text_field :business_telephone %>
+	<%= u.label :business_telephone , {:class => 'label'}%> &nbsp;
+	<%= u.text_field :business_telephone ,{:class => 'span3'}%>
 </div>
 <div class="field">
-	<%= u.label :email, "E-mail" %><br />
-	<%= u.text_field :email %>
+	<%= u.label :email, "E-mail" , {:class => 'label'}%> &nbsp;
+	<%= u.text_field :email ,{:class => 'span3'}%>
 </div>
 <div class="field">
-	<%= u.label :fax, "Fax Number" %><br />
-	<%= u.text_field :fax %>
+	<%= u.label :fax, "Fax Number", {:class => 'label'}%> &nbsp;
+	<%= u.text_field :fax ,{:class => 'span3'}%>
 </div>
  
 <div class="field">
-	<%= u.label :business_address %><br />
-	<%= u.text_area :business_address, :rows=>3, :cols =>5 %>
+	<%= u.label :business_address , {:class => 'label'}%> &nbsp;
+	<%= u.text_area :business_address, :rows=>3, :cols =>5, :class => 'input-xlarge'%>
 </div>
 
 
 <div class="field">
-	<%= u.label :relation %><br />
+	<%= u.label :relation , {:class => 'label'}%> &nbsp;
 	<%= u.select :relation, options_for_select(["Other","Mother", "Father"], u.object.relation),{}, {:class=> "relation"} %>
 </div>
 <!-- If other will enable a text field to write in -->
 
 
 <div class="relation3">
-	<%= u.label :relation, "Please Specify" %><br />
-	<%= u.text_field :relation2 , :class => "relation2", :value => u.object.relation %>
+	<%= u.label :relation, "Please Specify" , {:class => 'label2',}%> &nbsp; &nbsp; &nbsp; &nbsp;
+	<%= u.text_field :relation2 , :class => "relation2", :value => u.object.relation ,:class => 'span3'%>
 </div>
 
 <!--  -->
 
 <div class="field">
-	<%= u.label :financial , "Will that person be responsible for your financial expenses"%><br />
+	<%= u.label :financial , "Will that person be responsible for your financial expenses", {:class => 'label'}%> 
+	<br /> <br /> &nbsp;
 	<%= u.select :financial, options_for_select([["Yes","true"],["No","false"]], u.object.financial) %>
 </div>
 </div>

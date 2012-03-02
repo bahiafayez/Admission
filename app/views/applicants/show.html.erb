@@ -1,435 +1,423 @@
-<p id="notice"><%= notice %></p>
-
-<h4>Applicant Info</h4>
-
-<div>
-	<b>Photo</b><br/>
-	<%= image_tag @applicant.photo.url(:medium) %>
+<p id="notice" align="center" style="color:#1C6CB7; font-size: 16px;">
+	<%= notice %>
+</p>
+<h2 style="font-size: 30px; color:#999999;">Applicant Info</h2>
+<div class="well">
+	<table class="table">
+		<thead>
+			<tr>
+				<th><b>Photo</b></th>
+				<th><%= image_tag @applicant.photo.url(:medium) %></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td><b>First Name</b></td>
+				<td><%= @applicant.first_name %></td>
+			</tr>
+			<tr>
+				<td><b>Middle Name</b></td>
+				<td><%= @applicant.middle_name %></td>
+			</tr>
+			<tr>
+				<td><b>Last Name</b></td>
+				<td><%= @applicant.last_name %></td>
+			</tr>
+			<tr>
+				<td><b>Date of Birth</b></td>
+				<td><%= @applicant.date_of_birth %></td>
+			</tr>
+			<tr>
+				<td><b>Place of Birth</b></td>
+				<td><%= @applicant.place_of_birth %></td>
+			</tr>
+			<tr>
+				<td><b>Gender</b></td>
+				<td><%= @applicant.gender %></td>
+			</tr>
+			<tr>
+				<td><b>Military Status</b></td>
+				<td><%= @applicant.military_status %></td>
+			</tr>
+			<tr>
+				<td><b>National ID</b></td>
+				<td><%= @applicant.national_id %></td>
+			</tr>
+			<tr>
+				<td><b>National ID Expiry Date</b></td>
+				<td><%= @applicant.national_id_expiry_date %></td>
+			</tr>
+			<tr>
+				<td><b>Passport Number</b></td>
+				<td><%= @applicant.passport_number %></td>
+			</tr>
+			<tr>
+				<td><b>Country of Issuance</b></td>
+				<td><%= @applicant.country_of_issuance %></td>
+			</tr>
+			<tr>
+				<td><b>Passport Expiry Date</b></td>
+				<td><%= @applicant.passport_expiry_date %></td>
+			</tr>
+			<tr>
+				<td><b>Academic Honours</b></td>
+				<td><%= @applicant.academic_honours %></td>
+			</tr>
+			<tr>
+				<td><b>Extra Activities</b></td>
+				<td><%= @applicant.extra_activities %></td>
+			</tr>
+			<tr>
+				<td><b>Transportation</b></td>
+				<td><%= @applicant.transportation %></td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+<h2 style="font-size: 30px; color:#999999;">Address</h2>
+<div class="well">
+	<% @applicant.addresses.each do |address|%>
+	<table class="table">
+		<thead>
+			<tr>
+				<td><b>Address</b></td>
+				<td> <%= address.address %></td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td><b>Telephone</b></td>
+				<td><%= address.telephone %></td>
+			</tr>
+			<tr>
+				<td><b>Mobile:</b></td>
+				<td><%= address.mobile %></td>
+			</tr>
+			<tr>
+				<td><b>Fax</b></td>
+				<td> <%= address.fax %></td>
+			</tr>
+			<tr>
+				<td><b>Email</b></td>
+				<td><%= address.email %></td>
+			</tr>
+			<tr>
+				<td><b>Address Type</b></td>
+				<td><%= address.address_type %></td>
+			</tr>			
+		</tbody>
+	</table>
+	<% end %>
+</div>
+<h2 style="font-size: 30px; color:#999999;">Admission Information</h2>
+<div class="well">
+	<table class="table">
+		<thead>
+			<tr>
+				<td><b>Semester</b></td>
+				<td> <%= @applicant.admission_information.semester %></td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td><b>Applying To</b></td>
+				<td> <%= @applicant.admission_information.applying_to %></td>
+			</tr>
+			<tr>
+				<td><b>Intended Major</b></td>
+				<td><%= @applicant.admission_information.intended_major %></td>
+			</tr>
+			<tr>
+				<td><b>Toefl Test Date</b></td>
+				<td><%= @applicant.admission_information.toefl_test_date %></td>
+			</tr>
+			<tr>
+				<td><b>Toefl Test Results</b></td>
+				<td> <%= @applicant.admission_information.toefl_test_results %></td>
+			</tr>
+			<tr>
+				<td><b>Proficiency Test</b></td>
+				<td><%= @applicant.admission_information.proficiency_test %></td>
+			</tr>
+		</tbody>
+	</table>
 </div>
 
-<p>
-  <b>First Name:</b>
-  <%= @applicant.first_name %>
-</p>
-
-<p>
-  <b>Middle Name:</b>
-  <%= @applicant.middle_name %>
-</p>
-
-<p>
-  <b>Last Name:</b>
-  <%= @applicant.last_name %>
-</p>
-
-<p>
-  <b>Date of Birth:</b>
-  <%= @applicant.date_of_birth %>
-</p>
-
-<p>
-  <b>Place of Birth:</b>
-  <%= @applicant.place_of_birth %>
-</p>
-
-<p>
-  <b>Gender:</b>
-  <%= @applicant.gender %>
-</p>
-
-<p>
-  <b>Military Status:</b>
-  <%= @applicant.military_status %>
-</p>
-
-<p>
-  <b>National ID:</b>
-  <%= @applicant.national_id %>
-</p>
-
-<p>
-  <b>National ID Expiry Date:</b>
-  <%= @applicant.national_id_expiry_date %>
-</p>
-
-<p>
-  <b>Passport Number:</b>
-  <%= @applicant.passport_number %>
-</p>
-
-<p>
-  <b>Country of Issuance:</b>
-  <%= @applicant.country_of_issuance %>
-</p>
-
-<p>
-  <b>Passport Expiry Date:</b>
-  <%= @applicant.passport_expiry_date %>
-</p>
-
-<p>
-  <b>Academic Honours:</b>
-  <%= @applicant.academic_honours %>
-</p>
-
-<p>
-  <b>Extra Activities:</b>
-  <%= @applicant.extra_activities %>
-</p>
-
-<p>
-  <b>Transportation:</b>
-  <%= @applicant.transportation %>
-</p>
-
-<h4>Address</h4>
-
-<% @applicant.addresses.each do |address|%>
-	
-	<p>
-	  <b>Address:</b>
-	  <%= address.address %>
-	</p>
-	
-	<p>
-	  <b>Telephone:</b>
-	  <%= address.telephone %>
-	</p>
-	
-	<p>
-	  <b>Mobile:</b>
-	  <%= address.mobile %>
-	</p>
-	
-	<p>
-	  <b>Fax:</b>
-	  <%= address.fax %>
-	</p>
-	
-	<p>
-	  <b>Email:</b>
-	  <%= address.email %>
-	</p>
-	
-	<p>
-	  <b>Address Type:</b>
-	  <%= address.address_type %>
-	</p>
-		
-
-<% end %>
-
-
-
-<h4>Admission Information</h4>
-
-    <p>
-	  <b>Semester</b>
-	  <%= @applicant.admission_information.semester %>
-	</p>
-	
-	<p>
-	  <b>Applying To </b>
-	  <%= @applicant.admission_information.applying_to %>
-	</p>
-	
-	<p>
-	  <b>Intended Major:</b>
-	  <%= @applicant.admission_information.intended_major %>
-	</p>
-	
-	<p>
-	  <b>Toefl Test Date</b>
-	  <%= @applicant.admission_information.toefl_test_date %>
-	</p>
-	
-	<p>
-	  <b>Toefl Test Results</b>
-	  <%= @applicant.admission_information.toefl_test_results %>
-	</p>
-	
-	<p>
-	  <b>Proficiency Test</b>
-	  <%= @applicant.admission_information.proficiency_test %>
-	</p>
-	
-
-<h4>Guardians</h4>
-
+<h2 style="font-size: 30px; color:#999999;">Guardians</h2>
+<div class="well">
 <% @applicant.guardians.each do |guardian|%>
-	
-	<p>
-	  <b>First Name:</b>
-	  <%= guardian.first_name %>
-	</p>
-	
-	<p>
-	  <b>Middle Name:</b>
-	  <%= guardian.middle_name %>
-	</p>
-	
-	<p>
-	  <b>Last Name:</b>
-	  <%= guardian.last_name %>
-	</p>
-	
-	<p>
-	  <b>Address:</b>
-	  <%= guardian.address %>
-	</p>
-	
-	<p>
-	  <b>Telephone:</b>
-	  <%= guardian.telephone %>
-	</p>
-	
-	<p>
-	  <b>Mobile:</b>
-	  <%= guardian.mobile %>
-	</p>
-	
-	<p>
-	  <b>Occupation:</b>
-	  <%= guardian.occupation %>
-	</p>
-	
-	<p>
-	  <b>Company Name</b>
-	  <%= guardian.company_name %>
-	</p>
-	
-	<p>
-	  <b>Business Telephone</b>
-	  <%= guardian.company_name %>
-	</p>
-	
-	<p>
-	  <b>Email:</b>
-	  <%= guardian.email %>
-	</p>
-	
-	<p>
-	  <b>Fax:</b>
-	  <%= guardian.fax %>
-	</p>
-	
-	<p>
-	  <b>Business Address</b>
-	  <%= guardian.business_address %>
-	</p>
-	
-	<p>
-	  <b>Relationship:</b>
-	  <%= guardian.relation %>
-	</p>
-	
-	<p>
-	  <b>Paying for financial expenses:</b>
-	  <%= guardian.financial %>
-	</p>
-		
-
+	<table class="table">
+		<thead>
+			<tr>
+	  <td><b>First Name</b></td>
+	  <td><%= guardian.first_name %></td>
+	</tr>
+	</thead>
+	<tbody>
+	<tr>
+	  <td><b>Middle Name</b></td>
+	  <td><%= guardian.middle_name %></td>
+	</tr>	
+	<tr>
+	  <td><b>Last Name</b></td>
+	  <td><%= guardian.last_name %></td>
+	</tr>	
+	<tr>
+	  <td><b>Address</b></td>
+	  <td><%= guardian.address %></td>
+	</tr>	
+	<tr>
+	  <td><b>Telephone:</b></td>
+	  <td><%= guardian.telephone %></td>
+	</tr>	
+	<tr>
+	<td> <b>Mobile</b></td>
+	 <td> <%= guardian.mobile %></td>
+	</tr>	
+	<tr>
+	  <td><b>Occupation</b></td>
+	  <td><%= guardian.occupation %></td>
+	</tr>	
+	<tr>
+	  <td><b>Company Name</b></td>
+	  <td><%= guardian.company_name %></td>
+	</tr>	
+	<tr>
+	  <td><b>Business Telephone</b></td>
+	  <td><%= guardian.company_name %></td>
+	</tr>	
+	<tr>
+	  <td><b>Email</b></td>
+	  <td><%= guardian.email %></td>
+	</tr>	
+	<tr>
+	  <td><b>Fax</b></td>
+	  <td><%= guardian.fax %></td>
+	</tr>	
+	<tr>
+	  <td><b>Business Address</b></td>
+	  <td><%= guardian.business_address %></td>
+	</tr>	
+	<tr>
+	  <td><b>Relationship</b></td>
+	  <td><%= guardian.relation %></td>
+	</tr>	
+	<tr>
+	  <td><b>Paying for financial expenses</b></td>
+	  <td><%= guardian.financial %></td>
+	</tr>
+	</tbody>		
+	</table>
 <% end %>
+</div>
 
-
-<h4>Secondary Schools</h4>
-
-<% @applicant.secondary_schools.each do |school|%>
-	
-	<p>
-	  <b>Name:</b>
-	  <%= school.name %>
-	</p>
-	
-	<p>
-	  <b>Address:</b>
-	  <%= school.address %>
-	</p>
-	
-	<p>
-	  <b>Language:</b>
-	  <%= school.language %>
-	</p>
-	
-	<p>
-	  <b>Attended From:</b>
-	  <%= school.attended_from %>
-	</p>
-	
-	<p>
-	  <b>Attended To:</b>
-	  <%= school.attended_to %>
-	</p>
-	
-	<p>
-	  <b>Certificate Type:</b>
-	  <%= school.certificate_type %>
-	</p>
-	
-	<p>
-	  <b>Graduation Date:</b>
-	  <%= school.graduation_date %>
-	</p>
-	
-	<p>
-	  <b>Division:</b>
-	  <%= school.division %>
-	</p>
-	
-	<p>
-	  <b>School Type</b>
-	  <%= school.school_type %>
-	</p>
-		
-
-<% end %>
-
-<h4>Colleges</h4>
-
-<% @applicant.colleges.each do |college|%>
-	
-	<p>
-	  <b>Name:</b>
-	  <%= college.name %>
-	</p>
-	
-	<p>
-	  <b>Faculty: </b>
-	  <%= college.faculty %>
-	</p>
-	
-	<p>
-	  <b>Major: </b>
-	  <%= college.major %>
-	</p>
-	
-	<p>
-	  <b>City: </b>
-	  <%= college.city %>
-	</p>
-	
-	<p>
-	  <b>Country: </b>
-	  <%= college.country %>
-	</p>
-	
-	<p>
-	  <b>Attended From:</b>
-	  <%= college.attended_from %>
-	</p>
-	
-	<p>
-	  <b>Attended To:</b>
-	  <%= college.attended_to %>
-	</p>
-	
-	<p>
-	  <b>Language:</b>
-	  <%= college.language %>
-	</p>
-	
-	<p>
-	  <b>GPA: </b>
-	  <%= college.gpa %>
-	</p>
-		
-
-<% end %>
-
-<h4>Work</h4>
-
-<% @applicant.works.each do |work|%>
-	
-	<p>
-	  <b>Employer</b>
-	  <%= work.employer %>
-	</p>
-	
-	<p>
-	  <b>Worked From: </b>
-	  <%= work.worked_from %>
-	</p>
-	
-	<p>
-	  <b>Worked To: </b>
-	  <%= work.worked_to %>
-	</p>
-	
-	<p>
-	  <b>Tasks: </b>
-	  <%= work.tasks %>
-	</p>
-	
-
-<% end %>
-
-<h4>Health</h4>
-
-<% @applicant.healths.each do |health|%>
-	
-	<p>
-	  <b>Illness:</b>
-	  <%= health.illness %>
-	</p>
-	
-	<p>
-	  <b>Description: </b>
-	  <%= health.description %>
-	</p>
-	
-<% end %>
-
-<h4>University Related Information</h4>
-	<p>
-	  <b>How did you hear of Nile University?</b>
-	  <%= @applicant.uni_related_info.hear_of_uni %>
-	</p>
-	
-	<p>
-	  <b>What were the most important factors that influenced your decision to apply to NU? </b>
-	  <%= @applicant.uni_related_info.factors %>
-	</p>
-	
-	<p>
-	  <b>What majors/specializations at NU attract you the most?</b>
-	  <%= @applicant.uni_related_info.majors %>
-	</p>
-	
-	<p>
-	  <b>What other universities are you applying to?</b>
-	  <%= @applicant.uni_related_info.other_universities %>
-	</p>
-	
-	<p>
-	  <b>What was the most important factor that infuenced your decision to apply to other universities?</b>
-	  <%= @applicant.uni_related_info.factors_other_universities %>
-	</p>
-	
-<h4>Attachments</h4>	
-
-<div>
-	<% if @applicant.attachment.additional_information == nil %>
-		<b> You have not uploaded the additional information document</b>
-	<% else %>
-	<b>Additional Information</b><br/>
-	<%= image_tag @applicant.attachment.additional_information.url(:thumb) %>
-	<!-- <%= link_to "Download", @applicant.attachment.additional_information.url %> -->
+<h2 style="font-size: 30px; color:#999999;">Secondary Schools</h2>
+<div class="well">
+	<% @applicant.secondary_schools.each do |school|%>
+	<table class="table">
+		<thead>
+			<tr>
+				<td><b>Name</b></td>
+				<td><%= school.name %></td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td><b>Address</b></td>
+				<td><%= school.address %></td>
+			</tr>
+			<tr>
+				<td><b>Language</b></td>
+				<td><%= school.language %></td>
+			</tr>
+			<tr>
+				<td><b>Attended From</b></td>
+				<td><%= school.attended_from %></td>
+			</tr>
+			<tr>
+				<td><b>Attended To</b></td>
+				<td><%= school.attended_to %></td>
+			</tr>
+			<tr>
+				<td><b>Certificate Type</b></td>
+				<td><%= school.certificate_type %></td>
+			</tr>
+			<tr>
+				<td><b>Graduation Date</b></td>
+				<td><%= school.graduation_date %></td>
+			</tr>
+			<tr>
+				<td><b>Division</b></td>
+				<td><%= school.division %></td>
+			</tr>
+			<tr>
+				<td><b>School Type</b></td>
+				<td><%= school.school_type %></td>
+			</tr>
+		</tbody>
+	</table>
 	<% end %>
 </div>
 
-<div>
-	<% if @applicant.attachment.personal_experience == nil %>
-		<b> You have not uploaded the personal experience document</b>
-	<% else %> 
-	<b>Personal Experience</b><br/>
-	<%= image_tag @applicant.attachment.personal_experience.url(:thumb) %>
-	<!-- <%= link_to "Download", @applicant.attachment.personal_experience.url %> -->
+<h2 style="font-size: 30px; color:#999999;">Colleges</h2>
+<div class="well">
+	<% @applicant.colleges.each do |college|%>
+	<table class="table">
+		<thead>
+			<tr>
+				<td><b>Name</b></td>
+				<td><%= college.name %></td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td><b>Faculty</b></td>
+				<td><%= college.faculty %></td>
+			</tr>
+			<tr>
+				<td><b>Major</b></td>
+				<td><%= college.major %></td>
+			</tr>
+			<tr>
+				<td><b>City</b></td>
+				<td><%= college.city %></td>
+			</tr>
+			<tr>
+				<td><b>Country</b></td>
+				<td><%= college.country %></td>
+			</tr>
+			<tr>
+				<td><b>Attended From</b></td>
+				<td><%= college.attended_from %></td>
+			</tr>
+			<tr>
+				<td><b>Attended To</b></td>
+				<td><%= college.attended_to %></td>
+			</tr>
+			<tr>
+				<td><b>Language</b></td>
+				<td><%= college.language %></td>
+			</tr>
+			<tr>
+				<td><b>GPA</b></td>
+				<td><%= college.gpa %></td>
+			</tr>
+		</tbody>
+	</table>
 	<% end %>
 </div>
 
+<h2 style="font-size: 30px; color:#999999;">Work</h2>
+<div class="well">
+	<% @applicant.works.each do |work|%>
+	<table class="table">
+		<thead>
+			<tr>
+				<td><b>Employer</b></td>
+				<td><%= work.employer %></td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td><b>Worked From</b></td>
+				<td><%= work.worked_from %></td>
+			</tr>
+			<tr>
+				<td><b>Worked To</b></td>
+				<td><%= work.worked_to %></td>
+			</tr>
+			<tr>
+				<td><b>Tasks</b></td>
+				<td><%= work.tasks %></td>
+			</tr>
+		</tbody>
+	</table>
+	<% end %>
+</div>
 
-<%= link_to 'Edit', edit_applicant_path(@applicant) %> |
-<%= link_to 'Back', applicant_path %>
+<h2 style="font-size: 30px; color:#999999;">Health</h2>
+<div class="well">
+	<% @applicant.healths.each do |health|%>
+	<table class="table">
+		<thead>
+			<tr>
+				<td><b>Illness</b></td>
+				<td><%= health.illness %></td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td><b>Description</b></td>
+				<td><%= health.description %></td>
+			</tr>
+		</tbody>
+	</table>
+	<% end %>
+</div>
+
+<h2 style="font-size: 30px; color:#999999;">University Related Information</h2>
+<div class="well">
+	<table class="table">
+		<thead>
+			<tr>
+				<td><b>How did you hear of Nile University?</b></td>
+				<td><%= @applicant.uni_related_info.hear_of_uni %></td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td><b>What were the most important factors that influenced your decision to apply to NU? </b></td>
+				<td><%= @applicant.uni_related_info.factors %></td>
+			</tr>
+			<tr>
+				<td><b>What majors/specializations at NU attract you the most?</b></td>
+				<td><%= @applicant.uni_related_info.majors %></td>
+			</tr>
+			<tr>
+				<td><b>What other universities are you applying to?</b></td>
+				<td><%= @applicant.uni_related_info.other_universities %></td>
+			</tr>
+			<tr>
+				<td><b>What was the most important factor that infuenced your decision to apply to other universities?</b></td>
+				<td><%= @applicant.uni_related_info.factors_other_universities %></td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<h2 style="font-size: 30px; color:#999999;">Attachments</h2>
+<div class="well">
+	<table class="table">
+		<thead>
+			<tr>
+				<div>
+					<% if @applicant.attachment.additional_information == nil %> <b> You have not uploaded the additional information document</b>
+					<% else %> <td><b>Additional Information</b></td>
+					<td><%= image_tag @applicant.attachment.additional_information.url(:thumb) %></td>
+					<!-- <%= link_to "Download", @applicant.attachment.additional_information.url %> -->
+					<% end %>
+				</div>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<div>
+					<% if @applicant.attachment.personal_experience == nil %> <b> You have not uploaded the personal experience document</b>
+					<% else %> <td><b>Personal Experience</b></td>
+					<td><%= image_tag @applicant.attachment.personal_experience.url(:thumb) %></td>
+					<!-- <%= link_to "Download", @applicant.attachment.personal_experience.url %> -->
+					<% end %>
+				</div>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<p align="center" style="padding-top:50px; padding-bottom: 190px;">
+<%= link_to 'Edit', edit_applicant_path(@applicant), :class => 'btn btn-primary btn-large'%> 
+&nbsp; &nbsp;
+<%= link_to 'Back', applicant_path,:class => 'btn btn-primary btn-large' %>
+</p>
 
 
 

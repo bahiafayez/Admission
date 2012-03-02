@@ -1,26 +1,26 @@
 <%= f.fields_for :admission_information do |u| %>
     <div class="field">
-        <%= u.label :semester %><br />
+        <%= u.label :semester , {:class => 'label'}%> &nbsp;
     	<%= u.select :semester, options_for_select(["Winter 2012","Spring 2012"], u.object.semester) %>
     </div>
     <div class="field">
-        <%= u.label :applying_to %><br />
-    	<%=  u.text_field :applying_to %>
+        <%= u.label :applying_to , {:class => 'label'}%> &nbsp;
+    	<%=  u.text_field :applying_to,{:class => 'span3'}%>
     </div>
 <div class="field">
-	<%= u.label :intended_major %><br />
-	<%= u.text_field :intended_major %>
+	<%= u.label :intended_major , {:class => 'label'}%> &nbsp;
+	<%= u.text_field :intended_major,{:class => 'span3'}%>
 </div>
 <div class="field">
-	<%= u.label :toefl_test_results %><br />
-	<%= u.text_field :toefl_test_results %>
+	<%= u.label :toefl_test_results, {:class => 'label'}%> &nbsp;
+	<%= u.text_field :toefl_test_results,{:class => 'span3'}%>
 </div>
 <div class="field">
-	<%= u.label :toefl_test_date %><br />
+	<%= u.label :toefl_test_date , {:class => 'label'}%> &nbsp;
 	<%= u.date_select :toefl_test_date %>
 </div>
 <div class="field">
-	<%= u.label :proficiency_test , "Are you applying to Nu's Proficiency Test"%><br />
+	<%= u.label :proficiency_test , "Are you applying to NU's Proficiency Test", {:class => 'label'}%><br /> &nbsp;
 	<%= u.select :proficiency_test , options_for_select([["Yes","true"],["No","false"]], u.object.proficiency_test) %>
 </div>
 

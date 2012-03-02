@@ -1,11 +1,11 @@
 <%= f.fields_for :healths do |u| %>
     <div class="field">
-        <%= u.label :illness %><br />
-    	<%= u.text_field :illness %>
+        <%= u.label :illness , {:class => 'label'}%> &nbsp;
+    	<%= u.text_field :illness,{:class => 'span3'}%>
     </div>
     <div class="field">
-        <%= u.label :description %><br />
-    	<%=  u.text_area :description, :rows=>4, :cols => 5 %>
+        <%= u.label :description, {:class => 'label'}%> &nbsp;
+    	<%=  u.text_area :description, :rows=>4, :cols => 5, :class => 'input-xlarge'%>
     </div>
 
 <% end %>

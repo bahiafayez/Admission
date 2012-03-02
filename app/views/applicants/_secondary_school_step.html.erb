@@ -1,41 +1,41 @@
 <%= f.fields_for :secondary_schools do |u| %>
 <div>
     <div class="field">
-        <%= u.label :name %><br />
-    	<%= u.text_field :name %>
+        <%= u.label :name , {:class => 'label'}%> &nbsp;
+    	<%= u.text_field :name ,{:class => 'span3'}%>
     </div>
     <div class="field">
-        <%= u.label :address %><br />
-    	<%=  u.text_area :address, :rows => 3, :cols => 5 %>
+        <%= u.label :address , {:class => 'label'}%> &nbsp;
+    	<%=  u.text_area :address, :rows => 3, :cols => 5, :class => 'input-xlarge'%>
     </div>
 <div class="field">
-	<%= u.label :language %><br />
-	<%= u.text_field :language %>
+	<%= u.label :language , {:class => 'label'}%> &nbsp;
+	<%= u.text_field :language ,{:class => 'span3'}%>
 </div>
 <div class="field">
-	<%= u.label :attended_from %><br />
+	<%= u.label :attended_from , {:class => 'label'}%> &nbsp;
 	<%= u.date_select :attended_from , :start_year => Time.now.year - 30, :end_year => Time.now.year + 1 %>
 </div>
 <div class="field">
-	<%= u.label :attended_to %><br />
+	<%= u.label :attended_to , {:class => 'label'}%> &nbsp;
 	<%= u.date_select :attended_to , :start_year => Time.now.year - 30, :end_year => Time.now.year + 1 %>
 </div>
 
 <div class="field">
-	<%= u.label :certificate_type%><br />
-	<%= u.text_field :certificate_type %>
+	<%= u.label :certificate_type, {:class => 'label'}%> &nbsp;
+	<%= u.text_field :certificate_type ,{:class => 'span3'}%>
 </div>
 <div class="field">
-	<%= u.label :graduation_date %><br />
+	<%= u.label :graduation_date , {:class => 'label'}%> &nbsp;
 	<%= u.date_select :graduation_date, :start_year => Time.now.year - 30, :end_year => Time.now.year + 1 %>
 </div>
 <div class="field">
-	<%= u.label :division , "If Sanaweya Amma Please specify division"%><br />
-	<%= u.text_field :division %>
+	<%= u.label :division , "If Sanaweya Amma Please specify division", {:class => 'label'}%> <br /> &nbsp;
+	<%= u.text_field :division ,{:class => 'span3'}%>
 </div>
 <div class="field">
-	<%= u.label :school_type , "Was your school"%><br />
-	<%= u.select :school_type, options_for_select(["Private", "Public"], u.object.school_type)  %>?
+	<%= u.label :school_type , "Was your school", {:class => 'label'}%> &nbsp;
+	<%= u.select :school_type, options_for_select(["Private", "Public"], u.object.school_type)  %> <b>?</b>
 </div>
 
 </div>
@@ -44,7 +44,7 @@
 
 
 <div class="field">
-	<%= f.label :another , "Only one school"%>
+	<%= f.label :another , "Only one school", {:class => 'label'}%> &nbsp;
 	<%= f.check_box :checkSecondary %> 
 </div>
  

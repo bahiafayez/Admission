@@ -1,79 +1,96 @@
-<h1>Editing Applicant</h1>
-
-
+<h2 style="font-size: 30px; color:#999999;">Editing Applicant</h2>
+<div class="btn-group">
+	<button class="btn-small active" id="applicantbutton">
+		Applicant
+	</button>
+	<button class="btn-small" id="addressbutton">
+		Address
+	</button>
+	<button class="btn-small" id="admissioninformationbutton">
+		Admission Info
+	</button>
+	<button class="btn-small" id="guardianbutton">
+		Guardians
+	</button>
+	<button class="btn-small" id="secondaryschoolbutton">
+		Secondary School
+	</button>
+	<button class="btn-small" id="collegebutton">
+		College
+	</button>
+	<button class="btn-small" id="workbutton">
+		Work
+	</button>
+	<button class="btn-small" id="healthbutton">
+		Health
+	</button>
+	<button class="btn-small" id="attachmentbutton">
+		Attachments
+	</button>
+	<button class="btn-small" id="unirelatedinfobutton">
+		Uni Related Info
+	</button>
+</div>
+<br />
+<br />
 <%= form_for @applicant do |f| %>
-  
-  
-  <% if @applicant.errors.any? %>
-    <div id="error_explanation">
-      <!-- <h2><%= pluralize(@applicant.errors.count, "error") %> prohibited this product from being saved:</h2> -->
-      <h3> You've got some validation errors </h3>
-      <!-- <ul>
-      <% @applicant.errors.full_messages.uniq.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul> -->
-    </div>
-  <% end %>
-  
- 
-  <div id="allforms">
-  <div id="applicantform">
-  <%= render "applicant_step", :f => f %>
-  </div>
-  <div id="addressform">
-  <%= render "address_step", :f => f %>
-  </div>
-  <div id="admissionform">
-  <%= render "admission_information_step", :f => f %>
-  </div>
-  <div id="workform">
-  <%= render "work_step", :f => f %>
-  </div>
-  <div id="secondaryform">
-  <%= render "secondary_school_step", :f => f %>
-  </div>
-  <div id="collegeform">
-  <%= render "college_step", :f => f %>
-  </div>
-  <div id="uniform">
-  <%= render "uni_related_info_step", :f => f %>
-  </div>
-  <div id="healthform">
-  <%= render "health_step", :f => f %>
-  </div>
-  <div id="attachmentform">
-  <%= render "attachment_step", :f => f %>
-  </div>
-  <div id="guardianform">
-  <%= render "guardian_step", :f => f %>
-  </div>
-  </div>
-  
-  <!-- <p><%= f.submit "Continue", :name => "forward_button" unless @applicant.last_step? %></p>
-  <p><%= f.submit "Back", :name => "back_button" unless @applicant.first_step? %></p>
-   -->	
+<div class="well">
+	<% if @applicant.errors.any? %>
+	<div id="error_explanation">
+		<!-- <h2><%= pluralize(@applicant.errors.count, "error") %> prohibited this product from being saved:</h2> -->
+		<h5 align="center" style="color:#F5071D; font-size:18px; "> You've got some validation errors </h5><br />
+		<!-- <ul>
+		<% @applicant.errors.full_messages.uniq.each do |msg| %>
+		<li><%= msg %></li>
+		<% end %>
+		</ul> -->
+	</div>
+	<% end %>
+	<div id="allforms">
+		<div id="applicantform">
+			<%= render "applicant_step", :f => f %>
+		</div>
+		<div id="addressform">
+			<%= render "address_step", :f => f %>
+		</div>
+		<div id="admissionform">
+			<%= render "admission_information_step", :f => f %>
+		</div>
+		<div id="workform">
+			<%= render "work_step", :f => f %>
+		</div>
+		<div id="secondaryform">
+			<%= render "secondary_school_step", :f => f %>
+		</div>
+		<div id="collegeform">
+			<%= render "college_step", :f => f %>
+		</div>
+		<div id="uniform">
+			<%= render "uni_related_info_step", :f => f %>
+		</div>
+		<div id="healthform">
+			<%= render "health_step", :f => f %>
+		</div>
+		<div id="attachmentform">
+			<%= render "attachment_step", :f => f %>
+		</div>
+		<div id="guardianform">
+			<%= render "guardian_step", :f => f %>
+		</div>
+	</div>
+	<!-- <p><%= f.submit "Continue", :name => "forward_button" unless @applicant.last_step? %></p>
+	<p><%= f.submit "Back", :name => "back_button" unless @applicant.first_step? %></p>
+	-->
 	<!--  <%= f.fields_for :addresses do |u| %>
-    
-        <%= u.label :address %><br />
-    	<%= u.text_area :address , :cols=> 20, :rows=>5%>
-    
-   <% end %>  -->
-	
-	<div class="actions">
-      <%= f.submit "Save", :name => "save" %>
-	  <%= f.submit "Submit", :name => "submit" %>
-	 <!--  <%= f.submit "add actor", :name=>"add" %> -->
-    </div>	
-		<!-- <%= f.hidden_field :addresses, :value => :addresses %> -->
-<% end %>
-<button id="applicantbutton">Applicant</button>
-<button id="addressbutton">Address</button>
-<button id="admissioninformationbutton">Admission Information</button>
-<button id="guardianbutton">Guardians</button>
-<button id="secondaryschoolbutton">Secondary School</button>
-<button id="collegebutton">College</button>
-<button id="workbutton">Work</button>
-<button id="healthbutton">Health</button>
-<button id="attachmentbutton">Attachments</button>
-<button id="unirelatedinfobutton">University Related Information</button>
+
+	<%= u.label :address %><br />
+	<%= u.text_area :address , :cols=> 20, :rows=>5%>
+
+	<% end %>  -->
+	<div class="actions" style="padding-left: 350px;">
+		<%= f.submit "Save", :name => "save" , :class => 'btn' %> &nbsp;&nbsp;&nbsp;
+		<%= f.submit "Submit", :name => "submit" , :class => 'btn' %> <!--  <%= f.submit "add actor", :name=>"add" %> -->
+	</div>
+	<!-- <%= f.hidden_field :addresses, :value => :addresses %> -->
+	<% end %>
+</div>

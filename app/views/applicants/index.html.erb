@@ -1,11 +1,15 @@
-<h1>Listing Applications</h1>
+<h2 style="font-size: 30px; color:#999999;">Listing Applications</h2>
 
-<table>
+<div class="well">
+<table class="table">
+	<thead>
 <tr>
 	<th>Photo</th>
 	<th>Name</th>
 	<th>Created At</th>
 </tr>	
+</thead>
+<tbody>
 <% @applications.each do |app| %>
   <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
 
@@ -26,13 +30,14 @@
     </td>
 
     <td class="list_actions">
-      <%= link_to 'Show', "/users/#{app.user_id}/application" %><br/>
+      <%= link_to 'Show', "/users/#{app.user_id}/application" ,:class => 'btn'%><br/>
       
     </td>
   </tr>
+  </tbody>
 <% end %>
 </table>
-
+</div>
 <br />
 
 <%= paginate @applications %>

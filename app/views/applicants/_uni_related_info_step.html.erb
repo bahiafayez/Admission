@@ -3,36 +3,36 @@
    <%= u.fields_for :uni_choice do |l| %>
 
 <div class="field">
-	<%= l.label :How, "How did you hear of Nile University?" %></br>
+	<%= l.label :How, "How did you hear of NU?" , {:class => 'label1',}%> <br />
 	
-	<%= l.label :Internet %>
+	<%= l.label :Internet , {:class => 'label3'}%> &nbsp;
 	<%= l.check_box :internet %><br />
-	<%= l.label :Email %>
+	<%= l.label :Email , {:class => 'label3'}%> &nbsp;
 	<%= l.check_box :email%><br />
-	<%= l.label :Radio %>
+	<%= l.label :Radio , {:class => 'label3'}%> &nbsp;
 	<%= l.check_box :radio %><br />
-	<%= l.label :School, "School Visits" %>
+	<%= l.label :School, "School Visits" , {:class => 'label3'}%> &nbsp;
 	<%= l.check_box :school_visits %><br />
-	<%= l.label :NUStaff, "Nile University Faculty/Staff" %>
+	<%= l.label :NUStaff, "NU Faculty/Staff" , {:class => 'label3'}%> &nbsp;
 	<%= l.check_box :nile_university_faculty_and_staff %><br />
-	<%= l.label :NUStudent, "Nile University Student/Alumni" %>
+	<%= l.label :NUStudent, "NU Student/Alumni" , {:class => 'label3'}%> &nbsp;
 	<%= l.check_box :nile_university_student_and_alumni%><br />
-	<%= l.label :PrintAd, "Print Advertisement" %>
+	<%= l.label :PrintAd, "Print Advertisement" , {:class => 'label3'}%> &nbsp;
 	<%= l.check_box :print_advertisements %><br />
-	<div id="printAd">
-		<%= l.label :specify, "Please Specify" %>
+	<div id="printAd">		
+		<%= l.label :specify, "Please Specify" , {:class => 'label2'}%> &nbsp; &nbsp;
 		<%= l.text_field :specify_print_advertisements %><br />
 	</div>
-	<%= l.label :NUSeminar, "NU Seminar, Workshop, Conference" %>
+	<%= l.label :NUSeminar, "NU Seminar, Workshop, Conference", {:class => 'label3'}%><br /> &nbsp;
 	<%= l.check_box :nu_seminar_workshop_and_conference %><br />
 	<div id="NuSeminar">
-		<%= l.label :specify, "Please Specify" %>
+		<%= l.label :specify, "Please Specify" , {:class => 'label2'}%> &nbsp;
 		<%= l.text_field :specify_nu_seminar %><br />
 	</div>
-	<%= l.label :Other, "Other" %>
+	<%= l.label :Other, "Other" , {:class => 'label3'}%> &nbsp;
 	<%= l.check_box :other %><br />
 	<div id="other">
-		<%= l.label :specify, "Please Specify" %>
+		<%= l.label :specify, "Please Specify" , {:class => 'label2'}%> &nbsp; &nbsp;
 		<%= l.text_field :specify_other %><br />
 	</div>
 		
@@ -41,45 +41,45 @@
 
    
     <div class="field">
-        <%= u.label :factors , "What were the most important factors that influenced your decision to apply to NU?"%><br />
-    	<%=  u.text_area :factors, :rows=>5, :cols =>20 %>
+        <%= u.label :factors , "What were the most important factors that influenced your decision to apply to NU?", {:class => 'label1'}%>  <br />
+    	<%=  u.text_area :factors, :rows=>5, :cols =>20, :class => 'input-xlarge'%>
     </div>
     <div class="field">
-        <%= u.label :majors , "What majors/specializations at NU attract you the most?"%><br />
-    	<%=  u.text_area :majors, :rows=>5, :cols =>20 %>
+        <%= u.label :majors , "What majors/specializations at NU attract you the most?", {:class => 'label1'}%> <br />
+    	<%=  u.text_area :majors, :rows=>5, :cols =>20,:class => 'input-xlarge'%>
     </div>
     
 	<div class="field">
-		<%= u.label :other_universities, "What other universities are you applying to?" %><br />
-		<%=  u.text_area :other_universities, :rows=>5, :cols =>20 %>
+		<%= u.label :other_universities, "What other universities are you applying to?" , {:class => 'label1'}%> <br />
+		<%=  u.text_area :other_universities, :rows=>5, :cols =>20,:class => 'input-xlarge'%>
 	</div>
 	
 	
 	<%= u.fields_for :other_choice do |l| %>
 
     <div class="field">
-		<%= l.label :What, "What was the most important factor that infuenced your decision to apply to other universities?" %><br />
+		<%= l.label :What, "What was the most important factor that infuenced your decision to apply to other universities?" , {:class => 'label1'}%><br />
 		
-		<%= l.label :Quality, "Quality of education" %>
+		<%= l.label :Quality, "Quality of education"  , {:class => 'label3'}%> &nbsp;
 		<%= l.check_box :quality%><br />
-		<%= l.label :Reputation %>
+		<%= l.label :Reputation  , {:class => 'label3'}%> &nbsp;
 		<%= l.check_box :reputation%><br />
-		<%= l.label :Facilities %>
+		<%= l.label :Facilities  , {:class => 'label3'}%> &nbsp;
 		<%= l.check_box :facilities%><br />
-		<%= l.label :Location %>
+		<%= l.label :Location  , {:class => 'label3'}%> &nbsp;
 		<%= l.check_box :location%><br />
 		
-		<%= l.label :fieldsOfStudy, "Fields of study (programs and specializations)" %>
+		<%= l.label :fieldsOfStudy, "Fields of study (programs and specializations)" , {:class => 'label3'}%><br /> &nbsp;
 		<%= l.check_box :fields_of_study %><br />
 		<div id="fieldsofstudy">
-			<%= l.label :specify, "Please Specify" %>
+			<%= l.label :specify, "Please Specify"  , {:class => 'label2'}%> &nbsp; &nbsp;
 			<%= l.text_field :specify_fields_of_study %><br />
 		</div>
-		<%= l.label :Other, "Other" %>
+		<%= l.label :Other, "Other"  , {:class => 'label3'}%> &nbsp;
 		<%= l.check_box :other %><br />
 		<div id="other2">
-			<%= l.label :specify, "Please Specify" %>
-			<%= l.text_field :specify_other %><br />
+			<%= l.label :specify, "Please Specify" , {:class => 'label3'}%> &nbsp; &nbsp;
+			<%= l.text_field :specify_other %><br /> <br />
 		</div>
 	</div>
 	<% end %>	
