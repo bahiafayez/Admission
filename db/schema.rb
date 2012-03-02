@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120302175223) do
+ActiveRecord::Schema.define(:version => 20120302180057) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -77,7 +77,7 @@ ActiveRecord::Schema.define(:version => 20120302175223) do
     t.date     "date_of_birth"
     t.string   "place_of_birth"
     t.string   "gender"
-    t.string   "military_status"
+    t.string   "military_status",         :default => "Does not apply"
     t.string   "national_id"
     t.date     "national_id_expiry_date"
     t.string   "passport_number"
@@ -90,8 +90,8 @@ ActiveRecord::Schema.define(:version => 20120302175223) do
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
-    t.datetime "created_at",                                          :null => false
-    t.datetime "updated_at",                                          :null => false
+    t.datetime "created_at",                                            :null => false
+    t.datetime "updated_at",                                            :null => false
     t.integer  "user_id"
     t.string   "status",                  :default => "Just Created"
     t.boolean  "checkSecondary"
