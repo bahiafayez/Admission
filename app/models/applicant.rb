@@ -20,7 +20,7 @@ class Applicant < ActiveRecord::Base
   validates_date :date_of_birth, :passport_expiry_date, :national_id_expiry_date
 
   validates_inclusion_of :gender, :in => ["Female", "Male"]
-  validates_inclusion_of :military_status, :in => ["completed", "exempted","postponed", "Does not apply"]
+  validates_inclusion_of :military_status, :in => ["Completed", "Exempted","Postponed", "Does not apply"]
   validates_inclusion_of :transportation, :in => ["Private", "Nu buses"]
   
   validates_uniqueness_of :national_id, :case_sensitive => false, :message => "National ID has already taken"
@@ -33,15 +33,15 @@ class Applicant < ActiveRecord::Base
   attr_writer :current_step
   accepts_nested_attributes_for :addresses
   accepts_nested_attributes_for :admission_information, :colleges, :secondary_schools, :guardians, :attachment, :healths, :works, :uni_related_info 
-  attr_accessor :reasons
-  attr_accessor :reasons2
-  attr_accessor :checkSecondary
-  attr_accessor :checkCollege
-  attr_accessor :checkWork
+  # attr_accessor :reasons
+  # attr_accessor :reasons2
+  # attr_accessor :checkSecondary
+  # attr_accessor :checkCollege
+  # attr_accessor :checkWork
   
   #validates_presence_of :addresses, :message => "not exist in the DB"
-  validates_associated :addresses, :admission_information,:guardians, :secondary_schools, :colleges, :works, :attachment, :healths, :uni_related_info
-  
+  #validates_associated :addresses, :admission_information,:guardians, :secondary_schools, :colleges, :works, :attachment, :healths, :uni_related_info #,  :update
+  validates_associated :addresses,:guardians, :secondary_schools, :colleges, :works, :healths #,  :update
   
   def to_s
     return "#{first_name} #{last_name}"

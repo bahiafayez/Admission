@@ -380,7 +380,6 @@
 <% end %>
 
 <h4>University Related Information</h4>
-	
 	<p>
 	  <b>How did you hear of Nile University?</b>
 	  <%= @applicant.uni_related_info.hear_of_uni %>
@@ -413,7 +412,7 @@
 		<b> You have not uploaded the additional information document</b>
 	<% else %>
 	<b>Additional Information</b><br/>
-	<%= image_tag @applicant.attachment.additional_information.url %>
+	<%= image_tag @applicant.attachment.additional_information.url(:thumb) %>
 	<!-- <%= link_to "Download", @applicant.attachment.additional_information.url %> -->
 	<% end %>
 </div>
@@ -423,7 +422,7 @@
 		<b> You have not uploaded the personal experience document</b>
 	<% else %> 
 	<b>Personal Experience</b><br/>
-	<%= image_tag @applicant.attachment.personal_experience.url %>
+	<%= image_tag @applicant.attachment.personal_experience.url(:thumb) %>
 	<!-- <%= link_to "Download", @applicant.attachment.personal_experience.url %> -->
 	<% end %>
 </div>

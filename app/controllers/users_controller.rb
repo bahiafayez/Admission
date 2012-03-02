@@ -3,12 +3,17 @@ class UsersController < ApplicationController
   
   def new
     @user = User.new
+    if session[:user_id]!= nil
+      @existing=User.find(session[:user_id])
+      redirect_to @existing , notice: "#{@existing.email} is already logged in, Please Log out first"
+    end
   end
   
   
   def create
     @user = User.new(params[:user])
     if @user.save
+      session[:user_id] = @user.id  #to save in session..
       redirect_to @user, :notice => "Signed up!"
     else
       render "new"

@@ -35,20 +35,19 @@
 </div>
 <div class="field">
 	<%= u.label :school_type , "Was your school"%><br />
-	<%= u.select :school_type, options_for_select(["Private", "Public"])  %>?
+	<%= u.select :school_type, options_for_select(["Private", "Public"], u.object.school_type)  %>?
 </div>
 
 </div>
 
 <% end %>
 
-<%= f.fields_for :checkSecondary do |u| %>
 
 <div class="field">
-	<%= u.label :another , "Only one school"%>
-	<%= u.check_box :oneSchool %><br />
+	<%= f.label :another , "Only one school"%>
+	<%= f.check_box :checkSecondary %> 
 </div>
-<% end %>   
+ 
     
 
     

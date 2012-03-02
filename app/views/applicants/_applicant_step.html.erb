@@ -1,11 +1,11 @@
-<div class="field">	
+ <div class="field"> 
 	<%= f.label :photo, {:class => 'label'}%> &nbsp;	
 	<%= image_tag @applicant.photo.url(:medium) %> &nbsp; &nbsp; &nbsp;
 	<%= f.file_field :photo%>
 </div>
 <div class="field">
 	<%= f.label :first_name, {:class => 'label'}%> &nbsp;
-	<%= f.text_field :first_name ,{:class => 'span3'}%>
+	<%= f.text_field :first_name ,{:class => 'span3'}%>  
 </div>
 <div class="field">
 	<%= f.label :middle_name, {:class => 'label'}%> &nbsp;
@@ -25,11 +25,11 @@
 </div>
 <div class="field">
 	<%= f.label :gender, {:class => 'label'}%> &nbsp;
-	<%= f.select :gender, options_for_select(["Male", "Female"])%>
+	<%= f.select :gender, options_for_select(["Male", "Female"], @applicant.gender)%>
 </div>
 <div class="field">
 	<%= f.label :military_status, {:class => 'label'}%> &nbsp;
-	<%= f.select :military_status, options_for_select(["Does not apply", "Exempted", "Completed", "Postponed"]) %>
+	<%= f.select :military_status, options_for_select(["Does not apply", "Exempted", "Completed", "Postponed"],  @applicant.military_status) %>
 </div>    
  
 <div class="field">
@@ -61,9 +61,9 @@
 	<%= f.text_area :extra_activities, :cols=> 20, :rows=> 10,:class => 'input-xlarge'%>
 </div>    
 <div class="field">
+
 	<%= f.label :transportation, {:class => 'label'}%> &nbsp;
-	<%= f.select :transportation, options_for_select(["Private", "Nu buses"])%>
+	<%= f.select :transportation, options_for_select(["Private", "Nu buses"], @applicant.transportation)%>
 </div><br /> 
-    
-    
+   
    

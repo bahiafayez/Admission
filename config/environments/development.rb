@@ -37,7 +37,7 @@ Admission::Application.configure do
   
   #require 'will_paginate'
 
-  #Paperclip.options[:command_path] = "/usr/local/bin/"
-   Paperclip.options[:command_path] = "/Windows/system32/"
+  Paperclip.options[:command_path] = "/usr/local/bin/"
+  #Paperclip.options[:command_path] = "/Windows/system32/"
 
 end

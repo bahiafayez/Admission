@@ -2,7 +2,6 @@
 	<!-- <%=session[:applicant_params]%>
 	<%=session[:address_params]%> -->
 	<!-- Applicant addresses <%= @applicant.addresses%> -->
-	<%= form_for @applicant do |f| %> 
 	
 	<div class="btn-group">
 		<button class="btn-small active" id="applicantbutton">
@@ -12,7 +11,7 @@
 		Address
 	</button>
 	<button class="btn-small" id="admissioninformationbutton">
-		Admission Information
+		Admission Info
 	</button>
 	<button class="btn-small" id="guardianbutton">
 		Guardians
@@ -33,22 +32,26 @@
 		Attachments
 	</button>
 	<button class="btn-small" id="unirelatedinfobutton">
-		University Related Information
+		Uni Related Info
 	</button>
 	</div>
 	<br /><br />
+	
+	<%= form_for @applicant do |f| %> 
+	
+	
 	<div class="well">
 	<% if @applicant.errors.any? %>
 	<div id="error_explanation">
-		<h2><%= pluralize(@applicant.errors.count, "error") %> prohibited this product from being saved:</h2>
-		<ul>
-			<% @applicant.errors.full_messages.each do |msg| %>
+		<h3> You've got some validation errors </h3>
+		<!-- <h2><%= pluralize(@applicant.errors.count, "error") %> prohibited this applicant from being saved</h2> -->
+<!-- 		<ul>
+			<% @applicant.errors.full_messages.uniq.each do |msg| %>
 			<li>
-				<%= msg %>
+ 				<%= msg %>
 			</li>
 			<% end %>
-		</ul>
-	</div>
+		</ul> -->	</div>
 	<% end %>
 	<div id="allforms">
 		<div id="applicantform">
@@ -94,7 +97,9 @@
 	<div class="actions" style="padding-left: 350px;">
 		<%= f.submit "Save", :name => "save", :class => 'btn'%> &nbsp;&nbsp;&nbsp;
 		<%= f.submit "Submit", :name => "submit", :class => 'btn' %> <!--  <%= f.submit "add actor", :name=>"add" %> -->
+	    
 	</div>
 	<!-- <%= f.hidden_field :addresses, :value => :addresses %> -->
 	<% end %>
 	</div>
+	

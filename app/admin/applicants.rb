@@ -1,8 +1,20 @@
 ActiveAdmin.register Applicant do
-  menu :parent => "Applicant Information"
+  #menu :parent => "Applicant Information"
  
   show do |app|
     h3 applicant.first_name
+    
+    panel "User Information" do
+    attributes_table_for applicant.user do
+      row :email
+      row :password_hash
+      row :password_salt
+      row :created_at
+      row :updated_at
+    end
+  end
+    
+    
       attributes_table do
         row :photo do
           link_to image_tag(app.photo.url(:thumb)), app.photo.url
@@ -24,12 +36,13 @@ ActiveAdmin.register Applicant do
         row :academic_honours
         row :extra_activities
         row :transportation
+        row :status
         row :created_at
         row :updated_at
         row :user_id
 
       end
-      
+  
     
   panel "Addresses" do
     table_for applicant.addresses do

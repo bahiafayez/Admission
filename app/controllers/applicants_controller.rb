@@ -32,6 +32,8 @@ class ApplicantsController < ApplicationController
     @applicant.attachment = Attachment.new
     @applicant.uni_related_info = UniRelatedInfo.new
     
+    @applicant.uni_related_info.uni_choice= UniChoice.new
+    @applicant.uni_related_info.other_choice= OtherChoice.new
     
     #logger.debug "in new action"
     #logger.debug(@applicant.addresses)
@@ -47,39 +49,69 @@ class ApplicantsController < ApplicationController
      #logger.debug @applicant.attributes
      #parameters=params[:applicant][:guardian_attributes]
      #logger.debug "Guardian Attributes!!!!!!!!!!!!!!"
+     # if params[:applicant][:checkSecondary][:oneSchool]=="1"
+      # @school='checked'
+     # end
+     #logger.debug ""
+     
      @applicant.guardians.each do |guardian|
        if guardian.relation=="Other"
          guardian.relation=guardian.relation2
        end
      end
      
-     logger.debug "Reasons!!!!!!!!"
-     logger.debug params[:applicant][:reasons]
-     logger.debug "Reasons2222!!!!!!!!"
-     logger.debug params[:applicant][:reasons2]
+     # logger.debug "Reasons!!!!!!!!"
+     # logger.debug params[:applicant][:reasons]
+     # logger.debug "Reasons2222!!!!!!!!"
+     # logger.debug params[:applicant][:reasons2]
+#      
+     # @reasons="" 
+     # params[:applicant][:reasons].each do |parameter, value|
+       # if value == "1"
+         # @reasons<<"#{parameter} "
+       # end
+       # if value != "0" and value != "1" and value != ""
+         # @reasons<<"#{value} "
+       # end
+     # end 
+#      
+     # logger.debug "reasons"
+     # logger.debug @reasons
+#      
+     # @reasons2="" 
+     # params[:applicant][:reasons2].each do |parameter, value|
+       # if value == "1"
+         # @reasons2<<"#{parameter} "
+       # end
+       # if value != "0" and value != "1" and value != ""
+         # @reasons2<<"#{value} "
+       # end
+     # end 
      
      @reasons="" 
-     params[:applicant][:reasons].each do |parameter, value|
-       if value == "1"
-         @reasons<<"#{parameter} "
-       end
-       if value != "0" and value != "1" and value != ""
-         @reasons<<"#{value} "
-       end
-     end 
-     
-     logger.debug "reasons"
-     logger.debug @reasons
+     @reasons<<"Internet \n" if @applicant.uni_related_info.uni_choice.internet
+     @reasons<<"Email \n" if @applicant.uni_related_info.uni_choice.email
+     @reasons<<"Radio \n" if @applicant.uni_related_info.uni_choice.radio
+     @reasons<<"School Visits \n" if @applicant.uni_related_info.uni_choice.school_visits
+     @reasons<<"Nile University faculty/staff \n " if @applicant.uni_related_info.uni_choice.nile_university_faculty_and_staff
+     @reasons<<"Nile University Student/Alumni \n" if @applicant.uni_related_info.uni_choice.nile_university_student_and_alumni
+     @reasons<<"Print Advertisements " if @applicant.uni_related_info.uni_choice.print_advertisements
+     @reasons<<"#{@applicant.uni_related_info.uni_choice.specify_print_advertisements} \n" if @applicant.uni_related_info.uni_choice.specify_print_advertisements != nil
+     @reasons<<"NU Seminar, Workshop and Conference " if @applicant.uni_related_info.uni_choice.nu_seminar_workshop_and_conference
+     @reasons<<"#{@applicant.uni_related_info.uni_choice.specify_nu_seminar} \n" if @applicant.uni_related_info.uni_choice.specify_nu_seminar != nil
+     @reasons<<"Other " if @applicant.uni_related_info.uni_choice.other
+     @reasons<<"#{@applicant.uni_related_info.uni_choice.specify_other} \n" if @applicant.uni_related_info.uni_choice.specify_other != nil
      
      @reasons2="" 
-     params[:applicant][:reasons2].each do |parameter, value|
-       if value == "1"
-         @reasons2<<"#{parameter} "
-       end
-       if value != "0" and value != "1" and value != ""
-         @reasons2<<"#{value} "
-       end
-     end 
+     @reasons2<<"Quality of education \n" if @applicant.uni_related_info.other_choice.quality
+     @reasons2<<"Reputation \n" if @applicant.uni_related_info.other_choice.reputation
+     @reasons2<<"Facilities \n" if @applicant.uni_related_info.other_choice.facilities
+     @reasons2<<"Location \n" if @applicant.uni_related_info.other_choice.location
+     @reasons2<<"Fields of study " if @applicant.uni_related_info.other_choice.fields_of_study
+     @reasons2<<"#{@applicant.uni_related_info.other_choice.specify_fields_of_study} \n" if @applicant.uni_related_info.other_choice.specify_fields_of_study != nil
+     @reasons2<<"Other " if @applicant.uni_related_info.other_choice.other
+     @reasons2<<"#{@applicant.uni_related_info.other_choice.specify_other} \n" if @applicant.uni_related_info.other_choice.specify_other != nil
+     
      
      @applicant.uni_related_info.hear_of_uni=@reasons
      @applicant.uni_related_info.factors_other_universities=@reasons2
@@ -88,6 +120,7 @@ class ApplicantsController < ApplicationController
      #@applicant.guardians[0].relation="Mother"
      #logger.debug @applicant.guardians[0].relation
       if params[:save]
+        @applicant.status="Saved"
         
         respond_to do |format|
         if @user.save(:validate => false)
@@ -98,6 +131,7 @@ class ApplicantsController < ApplicationController
           format.json { render json: @applicant.errors, status: :unprocessable_entity }
         end
       end
+      
    else
     
      #before validation..
@@ -114,8 +148,9 @@ class ApplicantsController < ApplicationController
          @applicant.addresses.destroy(@b)     
        end
      end
-     # delete extra secondary schools
-     if params[:applicant][:checkSecondary][:oneSchool]=="1"
+     
+        # delete extra secondary schools
+     if @applicant.checkSecondary
        @b=@applicant.secondary_schools[1]
        if @b != nil
          @applicant.secondary_schools.destroy(@b)
@@ -123,7 +158,7 @@ class ApplicantsController < ApplicationController
      end
      
      # delete extra Colleges 
-     if params[:applicant][:checkCollege][:oneCollege]=="1"
+     if @applicant.checkCollege
        @b=@applicant.colleges[1]
        if @b != nil
          @applicant.colleges.destroy(@b)
@@ -131,7 +166,7 @@ class ApplicantsController < ApplicationController
      end
      
      # delete extra Work
-     if params[:applicant][:checkWork][:oneWork]=="1"
+     if @applicant.checkWork
        @b=@applicant.works[1]
        if @b != nil
          @applicant.works.destroy(@b)
@@ -141,7 +176,8 @@ class ApplicantsController < ApplicationController
      
      logger.debug @applicant.addresses    
      logger.debug "checking!!!!!!!!!!!!!!!!!!!!!!!"
-    logger.debug params[:applicant][:checkSecondary][:oneSchool]
+    #logger.debug params[:applicant][:checkSecondary][:oneSchool]
+    @applicant.status="Submitted"
     
       respond_to do |format|
         if @user.save
@@ -157,6 +193,9 @@ class ApplicantsController < ApplicationController
   end
   def edit
     @applicant = Applicant.find(params[:id])
+    if @applicant.status=="Submitted"
+      redirect_to @applicant, notice: "Sorry Application Already Submitted"
+    end
   end
   
   def update
@@ -166,6 +205,17 @@ class ApplicantsController < ApplicationController
     @applicant=@user.applicant 
      
     #@applicant = Applicant.find(params[:id])
+    #logger.debug "GENDERRRRRRRRRRRRRRR"
+    #logger.debug params[:applicant]
+    #logger.debug "GENDER AFTER CAST"
+    #params[:applicant][:gender]=params[:applicant][:gender].to_i
+    #logger.debug params[:applicant]
+    
+    # if params[:applicant][:checkSecondary][:oneSchool]=="1"
+      # @school='checked'
+    # end
+    
+    
     @applicant.attributes=params[:applicant]
 
     @applicant.guardians.each do |guardian|
@@ -176,38 +226,44 @@ class ApplicantsController < ApplicationController
      
     
      
+       
      @reasons="" 
-     params[:applicant][:reasons].each do |parameter, value|
-       if value == "1"
-         @reasons<<"#{parameter} "
-       end
-       if value != "0" and value != "1" and value != ""
-         @reasons<<"#{value} "
-       end
-     end 
+     @reasons<<"Internet \n" if @applicant.uni_related_info.uni_choice.internet
+     @reasons<<"Email \n" if @applicant.uni_related_info.uni_choice.email
+     @reasons<<"Radio \n" if @applicant.uni_related_info.uni_choice.radio
+     @reasons<<"School Visits \n" if @applicant.uni_related_info.uni_choice.school_visits
+     @reasons<<"Nile University faculty/staff \n " if @applicant.uni_related_info.uni_choice.nile_university_faculty_and_staff
+     @reasons<<"Nile University Student/Alumni \n" if @applicant.uni_related_info.uni_choice.nile_university_student_and_alumni
+     @reasons<<"Print Advertisements " if @applicant.uni_related_info.uni_choice.print_advertisements
+     @reasons<<"#{@applicant.uni_related_info.uni_choice.specify_print_advertisements} \n" if @applicant.uni_related_info.uni_choice.specify_print_advertisements != nil
+     @reasons<<"NU Seminar, Workshop and Conference " if @applicant.uni_related_info.uni_choice.nu_seminar_workshop_and_conference
+     @reasons<<"#{@applicant.uni_related_info.uni_choice.specify_nu_seminar} \n" if @applicant.uni_related_info.uni_choice.specify_nu_seminar != nil
+     @reasons<<"Other " if @applicant.uni_related_info.uni_choice.other
+     @reasons<<"#{@applicant.uni_related_info.uni_choice.specify_other} \n" if @applicant.uni_related_info.uni_choice.specify_other != nil
      
-     @reasons2=""
-     params[:applicant][:reasons2].each do |parameter, value|
-       if value == "1"
-         @reasons2<<"#{parameter} "
-       end
-       if value != "0" and value != "1" and value != ""
-         @reasons2<<"#{value} "
-       end
-     end 
+     @reasons2="" 
+     @reasons2<<"Quality of education \n" if @applicant.uni_related_info.other_choice.quality
+     @reasons2<<"Reputation \n" if @applicant.uni_related_info.other_choice.reputation
+     @reasons2<<"Facilities \n" if @applicant.uni_related_info.other_choice.facilities
+     @reasons2<<"Location \n" if @applicant.uni_related_info.other_choice.location
+     @reasons2<<"Fields of study " if @applicant.uni_related_info.other_choice.fields_of_study
+     @reasons2<<"#{@applicant.uni_related_info.other_choice.specify_fields_of_study} \n" if @applicant.uni_related_info.other_choice.specify_fields_of_study != nil
+     @reasons2<<"Other " if @applicant.uni_related_info.other_choice.other
+     @reasons2<<"#{@applicant.uni_related_info.other_choice.specify_other} \n" if @applicant.uni_related_info.other_choice.specify_other != nil
+     
      
      @applicant.uni_related_info.hear_of_uni=@reasons
      @applicant.uni_related_info.factors_other_universities=@reasons2
      
      
       if params[:save]
-        
+        @applicant.status="Saved"
         respond_to do |format|
         if @user.save(:validate => false)
           format.html { redirect_to @user.applicant, notice: 'Applicant was successfully created.' }
           format.json { render json: @applicant, status: :created, location: @applicant }
         else
-          format.html { render action: "new" }
+          format.html { render action: "edit" }
           format.json { render json: @applicant.errors, status: :unprocessable_entity }
         end
       end
@@ -229,7 +285,7 @@ class ApplicantsController < ApplicationController
        end
      end
      # delete extra secondary schools
-     if params[:applicant][:checkSecondary][:oneSchool]=="1"
+     if @applicant.checkSecondary
        @b=@applicant.secondary_schools[1]
        if @b != nil
          @applicant.secondary_schools.destroy(@b)
@@ -237,7 +293,7 @@ class ApplicantsController < ApplicationController
      end
      
      # delete extra Colleges 
-     if params[:applicant][:checkCollege][:oneCollege]=="1"
+     if @applicant.checkCollege
        @b=@applicant.colleges[1]
        if @b != nil
          @applicant.colleges.destroy(@b)
@@ -245,7 +301,7 @@ class ApplicantsController < ApplicationController
      end
      
      # delete extra Work
-     if params[:applicant][:checkWork][:oneWork]=="1"
+     if @applicant.checkWork
        @b=@applicant.works[1]
        if @b != nil
          @applicant.works.destroy(@b)
@@ -254,15 +310,15 @@ class ApplicantsController < ApplicationController
      
      logger.debug @applicant.addresses    
      logger.debug "checking!!!!!!!!!!!!!!!!!!!!!!!"
-    logger.debug params[:applicant][:checkSecondary][:oneSchool]
+    #logger.debug params[:applicant][:checkSecondary][:oneSchool]
     
-    
+      @applicant.status="Submitted"
       respond_to do |format|
         if @user.save
           format.html { redirect_to @user.applicant, notice: 'Applicant was successfully created.' }
           format.json { render json: @applicant, status: :created, location: @applicant }
         else
-          format.html { render action: "new" }
+          format.html { render action: "edit" }
           format.json { render json: @applicant.errors, status: :unprocessable_entity }
         end
       end

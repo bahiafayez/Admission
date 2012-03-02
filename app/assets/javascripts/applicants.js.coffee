@@ -17,20 +17,58 @@
     otherList
 ) jQuery
 
-$(document).ready ->
-  $('#applicantform').allBut('#allforms').fadeOut();
-  $('#applicantform').show()
-  $('.relation3').hide()
-  $('#printAd').hide()
-  $('#NuSeminar').hide()
-  $('#other').hide()
-  $('#fieldsofstudy').hide()
-  $('#other2').hide()
-  
+guardianOther = ->
+  console.log "relation was clicked"
+  if $(this).val()=="Other"
+    console.log "otherrr"
+    console.log $(this).parent().parent().children()
+    $(this).parent().parent().children('.relation3').show()
+  else
+    $(this).parent().parent().children('.relation3').hide()
 
-$ ->
-  $('#applicant_gender').change ->
-    #console.log("in here")
+guardianNo2Fathers = (event) ->
+  console.log "relation was clicked"
+  if $(this).val()=="Father"
+    $(event.data.element).children('option').eq(2).attr('disabled',true)
+  else
+    $(event.data.element).children('option').eq(2).attr('disabled',false)
+
+guardianNo2Mothers = (event) ->
+  console.log "relation was clicked"
+  if $(this).val()=="Mother"
+    $(event.data.element).children('option').eq(1).attr('disabled',true)
+  else
+    $(event.data.element).children('option').eq(1).attr('disabled',false)
+
+No2Nos = (event) ->
+  console.log "relation was clicked"
+  if $(this).val()=="false"
+    $(event.data.element).children('option').eq(1).attr('disabled',true)
+  else
+    $(event.data.element).children('option').eq(1).attr('disabled',false)
+
+
+hideAddress1 = ->
+  #console.log("in here")
+    console.log $(this).val()
+    if $(this).val()=="Both"
+      console.log("in Both")
+      $(this).parent().parent().parent().children('div').eq(1).hide()
+    else
+      $(this).parent().parent().parent().children('div').eq(1).show()
+     
+hideAddress0 = ->
+  #console.log("in here")
+    console.log $(this).val()
+    if $(this).val()=="Both"
+      console.log("in Both")
+      $(this).parent().parent().parent().children('div').eq(0).hide()
+    else
+      $(this).parent().parent().parent().children('div').eq(0).show()
+     
+
+changeGender = ->
+  #console.log("in here")
     console.log $(this).val()
     if $(this).val()=="Female"
       console.log("in Female")
@@ -40,37 +78,8 @@ $ ->
     else
       console.log("in male")
       $('#applicant_military_status').removeAttr('disabled')
-      
-  $('#applicant_addresses_attributes_0_address_type').change ->
-    #console.log("in here")
-    console.log $(this).val()
-    if $(this).val()=="Both"
-      console.log("in Both")
-      $(this).parent().parent().parent().children('div').eq(1).hide()
-    else
-      $(this).parent().parent().parent().children('div').eq(1).show()
-      
-  $('#applicant_addresses_attributes_1_address_type').change ->
-    #console.log("in here")
-    console.log $(this).val()
-    if $(this).val()=="Both"
-      console.log("in Both")
-      $(this).parent().parent().parent().children('div').eq(0).hide()
-    else
-      $(this).parent().parent().parent().children('div').eq(0).show()
-      
-  
-      
-  $('.relation').each ->
-    $(this).change ->
-      console.log "relation was clicked"
-      if $(this).val()=="Other"
-        console.log "otherrr"
-        console.log $(this).parent().parent().children()
-        $(this).parent().parent().children('.relation3').show()
-      else
-        $(this).parent().parent().children('.relation3').hide()
-        
+
+$ ->             
   $('#applicantbutton').click ->
     console.log "I was Clicked"
     #$('#applicantform').show()
@@ -141,7 +150,7 @@ $ ->
     $('#guardianform').allBut('#allforms').fadeOut();
     $('#guardianform').show()  
     
-  $('#applicant_reasons_PrintAd').click ->
+  $('#applicant_uni_related_info_attributes_uni_choice_attributes_print_advertisements').click ->
     console.log "wohoo"
     if $(this).is(':checked')
       console.log "over here"
@@ -149,7 +158,7 @@ $ ->
     else  
       $('#printAd').hide()
       
-  $('#applicant_reasons_NUSeminar').click ->
+  $('#applicant_uni_related_info_attributes_uni_choice_attributes_nu_seminar_workshop_and_conference').click ->
     console.log "wohoo"
     if $(this).is(':checked')
       console.log "over here"
@@ -157,15 +166,16 @@ $ ->
     else  
       $('#NuSeminar').hide()
       
-  $('#applicant_reasons_Other').click ->
+  $('#applicant_uni_related_info_attributes_uni_choice_attributes_other').click (->
     console.log "wohoo"
     if $(this).is(':checked')
       console.log "over here"
       $('#other').show()
     else  
       $('#other').hide()
+    )
       
-  $('#applicant_reasons2_fieldsOfStudy').click ->
+  $('#applicant_uni_related_info_attributes_other_choice_attributes_fields_of_study').click ->
     console.log "wohoo"
     if $(this).is(':checked')
       console.log "over here"
@@ -173,7 +183,7 @@ $ ->
     else  
       $('#fieldsofstudy').hide()
       
-  $('#applicant_reasons2_Other').click ->
+  $('#applicant_uni_related_info_attributes_other_choice_attributes_other').click ->
     console.log "wohoo"
     if $(this).is(':checked')
       console.log "over here"
@@ -181,27 +191,92 @@ $ ->
     else  
       $('#other2').hide()
       
-  $('#applicant_checkSecondary_oneSchool').click ->
+  $('#applicant_checkSecondary').click ->
     console.log "wohoo"
     if $(this).is(':checked')
       console.log "over here"
-      $('#applicant_checkSecondary_oneSchool').parent().parent().children('div').eq(1).hide()
+      $(this).parent().parent().children('div').eq(1).hide()
     else  
-      $('#applicant_checkSecondary_oneSchool').parent().parent().children('div').eq(1).show()
+      $(this).parent().parent().children('div').eq(1).show()
       
-  $('#applicant_checkCollege_oneCollege').click ->
+  $('#applicant_checkCollege').click ->
     console.log "wohoo"
     if $(this).is(':checked')
       console.log "over here"
-      $('#applicant_checkCollege_oneCollege').parent().parent().children('div').eq(1).hide()
+      $(this).parent().parent().children('div').eq(1).hide()
     else  
-      $('#applicant_checkCollege_oneCollege').parent().parent().children('div').eq(1).show()
+      $(this).parent().parent().children('div').eq(1).show()
       
-  $('#applicant_checkWork_oneWork').click ->
+  $('#applicant_checkWork').click ->
     console.log "wohoo"
     if $(this).is(':checked')
       console.log "over here"
-      $('#applicant_checkWork_oneWork').parent().parent().children('div').eq(1).hide()
+      $(this).parent().parent().children('div').eq(1).hide()
     else  
-      $('#applicant_checkWork_oneWork').parent().parent().children('div').eq(1).show()
+      $(this).parent().parent().children('div').eq(1).show()
       
+
+
+$(document).ready ->
+  $('#applicantform').allBut('#allforms').fadeOut();
+  $('#applicantform').show()
+  $('.relation3').hide()
+  $('#printAd').hide()
+  $('#NuSeminar').hide()
+  $('#other').hide()
+  $('#fieldsofstudy').hide()
+  $('#other2').hide()
+  $('#applicant_gender').change(changeGender).trigger('change')
+  $('#applicant_addresses_attributes_0_address_type').change(hideAddress1).trigger('change')
+  $('#applicant_addresses_attributes_1_address_type').change(hideAddress0).trigger('change')
+  $('#applicant_guardians_attributes_0_relation').change({element: '#applicant_guardians_attributes_1_relation'}, guardianNo2Fathers).trigger('change')
+  $('#applicant_guardians_attributes_1_relation').change({element: '#applicant_guardians_attributes_0_relation'}, guardianNo2Fathers).trigger('change')
+  $('#applicant_guardians_attributes_0_relation').change({element: '#applicant_guardians_attributes_1_relation'}, guardianNo2Mothers).trigger('change')
+  $('#applicant_guardians_attributes_1_relation').change({element: '#applicant_guardians_attributes_0_relation'}, guardianNo2Mothers).trigger('change')
+  $('#applicant_guardians_attributes_0_financial').change({element: '#applicant_guardians_attributes_1_financial'}, No2Nos).trigger('change')
+  $('#applicant_guardians_attributes_1_financial').change({element: '#applicant_guardians_attributes_0_financial'}, No2Nos).trigger('change')
+  
+  $('.relation').each ->
+       $(this).change(guardianOther).trigger('change')
+ 
+  if $('#applicant_uni_related_info_attributes_uni_choice_attributes_print_advertisements').is(':checked')
+      $('#printAd').show()
+  else  
+      $('#printAd').hide()
+  
+  if $('#applicant_uni_related_info_attributes_uni_choice_attributes_nu_seminar_workshop_and_conference').is(':checked')
+      $('#NuSeminar').show()
+  else  
+      $('#NuSeminar').hide()
+  
+  if $('#applicant_uni_related_info_attributes_uni_choice_attributes_other').is(':checked')
+    $('#other').show()
+  else  
+    $('#other').hide()
+  
+   if $('#applicant_uni_related_info_attributes_other_choice_attributes_fields_of_study').is(':checked')
+      $('#fieldsofstudy').show()
+    else  
+      $('#fieldsofstudy').hide()
+    
+    if $('#applicant_uni_related_info_attributes_other_choice_attributes_other').is(':checked')
+      $('#other2').show()
+    else  
+      $('#other2').hide()
+    
+    if $('#applicant_checkSecondary').is(':checked')
+      $('#applicant_checkSecondary').parent().parent().children('div').eq(1).hide()
+    else  
+      $('#applicant_checkSecondary').parent().parent().children('div').eq(1).show()
+   
+    if $('#applicant_checkCollege').is(':checked')
+      $('#applicant_checkCollege').parent().parent().children('div').eq(1).hide()
+    else  
+      $('#applicant_checkCollege').parent().parent().children('div').eq(1).show()
+    
+    if $('#applicant_checkWork').is(':checked')
+      $('#applicant_checkWork').parent().parent().children('div').eq(1).hide()
+    else  
+      $('#applicant_checkWork').parent().parent().children('div').eq(1).show()
+      
+  

@@ -4,6 +4,10 @@ class SessionsController < ApplicationController
   def new
     #won't create a user, since over there using form_tag, don't need a resource,
     #instead will save stuff in params, and use it in create
+    if session[:user_id]!= nil
+      @existing=User.find(session[:user_id])
+      redirect_to @existing , notice: "#{@existing.email} is already logged in, Please Log out first"
+    end
   end
   
   def create
