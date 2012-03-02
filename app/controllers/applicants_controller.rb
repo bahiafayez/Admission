@@ -1,4 +1,5 @@
 class ApplicantsController < ApplicationController
+   before_filter :authorize
   def index
     
     @applications =  Applicant.order('created_at DESC').page params[:page]
