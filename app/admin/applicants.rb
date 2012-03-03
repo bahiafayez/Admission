@@ -3,7 +3,7 @@ ActiveAdmin.register Applicant do
  
   index do
     column :id do |app|
-      link_to app.id admin_applicant_path(app)
+      link_to app.id, admin_applicant_path(app)
     end
     column :first_name do |app|
       link_to app.first_name, admin_applicant_path(app)
