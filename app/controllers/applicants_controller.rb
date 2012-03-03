@@ -146,7 +146,7 @@ class ApplicantsController < ApplicationController
         @applicant.status="Saved"
         
         respond_to do |format|
-        if @user.save(:validate => false)
+        if @applicant.save(:validate => false)
           format.html { redirect_to @user.applicant, notice: 'Applicant was successfully created.' }
           format.json { render json: @applicant, status: :created, location: @applicant }
         else
@@ -308,7 +308,7 @@ class ApplicantsController < ApplicationController
       if params[:save]
         @applicant.status="Saved"
         respond_to do |format|
-        if @user.save(:validate => false)
+        if @applicant.save(:validate => false)
           format.html { redirect_to @user.applicant, notice: 'Applicant was successfully created.' }
           format.json { render json: @applicant, status: :created, location: @applicant }
         else
