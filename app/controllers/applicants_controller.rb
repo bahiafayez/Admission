@@ -129,6 +129,17 @@ class ApplicantsController < ApplicationController
        @applicant.military_status="Does not apply"
      end
      
+     
+     if @applicant.secondary_schools.size == 2
+       if @applicant.secondary_schools[0].id > @applicant.secondary_schools[1].id 
+         @temp= @applicant.secondary_schools[0].id
+         @applicant.secondary_schools[0]= @applicant.secondary_schools[1]
+         @applicant.secondary_schools[1]= @temp
+       end
+     end
+     
+     
+     
      #@applicant.guardians[0].relation="Mother"
      #logger.debug @applicant.guardians[0].relation
       if params[:save]
@@ -235,6 +246,7 @@ class ApplicantsController < ApplicationController
     
     
     @applicant.attributes=params[:applicant]
+    
 
     #To save image
     @applicant.save(:validate => false)
@@ -282,6 +294,15 @@ class ApplicantsController < ApplicationController
      
      if @applicant.gender=="Female"
        @applicant.military_status="Does not apply"
+     end
+     
+     
+     if @applicant.secondary_schools.size == 2
+       if @applicant.secondary_schools[0].id > @applicant.secondary_schools[1].id 
+         @temp= @applicant.secondary_schools[0].id
+         @applicant.secondary_schools[0]= @applicant.secondary_schools[1]
+         @applicant.secondary_schools[1]= @temp
+       end
      end
      
       if params[:save]
