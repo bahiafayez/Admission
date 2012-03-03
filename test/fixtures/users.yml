@@ -3,9 +3,9 @@
 one:
   email: MyString
   password_hash: MyString
-  pasword_salt: MyString
+  #pasword_salt: MyString
 
 two:
   email: MyString
   password_hash: MyString
-  pasword_salt: MyString
+  #pasword_salt: MyString
