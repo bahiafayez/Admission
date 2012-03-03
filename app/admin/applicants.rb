@@ -1,6 +1,18 @@
 ActiveAdmin.register Applicant do
   #menu :parent => "Applicant Information"
  
+  index do
+    column :first_name
+    column :middle_name
+    column :last_name
+    column :created_at
+    column :updated_at
+    column :status do |app|
+      strong {app.status}
+    end
+    
+  end
+ 
   show do |app|
     h3 applicant.first_name
     

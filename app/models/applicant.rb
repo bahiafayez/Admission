@@ -16,7 +16,7 @@ class Applicant < ActiveRecord::Base
   
   before_validation :atleast_one
   validates :first_name, :middle_name,:last_name,:date_of_birth, :place_of_birth, :gender,:military_status, :national_id, :national_id_expiry_date, :passport_number, :country_of_issuance, :passport_expiry_date, :transportation,  :presence => true
-  validates_attachment_presence :photo
+  #validates_attachment_presence :photo
   validates_attachment_content_type :photo, :content_type=>['image/jpeg', 'image/png', 'image/gif'], :message => 'Image must be of type jpeg, png or gif'
   validates_date :date_of_birth, :passport_expiry_date, :national_id_expiry_date
 

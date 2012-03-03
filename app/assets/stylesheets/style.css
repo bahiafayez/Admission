@@ -772,3 +772,9 @@ table {
 	padding-left: 5px;
 	font-size: 12px;
 }
+
+.checkbox {
+	position:relative;   
+	left:600px;  
+  	top:-670px;
+}

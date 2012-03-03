@@ -6,6 +6,9 @@ section "Recent Applicants" do
         link_to applicant.first_name, admin_applicant_path(applicant)
       end
       column :created_at
+      column :status do |applicant|
+        strong {applicant.status}
+      end
     end
     strong { link_to "View All Applicants", admin_applicants_path }
   end
