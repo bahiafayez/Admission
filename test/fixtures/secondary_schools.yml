@@ -8,7 +8,6 @@ one:
   attended_to: 2012-02-23
   certificate_type: MyString
   graduation_date: 2012-02-23
-  division: MyString
   school_type: MyString
   applicant_id: 1
 
@@ -20,6 +19,16 @@ two:
   attended_to: 2012-02-23
   certificate_type: MyString
   graduation_date: 2012-02-23
-  division: MyString
+  school_type: MyString
+  applicant_id: 1
+
+three:
+  name: MyString
+  address: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+  language: MyString
+  attended_from: 2012-02-23
+  attended_to: 2012-02-23
+  certificate_type: MyString
+  graduation_date: 2012-02-23
   school_type: MyString
   applicant_id: 1
