@@ -2,7 +2,12 @@ ActiveAdmin.register Applicant do
   #menu :parent => "Applicant Information"
  
   index do
-    column :first_name
+    column :id do |app|
+      link_to app.id admin_applicant_path(app)
+    end
+    column :first_name do |app|
+      link_to app.first_name, admin_applicant_path(app)
+    end
     column :middle_name
     column :last_name
     column :created_at

@@ -2,6 +2,9 @@ ActiveAdmin::Dashboards.build do
 
 section "Recent Applicants" do
     table_for Applicant.order("created_at desc").limit(10) do
+      column :id do |applicant|
+        link_to applicant.id, admin_applicant_path(applicant)
+     end
       column :name do |applicant|
         link_to applicant.first_name, admin_applicant_path(applicant)
       end

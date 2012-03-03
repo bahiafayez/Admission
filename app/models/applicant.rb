@@ -4,14 +4,14 @@ class Applicant < ActiveRecord::Base
   
   has_attached_file :photo,  :styles => {:original=>"500x500>" ,:medium => "300x300>", :thumb => "100x100>" }
 
-  has_many :addresses, :dependent => :destroy
+  has_many :addresses, :dependent => :destroy, , :order => "id ASC"
   has_one :admission_information, :dependent => :destroy
   has_many :secondary_schools, :dependent => :destroy, :order => "id ASC"
-  has_many :colleges, :dependent => :destroy
-  has_many :works, :dependent => :destroy
+  has_many :colleges, :dependent => :destroy, :order => "id ASC"
+  has_many :works, :dependent => :destroy, :order => "id ASC"
   has_one :attachment, :dependent => :destroy
-  has_many :guardians, :dependent => :destroy
-  has_many :healths, :dependent => :destroy
+  has_many :guardians, :dependent => :destroy, :order => "id ASC"
+  has_many :healths, :dependent => :destroy, :order => "id ASC"
   has_one :uni_related_info, :dependent => :destroy
   
   before_validation :atleast_one
