@@ -130,13 +130,13 @@ class ApplicantsController < ApplicationController
      end
      
      
-     if @applicant.secondary_schools.size == 2
-       if @applicant.secondary_schools[0].id > @applicant.secondary_schools[1].id 
-         @temp= @applicant.secondary_schools[0]
-         @applicant.secondary_schools[0]= @applicant.secondary_schools[1]
-         @applicant.secondary_schools[1]= @temp
-       end
-     end
+     # if @applicant.secondary_schools.size == 2
+       # if @applicant.secondary_schools[0].id > @applicant.secondary_schools[1].id 
+         # @temp= @applicant.secondary_schools[0]
+         # @applicant.secondary_schools[0]= @applicant.secondary_schools[1]
+         # @applicant.secondary_schools[1]= @temp
+       # end
+     # end
      
      
      
@@ -297,13 +297,13 @@ class ApplicantsController < ApplicationController
      end
      
      
-     if @applicant.secondary_schools.size == 2
-       if @applicant.secondary_schools[0].id > @applicant.secondary_schools[1].id 
-         @temp= @applicant.secondary_schools[0]
-         @applicant.secondary_schools[0]= @applicant.secondary_schools[1]
-         @applicant.secondary_schools[1]= @temp
-       end
-     end
+     # if @applicant.secondary_schools.size == 2
+       # if @applicant.secondary_schools[0].id > @applicant.secondary_schools[1].id 
+         # @temp= @applicant.secondary_schools[0]
+         # @applicant.secondary_schools[0]= @applicant.secondary_schools[1]
+         # @applicant.secondary_schools[1]= @temp
+       # end
+     # end
      
       if params[:save]
         @applicant.status="Saved"

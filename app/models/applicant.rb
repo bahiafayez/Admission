@@ -6,7 +6,7 @@ class Applicant < ActiveRecord::Base
 
   has_many :addresses, :dependent => :destroy
   has_one :admission_information, :dependent => :destroy
-  has_many :secondary_schools, :dependent => :destroy
+  has_many :secondary_schools, :dependent => :destroy, :order => "id ASC"
   has_many :colleges, :dependent => :destroy
   has_many :works, :dependent => :destroy
   has_one :attachment, :dependent => :destroy
