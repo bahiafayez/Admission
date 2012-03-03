@@ -4,7 +4,7 @@ class Applicant < ActiveRecord::Base
   
   has_attached_file :photo,  :styles => {:original=>"500x500>" ,:medium => "300x300>", :thumb => "100x100>" }
 
-  has_many :addresses, :dependent => :destroy, , :order => "id ASC"
+  has_many :addresses, :dependent => :destroy, :order => "id ASC"
   has_one :admission_information, :dependent => :destroy
   has_many :secondary_schools, :dependent => :destroy, :order => "id ASC"
   has_many :colleges, :dependent => :destroy, :order => "id ASC"
