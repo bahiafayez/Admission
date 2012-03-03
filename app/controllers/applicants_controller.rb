@@ -132,7 +132,7 @@ class ApplicantsController < ApplicationController
      
      if @applicant.secondary_schools.size == 2
        if @applicant.secondary_schools[0].id > @applicant.secondary_schools[1].id 
-         @temp= @applicant.secondary_schools[0].id
+         @temp= @applicant.secondary_schools[0]
          @applicant.secondary_schools[0]= @applicant.secondary_schools[1]
          @applicant.secondary_schools[1]= @temp
        end
@@ -299,7 +299,7 @@ class ApplicantsController < ApplicationController
      
      if @applicant.secondary_schools.size == 2
        if @applicant.secondary_schools[0].id > @applicant.secondary_schools[1].id 
-         @temp= @applicant.secondary_schools[0].id
+         @temp= @applicant.secondary_schools[0]
          @applicant.secondary_schools[0]= @applicant.secondary_schools[1]
          @applicant.secondary_schools[1]= @temp
        end
