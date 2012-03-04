@@ -7,7 +7,11 @@
 		<thead>
 			<tr>
 				<th><b>Photo</b></th>
-				<th><%= link_to image_tag @applicant.photo.url(:medium), @applicant.photo.url %></th>
+				<% if @applicant.photo.file? %>
+				<th><%= link_to image_tag(@applicant.photo.url(:thumb)), @applicant.photo.url %></th>
+				<% else %>
+				<th>You have not uploaded a photo</th>
+				<% end %>
 			</tr>
 		</thead>
 		<tbody>
@@ -391,10 +395,11 @@
 		<thead>
 			<tr>
 				<div>
-					<% if @applicant.attachment.additional_information == nil %> <b> You have not uploaded the additional information document</b>
-					<% else %> <td><b>Additional Information</b></td>
-					<td><%= link_to image_tag @applicant.attachment.additional_information.url(:thumb), @applicant.attachment.additional_information.url %></td>
-					<!-- <%= link_to "Download", @applicant.attachment.additional_information.url %> -->
+					<td><b>Additional Information</b></td>
+					<% if @applicant.attachment.additional_information.file? %>
+					<td><%= link_to image_tag(@applicant.attachment.additional_information.url(:thumb)), @applicant.attachment.additional_information.url %></td>
+					<% else %>
+					<td><b> You have not uploaded the additional information document</b></td>
 					<% end %>
 				</div>
 			</tr>
@@ -402,11 +407,17 @@
 		<tbody>
 			<tr>
 				<div>
-					<% if @applicant.attachment.personal_experience == nil %> <b> You have not uploaded the personal experience document</b>
-					<% else %> <td><b>Personal Experience</b></td>
-					<td><%= link_to image_tag @applicant.attachment.personal_experience.url(:thumb), @applicant.attachment.personal_experience.url %></td>
-					<!-- <%= link_to "Download", @applicant.attachment.personal_experience.url %> -->
+					
+					
+					<td><b>Personal Experience</b></td>
+					<% if @applicant.attachment.personal_experience.file? %>
+					<td><%= link_to image_tag(@applicant.attachment.personal_experience.url(:thumb)), @applicant.attachment.personal_experience.url %></td>
+					<% else %>
+					<td><b> You have not uploaded the personal experience document</b></td>
 					<% end %>
+					<!-- <%= link_to "Download", @applicant.attachment.personal_experience.url %> -->
+					
+					
 				</div>
 			</tr>
 		</tbody>

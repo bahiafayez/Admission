@@ -34,7 +34,11 @@ ActiveAdmin.register Applicant do
     
       attributes_table do
         row :photo do
-          link_to image_tag(app.photo.url(:thumb)), app.photo.url
+          if app.photo.file?
+            link_to image_tag(app.photo.url(:thumb)), app.photo.url
+          else
+            "No Photo Uploaded"  
+          end
         end
         row :first_name
         row :middle_name
@@ -102,12 +106,20 @@ ActiveAdmin.register Applicant do
   
   panel "Attachments" do
     attributes_table_for applicant.attachment do
-      row :personal_experience do  
+      row :personal_experience do
+        if app.attachment.personal_experience.file?  
           link_to image_tag(app.attachment.personal_experience.url(:thumb)), app.attachment.personal_experience.url
-        end
-      row :additional_information do  
+        else
+          "No Document Uploaded"
+        end  
+      end
+      row :additional_information do
+        if app.attachment.additional_information.file?
           link_to image_tag(app.attachment.additional_information.url(:thumb)), app.attachment.additional_information.url
+        else
+          "No Document Uploaded"
         end
+      end
     end
   end
   
