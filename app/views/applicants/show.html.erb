@@ -7,7 +7,7 @@
 		<thead>
 			<tr>
 				<th><b>Photo</b></th>
-				<th><%= image_tag @applicant.photo.url(:medium) %></th>
+				<th><%= link_to image_tag @applicant.photo.url(:medium), @applicant.photo.url %></th>
 			</tr>
 		</thead>
 		<tbody>
@@ -393,7 +393,7 @@
 				<div>
 					<% if @applicant.attachment.additional_information == nil %> <b> You have not uploaded the additional information document</b>
 					<% else %> <td><b>Additional Information</b></td>
-					<td><%= image_tag @applicant.attachment.additional_information.url(:thumb) %></td>
+					<td><%= link_to image_tag @applicant.attachment.additional_information.url(:thumb), @applicant.attachment.additional_information.url %></td>
 					<!-- <%= link_to "Download", @applicant.attachment.additional_information.url %> -->
 					<% end %>
 				</div>
@@ -404,7 +404,7 @@
 				<div>
 					<% if @applicant.attachment.personal_experience == nil %> <b> You have not uploaded the personal experience document</b>
 					<% else %> <td><b>Personal Experience</b></td>
-					<td><%= image_tag @applicant.attachment.personal_experience.url(:thumb) %></td>
+					<td><%= link_to image_tag @applicant.attachment.personal_experience.url(:thumb), @applicant.attachment.personal_experience.url %></td>
 					<!-- <%= link_to "Download", @applicant.attachment.personal_experience.url %> -->
 					<% end %>
 				</div>
