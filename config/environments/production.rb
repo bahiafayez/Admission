@@ -22,6 +22,17 @@ Admission::Application.configure do
 
   # Defaults to Rails.root.join("public/assets")
   # config.assets.manifest = YOUR_PATH
+  config.action_mailer.delivery_method = :smtp
+  
+  config.action_mailer.smtp_settings = {
+    address:  "smtp.gmail.com",
+    port:     587,
+    domain:   "domain.of.sender.net",
+    authentication:  "plain",
+    user_name:  "admission.nileu@gmail.com",
+    password:   "faber-castell",
+    enable_starttls_auto: true
+  }
 
   # Specifies the header that your server uses for sending files
   # config.action_dispatch.x_sendfile_header = "X-Sendfile" # for apache
