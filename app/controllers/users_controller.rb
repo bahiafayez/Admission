@@ -14,6 +14,7 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
     if @user.save
       session[:user_id] = @user.id  #to save in session..
+      ApplicationNotifier.created(@user).deliver
       redirect_to @user, :notice => "Signed up!"
     else
       render "new"
