@@ -76,4 +76,14 @@ Admission::Application.configure do
   # with SQLite, MySQL, and PostgreSQL)
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
   config.action_mailer.default_url_options = { :host => 'admission.herokuapp.com' }
+  
+  ActionController::Base.asset_host = Proc.new { |source, request|
+  if request.env["REQUEST_PATH"].include? ".pdf"
+    "file://#{Rails.root.join('public')}"
+  else
+    "#{request.protocol}#{request.host_with_port}"
+  end
+  }
+
+
 end
