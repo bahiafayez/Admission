@@ -125,7 +125,7 @@
 		<tbody>
 			<tr>
 				<td><b>Applying To</b></td>
-				<td> <%= @applicant.admission_information.applying_to %></td>
+				<td> <%= @applicant.admission_information.program.name %></td>
 			</tr>
 			<tr>
 				<td><b>Intended Major</b></td>
@@ -426,7 +426,7 @@
 
 <p align="center" style="padding-top:50px; padding-bottom: 190px;">
 <%= link_to 'Edit', edit_applicant_path(@applicant), :class => 'btn btn-primary btn-large'%> 
-<p id="pdf_link"><%= link_to "Download Invoice (PDF)", applicant_path(@applicant, :format => "pdf") %></p>
+<!-- <p id="pdf_link"><%= link_to "Download Invoice (PDF)", applicant_path(@applicant, :format => "pdf") %></p> -->
 
 &nbsp; &nbsp;
 </p>

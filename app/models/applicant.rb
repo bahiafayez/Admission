@@ -2,6 +2,7 @@
 class Applicant < ActiveRecord::Base
   belongs_to :user
   
+  
   has_attached_file :photo,  :styles => {:original=>"500x500>" ,:medium => "300x300>", :thumb => "100x100>" }
 
   has_many :addresses, :dependent => :destroy, :order => "id ASC"
@@ -45,6 +46,10 @@ class Applicant < ActiveRecord::Base
   validates_associated :addresses,:guardians, :secondary_schools, :colleges, :works, :healths #,  :update
   
   def to_s
+    return "#{first_name} #{last_name}"
+  end
+  
+  def display_name
     return "#{first_name} #{last_name}"
   end
   

@@ -205,6 +205,7 @@ class ApplicantsController < ApplicationController
     
       respond_to do |format|
         if @applicant.save
+          ApplicationNotifier.submitted(@applicant.user).deliver
           format.html { redirect_to @user.applicant, notice: 'Applicant was successfully created.' }
           format.json { render json: @applicant, status: :created, location: @applicant }
         else
@@ -365,6 +366,7 @@ class ApplicantsController < ApplicationController
       respond_to do |format|
         if @applicant.save 
           logger.debug "NO ERRORRSSSSSSSSSSS"
+          ApplicationNotifier.submitted(@applicant.user).deliver
           format.html { redirect_to @user.applicant, notice: 'Applicant was successfully created.' }
           format.json { render json: @applicant, status: :created, location: @applicant }
         else

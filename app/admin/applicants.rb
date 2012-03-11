@@ -1,5 +1,95 @@
 ActiveAdmin.register Applicant do
+  
+  action_item only:[:show] do
+   link_to "Approve", "/admin/applicants/#{applicant.id}/accept"
+ end
+ 
+ action_item only:[:show] do
+   link_to "Reject", "/admin/applicants/#{applicant.id}/reject"
+ end
+ 
+  member_action :saveaccept, :method =>:put do
+      applicant = Applicant.find(params[:id])
+      applicant.notes=params[:applicant][:notes]  
+      applicant.status="Approved"
+       if applicant.save
+          #format.html { redirect_to @user.applicant, notice: 'Applicant was successfully created.' }
+          ApplicationNotifier.reason(applicant.user).deliver
+          redirect_to "/admin/applicants/#{params[:id]}", :notice => "Applicant accepted"
+        else
+          #@user.save(:validate => false)
+          logger.debug "ERRORS IN NEW!!!!!!!!!!"
+          logger.debug applicant.errors
+          #error was becasue of password.. so instead saving applicant, since don't need to save user.
+          applicant.errors.each{|attr,msg| logger.debug "#{attr} - #{msg}" } 
+          redirect_to "/admin/applicants/#{params[:id]}", :notice => "Applicant was not sucessfully saved"
+        end
+   
+  end
+  
+  member_action :savereject, :method =>:put do
+      applicant = Applicant.find(params[:id])
+      applicant.notes=params[:applicant][:notes]  
+      applicant.status="Rejected"
+       if applicant.save
+          #format.html { redirect_to @user.applicant, notice: 'Applicant was successfully created.' }
+          ApplicationNotifier.reason(applicant.user).deliver
+          redirect_to "/admin/applicants/#{params[:id]}", :notice => "Applicant Rejected"
+        else
+          #@user.save(:validate => false)
+          logger.debug "ERRORS IN NEW!!!!!!!!!!"
+          logger.debug applicant.errors
+          #error was becasue of password.. so instead saving applicant, since don't need to save user.
+          applicant.errors.each{|attr,msg| logger.debug "#{attr} - #{msg}" } 
+          redirect_to "/admin/applicants/#{params[:id]}", :notice => "Applicant was not sucessfully saved"
+        end
+   
+  end
+  
+  member_action :accept do
+      applicant = Applicant.find(params[:id])
+      if applicant.status!= "Saved" and applicant.status!= "Just Created"
+        #applicant.status="Approved"
+        #applicant.save()
+        @app= applicant
+        #redirect_to "/admin/applicants/#{params[:id]}", :notice => "Approved"
+      else
+        redirect_to "/admin/applicants/#{params[:id]}", :notice => "Applicant has not submitted the application yet."
+      end
+  end
+  
+  member_action :reject do
+      applicant = Applicant.find(params[:id])
+      if applicant.status!= "Saved" and applicant.status!= "Just Created"
+        #applicant.status="Rejected"
+        #applicant.save()
+        @app= applicant
+        #redirect_to "/admin/applicants/#{params[:id]}", :notice => "Rejected"
+      else
+        redirect_to "/admin/applicants/#{params[:id]}", :notice => "Applicant has not submitted the application yet."
+      end
+  end
+
+  
+  scope :all, :default => true
+  scope :just_created do |applicants|
+    applicants.where(:status => "Just Created")
+  end
+  scope :saved do |applicants|
+    applicants.where(:status => "Saved")
+  end
+  scope :submitted do |applicants|
+    applicants.where(:status => "Submitted")
+  end
+  scope :approved do |applicants|
+    applicants.where(:status => "Approved")
+  end
+  scope :rejected do |applicants|
+    applicants.where(:status => "Rejected")
+  end
+  
   #menu :parent => "Applicant Information"
+  actions :index, :show
  
   index do
     column :id do |app|
@@ -15,11 +105,12 @@ ActiveAdmin.register Applicant do
     column :status do |app|
       strong {app.status}
     end
+    column :notes
     
   end
  
-  show do |app|
-    h3 applicant.first_name
+  show :title => :display_name  do |app|
+    #h3 applicant.first_name
     
     panel "User Information" do
     attributes_table_for applicant.user do
@@ -58,9 +149,11 @@ ActiveAdmin.register Applicant do
         row :extra_activities
         row :transportation
         row :status
+        row :notes
         row :created_at
         row :updated_at
         row :user_id
+        
 
       end
   
@@ -100,6 +193,7 @@ ActiveAdmin.register Applicant do
       row :toefl_test_results
       row :toefl_test_date
       row :proficiency_test
+      row :program_id
       row :applicant_id
     end
   end

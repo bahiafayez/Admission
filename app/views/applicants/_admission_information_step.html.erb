@@ -8,6 +8,10 @@
         <%= u.label :applying_to , {:class => 'label'}%> &nbsp;
     	<%=  u.text_field :applying_to,{:class => 'span3'}%>
     </div>
+    <div class="field">
+        <%= u.label :program_id , {:class => 'label'}%> &nbsp;
+    	<%= u.collection_select :program_id, Program.where(:status => true), :id, :name %>
+    </div>
 <div class="field">
 	<%= u.label :intended_major , {:class => 'label'}%> &nbsp;
 	<%= u.text_field :intended_major,{:class => 'span3'}%>
