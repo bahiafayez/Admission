@@ -85,5 +85,7 @@ Admission::Application.configure do
   end
   }
 
+  # Mime::Type.register 'application/pdf', :pdf 
+  # require 'htmldoc' 
 
 end

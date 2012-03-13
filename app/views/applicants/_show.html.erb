@@ -424,8 +424,8 @@
 	</table>
 </div>
 
-<p id="remove" align="center" style="padding-top:50px; padding-bottom: 190px;">
-<%= link_to 'Edit', edit_applicant_path(@applicant), :class => 'btn btn-primary btn-large', :id => "edit"%> 
+<p align="center" style="padding-top:50px; padding-bottom: 190px;">
+<%= link_to 'Edit', edit_applicant_path(@applicant), :class => 'btn btn-primary btn-large'%> 
 
 &nbsp; &nbsp;
 </p>
@@ -435,9 +435,3 @@
 
 
 
-
-
-<!-- <%= link_to "Download PDF", instance_applicant_path(@applicant.id, :format => "pdf") %>
-<%= link_to 'PDF', applicant_path(@applicant, :format => "pdf") %> -->
-
-<p id="pdf_link"><%= link_to "Download Application (PDF)", applicant_path(@applicant, :format => "pdf") %></p> 

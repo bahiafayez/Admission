@@ -1,6 +1,7 @@
 Admission::Application.routes.draw do
   
-
+ 
+  #match '/getStream', :to => 'streams#getStream'
   get "home/index"
 
   get "log_in" => "sessions#new", :as => "log_in"
@@ -29,7 +30,11 @@ Admission::Application.routes.draw do
 
   #get "applicants/destroy"
 
-  resources :applicants
+  resources :applicants do 
+    member do
+      get 'instance'
+    end
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

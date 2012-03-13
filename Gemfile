@@ -15,9 +15,10 @@ gem "bcrypt-ruby", :require => "bcrypt"
 #gem 'will_paginate'
 gem 'kaminari'
 gem 'client_side_validations'
-#gem 'pdfkit'
+gem 'pdfkit'
 gem 'prawn'
-
+gem 'prawn_rails'
+#gem 'htmldoc'
 #gem "breadcrumbs_on_rails"
 
 # Gems used only for assets and not required

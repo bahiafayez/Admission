@@ -10,6 +10,10 @@ class ApplicantsController < ApplicationController
     end
     
   end
+  
+  def instance
+    @applicant = Applicant.find(params[:id])
+  end
 
   def new
     #session[:applicant_params] ||= {}
@@ -390,7 +394,16 @@ class ApplicantsController < ApplicationController
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @applicant }
+      #format.pdf { send_data render_to_pdf({ :action => 'show', :layout => 'pdf_report' }) }  
+      format.pdf {
+        html = render_to_string(:layout => false , :action => "show.html.erb")
+        kit = PDFKit.new(html)
+        kit.stylesheets << "#{Rails.root}/public/stylesheets/style2.css"
+        send_data(kit.to_pdf, :filename => "labels.pdf", :type => 'application/pdf')
+        return # to avoid double render call
+      }
     end
   end
+  
   
 end
