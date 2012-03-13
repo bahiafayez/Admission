@@ -125,7 +125,11 @@
 		<tbody>
 			<tr>
 				<td><b>Applying To</b></td>
-				<td> <%= @applicant.admission_information.program.name %></td>
+				<td>
+					<% if @applicant.admission_information.program!= nil %> 
+					<%= @applicant.admission_information.program.name %>
+					<% end %>
+				</td>
 			</tr>
 			<tr>
 				<td><b>Intended Major</b></td>

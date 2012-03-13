@@ -188,7 +188,7 @@ ActiveAdmin.register Applicant do
   panel "Admission Information" do
     attributes_table_for applicant.admission_information do
       row :semester
-      row :applying_to
+      #row :applying_to
       row :intended_major
       row :toefl_test_results
       row :toefl_test_date

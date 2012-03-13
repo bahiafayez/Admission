@@ -1,7 +1,7 @@
 <%= form_for app, :url => "/admin/applicants/#{app.id}/saveaccept" do |form| %>
 
     	<%= form.label :notes %><br/>
-        <%= form.text_area :notes %>
+        <%= form.text_area :notes %><br/>
         
         <%= form.submit :value => 'Approve' %>
 
