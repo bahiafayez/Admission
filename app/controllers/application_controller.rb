@@ -8,6 +8,10 @@ class ApplicationController < ActionController::Base
 
   private
   
+  def current_user?(user)
+    user == current_user
+  end
+  
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
@@ -18,6 +22,12 @@ class ApplicationController < ActionController::Base
     unless User.find_by_id(session[:user_id])
       redirect_to log_in_url, notice: "Please Log in"
     end
+  end
+  
+  def correct_user
+      @app = Applicant.find(params[:id])
+      @user = @app.user
+      redirect_to(root_path) unless current_user?(@user)
   end
 
 end

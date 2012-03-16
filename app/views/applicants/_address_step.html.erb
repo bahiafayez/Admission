@@ -17,13 +17,10 @@
 	<%= u.label :fax, "Fax Number", {:class => 'label'}%> &nbsp;
 	<%= u.telephone_field :fax,{:class => 'span3'}%>
 </div>
-<div class="field">
-	<%= u.label :email , "Email",{:class => 'label'}%> &nbsp;
-	<%= u.email_field :email,{:class => 'span3'}%>
-</div>
+
 <div class="field">
 	<%= u.label :address_type,{:class => 'label'}%> &nbsp;
-	<%= u.select :address_type, options_for_select(["Home Address", "Mailing Address", "Both"], u.object.address_type)%>
+	<%= u.select :address_type, options_for_select(["Home Address", "Mailing Address", "Both"], u.object.address_type) , :include_blank=> true%>
 </div>
 </div>
 

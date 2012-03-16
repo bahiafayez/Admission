@@ -102,10 +102,6 @@
 				<td> <%= address.fax %></td>
 			</tr>
 			<tr>
-				<td><b>Email</b></td>
-				<td><%= address.email %></td>
-			</tr>
-			<tr>
 				<td><b>Address Type</b></td>
 				<td><%= address.address_type %></td>
 			</tr>			
@@ -267,6 +263,7 @@
 	<% end %>
 </div>
 
+<% if @applicant.colleges!=nil and @applicant.colleges.size > 0 %>
 <h2 style="font-size: 30px; color:#999999;">Colleges</h2>
 <div class="well">
 	<% @applicant.colleges.each do |college|%>
@@ -314,7 +311,9 @@
 	</table>
 	<% end %>
 </div>
+<% end %>
 
+<% if @applicant.works!=nil and @applicant.works.size > 0 %>
 <h2 style="font-size: 30px; color:#999999;">Work</h2>
 <div class="well">
 	<% @applicant.works.each do |work|%>
@@ -342,7 +341,9 @@
 	</table>
 	<% end %>
 </div>
+<% end %>
 
+<% if @applicant.healths!=nil and @applicant.healths.size > 0 %>
 <h2 style="font-size: 30px; color:#999999;">Health</h2>
 <div class="well">
 	<% @applicant.healths.each do |health|%>
@@ -362,6 +363,7 @@
 	</table>
 	<% end %>
 </div>
+<% end %>
 
 <h2 style="font-size: 30px; color:#999999;">University Related Information</h2>
 <div class="well">

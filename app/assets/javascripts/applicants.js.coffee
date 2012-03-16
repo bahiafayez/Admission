@@ -29,23 +29,23 @@ guardianOther = ->
 guardianNo2Fathers = (event) ->
   console.log "relation was clicked"
   if $(this).val()=="Father"
-    $(event.data.element).children('option').eq(2).attr('disabled',true)
+    $(event.data.element).children('option').eq(3).attr('disabled',true)
   else
-    $(event.data.element).children('option').eq(2).attr('disabled',false)
+    $(event.data.element).children('option').eq(3).attr('disabled',false)
 
 guardianNo2Mothers = (event) ->
   console.log "relation was clicked"
   if $(this).val()=="Mother"
-    $(event.data.element).children('option').eq(1).attr('disabled',true)
+    $(event.data.element).children('option').eq(2).attr('disabled',true)
   else
-    $(event.data.element).children('option').eq(1).attr('disabled',false)
+    $(event.data.element).children('option').eq(2).attr('disabled',false)
 
 No2Nos = (event) ->
   console.log "relation was clicked"
   if $(this).val()=="false"
-    $(event.data.element).children('option').eq(1).attr('disabled',true)
+    $(event.data.element).children('option').eq(2).attr('disabled',true)
   else
-    $(event.data.element).children('option').eq(1).attr('disabled',false)
+    $(event.data.element).children('option').eq(2).attr('disabled',false)
 
 
 hideAddress1 = ->
@@ -53,18 +53,18 @@ hideAddress1 = ->
     console.log $(this).val()
     if $(this).val()=="Both"
       console.log("in Both")
-      $(this).parent().parent().parent().children('div').eq(1).hide()
+      $(this).parent().parent().parent().parent().children('div').eq(1).hide()
     else
-      $(this).parent().parent().parent().children('div').eq(1).show()
+      $(this).parent().parent().parent().parent().children('div').eq(1).show()
      
 hideAddress0 = ->
   #console.log("in here")
     console.log $(this).val()
     if $(this).val()=="Both"
       console.log("in Both")
-      $(this).parent().parent().parent().children('div').eq(0).hide()
+      $(this).parent().parent().parent().parent().children('div').eq(0).hide()
     else
-      $(this).parent().parent().parent().children('div').eq(0).show()
+      $(this).parent().parent().parent().parent().children('div').eq(0).show()
      
 
 changeGender = ->
@@ -76,10 +76,10 @@ changeGender = ->
       $('#applicant_military_status').val("Does not apply").attr("selected", "selected")
       #$("#elementid").val("Oranges").attr("selected", "selected")
       $('#applicant_military_status').attr("disabled","disabled")
-    else
+    else if $(this).val()=="Male"
       console.log("in male")
       $('#applicant_military_status').removeAttr('disabled')
-      $('#applicant_military_status').children('option').eq(0).attr('disabled',true)
+      $('#applicant_military_status').children('option').eq(1).attr('disabled',true)
       $('#applicant_military_status').val("Exempted").attr("selected", "selected")
 
 $ ->             
@@ -267,19 +267,19 @@ $(document).ready ->
     else  
       $('#other2').hide()
     
-    if $('#applicant_checkSecondary').is(':checked')
-      $('#applicant_checkSecondary').parent().parent().children('div').eq(1).hide()
-    else  
-      $('#applicant_checkSecondary').parent().parent().children('div').eq(1).show()
-   
-    if $('#applicant_checkCollege').is(':checked')
-      $('#applicant_checkCollege').parent().parent().children('div').eq(1).hide()
-    else  
-      $('#applicant_checkCollege').parent().parent().children('div').eq(1).show()
-    
-    if $('#applicant_checkWork').is(':checked')
-      $('#applicant_checkWork').parent().parent().children('div').eq(1).hide()
-    else  
-      $('#applicant_checkWork').parent().parent().children('div').eq(1).show()
-      
+    # if $('#applicant_checkSecondary').is(':checked')
+      # $('#applicant_checkSecondary').parent().parent().children('div').eq(1).hide()
+    # else  
+      # $('#applicant_checkSecondary').parent().parent().children('div').eq(1).show()
+#    
+    # if $('#applicant_checkCollege').is(':checked')
+      # $('#applicant_checkCollege').parent().parent().children('div').eq(1).hide()
+    # else  
+      # $('#applicant_checkCollege').parent().parent().children('div').eq(1).show()
+#     
+    # if $('#applicant_checkWork').is(':checked')
+      # $('#applicant_checkWork').parent().parent().children('div').eq(1).hide()
+    # else  
+      # $('#applicant_checkWork').parent().parent().children('div').eq(1).show()
+#       
   

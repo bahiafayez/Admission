@@ -15,11 +15,11 @@
 </div>
 <div class="field">
 	<%= u.label :attended_from , {:class => 'label'}%> &nbsp;
-	<%= u.date_select :attended_from , :start_year => Time.now.year - 30, :end_year => Time.now.year + 1 %>
+	<%= u.date_select :attended_from , :start_year => Time.now.year - 30, :end_year => Time.now.year + 1 , :include_blank=> true %>
 </div>
 <div class="field">
 	<%= u.label :attended_to , {:class => 'label'}%> &nbsp;
-	<%= u.date_select :attended_to , :start_year => Time.now.year - 30, :end_year => Time.now.year + 1 %>
+	<%= u.date_select :attended_to , :start_year => Time.now.year - 30, :end_year => Time.now.year + 1 , :include_blank=> true %>
 </div>
 
 <div class="field">
@@ -28,7 +28,7 @@
 </div>
 <div class="field">
 	<%= u.label :graduation_date , {:class => 'label'}%> &nbsp;
-	<%= u.date_select :graduation_date, :start_year => Time.now.year - 30, :end_year => Time.now.year + 1 %>
+	<%= u.date_select :graduation_date, :start_year => Time.now.year - 30, :end_year => Time.now.year + 1 , :include_blank=> true %>
 </div>
 <div class="field">
 	<%= u.label :division , "If Sanaweya Amma Please specify division", {:class => 'label'}%> <br /><br /> &nbsp;
@@ -36,18 +36,15 @@
 </div>
 <div class="field">
 	<%= u.label :school_type , "Was your school", {:class => 'label'}%> &nbsp;
-	<%= u.select :school_type, options_for_select(["Private", "Public"], u.object.school_type)  %> <b>?</b>
+	<%= u.select :school_type, options_for_select(["Private", "Public"], u.object.school_type) , :include_blank=> true %> <b>?</b>
 </div>
-
+<%= u.link_to_remove "Remove school"%> 
 </div>
-
 <% end %>
 
+<%= f.link_to_add "Add school", :secondary_schools %> 
 
-<div class="field">
-	<%= f.label :another , "Only one school", {:class => 'label'}%> &nbsp;
-	<%= f.check_box :checkSecondary %> 
-</div>
+
  
     
 

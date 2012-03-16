@@ -19,15 +19,15 @@
 </div>
 <div class="field">
 	<%= u.label :country, {:class => 'label'}%> &nbsp;
-	<%= u.text_field :country,{:class => 'span3'}%>  
+	<%= u.country_select :country ,nil, :include_blank => true %>  
 </div>
 <div class="field">
 	<%= u.label :attended_from , {:class => 'label'}%> &nbsp;
-	<%= u.date_select :attended_from,  :start_year => Time.now.year - 30, :end_year => Time.now.year + 1 %>
+	<%= u.date_select :attended_from,  :start_year => Time.now.year - 30, :end_year => Time.now.year + 1 , :include_blank => true%>
 </div>
 <div class="field">
 	<%= u.label :attended_to, {:class => 'label'}%> &nbsp;
-	<%= u.date_select :attended_to, :start_year => Time.now.year - 30, :end_year => Time.now.year + 1  %>
+	<%= u.date_select :attended_to, :start_year => Time.now.year - 30, :end_year => Time.now.year + 1 , :include_blank => true %>
 </div>
 <div class="field">
 	<%= u.label :language, {:class => 'label'}%> &nbsp;
@@ -37,16 +37,12 @@
 	<%= u.label :gpa, "GPA" , {:class => 'label'}%> &nbsp;
 	<%= u.text_field :gpa ,{:class => 'span3'}%>  
 </div>
+<%= u.link_to_remove "Remove College"%>
 </div>
 <% end %>
 
 
-    
-
-<div class="field">
-	<%= f.label :another2 , "Only one college", {:class => 'label'}%> &nbsp;
-	<%= f.check_box :checkCollege %><br />
-</div>
+<%= f.link_to_add "Add College", :colleges %>  
 
     
   

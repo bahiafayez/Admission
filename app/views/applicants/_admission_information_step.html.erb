@@ -2,11 +2,11 @@
 <%= f.fields_for :admission_information do |u| %>
     <div class="field">
         <%= u.label :semester , {:class => 'label'}%> &nbsp;
-    	<%= u.select :semester, options_for_select(["Winter 2012","Spring 2012"], u.object.semester) %>
+    	<%= u.select :semester, options_for_select(["Winter 2012","Spring 2012"], u.object.semester), :include_blank=> true %>
     </div>
     <div class="field">
         <%= u.label :program_id , {:class => 'label'}%> &nbsp;
-    	<%= u.collection_select :program_id, Program.where(:status => true), :id, :name %>
+    	<%= u.collection_select :program_id, Program.where(:status => true), :id, :name , :include_blank=> true %>
     </div>
 <div class="field">
 	<%= u.label :intended_major , {:class => 'label'}%> &nbsp;
@@ -18,11 +18,11 @@
 </div>
 <div class="field">
 	<%= u.label :toefl_test_date , {:class => 'label'}%> &nbsp;
-	<%= u.date_select :toefl_test_date %>
+	<%= u.date_select :toefl_test_date , :include_blank=> true %>
 </div>
 <div class="field">
 	<%= u.label :proficiency_test , "Are you applying to NU's Proficiency Test", {:class => 'label'}%><br /> &nbsp;
-	<%= u.select :proficiency_test , options_for_select([["Yes","true"],["No","false"]], u.object.proficiency_test) %>
+	<%= u.select :proficiency_test , options_for_select([["Yes","true"],["No","false"]], u.object.proficiency_test) , :include_blank=> true %>
 </div>
 
 <% end %>

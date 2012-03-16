@@ -4,13 +4,17 @@
     <%= u.hidden_field :id %> <!-- If not there disappers if empty -->
     <div class="field">
         <%= u.label :additional_information , {:class => 'label1'}%> <br />	&nbsp;
+    	<% if @applicant.attachment.additional_information.file? %>
     	<%= image_tag @applicant.attachment.additional_information.url %>&nbsp; &nbsp; &nbsp;
+    	<% end %>
     	<%= u.file_field :additional_information %> <br /><br />
     </div>
     
      <div class="field">
         <%= u.label :personal_experience , {:class => 'label1'}%> &nbsp;    	
+    	<% if @applicant.attachment.personal_experience.file? %>
     	<%= image_tag @applicant.attachment.personal_experience.url %>&nbsp; &nbsp; &nbsp;
+    	<% end %>
     	<%= u.file_field :personal_experience %> <br /><br />
     </div>
 

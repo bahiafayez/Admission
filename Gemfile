@@ -18,6 +18,9 @@ gem 'client_side_validations'
 gem 'pdfkit'
 gem 'prawn'
 gem 'prawn_rails'
+gem 'simple_form'
+gem "nested_form", :git => 'https://github.com/ryanb/nested_form.git'
+gem "country-select"
 #gem 'htmldoc'
 #gem "breadcrumbs_on_rails"
 

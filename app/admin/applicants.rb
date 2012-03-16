@@ -22,7 +22,7 @@ ActiveAdmin.register Applicant do
           logger.debug applicant.errors
           #error was becasue of password.. so instead saving applicant, since don't need to save user.
           applicant.errors.each{|attr,msg| logger.debug "#{attr} - #{msg}" } 
-          redirect_to "/admin/applicants/#{params[:id]}", :notice => "Applicant was not sucessfully saved"
+          redirect_to "/admin/applicants/#{params[:id]}", :alert => "Applicant was not sucessfully saved"
         end
    
   end
@@ -41,7 +41,7 @@ ActiveAdmin.register Applicant do
           logger.debug applicant.errors
           #error was becasue of password.. so instead saving applicant, since don't need to save user.
           applicant.errors.each{|attr,msg| logger.debug "#{attr} - #{msg}" } 
-          redirect_to "/admin/applicants/#{params[:id]}", :notice => "Applicant was not sucessfully saved"
+          redirect_to "/admin/applicants/#{params[:id]}", :alert => "Applicant was not sucessfully saved"
         end
    
   end
@@ -54,7 +54,7 @@ ActiveAdmin.register Applicant do
         @app= applicant
         #redirect_to "/admin/applicants/#{params[:id]}", :notice => "Approved"
       else
-        redirect_to "/admin/applicants/#{params[:id]}", :notice => "Applicant has not submitted the application yet."
+        redirect_to "/admin/applicants/#{params[:id]}", :alert => "Applicant has not submitted the application yet."
       end
   end
   
@@ -66,7 +66,7 @@ ActiveAdmin.register Applicant do
         @app= applicant
         #redirect_to "/admin/applicants/#{params[:id]}", :notice => "Rejected"
       else
-        redirect_to "/admin/applicants/#{params[:id]}", :notice => "Applicant has not submitted the application yet."
+        redirect_to "/admin/applicants/#{params[:id]}", :alert => "Applicant has not submitted the application yet."
       end
   end
 
@@ -172,9 +172,9 @@ ActiveAdmin.register Applicant do
       column "Fax" do |address|
         address.fax
       end
-      column "Email" do |address|
-        address.email
-      end
+      # column "Email" do |address|
+        # address.email
+      # end
       column "Address Type" do |address|
         address.address_type
       end

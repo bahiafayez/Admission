@@ -33,7 +33,7 @@
 </div>
 <br />
 <br />
-<%= form_for @applicant , :html => { :multipart => true }  do |f| %>
+<%= nested_form_for @applicant , :html => { :multipart => true }  do |f| %>
 <div class="well">
 	<% if @applicant.errors.any? %>
 	<div id="error_explanation">
@@ -78,19 +78,10 @@
 			<%= render "guardian_step", :f => f %>
 		</div>
 	</div>
-	<!-- <p><%= f.submit "Continue", :name => "forward_button" unless @applicant.last_step? %></p>
-	<p><%= f.submit "Back", :name => "back_button" unless @applicant.first_step? %></p>
-	-->
-	<!--  <%= f.fields_for :addresses do |u| %>
-
-	<%= u.label :address %><br />
-	<%= u.text_area :address , :cols=> 20, :rows=>5%>
-
-	<% end %>  -->
+	
 	<div class="actions" style="padding-left: 350px;">
 		<%= f.submit "Save", :name => "save" , :class => 'btn' %> &nbsp;&nbsp;&nbsp;
-		<%= f.submit "Submit", :name => "submit" , :class => 'btn' %> <!--  <%= f.submit "add actor", :name=>"add" %> -->
+		<%= f.submit "Submit", :name => "submit" , :class => 'btn' %>
 	</div>
-	<!-- <%= f.hidden_field :addresses, :value => :addresses %> -->
+	</div>
 	<% end %>
-</div>

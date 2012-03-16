@@ -1,7 +1,9 @@
 <p align="center" style="font-size: 14px; color:#999999;">Applicant Information</p>
  <div class="field"> 
-	<%= f.label :photo, {:class => 'label'}%> &nbsp;	
+	<%= f.label :photo, {:class => 'label'}%> &nbsp;
+	<% if @applicant.photo.file? %>	
 	<%= image_tag @applicant.photo.url(:medium) %> &nbsp; &nbsp; &nbsp;
+	<% end %>
 	<%= f.file_field :photo, :accept => 'image/png,image/gif,image/jpeg' %>
 </div>
 <div class="field">
@@ -18,7 +20,7 @@
 </div>
 <div class="field">
 	<%= f.label :date_of_birth, {:class => 'label'}%> &nbsp;
-	<%= f.date_select :date_of_birth, :start_year => Time.now.year - 110, :end_year => Time.now.year - 10 %>
+	<%= f.date_select :date_of_birth, :start_year => Time.now.year - 110, :end_year => Time.now.year - 10, :include_blank => true %>
 </div>
 <div class="field">
 	<%= f.label :place_of_birth, {:class => 'label'}%> &nbsp;
@@ -26,11 +28,11 @@
 </div>
 <div class="field">
 	<%= f.label :gender, {:class => 'label'}%> &nbsp;
-	<%= f.select :gender, options_for_select(["Male", "Female"], @applicant.gender)%>
+	<%= f.select :gender, options_for_select(["Male", "Female"], @applicant.gender) , :include_blank=> true %>
 </div>
 <div class="field">
 	<%= f.label :military_status, {:class => 'label'}%> &nbsp;
-	<%= f.select :military_status, options_for_select(["Does not apply", "Exempted", "Completed", "Postponed"],  @applicant.military_status) %>
+	<%= f.select :military_status, options_for_select(["Does not apply", "Exempted", "Completed", "Postponed"],  @applicant.military_status), :include_blank=> true %>
 </div>    
  
 <div class="field">
@@ -39,7 +41,7 @@
 </div>
 <div class="field">
 	<%= f.label :national_id_expiry_date, {:class => 'label'}%> &nbsp;
-	<%= f.date_select :national_id_expiry_date, :start_year => Time.now.year - 5, :end_year => Time.now.year + 10 %>
+	<%= f.date_select :national_id_expiry_date, :start_year => Time.now.year - 5, :end_year => Time.now.year + 10 , :include_blank => true %>
 </div>   <br />
 <div class="field">
 	<%= f.label :passport_number, {:class => 'label'}%> &nbsp;
@@ -47,11 +49,11 @@
 </div>  
 <div class="field">
 	<%= f.label :country_of_issuance, {:class => 'label'}%> &nbsp;
-	<%= f.text_field :country_of_issuance,{:class => 'span3'}%>
+	<%= f.country_select :country_of_issuance ,nil, :include_blank => true %>
 </div>
 <div class="field">
 	<%= f.label :passport_expiry_date, {:class => 'label'}%> &nbsp;
-	<%= f.date_select :passport_expiry_date , :start_year => Time.now.year - 5, :end_year => Time.now.year + 30 %>
+	<%= f.date_select :passport_expiry_date , :start_year => Time.now.year - 5, :end_year => Time.now.year + 30, :include_blank => true %>
 </div>     
 <div class="field">
 	<%= f.label :academic_honours, {:class => 'label'}%> &nbsp;
@@ -64,7 +66,7 @@
 <div class="field">
 
 	<%= f.label :transportation, {:class => 'label'}%> &nbsp;
-	<%= f.select :transportation, options_for_select(["Private", "Nu buses"], @applicant.transportation)%>
+	<%= f.select :transportation, options_for_select(["Private", "Nu buses"], @applicant.transportation), :include_blank => true%>
 </div><br /> 
    
    

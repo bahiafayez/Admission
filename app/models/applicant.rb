@@ -16,25 +16,46 @@ class Applicant < ActiveRecord::Base
   has_one :uni_related_info, :dependent => :destroy
   
   before_validation :atleast_one
-  validates :first_name, :middle_name,:last_name,:date_of_birth, :place_of_birth, :gender,:military_status, :national_id, :national_id_expiry_date, :passport_number, :country_of_issuance, :passport_expiry_date, :transportation,  :presence => true
+  validates :first_name, :middle_name,:last_name,:date_of_birth, :place_of_birth, :gender,:military_status, :transportation,  :presence => true
   #validates_attachment_presence :photo
   #validates_attachment_content_type :photo, :content_type=>['image/jpeg', 'image/png', 'image/gif'], :message => 'Image must be of type jpeg, png or gif'
-  validates_date :date_of_birth, :passport_expiry_date, :national_id_expiry_date
+  #validates_date :date_of_birth, :passport_expiry_date, :national_id_expiry_date
 
   validates_inclusion_of :gender, :in => ["Female", "Male"]
   validates_inclusion_of :military_status, :in => ["Completed", "Exempted","Postponed", "Does not apply"]
   validates_inclusion_of :transportation, :in => ["Private", "Nu buses"]
-  
-  validates_uniqueness_of :national_id, :case_sensitive => false, :message => "National ID has already taken"
-  validates_uniqueness_of :passport_number, :case_sensitive => false, :message => "Passport Number has already taken"
+  validates :national_id, :format => {:with => /^[0-9]*$/ , :message => "Invalid Number"}
+  #validates_uniqueness_of :national_id, :case_sensitive => false, :message => "National ID has already been taken"
+  #validates_uniqueness_of :passport_number, :case_sensitive => false, :message => "Passport Number has already been taken"
   
   #CONTINUE VALIDATION  
   
+  validate :passport_must_be_unique
+  validate :national_must_be_unique
+
+  def passport_must_be_unique
+    return if passport_number.blank?
+    num_duplicates = self.class.count(:conditions => ["passport_number = ?", passport_number])
+    if num_duplicates > 1 #not 0 because i already saved it..
+      errors.add(:passport_number, :taken)
+    end
+  end
+  
+  def national_must_be_unique
+    return if national_id.blank?
+    num_duplicates = Applicant.count(:conditions => ["national_id = ?", national_id])
+    logger.debug "National COUNT!!!!!!!!!!!!!!"
+    logger.debug num_duplicates
+    if num_duplicates > 1 #not 0 because i already saved it.. 
+      errors.add(:national_id, :taken)
+    end
+  end
   
   
   attr_writer :current_step
   accepts_nested_attributes_for :addresses
-  accepts_nested_attributes_for :admission_information, :colleges, :secondary_schools, :guardians, :attachment, :healths, :works, :uni_related_info 
+  accepts_nested_attributes_for :admission_information,  :guardians, :attachment,  :uni_related_info 
+  accepts_nested_attributes_for :colleges,:secondary_schools,:healths, :works, :allow_destroy => true
   # attr_accessor :reasons
   # attr_accessor :reasons2
   # attr_accessor :checkSecondary
@@ -43,6 +64,8 @@ class Applicant < ActiveRecord::Base
   
   #validates_presence_of :addresses, :message => "not exist in the DB"
   #validates_associated :addresses, :admission_information,:guardians, :secondary_schools, :colleges, :works, :attachment, :healths, :uni_related_info #,  :update
+  validate :a_number_present
+  validate :date_present
   validates_associated :addresses,:guardians, :secondary_schools, :colleges, :works, :healths #,  :update
   
   def to_s
@@ -51,6 +74,17 @@ class Applicant < ActiveRecord::Base
   
   def display_name
     return "#{first_name} #{last_name}"
+  end
+  
+  def a_number_present 
+    errors.add(:national_id, "can't be blank") if national_id.blank? && passport_number.blank? 
+    errors.add(:passport_number, "can't be blank") if national_id.blank? && passport_number.blank? 
+  end
+  
+  def date_present 
+    errors.add(:national_id_expiry_date, "can't be blank") if !national_id.blank? and national_id_expiry_date.blank?
+    errors.add(:country_of_issuance, "can't be blank") if !passport_number.blank? and country_of_issuance.blank?
+    errors.add(:passport_expiry_date, "can't be blank") if !passport_number.blank? and passport_expiry_date.blank?
   end
   
   def atleast_one

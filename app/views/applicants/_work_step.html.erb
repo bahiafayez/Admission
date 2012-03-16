@@ -7,26 +7,21 @@
     </div>
     <div class="field">
 	<%= u.label :worked_from , {:class => 'label'}%> &nbsp;
-	<%= u.date_select :worked_from ,:start_year => Time.now.year - 30, :end_year => Time.now.year + 1 %>
+	<%= u.date_select :worked_from ,:start_year => Time.now.year - 30, :end_year => Time.now.year + 1 , :include_blank=> true %>
 </div>
 <div class="field">
 	<%= u.label :worked_to, {:class => 'label'}%> &nbsp;
-	<%= u.date_select :worked_to ,:start_year => Time.now.year - 30, :end_year => Time.now.year + 1 %>
+	<%= u.date_select :worked_to ,:start_year => Time.now.year - 30, :end_year => Time.now.year + 1 , :include_blank=> true %>
 </div>
 <div class="field">
     <%= u.label :tasks , {:class => 'label'}%> &nbsp;
     <%=  u.text_area :tasks, :rows=>4, :cols=>5 , :class => 'input-xlarge'%>
 </div>
+<%= u.link_to_remove "Remove Work"%> 
 </div>
 <% end %>
 
-
-
-
-<div class="field">
-	<%= f.label :another3 , "Only worked in one company?", {:class => 'label'}%><br /> &nbsp;
-	<%= f.check_box :checkWork %><br />
-</div>
+<%= f.link_to_add "Add Work", :works %> 
   
     
     

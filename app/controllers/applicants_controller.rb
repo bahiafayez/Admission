@@ -1,15 +1,17 @@
 class ApplicantsController < ApplicationController
    before_filter :authorize
-  def index
-    
-    @applications =  Applicant.order('created_at DESC').page params[:page]
-  
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @applications }
-    end
-    
-  end
+   before_filter :correct_user, :only => [:edit, :update, :show, :destroy]
+   
+  # def index
+#     
+    # @applications =  Applicant.order('created_at DESC').page params[:page]
+#   
+    # respond_to do |format|
+      # format.html # index.html.erb
+      # format.json { render json: @applications }
+    # end
+#     
+  # end
   
   def instance
     @applicant = Applicant.find(params[:id])
@@ -17,20 +19,29 @@ class ApplicantsController < ApplicationController
 
   def new
     #session[:applicant_params] ||= {}
+    if flash[:flag]== true
+      logger.debug "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+    #logger.debug @flag
+    logger.debug flash[:flag]
+    
+    
     @user=User.find(session[:user_id])
     
     #don't need to write anything here, since it creates (new+save) in the create action
     @applicant = @user.build_applicant
+    
+    @applicant.healths.build
+    @applicant.secondary_schools.build 
+    @applicant.works.build
+    @applicant.colleges.build
     #2.times do
     
     #end
+   
     2.times do
       @applicant.addresses.build
-      @applicant.colleges.build
       @applicant.guardians.build
-      @applicant.healths.build
-      @applicant.secondary_schools.build
-      @applicant.works.build
+      
     end
     
     @applicant.admission_information= AdmissionInformation.new
@@ -42,6 +53,12 @@ class ApplicantsController < ApplicationController
     
     #logger.debug "in new action"
     #logger.debug(@applicant.addresses)
+    
+    else
+      redirect_to root_path
+      
+    end
+    
     
   end
 
@@ -63,7 +80,10 @@ class ApplicantsController < ApplicationController
      #To save image
      @applicant.save(:validate => false)
      
+     
+     
      @applicant.guardians.each do |guardian|
+       guardian.relation3=guardian.relation
        if guardian.relation=="Other"
          guardian.relation=guardian.relation2
        end
@@ -177,28 +197,28 @@ class ApplicantsController < ApplicationController
      end
      
         # delete extra secondary schools
-     if @applicant.checkSecondary
-       @b=@applicant.secondary_schools[1]
-       if @b != nil
-         @applicant.secondary_schools.destroy(@b)
-       end
-     end
-     
-     # delete extra Colleges 
-     if @applicant.checkCollege
-       @b=@applicant.colleges[1]
-       if @b != nil
-         @applicant.colleges.destroy(@b)
-       end
-     end
-     
-     # delete extra Work
-     if @applicant.checkWork
-       @b=@applicant.works[1]
-       if @b != nil
-         @applicant.works.destroy(@b)
-       end
-     end
+     # if @applicant.checkSecondary
+       # @b=@applicant.secondary_schools[1]
+       # if @b != nil
+         # @applicant.secondary_schools.destroy(@b)
+       # end
+     # end
+#      
+     # # delete extra Colleges 
+     # if @applicant.checkCollege
+       # @b=@applicant.colleges[1]
+       # if @b != nil
+         # @applicant.colleges.destroy(@b)
+       # end
+     # end
+#      
+     # # delete extra Work
+     # if @applicant.checkWork
+       # @b=@applicant.works[1]
+       # if @b != nil
+         # @applicant.works.destroy(@b)
+       # end
+     # end
        
      
      logger.debug @applicant.addresses    
@@ -230,6 +250,13 @@ class ApplicantsController < ApplicationController
     if @applicant.status=="Submitted"
       redirect_to @applicant, notice: "Sorry Application Already Submitted"
     end
+    @applicant.guardians.each do |guardian|
+       guardian.relation3=guardian.relation
+       if guardian.relation!="Mother" and guardian.relation!="Father"
+         guardian.relation3="Other"
+       end
+     end
+     
   end
   
   def update
@@ -257,6 +284,7 @@ class ApplicantsController < ApplicationController
     @applicant.save(:validate => false)
     
     @applicant.guardians.each do |guardian|
+       guardian.relation3=guardian.relation
        if guardian.relation=="Other"
          guardian.relation=guardian.relation2
        end
@@ -338,29 +366,29 @@ class ApplicantsController < ApplicationController
          @applicant.addresses.destroy(@b)     
        end
      end
-     # delete extra secondary schools
-     if @applicant.checkSecondary
-       @b=@applicant.secondary_schools[1]
-       if @b != nil
-         @applicant.secondary_schools.destroy(@b)
-       end
-     end
-     
-     # delete extra Colleges 
-     if @applicant.checkCollege
-       @b=@applicant.colleges[1]
-       if @b != nil
-         @applicant.colleges.destroy(@b)
-       end
-     end
-     
-     # delete extra Work
-     if @applicant.checkWork
-       @b=@applicant.works[1]
-       if @b != nil
-         @applicant.works.destroy(@b)
-       end
-     end
+     # # delete extra secondary schools
+     # if @applicant.checkSecondary
+       # @b=@applicant.secondary_schools[1]
+       # if @b != nil
+         # @applicant.secondary_schools.destroy(@b)
+       # end
+     # end
+#      
+     # # delete extra Colleges 
+     # if @applicant.checkCollege
+       # @b=@applicant.colleges[1]
+       # if @b != nil
+         # @applicant.colleges.destroy(@b)
+       # end
+     # end
+#      
+     # # delete extra Work
+     # if @applicant.checkWork
+       # @b=@applicant.works[1]
+       # if @b != nil
+         # @applicant.works.destroy(@b)
+       # end
+     # end
      
      logger.debug @applicant.addresses    
      logger.debug "checking!!!!!!!!!!!!!!!!!!!!!!!"

@@ -32,6 +32,7 @@ class UsersController < ApplicationController
   def application  #ADJUST THIS!!!!   
     @user = User.find(params[:id])
     if @user.applicant == nil
+      flash[:flag]=true
       redirect_to new_applicant_url
     else
       redirect_to @user.applicant
