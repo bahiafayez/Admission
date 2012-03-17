@@ -1,5 +1,5 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
-
+#validates :first_name, :middle_name,:last_name,:date_of_birth, :place_of_birth, :gender,:military_status, :transportation,  :presence => true
 one:
   first_name: MyString
   middle_name: MyString
@@ -34,13 +34,13 @@ person:
   first_name:  Ahm1ed
   middle_name: Mohamed122
   last_name: Yassen)()(
-  date_of_birth: 2012-02-23
+  date_of_birth: 19a3-02-aa
   place_of_birth: jan
-  gender: Male
+  gender: 123
   military_status: Exempted
-  national_id: 1000
-  national_id_expiry_date: 2012-02-23
-  passport_number: 1000
+  national_id: -1000
+  national_id_expiry_date: 19a3-02-aa
+  passport_number: -1000
   country_of_issuance: don
   passport_expiry_date: 2012-02-23
   transportation: Private
@@ -57,5 +57,5 @@ person2:
   national_id_expiry_date: 2012-02-23
   passport_number: 18971
   country_of_issuance: Egypt
-  passport_expiry_date: 2012-02-23
-  transportation: Private
+  passport_expiry_date: 2012-02-bb
+  transportation: car2

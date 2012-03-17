@@ -1,10 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-#validates :semester, :applying_to, :intended_major, :toefl_test_results, :toefl_test_date
 
 info1:
   semester: MyString
-  applying_to: 123-A
+  #applying_to: 123-A
   intended_major: major
   toefl_test_results: A123
   toefl_test_date: 2012-02-23
@@ -12,14 +11,14 @@ info1:
 
 info2:
   semester: MyString
-  applying_to: MyString
+  #applying_to: MyString
   intended_major: MyString
   toefl_test_results: MyString
   toefl_test_date: 2012-02-23
 
 info3:
   semester: Spring 2012
-  applying_to: Engineering
+  #applying_to: Engineering
   intended_major: Engineering
   toefl_test_results: 300
   toefl_test_date: 2012-02-23
