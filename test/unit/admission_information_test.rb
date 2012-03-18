@@ -9,7 +9,7 @@ class AdmissionInformationTest < ActiveSupport::TestCase
     assert admission_information.invalid?
     
     assert admission_information.errors[:semester].any?
-    assert admission_information.errors[:applying_to].any?
+    #assert admission_information.errors[:applying_to].any?
     
     #intended major can be empty if undecided
     
@@ -38,23 +38,23 @@ class AdmissionInformationTest < ActiveSupport::TestCase
   ######################applying_to#############################
 
 
-  test "admission info: invalid options of applying_to" do
-    info1 = AdmissionInformation.new
-    info1.semester="Spring 2009"
-    info1.applying_to="Arts"
-    info1.intended_major="enginneering"
-    info1.toefl_test_results="600"
-    info1.toefl_test_date="23-03-2010"
-    majors.each do |name|
-      info2.applying_to=name
-      assert info2.valid?, "#{info1.applying_to} shouldn't be a valid major"
-    end
-  end
+  #test "admission info: invalid options of applying_to" do
+  #  info1 = AdmissionInformation.new
+  #  info1.semester="Spring 2009"
+  #  info1.applying_to="Arts"
+  #  info1.intended_major="enginneering"
+  #  info1.toefl_test_results="600"
+  #  info1.toefl_test_date="23-03-2010"
+    #majors.each do |name|
+    #info2.applying_to=name
+  #  assert info1.valid?, "#{info1.applying_to} shouldn't be a valid major"
+    #end
+  #end
   
-  test "admission info applying_to should be only alphbats" do
-    info1 = admission_informations(:info1)                     
-    assert_match( /^[a-zA-Z]+$/, info1.applying_to, ["applying_to contains non alphabetical charchters"] )
-  end
+  #test "admission info applying_to should be only alphbats" do
+  #  info1 = admission_informations(:info1)                     
+  #  assert_match( /^[a-zA-Z]+$/, info1.applying_to, ["applying_to contains non alphabetical charchters"] )
+  #end
   
   ######################intended major############################
  

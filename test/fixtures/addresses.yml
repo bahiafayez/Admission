@@ -5,7 +5,6 @@ one:
   telephone: 2123123
   mobile: 0122123123 
   fax: 2123123    
-  email: name@mail.com
   address_type: MyString
   applicant_id: 1
 
@@ -14,7 +13,6 @@ address:
   telephone: b123
   mobile: 123b 
   fax:    
-  email: name@mail.com
   address_type: MyString
   applicant_id: 1
   
@@ -23,7 +21,6 @@ address1:
   telephone: b123
   mobile: 0102123123 
   fax: 21231112   
-  email: name@mail.com
   address_type: MyString
   applicant_id: 1
 
@@ -32,7 +29,6 @@ address2:
   telephone: 2123123
   mobile: 0122123123 
   fax: 2123123
-  email: EMAIL@MAIL.COM
   address_type: MyString
   applicant_id: 1
 
