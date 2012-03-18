@@ -13,10 +13,10 @@ class ApplicantTest < ActiveSupport::TestCase
   
   test "should create applicant" do
     applicant = Applicant.new
-    applicant = applicants(:person2)
-    applicant.passport_number="123gjhg32"
-    applicant.national_id="123456564"
-    applicant.transportation="Private"
+    applicant = applicants(:good)
+    #applicant.passport_number="123gjhg32"
+    #applicant.national_id="123456564"
+    #applicant.transportation="Private"
     assert applicant.save
   end
 
@@ -26,10 +26,7 @@ class ApplicantTest < ActiveSupport::TestCase
   end
 
   test "should update applicant" do
-     applicant = applicants(:person2)
-     applicant.passport_number="123gjhg32"
-     applicant.national_id="123456564"
-     applicant.transportation="Private"
+     applicant = applicants(:good)
      assert applicant.update_attributes(:first_name => 'Donald')
   end
   
@@ -69,27 +66,31 @@ class ApplicantTest < ActiveSupport::TestCase
   
   test "applicant first name should be alphbats" do
                          
-    assert_match( /^[a-zA-Z]+$/, @applicant.first_name, ["first name contains non alphabetical characters"] )
+    assert @applicant.invalid?
+    assert_equal "first name contains non alphabetical characters",@applicant.errors[:first_name].join('; ')
   end
   
   
   ###############################middle name##########################################
   test "applicant middle name should be alphbats" do
                          
-    assert_match( /^[a-zA-Z]+$/, @applicant.middle_name, ["middle name contains non alphabetical characters"] )
+    #assert_match( /^[a-zA-Z]+$/, @applicant.middle_name, ["middle name contains non alphabetical characters"] )
+    assert @applicant.invalid?
+    assert_equal "middle name contains non alphabetical characters",@applicant.errors[:middle_name].join('; ')
   end
   ################################last name#########################################
   test "applicant last name should be alphbats and no spaces" do
                          
-    assert_match( /^[a-zA-Z]+$/, @applicant.last_name, ["last name contains non alphabetical characters"] )
+    assert @applicant.invalid?
+    assert_equal "last name contains non alphabetical characters",@applicant.errors[:last_name].join('; ')
   end
   ##############################date of birth###########################
   #should i keep now that we use dropdown
-  test "applicant date of birth validity" do
+  #test "applicant date of birth validity" do
     
-    assert @applicant.invalid?
-    assert_equal "Invalid Date",@applicant.errors[:date_of_birth].join('; ')
-  end
+  #  assert @applicant.invalid?
+  #  assert_equal "Invalid Date",@applicant.errors[:date_of_birth].join('; ')
+  #end
   
   
  
@@ -136,10 +137,10 @@ class ApplicantTest < ActiveSupport::TestCase
   end
   
   #########################national id expiry date##############################
-  test "applicant national id expiry date of birth" do
-    assert @applicant.invalid?                      
-    assert_equal "Invalid date",@applicant.errors[:national_id_expiry_date].join('; ')
-  end
+  #test "applicant national id expiry date of birth" do
+  #  assert @applicant.invalid?                      
+  #  assert_equal "Invalid date",@applicant.errors[:national_id_expiry_date].join('; ')
+  #end
   
   test "applicant national exipry date must exist if national id present" do
     good = applicants(:good)           
@@ -156,7 +157,7 @@ class ApplicantTest < ActiveSupport::TestCase
     assert_equal "can't be blank",good.errors[:passport_number].join('; ')
   end
   #########################passport number##############################
-  test "applicant passport number should be a postive number" do
+  test "applicant passport number should be valid" do
      assert @applicant.invalid?
      assert_equal "Invalid Number",@applicant.errors[:passport_number].join('; ')
   end
@@ -194,14 +195,14 @@ class ApplicantTest < ActiveSupport::TestCase
   ######################################country of issuance#############################################
   test "applicant's country of issuance should be a valid place" do
     assert @applicant.invalid?
-    assert_equal "Invalid Country",@applicant.errors[:country_of_issuance].join('; ')                     
+    assert_equal "is not included in the list",@applicant.errors[:country_of_issuance].join('; ')                     
   end
-  ######################################passport expirt###############################################
-   test "applicant passport expiry valid?" do
+  ######################################passport expiry###############################################
+   #test "applicant passport expiry valid?" do
 
-    assert @applicant2.invalid?                     
-    assert_equal "Invalid Date",@applicant2.errors[:passport_expiry_date].join('; ')
-  end
+  #  assert @applicant2.invalid?                     
+  #  assert_equal "Invalid Date",@applicant2.errors[:passport_expiry_date].join('; ')
+  #end
   
   
   #################################transportation########################################
