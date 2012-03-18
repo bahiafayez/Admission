@@ -11,21 +11,52 @@ class ApplicantTest < ActiveSupport::TestCase
       @applicant2 = applicants(:person2)  
   end  
   
-  test "Applicant attributes must not be empty" do
+  test "should create applicant" do
+    applicant = Applicant.new
+    applicant = applicants(:person)
+    assert applicant.save
+  end
+
+  test "should find applicant" do
+    applicant_id = applicants(:person).id
+    assert_nothing_raised { Applicant.find(applicant_id) }
+  end
+
+  test "should update applicant" do
+     applicant = applicants(:person)
+     assert applicant.update_attributes(:first_name => 'Donald')
+  end
+  
+  test "should destroy applicant" do
+    applicant = applicants(:person)
+    applicant.destroy
+    assert_raise(ActiveRecord::RecordNotFound) { Applicant.find(applicant.id) }
+  end
+
+
+  test "Applicant must not be empty" do
     applicant = Applicant.new
     assert applicant.invalid?
-   #:first_name, :middle_name,:last_name,:date_of_birth, :place_of_birth, :gender,:military_status, :national_id, :national_id_expiry_date, :passport_number, :country_of_issuance, :passport_expiry_date, :transportation
-   #validates :first_name, :middle_name,:last_name,:date_of_birth, :place_of_birth, :gender,:military_status, :transportation,  :presence => true
-
-   assert applicant.errors[:first_name].any?
-   assert applicant.errors[:middle_name].any?
-   assert applicant.errors[:last_name].any?
-   assert applicant.errors[:date_of_birth].any?
-   assert applicant.errors[:place_of_birth].any?
-   assert applicant.errors[:gender].any?
-   assert applicant.errors[:transportation].any?
-   assert applicant.errors[:military_status].any?,"military status empty"
+    assert_equal ["can't be blank"], applicant.errors[:first_name]
+    assert_equal ["can't be blank"], applicant.errors[:middle_name]
+    assert_equal ["can't be blank"], applicant.errors[:last_name]
+    assert_equal ["can't be blank"], applicant.errors[:date_of_birth]
+    assert_equal ["can't be blank"], applicant.errors[:place_of_birth]
+    assert_equal ["can't be blank","is not included in the list"], applicant.errors[:gender]
+    assert_equal ["can't be blank","is not included in the list"], applicant.errors[:transportation]
+    assert_equal ["can't be blank","is not included in the list"], applicant.errors[:military_status]
+    #assert_equal "can't be blank", applicant.errors[:transportation]
+    #assert_equal "can't be blank", applicant.errors[:military_status]
+    #assert applicant.errors[:first_name].any?,"first name can't be blank"
+    #assert applicant.errors[:middle_name].any?,"middle name can't be blank"
+    #assert applicant.errors[:last_name].any?,"last name can't be blank"
+    #assert applicant.errors[:date_of_birth].any?,"dob can't be blank"
+    #assert applicant.errors[:place_of_birth].any?,"pob can't be blank"
+    #assert applicant.errors[:gender].any?,"gender status can't be blank"
+    #assert applicant.errors[:transportation].any?,"transportation can't be blank"
+    #assert applicant.errors[:military_status].any?,"military status can't be blank"
   end
+
   
   ###############################first name##########################################
   
@@ -47,17 +78,18 @@ class ApplicantTest < ActiveSupport::TestCase
   end
   ##############################date of birth###########################
   #should i keep now that we use dropdown
-  #test "applicant date of birth validity" do
+  test "applicant date of birth validity" do
     
-  #  assert @applicant.invalid?
-  #  assert_equal "Invalid Date",@applicant.errors[:date_of_birth].join('; ')
-  #end
+    assert @applicant.invalid?
+    assert_equal "Invalid Date",@applicant.errors[:date_of_birth].join('; ')
+  end
+  
+  
+ 
   ##############################place of birth################################
   test "applicant's place of birth should be a valid place" do
                          
-    #@assert @applicant.invalid?
-    #assert_equal "applicant's place of birth is not valid",@applicant.errors[:place_of_birth].join('; ')
-     assert @applicant.invalid?
+   assert @applicant.invalid?
     assert_equal "Invalid Place",@applicant.errors[:place_of_birth].join('; ')
   end
   ##############################gender#################################
@@ -81,19 +113,41 @@ class ApplicantTest < ActiveSupport::TestCase
     assert_equal "Invalid Number",@applicant.errors[:national_id].join('; ')
   end
   
-  # test "applicant is not valid without a unique national id" do
+   test "applicant is not valid without a unique national id" do
     
-  #  one = applicants(:one)          
-  #  one.national_id="11298"
-  #  assert one.invalid?
-  #  assert_equal "National ID has already taken", one.errors[:national_id].join('; ')
-  #end
-  #########################national id expiry date##############################
-  #test "applicant national id expiry date of birth" do
-  #  assert @applicant.invalid?                      
-  #  assert_equal "Invalid date",@applicant.errors[:national_id_expiry_date].join('; ')
-  #end
+    one = applicants(:one)          
+    assert one.invalid?
+    assert_equal "National ID has already been taken", one.errors[:national_id].join('; ')
+  end
   
+  test "applicant national id must exist if passport empty" do
+    good = applicants(:good)           
+    good.national_id=nil
+    good.passport_number=nil
+    assert good.invalid?                      
+    assert_equal "can't be blank",good.errors[:national_id].join('; ')
+  end
+  
+  #########################national id expiry date##############################
+  test "applicant national id expiry date of birth" do
+    assert @applicant.invalid?                      
+    assert_equal "Invalid date",@applicant.errors[:national_id_expiry_date].join('; ')
+  end
+  
+  test "applicant national exipry date must exist if national id present" do
+    good = applicants(:good)           
+    good.national_id_expiry_date=nil
+    assert good.invalid?                      
+    assert_equal "can't be blank",good.errors[:national_id_expiry_date].join('; ')
+  end
+  
+  test "applicant national id must exist if passport number empty" do
+    good = applicants(:good)           
+    good.national_id=nil
+    good.passport_number=nil
+    assert good.invalid?                      
+    assert_equal "can't be blank",good.errors[:passport_number].join('; ')
+  end
   #########################passport number##############################
   test "applicant passport number should be a postive number" do
      assert @applicant.invalid?
@@ -106,7 +160,29 @@ class ApplicantTest < ActiveSupport::TestCase
     one = applicants(:one)          
     one.passport_number="18971"
     assert one.invalid?
-    assert_equal "has already been taken", one.errors[:passport_number].join('; ')
+    assert_equal "Passport Number has already been taken", one.errors[:passport_number].join('; ')
+  end
+  
+  test "applicant passport must exist if national id empty" do
+    good = applicants(:good)           
+    good.national_id=nil
+    good.passport_number=nil
+    assert good.invalid?                      
+    assert_equal "can't be blank",good.errors[:passport_number].join('; ')
+  end
+  
+  test "applicant passport expiry date must exist if passport exists" do
+    good = applicants(:good)           
+    good.passport_expiry_date=nil
+    assert good.invalid?                      
+    assert_equal "can't be blank",good.errors[:passport_expiry_date].join('; ')
+  end
+  
+  test "applicant country of issunace must exist if passport exists" do
+    good = applicants(:good)           
+    good.country_of_issuance=nil
+    assert good.invalid?                      
+    assert_equal "can't be blank",good.errors[:country_of_issuance].join('; ')
   end
   ######################################country of issuance#############################################
   test "applicant's country of issuance should be a valid place" do
@@ -114,12 +190,11 @@ class ApplicantTest < ActiveSupport::TestCase
     assert_equal "Invalid Country",@applicant.errors[:country_of_issuance].join('; ')                     
   end
   ######################################passport expirt###############################################
-  #test "applicant passport expiry date of birth" do
-    #applicant = applicants(:one)
-    #applicant.passport_expiry_date="date1"
-  #  assert @applicant2.invalid?                     
-  #  assert_equal "can't be blank; Invalid Date",@applicant2.errors[:passport_expiry_date].join('; ')
-  #end
+   test "applicant passport expiry valid?" do
+
+    assert @applicant2.invalid?                     
+    assert_equal "Invalid Date",@applicant2.errors[:passport_expiry_date].join('; ')
+  end
   
   
   #################################transportation########################################
@@ -130,17 +205,7 @@ class ApplicantTest < ActiveSupport::TestCase
     assert_equal "is not included in the list", @applicant2.errors[:transportation].join('; ')
   end 
   
-  
-  #test "image type test" do
-  #  ok = %w{ image.gif image.jpg image.png image.eps image.svg }
-  #  bad = %w{ image.gif image.eps image.png image.svg }
-  #  ok.each do |name|
-  #    assert new_product(name).valid?, "#{name} shouldn't be invalid"
-  #  end
-  #  bad.each do |name|
-  #    assert new_product(name).invalid?, "#{name} shouldn't be valid"
-  #  end
-  #end
+
 
   
 end

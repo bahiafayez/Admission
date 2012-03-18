@@ -1,34 +1,35 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 #validates :first_name, :middle_name,:last_name,:date_of_birth, :place_of_birth, :gender,:military_status, :transportation,  :presence => true
 one:
-  first_name: MyString
-  middle_name: MyString
-  last_name: MyString
-  date_of_birth: 2012-02-23
-  place_of_birth: MyString
-  gender: MyString
-  military_status: MyString
-  national_id: MyString
+  first_name: Ahmed
+  middle_name: Mohamed
+  last_name: Yassen
+  date_of_birth: 1993-02-23
+  place_of_birth: Cairo
+  gender: Male
+  military_status: Exempted
+  national_id: 11298
   national_id_expiry_date: 2012-02-23
-  passport_number: MyString
-  country_of_issuance: MyString
-  passport_expiry_date: 2012-02-23
-  transportation: Private
+  passport_number: 18971
+  country_of_issuance: Egypt
+  passport_expiry_date: 2012-02-bb
+  transportation: car2
   
-two:
-  first_name: MyString
-  middle_name: MyString
-  last_name: MyString
-  date_of_birth: anything
-  place_of_birth: MyString
-  gender: MyString
-  military_status: MyString
-  national_id: 112981
+good:
+  first_name: Mohamed
+  middle_name: Mohamed
+  last_name: Yassen
+  date_of_birth: 1993-02-23
+  place_of_birth: Cairo
+  gender: Male
+  military_status: Exempted
+  national_id: 11298
   national_id_expiry_date: 2012-02-23
-  passport_number: MyString
-  country_of_issuance: MyString
-  passport_expiry_date: 2012-02-23
+  passport_number: 183271
+  country_of_issuance: Egypt
+  passport_expiry_date: 2014-02-12
   transportation: Private
+
   
 person:
   first_name:  Ahm1ed
@@ -37,7 +38,7 @@ person:
   date_of_birth: 19a3-02-aa
   place_of_birth: jan
   gender: 123
-  military_status: Exempted
+  military_status: mesh 3aref
   national_id: -1000
   national_id_expiry_date: 19a3-02-aa
   passport_number: -1000
