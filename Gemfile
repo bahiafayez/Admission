@@ -21,6 +21,7 @@ gem 'prawn_rails'
 gem 'simple_form'
 gem "nested_form", :git => 'https://github.com/ryanb/nested_form.git'
 gem "country-select"
+gem 'simplecov', :require => false, :group => :test
 #gem 'htmldoc'
 #gem "breadcrumbs_on_rails"
 
