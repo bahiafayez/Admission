@@ -13,7 +13,10 @@ class ApplicantTest < ActiveSupport::TestCase
   
   test "should create applicant" do
     applicant = Applicant.new
-    applicant = applicants(:person)
+    applicant = applicants(:person2)
+    applicant.passport_number="123gjhg32"
+    applicant.national_id="123456564"
+    applicant.transportation="Private"
     assert applicant.save
   end
 
@@ -23,7 +26,10 @@ class ApplicantTest < ActiveSupport::TestCase
   end
 
   test "should update applicant" do
-     applicant = applicants(:person)
+     applicant = applicants(:person2)
+     applicant.passport_number="123gjhg32"
+     applicant.national_id="123456564"
+     applicant.transportation="Private"
      assert applicant.update_attributes(:first_name => 'Donald')
   end
   
@@ -36,10 +42,11 @@ class ApplicantTest < ActiveSupport::TestCase
 
   test "Applicant must not be empty" do
     applicant = Applicant.new
+    applicant.military_status=""
     assert applicant.invalid?
-    assert_equal ["can't be blank"], applicant.errors[:first_name]
-    assert_equal ["can't be blank"], applicant.errors[:middle_name]
-    assert_equal ["can't be blank"], applicant.errors[:last_name]
+    assert_equal ["can't be blank", "first name contains non alphabetical characters"], applicant.errors[:first_name]
+    assert_equal ["can't be blank", "middle name contains non alphabetical characters"], applicant.errors[:middle_name]
+    assert_equal ["can't be blank", "last name contains non alphabetical characters"], applicant.errors[:last_name]
     assert_equal ["can't be blank"], applicant.errors[:date_of_birth]
     assert_equal ["can't be blank"], applicant.errors[:place_of_birth]
     assert_equal ["can't be blank","is not included in the list"], applicant.errors[:gender]
@@ -62,19 +69,19 @@ class ApplicantTest < ActiveSupport::TestCase
   
   test "applicant first name should be alphbats" do
                          
-    assert_match( /^[a-zA-Z]+$/, @applicant.first_name, ["first name contains non alphabetical charchters"] )
+    assert_match( /^[a-zA-Z]+$/, @applicant.first_name, ["first name contains non alphabetical characters"] )
   end
   
   
   ###############################middle name##########################################
   test "applicant middle name should be alphbats" do
                          
-    assert_match( /^[a-zA-Z]+$/, @applicant.middle_name, ["middle name contains non alphabetical charchters"] )
+    assert_match( /^[a-zA-Z]+$/, @applicant.middle_name, ["middle name contains non alphabetical characters"] )
   end
   ################################last name#########################################
   test "applicant last name should be alphbats and no spaces" do
                          
-    assert_match( /^[a-zA-Z]+$/, @applicant.last_name, ["last name contains non alphabetical charchters"] )
+    assert_match( /^[a-zA-Z]+$/, @applicant.last_name, ["last name contains non alphabetical characters"] )
   end
   ##############################date of birth###########################
   #should i keep now that we use dropdown

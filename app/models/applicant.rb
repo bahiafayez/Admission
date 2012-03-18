@@ -17,6 +17,10 @@ class Applicant < ActiveRecord::Base
   
   before_validation :atleast_one
   validates :first_name, :middle_name,:last_name,:date_of_birth, :place_of_birth, :gender,:military_status, :transportation,  :presence => true
+  validates :first_name, :format => {:with => /^[a-zA-Z]+$/, :message => "first name contains non alphabetical characters"}
+  validates :middle_name,  :format => {:with => /^[a-zA-Z]+$/, :message => "middle name contains non alphabetical characters"}
+  validates :last_name, :format => {:with => /^[a-zA-Z]+$/, :message => "last name contains non alphabetical characters"}
+  
   #validates_attachment_presence :photo
   #validates_attachment_content_type :photo, :content_type=>['image/jpeg', 'image/png', 'image/gif'], :message => 'Image must be of type jpeg, png or gif'
   validates_date :date_of_birth, :passport_expiry_date, :national_id_expiry_date , :allow_blank => true
@@ -25,8 +29,11 @@ class Applicant < ActiveRecord::Base
   validates_inclusion_of :military_status, :in => ["Completed", "Exempted","Postponed", "Does not apply"]
   validates_inclusion_of :transportation, :in => ["Private", "Nu buses"]
   validates :national_id, :format => {:with => /^[0-9]*$/ , :message => "Invalid Number"}
+  validates :passport_number, :format => {:with => /^[0-9a-zA-Z]*$/ , :message => "Invalid Number"}
   validates_uniqueness_of :national_id, :case_sensitive => false, :message => "National ID has already been taken", :allow_blank => true
   validates_uniqueness_of :passport_number, :case_sensitive => false, :message => "Passport Number has already been taken", :allow_blank => true
+  
+  validates :country_of_issuance, inclusion: { in: ActionView::Helpers::FormOptionsHelper::COUNTRIES }, :allow_blank => true
   
   #CONTINUE VALIDATION  
   

@@ -58,5 +58,5 @@ person2:
   national_id_expiry_date: 2012-02-23
   passport_number: 18971
   country_of_issuance: Egypt
-  passport_expiry_date: 2012-02-bb
-  transportation: car2
+  passport_expiry_date: 2012-02-01
+  transportation: bb
