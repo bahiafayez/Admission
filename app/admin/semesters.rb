@@ -1,8 +1,8 @@
-ActiveAdmin.register Program do
+ActiveAdmin.register Semester do
   menu :parent => "Programs and Semesters"
   show  do |app|
-    panel "Program Details" do
-    attributes_table_for program do
+    panel "Semester Details" do
+    attributes_table_for semester do
 
         row :name
         row :status do
@@ -28,12 +28,3 @@ ActiveAdmin.register Program do
     end
   end
 end
-
-
-# panel "User Details" do
-                # attributes_table_for user, 
-                        # :id,
-                        # :first_name,
-                        # :last_name,
-                        # :email
-        # end

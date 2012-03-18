@@ -1,8 +1,9 @@
 <p align="center" style="font-size: 14px; color:#999999;">Admission Information</p>
 <%= f.fields_for :admission_information do |u| %>
     <div class="field">
-        <%= u.label :semester , {:class => 'label'}%> &nbsp;
-    	<%= u.select :semester, options_for_select(["Winter 2012","Spring 2012"], u.object.semester), :include_blank=> true %>
+        <%= u.label :semester_id , {:class => 'label'}%> &nbsp;
+    	<!-- <%= u.select :semester, options_for_select(["Winter 2012","Spring 2012"], u.object.semester), :include_blank=> true %> -->
+    	<%= u.collection_select :semester_id, Semester.where(:status => true), :id, :name , :include_blank=> true %>
     </div>
     <div class="field">
         <%= u.label :program_id , {:class => 'label'}%> &nbsp;

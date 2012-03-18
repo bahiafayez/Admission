@@ -115,7 +115,11 @@
 		<thead>
 			<tr>
 				<td><b>Semester</b></td>
-				<td> <%= @applicant.admission_information.semester %></td>
+				<td> 
+					<% if @applicant.admission_information.semester!= nil %> 
+					<%= @applicant.admission_information.semester.name %>
+					<% end %>
+				</td>
 			</tr>
 		</thead>
 		<tbody>

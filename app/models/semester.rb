@@ -1,4 +1,3 @@
-class Program < ActiveRecord::Base
+class Semester < ActiveRecord::Base
   has_many :admission_informations
-
 end

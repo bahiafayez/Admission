@@ -247,7 +247,7 @@ class ApplicantsController < ApplicationController
   end
   def edit
     @applicant = Applicant.find(params[:id])
-    if @applicant.status=="Submitted"
+    if @applicant.status!="Saved" and @applicant.status!="Just Created"
       redirect_to @applicant, notice: "Sorry Application Already Submitted"
     end
     @applicant.guardians.each do |guardian|
