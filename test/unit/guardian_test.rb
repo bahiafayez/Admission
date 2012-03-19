@@ -4,23 +4,23 @@ class GuardianTest < ActiveSupport::TestCase
   
   fixtures :guardians
   
-  test "should create guradian" do
+  test "should create guardian" do
     guardian = Guardian.new
     guardian = guardians(:good)
     assert guardian.save
   end
 
-  test "should find guradian" do
+  test "should find guardian" do
     guardian_id = guardians(:good).id
     assert_nothing_raised { Guardian.find(guardian_id) }
   end
 
-  test "should update guradian" do
+  test "should update guardian" do
      guardian = guardians(:good)
      assert guardian.update_attributes(:first_name => 'any')
   end
   
-  test "should destroy guradian" do
+  test "should destroy guardian" do
     guardian = guardians(:good)
     guardian.destroy
     assert_raise(ActiveRecord::RecordNotFound) { Guardian.find(guardian.id) }
@@ -64,7 +64,9 @@ class GuardianTest < ActiveSupport::TestCase
   ##############################address##############################################
   test "address: address length" do
                      
-   guardian = guardians(:guardian2)            
+    good = guardians(:good) 
+    good.business_address= guardians(:guardian2).address            
+    assert good.valid?                    
     if guardian.address.length>100
       flunk("Address more than 100 charchters")
     end
@@ -72,7 +74,7 @@ class GuardianTest < ActiveSupport::TestCase
   end
   
   #############################telephone##########################################
-  test "is guradian's phone valid?" do
+  test "is guardian's phone valid?" do
                      
     assert @guardian1.invalid?
     assert_equal "Invalid Number",@guardian1.errors[:telephone].join('; ')
@@ -140,9 +142,10 @@ class GuardianTest < ActiveSupport::TestCase
   end
   #####################business_address################################## 
   test "address: business_address length" do
-                     
-              
-    if @guardian2.business_address.length>100
+    good = guardians(:good) 
+    good.business_address= guardians(:guardian2).business_address           
+    assert good.valid?          
+    if good.business_address.length>100
       flunk("Address more than 100 charchters")
     end   
   end  
