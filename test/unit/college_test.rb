@@ -2,20 +2,43 @@ require 'test_helper'
 
 class CollegeTest < ActiveSupport::TestCase
   fixtures :colleges
-  #if the student has been to other college these infromation should be filled
+  #if the student has been to other college these information should be filled
+  # validates :name, :faculty, :major, :city, :country, :attended_from, :attended_to, :language, :gpa,
   test "college attributes can't be empty"do
     college=College.new
     assert college.invalid?
-    assert college.errors[:name].any?,"name"
-    assert college.errors[:faculty].any?,"Faculty"
-    assert college.errors[:major].any?,"major"
-    assert college.errors[:city].any?,"city"
-    assert college.errors[:country].any?"country"
-    assert college.errors[:attended_from].any?,"attended from"
-    assert college.errors[:attended_to].any?"attended to"
-    assert college.errors[:language].any?"lang"
-    assert college.errors[:gpa].any?"gpa"
+    assert college.errors[:name].any?
+    assert college.errors[:faculty].any?
+    assert college.errors[:major].any?
+    assert college.errors[:city].any?
+    assert college.errors[:country].any?
+    assert college.errors[:attended_from].any?
+    assert college.errors[:attended_to].any?
+    assert college.errors[:language].any?
+    assert college.errors[:gpa].any?
   
+  end
+  
+  test "should create college" do
+    college = College.new
+    college = colleges(:good)
+    assert college.save
+  end
+
+  test "should find college" do
+    college_id = colleges(:good).id
+    assert_nothing_raised { College.find(college_id) }
+  end
+
+  test "should update college" do
+     college = colleges(:good)
+     assert college.update_attributes(:major => 'new major')
+  end
+  
+  test "should destroy college" do
+    college = colleges(:good)
+    college.destroy
+    assert_raise(ActiveRecord::RecordNotFound) { College.find(college.id) }
   end
   
   test "college: gpa" do
@@ -26,21 +49,14 @@ class CollegeTest < ActiveSupport::TestCase
   
   test "college: gpa range" do
     one = colleges(:one)                    
-    one.gpa=7
     assert one.invalid?,"Invalid GPA"
   end
   
-  test "college: attended_from" do
+  test "college: mobile format" do
+    
     one = colleges(:one)
-    one.attended_from="date1"
-    assert one.invalid?                      
-    assert_equal "is not a valid date",one.errors[:attended_from].join('; ')
-  end
-  
-  test "college: attended_to" do
-    one = colleges(:one)
-    one.attended_to="date1"
-    assert one.invalid?                      
-    assert_equal "is not a valid date",one.errors[:attended_to].join('; ')
+    one.language="urdu"          
+    assert one.invalid?
+    assert_equal "Invalid Language",one.errors[:language].join('; ')
   end
 end
