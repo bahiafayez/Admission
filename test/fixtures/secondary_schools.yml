@@ -11,6 +11,17 @@ good:
   graduation_date: 2012-02-23
   school_type: Private
   applicant_id: 1
+
+good2:
+  name: ELS
+  address: Nasrcity
+  language: English
+  attended_from: 1995-01-20
+  attended_to: 2005-01-20
+  certificate_type: IG
+  graduation_date: 2012-02-23
+  school_type: Private
+  applicant_id: 1
   
   
 school1:

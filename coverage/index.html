@@ -23,27 +23,27 @@
       <img src="./assets/0.5.3/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2012-03-20T14:24:02+02:00">2012-03-20T14:24:02+02:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2012-03-20T15:08:31+02:00">2012-03-20T15:08:31+02:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
         <div class="file_list_container" id="AllFiles">
   <h2>
     <span class="group_name">All Files</span>
-    (<span class="covered_percent"><span class="red">34.4%</span></span>
+    (<span class="covered_percent"><span class="red">34.15%</span></span>
      covered at
      <span class="covered_strength">
        <span class="red">
-         0.81
+         0.74
        </span>
     </span> hits/line)
   </h2>
   <a name="AllFiles"></a>
   <div>
     <b>49</b> files in total.
-    <b>814</b> relevant lines. 
-    <span class="green"><b>280</b> lines covered</span> and
-    <span class="red"><b>534</b> lines missed </span>
+    <b>817</b> relevant lines. 
+    <span class="green"><b>279</b> lines covered</span> and
+    <span class="red"><b>538</b> lines missed </span>
   </div>
   <table class="file_list">
     <thead>
@@ -281,12 +281,12 @@
       
       <tr>
         <td class="strong"><a href="#e5d3aa52ee7e509a73d261b1fdd2e2eda591b4b2" class="src_link" title="app/models/guardian.rb">app/models/guardian.rb</a></td>
-        <td class="green strong">100.0 %</td>
+        <td class="yellow strong">82.61 %</td>
         <td>36</td>
         <td>23</td>
-        <td>23</td>
-        <td>0</td>
-        <td>4.1</td>
+        <td>19</td>
+        <td>4</td>
+        <td>0.8</td>
       </tr>
       
       <tr>
@@ -322,9 +322,9 @@
       <tr>
         <td class="strong"><a href="#f5dc5e2efde6e3e13c17461ccc8eca5cd611108c" class="src_link" title="app/models/secondary_school.rb">app/models/secondary_school.rb</a></td>
         <td class="green strong">100.0 %</td>
-        <td>9</td>
-        <td>5</td>
-        <td>5</td>
+        <td>11</td>
+        <td>8</td>
+        <td>8</td>
         <td>0</td>
         <td>1.0</td>
       </tr>
@@ -9130,11 +9130,11 @@
         <div class="source_table" id="e5d3aa52ee7e509a73d261b1fdd2e2eda591b4b2">
   <div class="header">
     <h3>app/models/guardian.rb</h3>
-    <h4><span class="green">100.0 %</span> covered</h4>
+    <h4><span class="yellow">82.61 %</span> covered</h4>
     <div>
       <b>23</b> relevant lines. 
-      <span class="green"><b>23</b> lines covered</span> and
-      <span class="red"><b>0</b> lines missed.</span>
+      <span class="green"><b>19</b> lines covered</span> and
+      <span class="red"><b>4</b> lines missed.</span>
     </div>
   </div>
   
@@ -9291,14 +9291,14 @@
           <code class="ruby">  def a_number_present </code>
         </li>
       
-        <li class="covered" data-hits="19" data-linenumber="26">
-          <span class="hits">19</span>
+        <li class="missed" data-hits="0" data-linenumber="26">
+          
           
           <code class="ruby">    errors.add(:telephone, &quot;can't be blank&quot;) if telephone.blank? &amp;&amp; mobile.blank? </code>
         </li>
       
-        <li class="covered" data-hits="19" data-linenumber="27">
-          <span class="hits">19</span>
+        <li class="missed" data-hits="0" data-linenumber="27">
+          
           
           <code class="ruby">    errors.add(:mobile, &quot;can't be blank&quot;) if telephone.blank? &amp;&amp; mobile.blank? </code>
         </li>
@@ -9321,14 +9321,14 @@
           <code class="ruby">  def a_contact_present </code>
         </li>
       
-        <li class="covered" data-hits="19" data-linenumber="31">
-          <span class="hits">19</span>
+        <li class="missed" data-hits="0" data-linenumber="31">
+          
           
           <code class="ruby">    errors.add(:business_telephone, &quot;can't be blank&quot;) if business_telephone.blank? &amp;&amp; email.blank? </code>
         </li>
       
-        <li class="covered" data-hits="19" data-linenumber="32">
-          <span class="hits">19</span>
+        <li class="missed" data-hits="0" data-linenumber="32">
+          
           
           <code class="ruby">    errors.add(:email, &quot;can't be blank&quot;) if business_telephone.blank? &amp;&amp; email.blank? </code>
         </li>
@@ -9516,8 +9516,8 @@
     <h3>app/models/secondary_school.rb</h3>
     <h4><span class="green">100.0 %</span> covered</h4>
     <div>
-      <b>5</b> relevant lines. 
-      <span class="green"><b>5</b> lines covered</span> and
+      <b>8</b> relevant lines. 
+      <span class="green"><b>8</b> lines covered</span> and
       <span class="red"><b>0</b> lines missed.</span>
     </div>
   </div>
@@ -9546,7 +9546,7 @@
         <li class="covered" data-hits="1" data-linenumber="4">
           <span class="hits">1</span>
           
-          <code class="ruby">  validates :name, :address, :language, :attended_from , :attended_to, :school_type, :presence =&gt; true</code>
+          <code class="ruby">  validates :name, :address, :language, :certificate_type, :attended_from , :attended_to, :school_type, :presence =&gt; true</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="5">
@@ -9561,19 +9561,31 @@
           <code class="ruby">  validates_inclusion_of :school_type, :in =&gt; [&quot;Public&quot;, &quot;Private&quot;]</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="7">
+        <li class="covered" data-hits="1" data-linenumber="7">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  validates_length_of :address, :maximum =&gt; 100</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="8">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  validates_length_of :name, :maximum =&gt; 20</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="9">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  validates_inclusion_of :certificate_type, :in =&gt; [&quot;IG&quot;, &quot;American Diploma&quot;, &quot;GCSE&quot;, &quot;Thanaweya Amma&quot;]</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="10">
           
           
           <code class="ruby">  </code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="8">
-          
-          
-          <code class="ruby">  </code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="9">
+        <li class="never" data-hits="" data-linenumber="11">
           
           
           <code class="ruby">end</code>

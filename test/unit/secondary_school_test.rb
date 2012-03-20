@@ -6,7 +6,7 @@ class SecondarySchoolTest < ActiveSupport::TestCase
   
     test "should create secondry school" do
     secondary_school = SecondarySchool.new
-    secondary_school = secondary_schools(:good)
+    secondary_school = secondary_schools(:good2)
     assert secondary_school.save
   end
 
@@ -16,7 +16,7 @@ class SecondarySchoolTest < ActiveSupport::TestCase
   end
 
   test "should update secondry school" do
-     secondary_school = secondary_schools(:good)
+     secondary_school = secondary_schools(:good2)
      assert secondary_school.update_attributes(:name => 'name')
   end
   
@@ -81,6 +81,6 @@ class SecondarySchoolTest < ActiveSupport::TestCase
                          
     one = secondary_schools(:school1)        
     assert one.invalid?
-    assert_equal "Invalid",one.errors[:certificate].join('; ')
+    assert_equal "is not included in the list",one.errors[:certificate_type].join('; ')
   end
 end

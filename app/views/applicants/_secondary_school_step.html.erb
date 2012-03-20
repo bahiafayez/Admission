@@ -24,7 +24,8 @@
 
 <div class="field">
 	<%= u.label :certificate_type, {:class => 'label'}%> &nbsp;
-	<%= u.text_field :certificate_type ,{:class => 'span3'}%>
+	<!-- <%= u.text_field :certificate_type ,{:class => 'span3'}%> -->
+	<%= u.select :certificate_type, options_for_select(["IG", "American Diploma", "GCSE", "Thanaweya Amma"],  u.object.certificate_type), :include_blank=> true %>
 </div>
 <div class="field">
 	<%= u.label :graduation_date , {:class => 'label'}%> &nbsp;
