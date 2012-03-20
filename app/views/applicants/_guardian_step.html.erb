@@ -56,7 +56,7 @@
 
 <div class="field">
 	<%= u.label :relation , {:class => 'label'}%> &nbsp;
-	<%= u.select :relation, options_for_select(["Other","Mother", "Father"], u.object.relation3),{ :include_blank=> true} , {:class=> "relation"}  %>
+	<%= u.select :relation, options_for_select(["Other","Mother", "Father"], u.object.relation3),{ :include_blank=> true} , {:class=> "relation", :style=>'width:90px;'}  %>
 </div>
 <!-- If other will enable a text field to write in -->
 
@@ -70,12 +70,12 @@
 
 <div class="field">
 	<%= u.label :financial , "Will that person be responsible for your financial expenses", {:class => 'label'}%> 
-	<br /> <br /> &nbsp;
-	<%= u.select :financial, options_for_select([["Yes",true],["No",false]], u.object.financial) , :include_blank=> true %>
+	<br /> &nbsp;
+	<%= u.select :financial, options_for_select([["Yes",true],["No",false]], u.object.financial) , {:include_blank=> true},{:class=>'smallcellspan'}  %>
 </div>
 </div>
 <% end %>
-
+<br />
 
     
   

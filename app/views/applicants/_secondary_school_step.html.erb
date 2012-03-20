@@ -15,37 +15,39 @@
 </div>
 <div class="field">
 	<%= u.label :attended_from , {:class => 'label'}%> &nbsp;
-	<%= u.date_select :attended_from , :start_year => Time.now.year - 30, :end_year => Time.now.year + 1 , :include_blank=> true %>
+	<%= u.date_select :attended_from , {:start_year => Time.now.year - 30, :end_year => Time.now.year + 1 , :include_blank=> true},{:class=>'datespan'} %>
 </div>
 <div class="field">
 	<%= u.label :attended_to , {:class => 'label'}%> &nbsp;
-	<%= u.date_select :attended_to , :start_year => Time.now.year - 30, :end_year => Time.now.year + 1 , :include_blank=> true %>
+	<%= u.date_select :attended_to , {:start_year => Time.now.year - 30, :end_year => Time.now.year + 1 , :include_blank=> true},{:class=>'datespan'} %>
 </div>
 
 <div class="field">
 	<%= u.label :certificate_type, {:class => 'label'}%> &nbsp;
-	<!-- <%= u.text_field :certificate_type ,{:class => 'span3'}%> -->
-	<%= u.select :certificate_type, options_for_select(["IG", "American Diploma", "GCSE", "Thanaweya Amma"],  u.object.certificate_type), :include_blank=> true %>
+	<%= u.text_field :certificate_type ,{:class => 'span3'}%>
 </div>
 <div class="field">
 	<%= u.label :graduation_date , {:class => 'label'}%> &nbsp;
-	<%= u.date_select :graduation_date, :start_year => Time.now.year - 30, :end_year => Time.now.year + 1 , :include_blank=> true %>
+	<%= u.date_select :graduation_date, {:start_year => Time.now.year - 30, :end_year => Time.now.year + 1 , :include_blank=> true},{:class=>'datespan'} %>
 </div>
 <div class="field">
-	<%= u.label :division , "If Sanaweya Amma Please specify division", {:class => 'label'}%> <br /><br /> &nbsp;
+	<%= u.label :division , "If Sanaweya Amma Please specify division", {:class => 'label'}%> <br />&nbsp;
 	<%= u.text_field :division ,{:class => 'span3'}%><br />
 </div>
 <div class="field">
 	<%= u.label :school_type , "Was your school", {:class => 'label'}%> &nbsp;
-	<%= u.select :school_type, options_for_select(["Private", "Public"], u.object.school_type) , :include_blank=> true %> <b>?</b>
+	<%= u.select :school_type, options_for_select(["Private", "Public"], u.object.school_type) , {:include_blank=> true},{:class=>'smallcellspan'} %> <b>?</b>
 </div>
-<%= u.link_to_remove "Remove school"%> 
+
+<br />
+<%= u.link_to_remove "Remove This School", :class=>'btn btn-info'%> 
 </div>
+<br />
 <% end %>
 
-<%= f.link_to_add "Add school", :secondary_schools %> 
-
-
+<%= f.link_to_add "Add Another School", :secondary_schools ,:class=>'btn btn-info'%> 
+<br />
+<br />
  
     
 
