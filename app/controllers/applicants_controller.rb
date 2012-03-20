@@ -229,7 +229,13 @@ class ApplicantsController < ApplicationController
     
       respond_to do |format|
         if @applicant.save
-          ApplicationNotifier.submitted(@applicant.user).deliver
+          
+          html = render_to_string(:layout => false , :action => "show.html.erb")
+          kit = PDFKit.new(html)
+          kit.stylesheets << "#{Rails.root}/public/stylesheets/style2.css"
+          email= kit.to_pdf
+          
+          ApplicationNotifier.submitted(@applicant.user,email).deliver
           format.html { redirect_to @user.applicant, notice: 'Applicant was successfully created.' }
           format.json { render json: @applicant, status: :created, location: @applicant }
         else
@@ -398,7 +404,13 @@ class ApplicantsController < ApplicationController
       respond_to do |format|
         if @applicant.save 
           logger.debug "NO ERRORRSSSSSSSSSSS"
-          ApplicationNotifier.submitted(@applicant.user).deliver
+         
+          html = render_to_string(:layout => false , :action => "show.html.erb")
+          kit = PDFKit.new(html)
+          kit.stylesheets << "#{Rails.root}/public/stylesheets/style2.css"
+          email= kit.to_pdf
+              
+          ApplicationNotifier.submitted(@applicant.user, email).deliver
           format.html { redirect_to @user.applicant, notice: 'Applicant was successfully created.' }
           format.json { render json: @applicant, status: :created, location: @applicant }
         else

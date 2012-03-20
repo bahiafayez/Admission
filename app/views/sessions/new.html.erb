@@ -6,11 +6,12 @@
 	</div>
 	<div class="log_in">
 		<%= form_tag sessions_path do %>
-		<p>
+		<%= flash.alert %>
+		 <div class="field"> 
 			<%= label_tag :email %>
 			<br />
 			<%= text_field_tag :email, params[:email],{:class => 'span3', :placeholder => "example@example.com"}%> <!-- we put params[:email] to remember (this is the text displayed) -->
-		</p>
+		</div>
 		<p>
 			<%= label_tag :password %>
 			<br />

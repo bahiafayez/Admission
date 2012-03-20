@@ -9,6 +9,7 @@ class ApplicationNotifier < ActionMailer::Base
   def created(user)
     @greeting = "Hi"
     logger.debug "In created METHOD!!!!"
+    @user = user
     mail to: user.email, subject: 'Application Confirmation'
   end
 
@@ -17,9 +18,11 @@ class ApplicationNotifier < ActionMailer::Base
   #
   #   en.application_notifier.submitted.subject
   #
-  def submitted(user)
+  def submitted(user, email)
     @greeting = "Hi"
+    @name = user.applicant.first_name
     mail to: user.email, subject: 'Application Submission Confirmation'
+    attachments["#{user.applicant.first_name}-Application.pdf"] = email
   end
   
   def reason(user)
