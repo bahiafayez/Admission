@@ -43,10 +43,8 @@ class SecondarySchoolTest < ActiveSupport::TestCase
    good = secondary_schools(:good) 
             
     good.name=secondary_schools(:school1).name
-    assert good.valid?
-    if one.name.length>20
-      flunk("Address more than 20 charchters")
-    end
+    assert good.invalid?                    
+    assert_equal "is too long (maximum is 20 characters)",good.errors[:name].join('; ') 
       
   end
    #####################address##########################
@@ -55,19 +53,12 @@ class SecondarySchoolTest < ActiveSupport::TestCase
     good = secondary_schools(:good) 
             
     good.name=secondary_schools(:school1).address
-    assert good.valid?     
-    if three.address.length>100
-      flunk("Address more than 100 charchters")
-    end
+    assert good.invalid?                    
+    assert_equal "is too long (maximum is 20 characters)",good.errors[:name].join('; ') 
       
   end
   #######################language############################
-  test "secondry school: language" do
-                         
-    one = secondary_schools(:school1)          
-    assert one.invalid?
-    assert_equal "Invalid language",one.errors[:language].join('; ')
-  end
+ 
    
   #######################school type####################################
   test "secondry school: school type" do

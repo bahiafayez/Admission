@@ -49,16 +49,7 @@ class ApplicantTest < ActiveSupport::TestCase
     assert_equal ["can't be blank","is not included in the list"], applicant.errors[:gender]
     assert_equal ["can't be blank","is not included in the list"], applicant.errors[:transportation]
     assert_equal ["can't be blank","is not included in the list"], applicant.errors[:military_status]
-    #assert_equal "can't be blank", applicant.errors[:transportation]
-    #assert_equal "can't be blank", applicant.errors[:military_status]
-    #assert applicant.errors[:first_name].any?,"first name can't be blank"
-    #assert applicant.errors[:middle_name].any?,"middle name can't be blank"
-    #assert applicant.errors[:last_name].any?,"last name can't be blank"
-    #assert applicant.errors[:date_of_birth].any?,"dob can't be blank"
-    #assert applicant.errors[:place_of_birth].any?,"pob can't be blank"
-    #assert applicant.errors[:gender].any?,"gender status can't be blank"
-    #assert applicant.errors[:transportation].any?,"transportation can't be blank"
-    #assert applicant.errors[:military_status].any?,"military status can't be blank"
+
   end
 
   
@@ -84,20 +75,12 @@ class ApplicantTest < ActiveSupport::TestCase
     assert @applicant.invalid?
     assert_equal "last name contains non alphabetical characters",@applicant.errors[:last_name].join('; ')
   end
-  ##############################date of birth###########################
-  #should i keep now that we use dropdown
-  #test "applicant date of birth validity" do
-    
-  #  assert @applicant.invalid?
-  #  assert_equal "Invalid Date",@applicant.errors[:date_of_birth].join('; ')
-  #end
-  
   
  
   ##############################place of birth################################
   test "applicant's place of birth should be a valid place" do
                          
-   assert @applicant.invalid?
+    assert @applicant.invalid?
     assert_equal "Invalid Place",@applicant.errors[:place_of_birth].join('; ')
   end
   ##############################gender#################################

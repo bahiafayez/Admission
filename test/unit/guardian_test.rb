@@ -64,14 +64,11 @@ class GuardianTest < ActiveSupport::TestCase
 
   end
   ##############################address##############################################
-  test "address: address length" do
+  test "guardian: address length" do
                      
-    good = guardians(:good) 
-    good.business_address= guardians(:guardian2).address            
-    assert good.valid?                    
-    if guardian.address.length>100
-      flunk("Address more than 100 charchters")
-    end
+    good = guardians(:guardian2)        
+    assert good.invalid?                    
+    assert_equal "is too long (maximum is 100 characters)",good.errors[:address].join('; ') 
       
   end
   
@@ -146,15 +143,12 @@ class GuardianTest < ActiveSupport::TestCase
   test "address: business_address length" do
     good = guardians(:good) 
     good.business_address= guardians(:guardian2).business_address           
-    assert good.valid?          
-    if good.business_address.length>100
-      flunk("Address more than 100 charchters")
-    end   
+    assert good.invalid?
+    assert_equal "is too long (maximum is 100 characters)",good.errors[:business_address].join('; ')   
   end  
   
   test "applicant's financial status should be yes or no" do
     good = guardians(:badFinancial)          
-    #good.financial="anything"
     assert good.invalid?
     assert_equal "is not included in the list",good.errors[:financial].join('; ')                     
   end
