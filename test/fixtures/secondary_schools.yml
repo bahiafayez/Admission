@@ -1,34 +1,28 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-one:
-  name: MyString
-  address: MyText
-  language: MyString
-  attended_from: 2012-02-23
-  attended_to: 2012-02-23
-  certificate_type: MyString
+
+good:
+  name: ELS
+  address: Nasrcity
+  language: English
+  attended_from: 1995-01-20
+  attended_to: IGCSE
+  certificate_type: Doc
   graduation_date: 2012-02-23
-  school_type: MyString
+  school_type: Private
+  applicant_id: 1
+  
+  
+school1:
+  name: Egypt 2020 Egypt 2020 Egypt 2020 Egypt 2020
+  address: Egypt 2020 Egypt 2020 Egypt 2020 Egypt 2020
+  language: Spanglish
+  attended_from: 1995-01-20
+  attended_to: any
+  certificate_type: Doc
+  graduation_date: 2012-02-23
+  school_type: undetermined
   applicant_id: 1
 
-two:
-  name: MyString
-  address: MyText
-  language: MyString
-  attended_from: 2012-02-23
-  attended_to: 2012-02-23
-  certificate_type: MyString
-  graduation_date: 2012-02-23
-  school_type: MyString
-  applicant_id: 1
 
-three:
-  name: MyString
-  address: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-  language: MyString
-  attended_from: 2012-02-23
-  attended_to: 2012-02-23
-  certificate_type: MyString
-  graduation_date: 2012-02-23
-  school_type: MyString
-  applicant_id: 1
+

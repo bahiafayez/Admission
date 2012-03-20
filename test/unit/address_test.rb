@@ -62,7 +62,7 @@ class AddressTest < ActiveSupport::TestCase
   #end
   ######################phone############################### 
   
-  test "address: telephone must exist if mobil empty" do
+  test "address: telephone must exist if mobile empty" do
     good = addresses(:good)           
     good.telephone=nil
     good.mobile=nil

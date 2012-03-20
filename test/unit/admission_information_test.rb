@@ -3,80 +3,60 @@ require 'test_helper'
 class AdmissionInformationTest < ActiveSupport::TestCase
   fixtures :admission_informations
 
-  test "admission information attributes must not be empty" do
+  test "should create admission_information" do
+    admission_information = AdmissionInformation.new
+    admission_information = admission_informations(:good)
+    assert admission_information.save
+  end
+
+  test "should find admission_information" do
+    admission_information_id = admission_informations(:good).id
+    assert_nothing_raised { AdmissionInformation.find(admission_information_id) }
+  end
+
+  test "should update admission_information" do
+     admission_information = admission_informations(:good)
+     assert admission_information.update_attributes(:intended_major => 'any')
+  end
+  
+  test "should destroy admission_information" do
+    admission_information = admission_informations(:good)
+    admission_information.destroy
+    assert_raise(ActiveRecord::RecordNotFound) { AdmissionInformation.find(admission_information.id) }
+  end
+
+test "admission information attributes must not be empty" do
     admission_information = AdmissionInformation.new
    
     assert admission_information.invalid?
     
-    assert admission_information.errors[:semester].any?
-    #assert admission_information.errors[:applying_to].any?
-    
-    #intended major can be empty if undecided
+    assert admission_information.errors[:semester_id].any?
+    assert admission_information.errors[:program_id].any?
     
     assert admission_information.errors[:intended_major].any?
     assert admission_information.errors[:toefl_test_results].any?
     assert admission_information.errors[:toefl_test_date].any?
     
-    #assert admission_information.errors[:proficiency_test].any?
    
    end
   
-  #####################semester###########################
-  test "admission: semester" do
-    info1 = AdmissionInformation.new
-    info1.semester="Spring 2009"
-    info1.applying_to="enginneering"
-    info1.intended_major="enginneering"
-    info1.toefl_test_results="600"
-    info1.toefl_test_date="23-03-2010"
-    assert info1.valid?, "#{info1.semester}s is not supposed to be from seclection"
-  end 
   
   
-  
-  
-  ######################applying_to#############################
-
-
-  #test "admission info: invalid options of applying_to" do
-  #  info1 = AdmissionInformation.new
-  #  info1.semester="Spring 2009"
-  #  info1.applying_to="Arts"
-  #  info1.intended_major="enginneering"
-  #  info1.toefl_test_results="600"
-  #  info1.toefl_test_date="23-03-2010"
-    #majors.each do |name|
-    #info2.applying_to=name
-  #  assert info1.valid?, "#{info1.applying_to} shouldn't be a valid major"
-    #end
-  #end
-  
-  #test "admission info applying_to should be only alphbats" do
-  #  info1 = admission_informations(:info1)                     
-  #  assert_match( /^[a-zA-Z]+$/, info1.applying_to, ["applying_to contains non alphabetical charchters"] )
-  #end
   
   ######################intended major############################
  
-  test "admission info intended major should be alphbats and" do
+  test "admission info intended major should be alphbats" do
     info1 = admission_informations(:info1)
-    info1.intended_major="999()i" 
-    #Tests if Regexp does match a given String.                 
-    assert_match( /^[a-zA-Z]+$/, info1.intended_major, ["intended_major contains non alphabetical charchters"] )
+    assert info1.invalid?
+    assert_equal "Invalid Input",info1.errors[:intended_major].join('; ')
   end
  
  ####################toefl_test_results################################ 
   test "admission info toefl results should be numbers" do
     info1 = admission_informations(:info1)
-    
-    #Tests if Regexp does match a given String.                 
-    assert_match( /[a-zA-Z]+$/, info1.toefl_test_results, ["toefl_test_results contains alphabetical charchters"] )
+    assert info1.invalid?
+    assert_equal "Invalid Input",info1.errors[:toefl_test_results].join('; ')
+
   end
-  ####################toefl date#################################
-  test "admision toefl_test_date" do
-    info2 = admission_informations(:info2)
-    info2.toefl_test_date="date1"
-    assert info2.invalid?                      
-    assert_equal "can't be blank; is not a valid date",info2.errors[:toefl_test_date].join('; ')
-  end
+
 end

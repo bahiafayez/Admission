@@ -1,13 +1,18 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
+good:
+  name: ahmed
+  faculty: faculty
+  major: major
+  city: cairo
+  language: English
+  gpa: 4.0
+  
 one:
-  name: MyString
-  faculty: MyString
-  major: MyString
-  city: MyString
-
-two:
-  name: MyString
-  faculty: MyString
-  major: MyString
-  city: MyString
+  name: ahmad
+  faculty: newfaculty
+  major: newmajor
+  city: cairo
+  language: French
+  gpa: 7.0
+  

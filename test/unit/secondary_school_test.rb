@@ -3,6 +3,29 @@ require 'test_helper'
 class SecondarySchoolTest < ActiveSupport::TestCase
  
   fixtures :secondary_schools
+  
+    test "should create secondry school" do
+    secondary_school = SecondarySchool.new
+    secondary_school = secondary_schools(:good)
+    assert secondary_school.save
+  end
+
+  test "should find secondry school" do
+    secondary_school_id = secondary_schools(:good).id
+    assert_nothing_raised { SecondarySchool.find(secondary_school_id) }
+  end
+
+  test "should update secondry school" do
+     secondary_school = secondary_schools(:good)
+     assert secondary_school.update_attributes(:name => 'name')
+  end
+  
+  test "should destroy secondry school" do
+    secondary_school = secondary_schools(:good)
+    secondary_school.destroy
+    assert_raise(ActiveRecord::RecordNotFound) { SecondarySchool.find(secondary_school.id) }
+  end
+  
   test "SecondarySchool: attributes must not be empty" do
     secondary_school = SecondarySchool.new
     assert secondary_school.invalid?
@@ -17,8 +40,10 @@ class SecondarySchoolTest < ActiveSupport::TestCase
    #####################name##########################
    test "secondry school: name length" do
                      
-   one = secondary_schools(:one)          
-    one.name="Egypt 2020 Egypt 2020 Egypt 2020 Egypt 2020"
+   good = secondary_schools(:good) 
+            
+    good.name=secondary_schools(:school1).name
+    assert good.valid?
     if one.name.length>20
       flunk("Address more than 20 charchters")
     end
@@ -27,7 +52,10 @@ class SecondarySchoolTest < ActiveSupport::TestCase
    #####################address##########################
    test "secondry school: address length" do
                      
-   three = secondary_schools(:three)          
+    good = secondary_schools(:good) 
+            
+    good.name=secondary_schools(:school1).address
+    assert good.valid?     
     if three.address.length>100
       flunk("Address more than 100 charchters")
     end
@@ -36,29 +64,23 @@ class SecondarySchoolTest < ActiveSupport::TestCase
   #######################language############################
   test "secondry school: language" do
                          
-    one = secondary_schools(:one)          
-    one.language="spanglish"
-    assert one.valid?, "can't be valid,#{one.language} is not a valid language"
+    one = secondary_schools(:school1)          
+    assert one.invalid?
+    assert_equal "Invalid language",one.errors[:language].join('; ')
   end
-   ########################attended_from#############################
-    test "school: attended_from" do
-    one = secondary_schools(:one)
-    one.attended_from="date1"
-    assert one.invalid?                      
-    assert_equal "can't be blank; is not a valid date",one.errors[:attended_from].join('; ')
-  end
-  ########################attended_to#############################
-  test "schole: attended_to" do
-    one = secondary_schools(:one)
-    one.attended_to="date1"
-    assert one.invalid?                      
-    assert_equal "can't be blank; is not a valid date",one.errors[:attended_to].join('; ')
-  end
+   
   #######################school type####################################
   test "secondry school: school type" do
                          
-    one = secondary_schools(:one)          
-    one.school_type="undetermined"
-    assert one.valid?, "can't be valid,#{one.school_type} is not a valid school type"
+    one = secondary_schools(:school1)        
+    assert one.invalid?
+    assert_equal "is not included in the list",one.errors[:school_type].join('; ')
+  end
+  
+  test "secondry school: certificate type" do
+                         
+    one = secondary_schools(:school1)        
+    assert one.invalid?
+    assert_equal "Invalid",one.errors[:certificate].join('; ')
   end
 end
