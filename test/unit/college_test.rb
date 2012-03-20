@@ -52,11 +52,5 @@ class CollegeTest < ActiveSupport::TestCase
     assert one.invalid?,"Invalid GPA"
   end
   
-  test "college: mobile format" do
-    
-    one = colleges(:one)
-    one.language="urdu"          
-    assert one.invalid?
-    assert_equal "Invalid Language",one.errors[:language].join('; ')
-  end
+
 end
