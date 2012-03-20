@@ -6,7 +6,8 @@ class GuardianTest < ActiveSupport::TestCase
   
   test "should create guardian" do
     guardian = Guardian.new
-    guardian = guardians(:good)
+    guardian = guardians(:good2)
+    guardian.email="validemail@email.com"
     assert guardian.save
   end
 
@@ -16,7 +17,8 @@ class GuardianTest < ActiveSupport::TestCase
   end
 
   test "should update guardian" do
-     guardian = guardians(:good)
+     guardian = guardians(:good2)
+     guardian.email="validemail@email.com"
      assert guardian.update_attributes(:first_name => 'any')
   end
   
@@ -90,8 +92,8 @@ class GuardianTest < ActiveSupport::TestCase
   #############################mobile##########################################
   test "is mobile format valid?" do
                      
-    assert @guardian1.invalid?
-    assert_equal "Invalid Number",@guardian1.errors[:mobile].join('; ')
+    assert @guardian2.invalid?
+    assert_equal "Invalid Number",@guardian2.errors[:mobile].join('; ')
   end
   
   test "mobile must exist if phone empty" do
@@ -99,18 +101,18 @@ class GuardianTest < ActiveSupport::TestCase
     good.telephone=nil
     good.mobile=nil
     assert good.invalid?                      
-    assert_equal "can't be blank",good.errors[:phone].join('; ')
+    assert_equal "can't be blank", good.errors[:mobile].join('; ')
   end
    ##############################occupation##############################################
   test "business occupation should be alphbats" do
-                                  
-    assert_equal "Invalid Number",@guardian1.errors[:ocupation].join('; ')
+    assert @guardian1.invalid?                              
+    assert_equal "occupation contains non alphabetical characters",@guardian1.errors[:occupation].join('; ')
   end
   
   ######################business telephone###################################
   test "business telephone valid" do
-    assert @guardian1.invalid?
-    assert_equal "Invalid Number",@guardian1.errors[:business_telephone].join('; ')
+    assert @guardian2.invalid?
+    assert_equal "Invalid Number",@guardian2.errors[:business_telephone].join('; ')
   end
   
   test "business phone must exist if email empty" do
@@ -150,9 +152,10 @@ class GuardianTest < ActiveSupport::TestCase
     end   
   end  
   
-  test "applicant's country of issuance should be a valid place" do
-    good = guardians(:good)          
-    good.financial="anything"
+  test "applicant's financial status should be yes or no" do
+    good = guardians(:badFinancial)          
+    #good.financial="anything"
+    assert good.invalid?
     assert_equal "is not included in the list",good.errors[:financial].join('; ')                     
   end
 end

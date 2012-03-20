@@ -5,6 +5,8 @@ good:
   intended_major: Computer
   toefl_test_results: 123
   toefl_test_date: 2012-02-23
+  semester_id: 1 
+  program_id: 1
 
 info1:
   intended_major: 999()i

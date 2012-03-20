@@ -48,14 +48,14 @@ test "admission information attributes must not be empty" do
   test "admission info intended major should be alphbats" do
     info1 = admission_informations(:info1)
     assert info1.invalid?
-    assert_equal "Invalid Input",info1.errors[:intended_major].join('; ')
+    assert_equal "intended_major contains non alphabetical characters",info1.errors[:intended_major].join('; ')
   end
  
  ####################toefl_test_results################################ 
   test "admission info toefl results should be numbers" do
     info1 = admission_informations(:info1)
     assert info1.invalid?
-    assert_equal "Invalid Input",info1.errors[:toefl_test_results].join('; ')
+    assert_equal "Invalid Number",info1.errors[:toefl_test_results].join('; ')
 
   end
 

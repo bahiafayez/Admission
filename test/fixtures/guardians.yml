@@ -14,6 +14,37 @@ good:
   business_address: address street
   applicant_id: 3
 
+good2:
+  first_name: Ahmed
+  middle_name: Mohamed
+  last_name: alaa
+  address: home address street
+  telephone: 1231221
+  mobile: 0121231123
+  occupation: Doctor
+  company_name: Clinic
+  business_telephone: 222112123
+  email: MyString
+  fax: 222112123
+  business_address: address street
+  financial: true
+  applicant_id: 3
+
+badFinancial:
+  first_name: Ahmed
+  middle_name: Mohamed
+  last_name: alaa
+  address: home address street
+  telephone: 1231221
+  mobile: 0121231123
+  occupation: Doctor
+  company_name: Clinic
+  business_telephone: 222112123
+  email: MyString
+  fax: 222112123
+  business_address: address street
+  applicant_id: 3
+  financial: nothing
   
 guardian1:
   first_name: Ahmed
