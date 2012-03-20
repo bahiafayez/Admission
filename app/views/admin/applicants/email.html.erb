@@ -1,0 +1,10 @@
+<%= form_tag "/admin/applicants/#{app.id}/sendemail" do %>
+
+    	<b><%= label_tag 'Subject' %></b><br/><br/>
+    	<%= text_field_tag :subject %><br/><br/>
+    	<b><%= label_tag 'Body' %></b><br/><br/>
+        <%= text_area_tag :body , nil, :rows => 15, :cols => 25 %><br/><br/>
+        
+        <%= submit_tag "Send" %>
+
+<% end %>

@@ -8,6 +8,31 @@ ActiveAdmin.register Applicant do
    link_to "Reject", "/admin/applicants/#{applicant.id}/reject"
  end
  
+ action_item only:[:show] do
+   link_to "Download PDF", admin_applicant_path(applicant, :format => "pdf")
+ end
+ 
+ action_item only:[:show] do
+   link_to "Email Applicant", "/admin/applicants/#{applicant.id}/email"
+ end
+ 
+ controller do
+  def show
+    @applicant = Applicant.find(params[:id])
+    respond_to do |format|
+      format.html
+      format.pdf {
+        html = render_to_string( :action => "show.html.erb")
+        kit = PDFKit.new(html, :orientation => 'Landscape')
+        kit.stylesheets << "#{Rails.root}/public/stylesheets/style3.css"
+        
+        send_data(kit.to_pdf, :filename => "labels.pdf", :type => 'application/pdf')
+        return # to avoid double render call
+      }
+    end
+  end
+end
+ 
   member_action :saveaccept, :method =>:put do
       applicant = Applicant.find(params[:id])
       applicant.notes=params[:applicant][:notes]  
@@ -70,6 +95,19 @@ ActiveAdmin.register Applicant do
       end
   end
 
+  member_action :email do
+      applicant = Applicant.find(params[:id])
+      @app= applicant
+  end
+  
+   member_action :sendemail, :method =>:post do
+      @applicant = Applicant.find(params[:id])
+      @subject=params[:subject]
+      @body=params[:body]
+      ApplicationNotifier.email(@applicant.user,@subject, @body).deliver
+      redirect_to "/admin/applicants/#{params[:id]}", :notice => "Email sent"
+   
+  end
   
   scope :all, :default => true
   scope :just_created do |applicants|

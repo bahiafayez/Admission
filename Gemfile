@@ -16,6 +16,7 @@ gem "bcrypt-ruby", :require => "bcrypt"
 gem 'kaminari'
 gem 'client_side_validations'
 gem 'pdfkit'
+gem 'wicked_pdf'
 gem 'prawn'
 gem 'prawn_rails'
 gem 'simple_form'

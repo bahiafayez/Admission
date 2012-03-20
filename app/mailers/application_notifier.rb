@@ -25,6 +25,15 @@ class ApplicationNotifier < ActionMailer::Base
     attachments["#{user.applicant.first_name}-Application.pdf"] = email
   end
   
+  def email(user, subject, body)
+    @greeting = "Dear #{user.applicant.first_name}"
+    @name = user.applicant.first_name
+    @body=body
+    mail to: user.email, subject: subject
+    
+    #attachments["#{user.applicant.first_name}-Application.pdf"] = email
+  end
+  
   def reason(user)
     #@greeting = "Hi"
     if user.applicant.status== "Approved"

@@ -8,3 +8,7 @@ PDFKit.configure do |config|
   
   
 end  
+
+WICKED_PDF = {
+:exe_path => '/bin'
+}
