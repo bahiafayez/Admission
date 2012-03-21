@@ -14,3 +14,9 @@ good:
   email: good@mail.com
   password_hash: MyString
   #pasword_salt: MyString
+
+good1:
+  email: good@mail.com
+  password_hash: MyString
+  #pasword_salt: MyString
+  

@@ -30,12 +30,13 @@ class UserTest < ActiveSupport::TestCase
      assert_equal "Invalid E-mail",one.errors[:email].join('; ')
   end
   
-  #test "user email unique" do
-                         
-  #   good= users(:good) 
-  #   assert !good.save
-  #   assert_equal 'email has already taken', good.errors[:email]
-  #end
+  
+  test "user email must be unique" do
+    
+    one = users(:good1) 
+    assert one.invalid?
+    assert_equal "email has already taken", one.errors[:email].join('; ')
+  end
   
   
   
