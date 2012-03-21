@@ -1,11 +1,16 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  email: MyString
+  email: asds
   password_hash: MyString
   #pasword_salt: MyString
 
 two:
   email: MyString
+  password_hash: MyString
+  #pasword_salt: MyString
+
+good:
+  email: good@mail.com
   password_hash: MyString
   #pasword_salt: MyString
