@@ -15,19 +15,20 @@
 		</div>
 		<% end %> -->
 		<p>
-			<%= f.label :email %>
+			<%= f.label :email%> <%= mark_required(@user, :email) %>
+			<!--<%= image_tag ('required-star.gif'),{:height => 9, :width => 10, :class=>'required'} %>-->
 			<br />
-			<%= f.text_field :email, {:class => 'span3', :placeholder => "example@example.com"}%>
+			<%= f.text_field :email, {:class => 'span2', :placeholder => "example@example.com"}%>
 		</p>
 		<p>
-			<%= f.label :password %>
+			<%= f.label :password %><%= image_tag ('required-star.gif'),{:height => 9, :width => 10, :class=>'required'} %>
 			<br />
-			<%= f.password_field :password, {:class => 'span3'}  %>
+			<%= f.password_field :password, {:class => 'span2'}  %>
 		</p>
 		<p>
-			<%= f.label :password_confirmation %>
+			<%= f.label :password_confirmation, "Confirm Passwrod" %><%= image_tag ('required-star.gif'),{:height => 9, :width => 10, :class=>'required'} %>
 			<br />
-			<%= f.password_field :password_confirmation, {:class => 'span3'} %>
+			<%= f.password_field :password_confirmation, {:class => 'span2'} %>
 		</p>
 		<p>
 			<%= f.submit :class => 'btn'%>
