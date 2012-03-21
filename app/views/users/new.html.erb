@@ -17,6 +17,7 @@
 		<p>
 			<%= f.label :email%> <%= mark_required(@user, :email) %>
 			<!--<%= image_tag ('required-star.gif'),{:height => 9, :width => 10, :class=>'required'} %>-->
+
 			<br />
 			<%= f.text_field :email, {:class => 'span2', :placeholder => "example@example.com"}%>
 		</p>

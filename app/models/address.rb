@@ -8,7 +8,10 @@ class Address < ActiveRecord::Base
   validate :a_number_present #either telephone or mobile must be present
   #validates_uniqueness_of :email, :case_sensitive => false, :message => "email has already taken"
 
-
+  validates_length_of :address, :maximum => 100
+  validates_length_of :fax, :maximum => 20
+  validates_length_of :mobile, :maximum => 20
+  validates_length_of :telephone, :maximum => 20
   private
    
   def a_number_present 

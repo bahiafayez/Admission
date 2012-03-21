@@ -12,27 +12,13 @@ class WorkTest < ActiveSupport::TestCase
       assert work.errors[:tasks].any?
     end
     
-   test "work: attended_from" do
-    one = works(:one)
-    one.worked_from="date1"
-    assert one.invalid?                      
-    assert_equal "is not a valid date",one.errors[:worked_from].join('; ')
-  end
-  
-  test "work: attended_to" do
-    one = works(:one)
-    one.worked_from="date1"
-    assert one.invalid?                      
-    assert_equal "is not a valid date",one.errors[:worked_from].join('; ')
-  end
-  
+
   #######################tasks##########################3
   test "work: tasks length" do
                      
     one = works(:one)          
-    if one.tasks.length>500
-      flunk("tasks more than 500 charchters")
-    end
+    assert one.invalid?                    
+    assert_equal "is too long (maximum is 500 characters)",one.errors[:tasks].join('; ')
       
   end
   ####################employer#######################
@@ -40,9 +26,7 @@ class WorkTest < ActiveSupport::TestCase
                      
    one = works(:one)          
     one.employer="Nile university Nile university Nile university"
-    if one.employer.length>30
-      flunk("employer more than 30 charchters")
-    end
-      
-  end
+     assert one.invalid?                    
+      assert_equal "is too long (maximum is 30 characters)",one.errors[:employer].join('; ')
+   end   
 end

@@ -35,10 +35,9 @@ class AddressTest < ActiveSupport::TestCase
   
   test "address: address length" do
                      
-    address2 = addresses(:address)          
-    if address2.address.length>100
-      flunk("Address more than 100 charchters")
-    end
+    address2 = addresses(:bad)
+    assert address2.invalid?                    
+    assert_equal "is too long (maximum is 100 characters)",address2.errors[:address].join('; ') 
       
   end
   
@@ -76,9 +75,10 @@ class AddressTest < ActiveSupport::TestCase
   end
   
   test "address: phone length" do
-    one = addresses(:address2)                       
+    one = addresses(:address2) 
+    one.telephone="212315412632609324760970176"                      
     assert one.invalid?
-    assert_equal "Invalid Number",one.errors[:telephone].join('; ')
+    assert_equal "is too long (maximum is 20 characters)",one.errors[:telephone].join('; ')
   end
   ########################mobile#################################
   test "address: mobile format" do
@@ -93,7 +93,7 @@ class AddressTest < ActiveSupport::TestCase
     one = addresses(:address2)
     one.mobile="212315412632609324760970176"
     assert one.invalid?
-    assert_equal "Invalid Number",one.errors[:mobile].join('; ')
+    assert_equal "is too long (maximum is 20 characters)",one.errors[:mobile].join('; ')
   end
   
   test "address: mobile must exist if telephone empty" do
@@ -115,7 +115,7 @@ class AddressTest < ActiveSupport::TestCase
     one = addresses(:address2)          
     one.fax="212315412632609324760970176"               
     assert one.invalid?
-    assert_equal "Invalid Number",one.errors[:fax].join('; ')
+    assert_equal "is too long (maximum is 20 characters)",one.errors[:fax].join('; ')
   end
   ##########################address type######################################
   test "address type" do

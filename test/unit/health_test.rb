@@ -2,9 +2,9 @@ require 'test_helper'
 
 class HealthTest < ActiveSupport::TestCase
   test "Applicant must not be empty" do
-    applicant = Health.new
-    assert applicant.invalid?
-    assert secondary_school.errors[:illness].any?
+    health = Health.new
+    assert health.invalid?
+    assert health.errors[:illness].any?
   
   end
 end
