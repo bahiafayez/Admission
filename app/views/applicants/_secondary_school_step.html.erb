@@ -3,49 +3,51 @@
 <div>
     <div class="field">
         <%= u.label :name , {:class => 'label'}%> &nbsp;
-    	<%= u.text_field :name ,{:class => 'span3'}%>
+    	<label class="tooltip1"><b><%= u.text_field :name ,{:class => 'span3'}%><%= mark_required(u.object, :name) %><span>Only alphabets are allowed</span></b></label>
     </div>
     <div class="field">
         <%= u.label :address , {:class => 'label'}%> &nbsp;
-    	<%=  u.text_area :address, :rows => 3, :cols => 5, :class => 'input-xlarge'%>
+    	<b><%=  u.text_area :address, :rows => 3, :cols => 5, :class => 'input-xlarge'%><%= mark_required(u.object, :address) %></b>
     </div>
 <div class="field">
 	<%= u.label :language , {:class => 'label'}%> &nbsp;
-	<%= u.text_field :language ,{:class => 'span3'}%>
+	<label class="tooltip1"><b><%= u.text_field :language ,{:class => 'span3'}%><%= mark_required(u.object, :language) %><span>Only alphabets are allowed</span></b></label>
 </div>
 <div class="field">
 	<%= u.label :attended_from , {:class => 'label'}%> &nbsp;
-	<%= u.date_select :attended_from , :start_year => Time.now.year - 30, :end_year => Time.now.year + 1 , :include_blank=> true %>
+	<b> <%= u.date_select :attended_from , {:start_year => Time.now.year - 30, :end_year => Time.now.year + 1 , :include_blank=> true},{:class=>'datespan'} %><%= mark_required(u.object, :attended_from) %></b>
 </div>
 <div class="field">
 	<%= u.label :attended_to , {:class => 'label'}%> &nbsp;
-	<%= u.date_select :attended_to , :start_year => Time.now.year - 30, :end_year => Time.now.year + 1 , :include_blank=> true %>
+	<b> <%= u.date_select :attended_to , {:start_year => Time.now.year - 30, :end_year => Time.now.year + 1 , :include_blank=> true},{:class=>'datespan'} %><%= mark_required(u.object, :attended_to) %></b>
 </div>
 
 <div class="field">
 	<%= u.label :certificate_type, {:class => 'label'}%> &nbsp;
-	<!-- <%= u.text_field :certificate_type ,{:class => 'span3'}%> -->
-	<%= u.select :certificate_type, options_for_select(["IG", "American Diploma", "GCSE", "Thanaweya Amma"],  u.object.certificate_type), :include_blank=> true %>
+	<label class="tooltip1"><b><%= u.select :certificate_type, options_for_select(["IG", "American Diploma", "GCSE", "Thanaweya Amma"],  u.object.certificate_type), :include_blank=> true %><%= mark_required(u.object, :certificate_type) %><span>Choose:IG/American Diploma/GCSE/Thanaweya Amma</span></b></label>
 </div>
 <div class="field">
 	<%= u.label :graduation_date , {:class => 'label'}%> &nbsp;
-	<%= u.date_select :graduation_date, :start_year => Time.now.year - 30, :end_year => Time.now.year + 1 , :include_blank=> true %>
+	<b> <%= u.date_select :graduation_date, {:start_year => Time.now.year - 30, :end_year => Time.now.year + 1 , :include_blank=> true},{:class=>'datespan'} %><%= mark_required(u.object, :graduation_date) %></b>
 </div>
 <div class="field">
-	<%= u.label :division , "If Sanaweya Amma Please specify division", {:class => 'label'}%> <br /><br /> &nbsp;
+	<%= u.label :division , "If Thanaweya Amma Please specify division", {:class => 'label'}%> <br />&nbsp;
 	<%= u.text_field :division ,{:class => 'span3'}%><br />
 </div>
 <div class="field">
 	<%= u.label :school_type , "Was your school", {:class => 'label'}%> &nbsp;
-	<%= u.select :school_type, options_for_select(["Private", "Public"], u.object.school_type) , :include_blank=> true %> <b>?</b>
+	<b><%= u.select :school_type, options_for_select(["Private", "Public"], u.object.school_type) , {:include_blank=> true},{:class=>'smallcellspan'} %> <b>?</b><%= mark_required(u.object, :school_type) %></b>
 </div>
-<%= u.link_to_remove "Remove school"%> 
+
+<br />
+<%= u.link_to_remove "Remove This School", :class=>'btn btn-info'%> 
 </div>
+<br />
 <% end %>
 
-<%= f.link_to_add "Add school", :secondary_schools %> 
-
-
+<%= f.link_to_add "Add Another School", :secondary_schools ,:class=>'btn btn-info'%> 
+<br />
+<br />
  
     
 

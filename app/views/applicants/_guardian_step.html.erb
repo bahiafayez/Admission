@@ -3,49 +3,49 @@
 <div>
     <div class="field">
 	<%= u.label :first_name , {:class => 'label'}%> &nbsp;
-	<%= u.text_field :first_name ,:width=>'10px', :size=>"20", :maxlength=>"20", :class => 'span3'%>
+	<label class="tooltip1"><b><%= u.text_field :first_name ,:width=>'10px', :size=>"20", :maxlength=>"20", :class => 'span3'%><%= mark_required(u.object, :first_name) %><span>Only alphapets are allowed</span></b></label>
 </div>
 <div class="field">
 	<%= u.label :middle_name, {:class => 'label'}%> &nbsp;
-	<%= u.text_field :middle_name ,{:class => 'span3'}%>
+    <label class="tooltip1"><b><%= u.text_field :middle_name ,{:class => 'span3'}%><%= mark_required(u.object, :middle_name) %><span>Only alphapets are allowed</span></b></label>
 </div>
 <div class="field">
 	<%= u.label :last_name , {:class => 'label'}%> &nbsp;
-	<%= u.text_field :last_name,{:class => 'span3'}%>
+    <label class="tooltip1"><b><%= u.text_field :last_name,{:class => 'span3'}%><%= mark_required(u.object, :last_name) %><span>Only alphapets are allowed</span></b></label>
 </div>
     <div class="field">
         <%= u.label :address , {:class => 'label'}%> &nbsp;
-    	<%=  u.text_area :address, :rows=>3, :cols => 5 , :class => 'input-xlarge'%>
+    	<b><%=  u.text_area :address, :rows=>3, :cols => 5 , :class => 'input-xlarge'%><%= mark_required(u.object, :address) %></b>
     </div>
     
    <div class="field">
         <%= u.label :telephone, "Telephone Number" , {:class => 'label'}%> &nbsp;
-    	<%=  u.telephone_field :telephone ,{:class => 'span3'}%>
+    	<label class="tooltip1"><b><%=  u.telephone_field :telephone ,{:class => 'span3'}%><%= mark_required(u.object, :telephone) %><span>Only numbers are allowed</span></b></label>
     </div>
 <div class="field">
 	<%= u.label :mobile, "Mobile Number" , {:class => 'label'}%> &nbsp;
-	<%= u.telephone_field :mobile ,{:class => 'span3'}%>
+	<label class="tooltip1"><b><%= u.telephone_field :mobile ,{:class => 'span3'}%><%= mark_required(u.object, :mobile) %><span>Only numbers are allowed</span></b></label>
 </div>
 
 <div class="field">
         <%= u.label :occupation , {:class => 'label'}%> &nbsp;
-    	<%=  u.text_field :occupation ,{:class => 'span3'}%>
+    <label class="tooltip1"><b><%=  u.text_field :occupation ,{:class => 'span3'}%><%= mark_required(u.object, :occupation) %><span>Only alphabets are allowed</span></b></label>
     </div>
 <div class="field">
 	<%= u.label :company_name , {:class => 'label'}%> &nbsp;
-	<%= u.text_field :company_name ,{:class => 'span3'}%>
+	<label class="tooltip1"><b><%= u.text_field :company_name ,{:class => 'span3'}%><%= mark_required(u.object, :company_name) %><span>Only alphabets are allowed</span></b></label>
 </div>
 <div class="field">
 	<%= u.label :business_telephone , {:class => 'label'}%> &nbsp;
-	<%= u.telephone_field :business_telephone ,{:class => 'span3'}%>
+	<label class="tooltip1"><b><%= u.telephone_field :business_telephone ,{:class => 'span3'}%><%= mark_required(u.object, :business_telephone) %><span>Only numbers are allowed</span></b></label>
 </div>
 <div class="field">
 	<%= u.label :email, "E-mail" , {:class => 'label'}%> &nbsp;
-	<%= u.email_field :email ,{:class => 'span3'}%>
+	<b><%= u.email_field :email ,{:class => 'span3', :placeholder => "example@example.com"}%><%= mark_required(u.object, :email) %></b>
 </div>
 <div class="field">
 	<%= u.label :fax, "Fax Number", {:class => 'label'}%> &nbsp;
-	<%= u.telephone_field :fax ,{:class => 'span3'}%>
+	<label class="tooltip1"><b><%= u.telephone_field :fax ,{:class => 'span3'}%><%= mark_required(u.object, :fax) %><span>Only numbers are allowed</span></b></label>
 </div>
  
 <div class="field">
@@ -56,7 +56,7 @@
 
 <div class="field">
 	<%= u.label :relation , {:class => 'label'}%> &nbsp;
-	<%= u.select :relation, options_for_select(["Other","Mother", "Father"], u.object.relation3),{ :include_blank=> true} , {:class=> "relation"}  %>
+	<%= u.select :relation, options_for_select(["Other","Mother", "Father"], u.object.relation3),{ :include_blank=> true} , {:class=> "relation", :style=>'width:90px;'}  %>
 </div>
 <!-- If other will enable a text field to write in -->
 
@@ -70,12 +70,12 @@
 
 <div class="field">
 	<%= u.label :financial , "Will that person be responsible for your financial expenses", {:class => 'label'}%> 
-	<br /> <br /> &nbsp;
-	<%= u.select :financial, options_for_select([["Yes",true],["No",false]], u.object.financial) , :include_blank=> true %>
+	<br /> &nbsp;
+	<label class="tooltip1"><b><%= u.select :financial, options_for_select([["Yes",true],["No",false]], u.object.financial) , {:include_blank=> true},{:class=>'smallcellspan'}  %><%= mark_required(u.object, :financial) %><span>Only numbers are allowed</span></b></label>
 </div>
 </div>
 <% end %>
-
+<br />
 
     
   

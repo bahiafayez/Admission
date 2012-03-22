@@ -34,7 +34,12 @@ Admission::Application.routes.draw do
     member do
       get 'instance'
     end
+    collection do
+      get 'update_major_select'
+    end
   end
+  
+  #match 'applicants/update_major_select/:id', :controller=>'applicants', :action => 'update_major_select'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

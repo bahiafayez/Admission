@@ -14,3 +14,26 @@
 //= require jquery_ujs
 //= require_tree .
 //= require rails.validations
+//= require bootstrap.min.js
+//= require bootstrap-tooltip.js
+//= require bootstrap-popover.js
+//= require jquery.selectboxes.js
+
+// $(function() {
+  // return $("#applicant_admission_information_attributes_program_id").change(function() {
+    // var url;
+    // url = "/applicants/update_major_select?program_id=" + $(this).val();
+    // $("#applicant_admission_information_attributes_major_id").removeOption(/./);
+    // return $.getJSON(url, function(data) {
+      // //console.log(data);
+      // for (var key in data) {
+		    // console.log(key + ' => ' + data[key]);
+		    // // key is key
+		    // // value is p[key]
+		// }
+      // return $("#applicant_admission_information_attributes_major_id").addOption(data, false);
+    // });
+  // });
+// });
+         
+  

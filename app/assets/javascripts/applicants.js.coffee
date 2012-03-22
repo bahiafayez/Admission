@@ -82,7 +82,27 @@ changeGender = ->
       $('#applicant_military_status').children('option').eq(1).attr('disabled',true)
       $('#applicant_military_status').val("Exempted").attr("selected", "selected")
 
-$ ->             
+# changeMajor = ->
+  # #console.log("in here")
+    # console.log $(this).val()
+    # url = undefined
+    # url = "/applicants/update_major_select?program_id=" + $(this).val()
+    # $("#applicant_admission_information_attributes_major_id").removeOption /./
+    # $.getJSON url, (data) ->
+      # for key of data
+        # console.log key + " => " + data[key]
+      # $("#applicant_admission_information_attributes_major_id").addOption data, false
+
+$ ->
+  $("#applicant_admission_information_attributes_program_id").change ->
+    url = undefined
+    url = "/applicants/update_major_select?program_id=" + $(this).val()
+    $("#applicant_admission_information_attributes_major_id").removeOption /./
+    $.getJSON url, (data) ->
+      # for key of data
+        # console.log key + " => " + data[key]
+      $("#applicant_admission_information_attributes_major_id").addOption data, false
+        
   $('#applicantbutton').click ->
     console.log "I was Clicked"
     #$('#applicantform').show()
@@ -229,6 +249,7 @@ $(document).ready ->
   $('#other').hide()
   $('#fieldsofstudy').hide()
   $('#other2').hide()
+  #$("#applicant_admission_information_attributes_program_id").change(changeMajor).trigger('change')
   $('#applicant_gender').change(changeGender).trigger('change')
   $('#applicant_addresses_attributes_0_address_type').change(hideAddress1).trigger('change')
   $('#applicant_addresses_attributes_1_address_type').change(hideAddress0).trigger('change')

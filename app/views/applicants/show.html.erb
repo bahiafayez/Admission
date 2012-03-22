@@ -133,7 +133,11 @@
 			</tr>
 			<tr>
 				<td><b>Intended Major</b></td>
-				<td><%= @applicant.admission_information.intended_major %></td>
+				<td>
+					<% if @applicant.admission_information.major!= nil %> 
+					<%= @applicant.admission_information.major.name %>
+					<% end %>
+				</td>
 			</tr>
 			<tr>
 				<td><b>Toefl Test Date</b></td>

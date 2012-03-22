@@ -2,14 +2,14 @@
 #validates :semester_id, :program_id, :intended_major, :toefl_test_results, :toefl_test_date
 
 good:
-  intended_major: Computer
+  major_id: 1
   toefl_test_results: 123
   toefl_test_date: 2012-02-23
   semester_id: 1 
   program_id: 1
 
 info1:
-  intended_major: 999()i
+  major_id: 999()i
   toefl_test_results: A123
   toefl_test_date: 2012-02-23
   

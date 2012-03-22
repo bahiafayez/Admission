@@ -3,25 +3,26 @@
 <div>
     <div class="field">
         <%= u.label :address, {:class => 'label'}%> &nbsp;
-    	<%= u.text_area :address , :cols=> 20, :rows=>5,:class => 'input-xlarge'%>
+    	<b> <%= u.text_area :address , :cols=> 20, :rows=>5,:class => 'input-xlarge'%><%= mark_required(u.object, :address) %></b>
     </div>
     <div class="field">
         <%= u.label :telephone, "Telephone Number", {:class => 'label'}%> &nbsp;
-    	<%=  u.telephone_field :telephone,{:class => 'span3'}%>
+    	<label class="tooltip1"><b><%=  u.telephone_field :telephone,{:class => 'span3'}%><%= mark_required(u.object, :address) %><span>Only numbers are allowed</span></b></label>
     </div>
 <div class="field">
 	<%= u.label :mobile, "Mobile Number" ,{:class => 'label'}%> &nbsp;
-	<%= u.telephone_field :mobile,{:class => 'span3'}%>
+	<label class="tooltip1"><b><%= u.telephone_field :mobile,{:class => 'span3'}%><%= mark_required(u.object, :mobile) %><span>Only numbers are allowed</span></b></label>
 </div>
 <div class="field">
 	<%= u.label :fax, "Fax Number", {:class => 'label'}%> &nbsp;
-	<%= u.telephone_field :fax,{:class => 'span3'}%>
+	<label class="tooltip1"><b><%= u.telephone_field :fax,{:class => 'span3'}%><%= mark_required(u.object, :fax) %><span>Only numbers are allowed</span></b></label>
 </div>
 
 <div class="field">
 	<%= u.label :address_type,{:class => 'label'}%> &nbsp;
-	<%= u.select :address_type, options_for_select(["Home Address", "Mailing Address", "Both"], u.object.address_type) , :include_blank=> true%>
+	<b><%= u.select :address_type, options_for_select(["Home Address", "Mailing Address", "Both"], u.object.address_type) , :include_blank=> true%><%= mark_required(u.object, :address_type) %></b>
 </div>
 </div>
 
 <% end %>
+<br />

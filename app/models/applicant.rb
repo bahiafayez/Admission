@@ -16,10 +16,11 @@ class Applicant < ActiveRecord::Base
   has_one :uni_related_info, :dependent => :destroy
   
   before_validation :atleast_one
-  validates :first_name, :middle_name,:last_name,:date_of_birth, :place_of_birth, :gender,:military_status, :transportation,  :presence => true
+  validates :first_name, :middle_name,:last_name,:date_of_birth, :place_of_birth, :gender,:military_status, :transportation, :presence => true
   validates :first_name, :format => {:with => /^[a-zA-Z]+$/, :message => "first name contains non alphabetical characters"}
   validates :middle_name,  :format => {:with => /^[a-zA-Z]+$/, :message => "middle name contains non alphabetical characters"}
   validates :last_name, :format => {:with => /^[a-zA-Z]+$/, :message => "last name contains non alphabetical characters"}
+  validates :place_of_birth, :format => {:with => /^[a-zA-Z]+$/, :message => "Place of Birth contains non alphabetical characters"}
   
   #validates_attachment_presence :photo
   #validates_attachment_content_type :photo, :content_type=>['image/jpeg', 'image/png', 'image/gif'], :message => 'Image must be of type jpeg, png or gif'
