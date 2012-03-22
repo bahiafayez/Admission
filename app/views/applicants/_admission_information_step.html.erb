@@ -9,10 +9,11 @@
         <%= u.label :program_id , {:class => 'label'}%> &nbsp;
     	<%= u.collection_select :program_id, Program.where(:status => true), :id, :name , {:include_blank=> true}, {:class=>'span4'}%>
     </div>
-<div class="field">
-	<%= u.label :intended_major , {:class => 'label'}%> &nbsp;
-	<label class="tooltip1"><b><%= u.text_field :intended_major,{:class => 'span3'}%><%= mark_required(u.object, :intended_major) %><span>Only numbers are allowed</span></b></label>
-</div>
+    <div class="field" id="programMajors">
+        <%= u.label :major_id , {:class => 'label'}%> &nbsp;
+        <%= u.collection_select :major_id , Major.where(:status => true, :program_id => u.object.program_id ), :id, :name , {:include_blank=> true}, {:class=>'span4'}%>
+    </div>
+
 <div class="field">
 	<%= u.label :toefl_test_results, {:class => 'label'}%> &nbsp;
 	<%= u.text_field :toefl_test_results,{:class => 'span3'}%>

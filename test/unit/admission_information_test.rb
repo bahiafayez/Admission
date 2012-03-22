@@ -16,7 +16,7 @@ class AdmissionInformationTest < ActiveSupport::TestCase
 
   test "should update admission_information" do
      admission_information = admission_informations(:good)
-     assert admission_information.update_attributes(:intended_major => 'any')
+     assert admission_information.update_attributes(:major_id => 3 )
   end
   
   test "should destroy admission_information" do
@@ -32,8 +32,7 @@ test "admission information attributes must not be empty" do
     
     assert admission_information.errors[:semester_id].any?
     assert admission_information.errors[:program_id].any?
-    
-    assert admission_information.errors[:intended_major].any?
+    assert admission_information.errors[:major_id].any?
     assert admission_information.errors[:toefl_test_results].any?
     assert admission_information.errors[:toefl_test_date].any?
     
@@ -45,11 +44,11 @@ test "admission information attributes must not be empty" do
   
   ######################intended major############################
  
-  test "admission info intended major should be alphbats" do
-    info1 = admission_informations(:info1)
-    assert info1.invalid?
-    assert_equal "intended_major contains non alphabetical characters",info1.errors[:intended_major].join('; ')
-  end
+  # test "admission info intended major should be alphbats" do
+    # info1 = admission_informations(:info1)
+    # assert info1.invalid?
+    # assert_equal "intended_major contains non alphabetical characters",info1.errors[:intended_major].join('; ')
+  # end
  
  ####################toefl_test_results################################ 
   test "admission info toefl results should be numbers" do

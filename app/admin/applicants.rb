@@ -227,11 +227,11 @@ end
     attributes_table_for applicant.admission_information do
       row :semester_id
       #row :applying_to
-      row :intended_major
       row :toefl_test_results
       row :toefl_test_date
       row :proficiency_test
       row :program_id
+      row :major_id
       row :applicant_id
     end
   end

@@ -445,5 +445,15 @@ class ApplicantsController < ApplicationController
     end
   end
   
-  
+  def update_major_select
+    val = params[:program_id]
+    #Use val to find records
+    logger.debug "val isssssssssssssssss"
+    logger.debug val
+    majors = Major.where(:program_id=>params[:program_id] , :status => true).order(:name) unless params[:program_id].blank?
+    #render :partial => "majors", :locals => { :majors => majors }
+
+    options = majors.collect{|x| "\"#{x.id}\" : \"#{x.name}\""}    
+    render json: "{#{options.join(",")}}" 
+  end
 end

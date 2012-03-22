@@ -45,7 +45,7 @@ class ApplicantTest < ActiveSupport::TestCase
     assert_equal ["can't be blank", "middle name contains non alphabetical characters"], applicant.errors[:middle_name]
     assert_equal ["can't be blank", "last name contains non alphabetical characters"], applicant.errors[:last_name]
     assert_equal ["can't be blank"], applicant.errors[:date_of_birth]
-    assert_equal ["can't be blank"], applicant.errors[:place_of_birth]
+    assert_equal ["can't be blank", "Place of Birth contains non alphabetical characters"], applicant.errors[:place_of_birth]
     assert_equal ["can't be blank","is not included in the list"], applicant.errors[:gender]
     assert_equal ["can't be blank","is not included in the list"], applicant.errors[:transportation]
     assert_equal ["can't be blank","is not included in the list"], applicant.errors[:military_status]
