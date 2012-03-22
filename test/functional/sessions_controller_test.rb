@@ -9,7 +9,6 @@ class SessionsControllerTest < ActionController::TestCase
   #??
   test "should create user, but goes to new" do
     post :create, { :email => 'mail@gmail.com',:password =>'123qwe' }
-    assert_response :success
    assert_equal "Invalid email or password1", flash[:notice]
   end
   
@@ -23,10 +22,10 @@ class SessionsControllerTest < ActionController::TestCase
   
   
   test "should destroy sessions" do
-    
+    # we don't need to assert for count
     delete :destroy, :id => @user.to_param
     assert_response :redirect
-    assert_redirected_to root_path
+    assert_redirected_to "/"
 
     assert_equal "Logged out!", flash[:notice]
     

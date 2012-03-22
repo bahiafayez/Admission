@@ -196,6 +196,8 @@ class ApplicantTest < ActiveSupport::TestCase
     assert_equal "is not included in the list", @applicant2.errors[:transportation].join('; ')
   end 
   
+  
+  
 
 
   

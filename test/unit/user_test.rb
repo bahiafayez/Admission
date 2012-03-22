@@ -10,6 +10,28 @@ class UserTest < ActiveSupport::TestCase
 
    end
    
+   test "should create user" do
+    user = User.new
+    user = users(:good)
+    assert user.save
+  end
+
+  test "should find user" do
+    user_id = users(:good).id
+    assert_nothing_raised { User.find(user_id) }
+  end
+
+  test "should update user" do
+     user = users(:good)
+     assert user.update_attributes(:email => 'Donald@mail.com')
+  end
+  
+  test "should destroy user" do
+    user = users(:good)
+    user.destroy
+    assert_raise(ActiveRecord::RecordNotFound) { User.find(user.id) }
+  end
+  
    test "users: password max length" do
     good = users(:good) 
     good.password= "123aaaaaaaaaaassssssssssssssssssssssssss111111111111111"           

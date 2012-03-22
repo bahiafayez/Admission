@@ -27,7 +27,7 @@ class UsersControllerTest < ActionController::TestCase
   test "should create user" do
     get :create, :id => @user.to_param
     @request.session[:user_id] = users("one").id
-   
+    
     assert_difference('User.count') do
     post :create, :user => { :email => 'somemail@mail.com',:password =>'123bob' }
     end
