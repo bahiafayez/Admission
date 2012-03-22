@@ -3,7 +3,7 @@
 <div>
     <div class="field">
         <%= u.label :address, {:class => 'label'}%> &nbsp;
-    	<%= u.text_area :address , :cols=> 20, :rows=>5,:class => 'input-xlarge'%>
+    	<label class="tooltip1"><b><%= u.text_area :address , :cols=> 20, :rows=>5,:class => 'input-xlarge'%><%= mark_required(@applicant, :address) %><span>Only alphapets are allowed</span></b></label>
     </div>
     <div class="field">
         <%= u.label :telephone, "Telephone Number", {:class => 'label'}%> &nbsp;
