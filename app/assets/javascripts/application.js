@@ -14,3 +14,9 @@
 //= require jquery_ujs
 //= require_tree .
 //= require rails.validations
+//= require bootstrap.min.js
+//= require bootstrap-tooltip.js
+//= require bootstrap-popover.js
+
+         
+  

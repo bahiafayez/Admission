@@ -82,7 +82,7 @@ changeGender = ->
       $('#applicant_military_status').children('option').eq(1).attr('disabled',true)
       $('#applicant_military_status').val("Exempted").attr("selected", "selected")
 
-$ ->             
+$ ->
   $('#applicantbutton').click ->
     console.log "I was Clicked"
     #$('#applicantform').show()

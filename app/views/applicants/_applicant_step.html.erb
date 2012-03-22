@@ -1,60 +1,63 @@
-<p align="center" style="font-size: 14px; color:#999999;">Applicant Information</p>
- <div class="field"> 
+<p align="center" style="font-size: 14px; color:#999999;">
+	Applicant Information
+</p>
+<div class="field">
 	<%= f.label :photo, {:class => 'label'}%> &nbsp;
-	<% if @applicant.photo.file? %>	
+	<% if @applicant.photo.file? %>
 	<%= image_tag @applicant.photo.url(:medium) %> &nbsp; &nbsp; &nbsp;
-	<% end %><br />
+	<% end %>
+	<br />
 	<%= f.file_field :photo, :accept => 'image/png,image/gif,image/jpeg' ,:class=>'upload'%>
 </div>
-<div class="field">
-	<%= f.label :first_name, {:class => 'label'}%> &nbsp;
-	<%= f.text_field :first_name ,{:class => 'span3'}%>  
+<div class="field" >
+	<label class="tooltip1"><b><%= f.label :first_name, {:class => 'label'}%><span>Only alphapets are allowed</span></b></label>&nbsp;
+	<%= f.text_field :first_name ,{:class => 'span3',}%><%= mark_required(@applicant, :first_name) %>
 </div>
 <div class="field">
-	<%= f.label :middle_name, {:class => 'label'}%> &nbsp;
-	<%= f.text_field :middle_name,{:class => 'span3'}%>
+	<label class="tooltip1"><b><%= f.label :middle_name, {:class => 'label'}%><span>Only alphapets are allowed</span></b></label> &nbsp;
+    <%= f.text_field :middle_name,{:class => 'span3'}%><%= mark_required(@applicant, :middle_name) %>
 </div>
 <div class="field">
-	<%= f.label :last_name, {:class => 'label'}%> &nbsp;
-	<%= f.text_field :last_name,{:class => 'span3'}%>
+	<label class="tooltip1"><b><%= f.label :last_name, {:class => 'label'}%><span>Only alphapets are allowed</span></b></label> &nbsp;
+	<%= f.text_field :last_name,{:class => 'span3'}%><%= mark_required(@applicant, :last_name) %>
 </div>
 <div class="field">
 	<%= f.label :date_of_birth, {:class => 'label'}%> &nbsp;
-	<%= f.date_select :date_of_birth, {:start_year => Time.now.year - 110, :end_year => Time.now.year - 10, :include_blank => true},{:class=>'datespan'} %>
+	<%= f.date_select :date_of_birth, {:start_year => Time.now.year - 25, :end_year => Time.now.year - 10, :include_blank => true},{:class=>'datespan'} %><%= mark_required(@applicant, :date_of_birth) %>
 </div>
 <div class="field">
-	<%= f.label :place_of_birth, {:class => 'label'}%> &nbsp;
-	<%= f.text_field :place_of_birth,{:class => 'span3'}%>
+	<label class="tooltip1"><b><%= f.label :place_of_birth, {:class => 'label'}%><span>Only alphapets are allowed</span></b></label> &nbsp;
+	<%= f.text_field :place_of_birth,{:class => 'span3'}%><%= mark_required(@applicant, :place_of_birth) %>
 </div>
 <div class="field">
 	<%= f.label :gender, {:class => 'label'}%> &nbsp;
-	<%= f.select :gender, options_for_select(["Male", "Female"], @applicant.gender) , {:include_blank=> true},{:class=>'smallcellspan'} %>
+	<%= f.select :gender, options_for_select(["Male", "Female"], @applicant.gender) , {:include_blank=> true},{:class=>'smallcellspan'} %><%= mark_required(@applicant, :gender) %>
 </div>
 <div class="field">
 	<%= f.label :military_status, {:class => 'label'}%> &nbsp;
-	<%= f.select :military_status, options_for_select(["Does not apply", "Exempted", "Completed", "Postponed"],  @applicant.military_status), {:include_blank=> true},{:class=>'smallcellspan'} %>
-</div>    
- 
+	<%= f.select :military_status, options_for_select(["Does not apply", "Exempted", "Completed", "Postponed"],  @applicant.military_status), {:include_blank=> true},{:style=>'width:125px'} %><%= mark_required(@applicant, :military_status) %>
+</div>
 <div class="field">
-	<%= f.label :national_id , "National ID", {:class => 'label'}%> &nbsp;
-	<%= f.text_field :national_id ,{:class => 'span3'}%>
+	<label class="tooltip1"><b><%= f.label :national_id , "National ID", {:class => 'label'}%><span>Only numbers are allowed</span></b></label> &nbsp;
+	<%= f.text_field :national_id ,{:class => 'span3'}%><%= mark_required(@applicant, :national_id) %>
 </div>
 <div class="field">
 	<%= f.label :national_id_expiry_date, {:class => 'label'}%> &nbsp;
-	<%= f.date_select :national_id_expiry_date, {:start_year => Time.now.year - 5, :end_year => Time.now.year + 10 , :include_blank => true},{:class=>'datespan'} %>
-</div>   <br />
+	<%= f.date_select :national_id_expiry_date, {:start_year => Time.now.year - 5, :end_year => Time.now.year + 10 , :include_blank => true},{:class=>'datespan'} %><%= mark_required(@applicant,  :national_id_expiry_date) %>
+</div>
+<br />
 <div class="field">
 	<%= f.label :passport_number, {:class => 'label'}%> &nbsp;
-	<%= f.text_field :passport_number,{:class => 'span3'}%>
-</div>  
+	<%= f.text_field :passport_number,{:class => 'span3'}%><%= mark_required(@applicant, :passport_number) %>
+</div>
 <div class="field">
 	<%= f.label :country_of_issuance, {:class => 'label'}%> &nbsp;
-	<%= f.country_select :country_of_issuance ,nil, {:include_blank => true},{:class=>'span4'} %>
+	<%= f.country_select :country_of_issuance ,nil, {:include_blank => true},{:class=>'span4'} %><%= mark_required(@applicant, :country_of_issuance) %>
 </div>
 <div class="field">
 	<%= f.label :passport_expiry_date, {:class => 'label'}%> &nbsp;
-	<%= f.date_select :passport_expiry_date , {:start_year => Time.now.year - 5, :end_year => Time.now.year + 30, :include_blank => true},{:class=>'datespan'} %>
-</div>     
+	<%= f.date_select :passport_expiry_date , {:start_year => Time.now.year - 5, :end_year => Time.now.year + 30, :include_blank => true},{:class=>'datespan'} %><%= mark_required(@applicant, :passport_expiry_date) %>
+</div>
 <div class="field">
 	<%= f.label :academic_honours, {:class => 'label'}%> &nbsp;
 	<%= f.text_area :academic_honours, :cols=> 20, :rows=> 10, :class => 'input-xlarge'%>
@@ -62,11 +65,9 @@
 <div class="field">
 	<%= f.label :extra_activities, {:class => 'label'}%> &nbsp;
 	<%= f.text_area :extra_activities, :cols=> 20, :rows=> 10,:class => 'input-xlarge'%>
-</div>    
+</div>
 <div class="field">
-
 	<%= f.label :transportation, {:class => 'label'}%> &nbsp;
-	<%= f.select :transportation, options_for_select(["Private", "Nu buses"], @applicant.transportation), {:include_blank => true},{:class=>'smallcellspan'}%>
-</div><br /> 
-   
-   
+	<%= f.select :transportation, options_for_select(["Private", "Nu buses"], @applicant.transportation), {:include_blank => true},{:class=>'smallcellspan'}%><%= mark_required(@applicant, :transportation) %>
+</div>
+<br />

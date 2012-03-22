@@ -22,12 +22,12 @@
 			<%= f.text_field :email, {:class => 'span2', :placeholder => "example@example.com"}%>
 		</p>
 		<p>
-			<%= f.label :password %><%= image_tag ('required-star.gif'),{:height => 9, :width => 10, :class=>'required'} %>
+			<%= f.label :password %><%= mark_required(@user, :password) %>
 			<br />
 			<%= f.password_field :password, {:class => 'span2'}  %>
 		</p>
 		<p>
-			<%= f.label :password_confirmation, "Confirm Passwrod" %><%= image_tag ('required-star.gif'),{:height => 9, :width => 10, :class=>'required'} %>
+			<%= f.label :password_confirmation, "Confirm Password" %><%= mark_required(@user, :password) %>
 			<br />
 			<%= f.password_field :password_confirmation, {:class => 'span2'} %>
 		</p>

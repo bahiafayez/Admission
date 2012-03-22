@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
   validates :password,
           :length => { :within => 6..40 }
   validates_presence_of :email
-  validates_uniqueness_of :email, :case_sensitive => false, :message => "email has already taken"
+  validates_uniqueness_of :email, :case_sensitive => false, :message => "Email has already taken"
   validates :email, :format => {:with => /\A[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]+\z/, :message => "Invalid E-mail"}
   
   accepts_nested_attributes_for :applicant
