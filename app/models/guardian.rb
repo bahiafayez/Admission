@@ -9,10 +9,10 @@ class Guardian < ActiveRecord::Base
   validates_inclusion_of :financial, :in => [true, false]
   #because can't use presence on boolean because false.blank? # returns true  
   
-  validates :first_name, :format => {:with => /^[a-zA-Z]+$/, :message => "first name contains non alphabetical characters"}
-  validates :middle_name,  :format => {:with => /^[a-zA-Z]+$/, :message => "middle name contains non alphabetical characters"}, :allow_blank => true
-  validates :last_name, :format => {:with => /^[a-zA-Z]+$/, :message => "last name contains non alphabetical characters"}
-  validates :occupation, :format => {:with => /^[a-zA-Z\s]+$/, :message => "occupation contains non alphabetical characters"}
+  validates :first_name, :format => {:with => /^[a-zA-Z]+$/, :message => "first name contains non alphabets"}
+  validates :middle_name,  :format => {:with => /^[a-zA-Z]+$/, :message => "middle name contains non alphabets"}, :allow_blank => true
+  validates :last_name, :format => {:with => /^[a-zA-Z]+$/, :message => "last name contains non alphabets"}
+  validates :occupation, :format => {:with => /^[a-zA-Z\s]+$/, :message => "occupation contains non alphabets"}
   
   validates_length_of :address, :maximum => 100
   validates_length_of :business_address, :maximum => 100

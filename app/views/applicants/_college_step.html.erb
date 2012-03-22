@@ -3,39 +3,39 @@
 <div>
     <div class="field">
         <%= u.label :name , {:class => 'label'}%> &nbsp;
-    	<%= u.text_field :name,{:class => 'span3'}%>  
+    	<label class="tooltip1"><b><%= u.text_field :name,{:class => 'span3'}%><%= mark_required(u.object, :name) %><span>Only alphabets are allowed</span></b></label>
     </div>
     <div class="field">
         <%= u.label :faculty , {:class => 'label'}%> &nbsp;
-    	<%=  u.text_field :faculty ,{:class => 'span3'}%>  
+    	<label class="tooltip1"><b><%=  u.text_field :faculty ,{:class => 'span3'}%>  <%= mark_required(u.object, :faculty) %><span>Only alphabets are allowed</span></b></label>
     </div>
 <div class="field">
 	<%= u.label :major , {:class => 'label'}%> &nbsp;
-	<%= u.text_field :major,{:class => 'span3'}%>  
+	<label class="tooltip1"><b><%= u.text_field :major,{:class => 'span3'}%><%= mark_required(u.object, :major) %><span>Only alphabets are allowed</span></b></label>  
 </div>
 <div class="field">
 	<%= u.label :city, {:class => 'label'}%> &nbsp;
-	<%= u.text_field :city ,{:class => 'span3'}%>  
+	<label class="tooltip1"><b><%= u.text_field :city ,{:class => 'span3'}%> <%= mark_required(u.object, :city) %><span>Only alphabets are allowed</span></b></label> 
 </div>
 <div class="field">
 	<%= u.label :country, {:class => 'label'}%> &nbsp;
-	<%= u.country_select :country ,nil, {:include_blank => true},{:class => 'span4'} %>  
+	<b><%= u.country_select :country ,nil, {:include_blank => true},{:class => 'span4'} %> <%= mark_required(u.object, :country) %></b>
 </div>
 <div class="field">
 	<%= u.label :attended_from , {:class => 'label'}%> &nbsp;
-	<%= u.date_select :attended_from,  {:start_year => Time.now.year - 30, :end_year => Time.now.year + 1 , :include_blank => true},{:class=>'datespan'} %>
+	<b><%= u.date_select :attended_from,  {:start_year => Time.now.year - 30, :end_year => Time.now.year + 1 , :include_blank => true},{:class=>'datespan'} %><%= mark_required(u.object, :attended_from) %></b>
 </div>
 <div class="field">
 	<%= u.label :attended_to, {:class => 'label'}%> &nbsp;
-	<%= u.date_select :attended_to, {:start_year => Time.now.year - 30, :end_year => Time.now.year + 1 , :include_blank => true},{:class=>'datespan'}  %>
+	<b><%= u.date_select :attended_to, {:start_year => Time.now.year - 30, :end_year => Time.now.year + 1 , :include_blank => true},{:class=>'datespan'}  %><%= mark_required(u.object, :attended_to) %></b>
 </div>
 <div class="field">
 	<%= u.label :language, {:class => 'label'}%> &nbsp;
-	<%= u.text_field :language ,{:class => 'span3'}%>  
+	<label class="tooltip1"><b><%= u.text_field :language ,{:class => 'span3'}%><%= mark_required(u.object, :language) %><span>Only alphabets are allowed</span></b></label>  
 </div>
 <div class="field">
 	<%= u.label :gpa, "GPA" , {:class => 'label'}%> &nbsp;
-	<%= u.text_field :gpa ,{:class => 'span3'}%>  
+	<label class="tooltip1"><b><%= u.text_field :gpa ,{:class => 'span3'}%>  <%= mark_required(u.object, :gpa) %><span>Only a number from 0 to 5 is allowed</span></b></label>
 </div>
 <br />
 <%= u.link_to_remove "Remove This College" ,:class=>'btn btn-info'%>
