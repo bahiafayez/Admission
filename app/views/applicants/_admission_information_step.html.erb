@@ -11,7 +11,7 @@
     </div>
 <div class="field">
 	<%= u.label :intended_major , {:class => 'label'}%> &nbsp;
-	<%= u.text_field :intended_major,{:class => 'span3'}%>
+	<label class="tooltip1"><b><%= u.text_field :intended_major,{:class => 'span3'}%><%= mark_required(u.object, :intended_major) %><span>Only numbers are allowed</span></b></label>
 </div>
 <div class="field">
 	<%= u.label :toefl_test_results, {:class => 'label'}%> &nbsp;

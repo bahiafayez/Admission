@@ -107,7 +107,7 @@ ul h4 {
 	width: 200px;
 	/*height: 50px;*/
 	left: -185px;
-	top: -5px;
+	top: -7px;
 	font-size: 11px;
 	font-style:oblique;
     color: #49afcd;
@@ -317,6 +317,7 @@ color: #999999;
 	padding-left: 25px;		
 }
 .required {
+	
   padding-bottom: 7px;
   padding-left: 5px;
 }

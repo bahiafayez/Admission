@@ -85,14 +85,14 @@ class Applicant < ActiveRecord::Base
   end
   
   def a_number_present 
-    errors.add(:national_id, "Can't be blank") if national_id.blank? && passport_number.blank? 
-    errors.add(:passport_number, "Can't be blank") if national_id.blank? && passport_number.blank? 
+    errors.add(:national_id, "can't be blank") if national_id.blank? && passport_number.blank? 
+    errors.add(:passport_number, "can't be blank") if national_id.blank? && passport_number.blank? 
   end
   
   def date_present 
-    errors.add(:national_id_expiry_date, "Can't be blank") if !national_id.blank? and national_id_expiry_date.blank?
-    errors.add(:country_of_issuance, "Can't be blank") if !passport_number.blank? and country_of_issuance.blank?
-    errors.add(:passport_expiry_date, "Can't be blank") if !passport_number.blank? and passport_expiry_date.blank?
+    errors.add(:national_id_expiry_date, "can't be blank") if !national_id.blank? and national_id_expiry_date.blank?
+    errors.add(:country_of_issuance, "can't be blank") if !passport_number.blank? and country_of_issuance.blank?
+    errors.add(:passport_expiry_date, "can't be blank") if !passport_number.blank? and passport_expiry_date.blank?
   end
   
   def atleast_one
