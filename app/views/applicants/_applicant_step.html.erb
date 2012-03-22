@@ -47,7 +47,7 @@
 </div>
 <br />
 <div class="field">
-	<%= f.label :passport_number, {:class => 'label'}%> &nbsp;
+	<label class="tooltip1"><b><%= f.label :passport_number, {:class => 'label'}%><span>Only numbers are allowed</span></b></label> &nbsp;
 	<%= f.text_field :passport_number,{:class => 'span3'}%><%= mark_required(@applicant, :passport_number) %>
 </div>
 <div class="field">
