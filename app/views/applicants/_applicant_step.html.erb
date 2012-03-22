@@ -23,7 +23,7 @@
 </div>
 <div class="field">
 	<%= f.label :date_of_birth, {:class => 'label'}%> &nbsp;
-	<%= f.date_select :date_of_birth, {:start_year => Time.now.year - 25, :end_year => Time.now.year - 10, :include_blank => true},{:class=>'datespan'} %><%= mark_required(@applicant, :date_of_birth) %>
+	<b><%= f.date_select :date_of_birth, {:start_year => Time.now.year - 25, :end_year => Time.now.year - 10, :include_blank => true},{:class=>'datespan'} %><%= mark_required(@applicant, :date_of_birth) %></b>
 </div>
 <div class="field">
 	<%= f.label :place_of_birth, {:class => 'label'}%> &nbsp;
@@ -31,7 +31,7 @@
 </div>
 <div class="field">
 	<%= f.label :gender, {:class => 'label'}%> &nbsp;
-	<%= f.select :gender, options_for_select(["Male", "Female"], @applicant.gender) , {:include_blank=> true},{:class=>'smallcellspan'} %><%= mark_required(@applicant, :gender) %>
+	<b> <%= f.select :gender, options_for_select(["Male", "Female"], @applicant.gender) , {:include_blank=> true},{:class=>'smallcellspan'} %><%= mark_required(@applicant, :gender) %></b>
 </div>
 <div class="field">
 	<%= f.label :military_status, {:class => 'label'}%> &nbsp;
@@ -43,7 +43,7 @@
 </div>
 <div class="field">
 	<%= f.label :national_id_expiry_date, {:class => 'label'}%> &nbsp;
-	<%= f.date_select :national_id_expiry_date, {:start_year => Time.now.year - 5, :end_year => Time.now.year + 10 , :include_blank => true},{:class=>'datespan'} %><%= mark_required(@applicant,  :national_id_expiry_date) %>
+	<b><%= f.date_select :national_id_expiry_date, {:start_year => Time.now.year - 5, :end_year => Time.now.year + 10 , :include_blank => true},{:class=>'datespan'} %><%= mark_required(@applicant,  :national_id_expiry_date) %></b>
 </div>
 <br />
 <div class="field">
@@ -68,6 +68,6 @@
 </div>
 <div class="field">
 	<%= f.label :transportation, {:class => 'label'}%> &nbsp;
-	<%= f.select :transportation, options_for_select(["Private", "Nu buses"], @applicant.transportation), {:include_blank => true},{:class=>'smallcellspan'}%><%= mark_required(@applicant, :transportation) %>
+	<b> <%= f.select :transportation, options_for_select(["Private", "Nu buses"], @applicant.transportation), {:include_blank => true},{:class=>'smallcellspan'}%><%= mark_required(@applicant, :transportation) %></b>
 </div>
 <br />

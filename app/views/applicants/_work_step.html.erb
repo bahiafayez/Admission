@@ -3,19 +3,19 @@
 <div>
     <div class="field">
         <%= u.label :employer , {:class => 'label'}%> &nbsp;
-    	<%= u.text_field :employer ,{:class => 'span3'}%>
+    	<label class="tooltip1"><b><%= u.text_field :employer ,{:class => 'span3'}%><%= mark_required(u.object, :employer) %><span>Only alphabets are allowed</span></b></label>
     </div>
     <div class="field">
 	<%= u.label :worked_from , {:class => 'label'}%> &nbsp;
-	<%= u.date_select :worked_from ,{:start_year => Time.now.year - 30, :end_year => Time.now.year + 1 , :include_blank=> true},{:class => 'datespan'} %>
+	<b><%= u.date_select :worked_from ,{:start_year => Time.now.year - 30, :end_year => Time.now.year + 1 , :include_blank=> true},{:class => 'datespan'} %><%= mark_required(u.object, :worked_from) %></b>
 </div>
 <div class="field">
 	<%= u.label :worked_to, {:class => 'label'}%> &nbsp;
-	<%= u.date_select :worked_to ,{:start_year => Time.now.year - 30, :end_year => Time.now.year + 1 , :include_blank=> true},{:class => 'datespan'} %>
+	<b><%= u.date_select :worked_to ,{:start_year => Time.now.year - 30, :end_year => Time.now.year + 1 , :include_blank=> true},{:class => 'datespan'} %><%= mark_required(u.object, :worked_to) %></b>
 </div>
 <div class="field">
     <%= u.label :tasks , {:class => 'label'}%> &nbsp;
-    <%=  u.text_area :tasks, :rows=>4, :cols=>5 , :class => 'input-xlarge'%>
+    <b><%=  u.text_area :tasks, :rows=>4, :cols=>5 , :class => 'input-xlarge'%><%= mark_required(u.object, :tasks) %></b>
 </div>
 <br />
 <%= u.link_to_remove "Remove Work", :class=>'btn btn-info'%> 
