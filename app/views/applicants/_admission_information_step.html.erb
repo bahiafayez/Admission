@@ -3,23 +3,23 @@
     <div class="field">
         <%= u.label :semester_id , {:class => 'label'}%> &nbsp;
     	<!-- <%= u.select :semester, options_for_select(["Winter 2012","Spring 2012"], u.object.semester), :include_blank=> true %> -->
-        <%= u.collection_select :semester_id, Semester.where(:status => true), :id, :name, {:include_blank=> true}, {:class=>'span4'}%>
+        <%= u.collection_select :semester_id, Semester.where(:status => true), :id, :name, {:include_blank=> true}, {:class=>'span4'}%><%= mark_required(u.object, :semester_id) %>
     </div>
     <div class="field">
         <%= u.label :program_id , {:class => 'label'}%> &nbsp;
-    	<%= u.collection_select :program_id, Program.where(:status => true), :id, :name , {:include_blank=> true}, {:class=>'span4'}%>
+    	<%= u.collection_select :program_id, Program.where(:status => true), :id, :name , {:include_blank=> true}, {:class=>'span4'}%><%= mark_required(u.object, :program_id) %>
     </div>
 <div class="field">
 	<%= u.label :intended_major , {:class => 'label'}%> &nbsp;
-	<label class="tooltip1"><b><%= u.text_field :intended_major,{:class => 'span3'}%><%= mark_required(u.object, :intended_major) %><span>Only numbers are allowed</span></b></label>
+	<label class="tooltip1"><b><%= u.text_field :intended_major,{:class => 'span3'}%><%= mark_required(u.object, :intended_major) %><span>Only alphabets are allowed</span></b></label>
 </div>
 <div class="field">
 	<%= u.label :toefl_test_results, {:class => 'label'}%> &nbsp;
-	<%= u.text_field :toefl_test_results,{:class => 'span3'}%>
+	<label class="tooltip1"><b><%= u.text_field :toefl_test_results,{:class => 'span3'}%><%= mark_required(u.object, :toefl_test_results) %><span>Only numbers are allowed</span></b></label>
 </div>
 <div class="field">
 	<%= u.label :toefl_test_date , {:class => 'label'}%> &nbsp;
-	<%= u.date_select :toefl_test_date , {:include_blank=> true},{:class=>'datespan'} %>
+	<%= u.date_select :toefl_test_date , {:include_blank=> true},{:class=>'datespan'} %><%= mark_required(u.object, :toefl_test_date) %>
 </div>
 <div class="field">
 	<%= u.label :proficiency_test , "Are you applying to NU's Proficiency Test", {:class => 'label'}%><br /> &nbsp;
