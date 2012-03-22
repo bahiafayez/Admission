@@ -10,24 +10,24 @@
 	<%= f.file_field :photo, :accept => 'image/png,image/gif,image/jpeg' ,:class=>'upload'%>
 </div>
 <div class="field" >
-	<label class="tooltip1"><b><%= f.label :first_name, {:class => 'label'}%><span>Only alphapets are allowed</span></b></label>&nbsp;
-	<%= f.text_field :first_name ,{:class => 'span3',}%><%= mark_required(@applicant, :first_name) %>
+	<%= f.label :first_name, {:class => 'label'}%> &nbsp;
+	<label class="tooltip1"><b><%= f.text_field :first_name ,{:class => 'span3',}%><%= mark_required(@applicant, :first_name) %><span>Only alphapets are allowed</span></b></label>
 </div>
 <div class="field">
-	<label class="tooltip1"><b><%= f.label :middle_name, {:class => 'label'}%><span>Only alphapets are allowed</span></b></label> &nbsp;
-    <%= f.text_field :middle_name,{:class => 'span3'}%><%= mark_required(@applicant, :middle_name) %>
+	<%= f.label :middle_name, {:class => 'label'}%>&nbsp;
+    <label class="tooltip1"><b><%= f.text_field :middle_name,{:class => 'span3'}%><%= mark_required(@applicant, :middle_name) %><span>Only alphapets are allowed</span></b></label> 
 </div>
 <div class="field">
-	<label class="tooltip1"><b><%= f.label :last_name, {:class => 'label'}%><span>Only alphapets are allowed</span></b></label> &nbsp;
-	<%= f.text_field :last_name,{:class => 'span3'}%><%= mark_required(@applicant, :last_name) %>
+	<%= f.label :last_name, {:class => 'label'}%> &nbsp;
+	<label class="tooltip1"><b><%= f.text_field :last_name,{:class => 'span3'}%><%= mark_required(@applicant, :last_name) %><span>Only alphapets are allowed</span></b></label>
 </div>
 <div class="field">
 	<%= f.label :date_of_birth, {:class => 'label'}%> &nbsp;
 	<%= f.date_select :date_of_birth, {:start_year => Time.now.year - 25, :end_year => Time.now.year - 10, :include_blank => true},{:class=>'datespan'} %><%= mark_required(@applicant, :date_of_birth) %>
 </div>
 <div class="field">
-	<label class="tooltip1"><b><%= f.label :place_of_birth, {:class => 'label'}%><span>Only alphapets are allowed</span></b></label> &nbsp;
-	<%= f.text_field :place_of_birth,{:class => 'span3'}%><%= mark_required(@applicant, :place_of_birth) %>
+	<%= f.label :place_of_birth, {:class => 'label'}%> &nbsp;
+	<label class="tooltip1"><b><%= f.text_field :place_of_birth,{:class => 'span3'}%><%= mark_required(@applicant, :place_of_birth) %><span>Only alphapets are allowed</span></b></label>
 </div>
 <div class="field">
 	<%= f.label :gender, {:class => 'label'}%> &nbsp;
@@ -38,8 +38,8 @@
 	<%= f.select :military_status, options_for_select(["Does not apply", "Exempted", "Completed", "Postponed"],  @applicant.military_status), {:include_blank=> true},{:style=>'width:125px'} %><%= mark_required(@applicant, :military_status) %>
 </div>
 <div class="field">
-	<label class="tooltip1"><b><%= f.label :national_id , "National ID", {:class => 'label'}%><span>Only numbers are allowed</span></b></label> &nbsp;
-	<%= f.text_field :national_id ,{:class => 'span3'}%><%= mark_required(@applicant, :national_id) %>
+	<%= f.label :national_id , "National ID", {:class => 'label'}%> &nbsp;
+	<label class="tooltip1"><b><%= f.text_field :national_id ,{:class => 'span3'}%><%= mark_required(@applicant, :national_id) %><span>Only numbers are allowed</span></b></label>
 </div>
 <div class="field">
 	<%= f.label :national_id_expiry_date, {:class => 'label'}%> &nbsp;
@@ -47,8 +47,8 @@
 </div>
 <br />
 <div class="field">
-	<label class="tooltip1"><b><%= f.label :passport_number, {:class => 'label'}%><span>Only numbers are allowed</span></b></label> &nbsp;
-	<%= f.text_field :passport_number,{:class => 'span3'}%><%= mark_required(@applicant, :passport_number) %>
+	<%= f.label :passport_number, {:class => 'label'}%> &nbsp;
+	<label class="tooltip1"><b><%= f.text_field :passport_number,{:class => 'span3'}%><%= mark_required(@applicant, :passport_number) %><span>Only numbers are allowed</span></b></label>
 </div>
 <div class="field">
 	<%= f.label :country_of_issuance, {:class => 'label'}%> &nbsp;

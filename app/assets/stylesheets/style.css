@@ -104,14 +104,14 @@ ul h4 {
 .tooltip1 b:hover span {
 	display: block;
 	position: absolute;
-	/*width: 200px;
-	height: 50px;*/
-	left: -200px;
+	width: 200px;
+	/*height: 50px;*/
+	left: 270px;
 	top: -10px;
 	font-size: 11px;
 	font-style:oblique;
     color: #FF0000;
-	padding: 5px;
+	padding: 0px 5px 5px 5px;
 	}
 
 /*taken from bootstrap */
