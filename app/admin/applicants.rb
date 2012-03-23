@@ -26,7 +26,7 @@ ActiveAdmin.register Applicant do
         kit = PDFKit.new(html, :orientation => 'Landscape')
         kit.stylesheets << "#{Rails.root}/public/stylesheets/style3.css"
         
-        send_data(kit.to_pdf, :filename => "labels.pdf", :type => 'application/pdf')
+        send_data(kit.to_pdf, :filename => "NU Application.pdf", :type => 'application/pdf')
         return # to avoid double render call
       }
     end

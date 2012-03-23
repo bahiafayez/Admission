@@ -51,7 +51,7 @@ ActiveAdmin.register Program do
       end
 
       major.input :name
-      major.input :status
+      major.input :status, :label => "Available"
       #repeat as necessary for all fields
     #end
   end

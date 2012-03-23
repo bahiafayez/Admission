@@ -439,7 +439,7 @@ class ApplicantsController < ApplicationController
         html = render_to_string(:layout => false , :action => "show.html.erb")
         kit = PDFKit.new(html)
         kit.stylesheets << "#{Rails.root}/public/stylesheets/style2.css"
-        send_data(kit.to_pdf, :filename => "labels.pdf", :type => 'application/pdf')
+        send_data(kit.to_pdf, :filename => "NU Application.pdf", :type => 'application/pdf')
         return # to avoid double render call
       }
     end
