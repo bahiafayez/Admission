@@ -2,7 +2,7 @@
 <%= f.fields_for :healths do |u| %>
     <div class="field">
         <%= u.label :illness , {:class => 'label'}%> &nbsp;
-    	<label class="tooltip1"><b><%= u.text_field :illness,{:class => 'span3'}%><%= mark_required(u.object, :illness) %><span>Only alphabets are allowed</span></b></label>
+    	<b><%= u.text_field :illness,{:class => 'span3'}%><%= mark_required(u.object, :illness) %></b>
     </div>
     <div class="field">
         <%= u.label :description, {:class => 'label'}%> &nbsp;

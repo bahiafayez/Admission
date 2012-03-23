@@ -12,7 +12,7 @@
 
     <div class="field" id="programMajors">
         <%= u.label :major_id , {:class => 'label'}%> &nbsp;
-        <label class="tooltip1"><b><%= u.collection_select :major_id , Major.where(:status => true, :program_id => u.object.program_id ), :id, :name , {:include_blank=> true}, {:class=>'span4'}%><%= mark_required(u.object, :intended_major) %><span>Only alphabets are allowed</span></b></label>
+        <b><%= u.collection_select :major_id , Major.where(:status => true, :program_id => u.object.program_id ), :id, :name , {:include_blank=> true}, {:class=>'span4'}%><%= mark_required(u.object, :intended_major) %></b>
     </div>
 <div class="field">
 	<%= u.label :toefl_test_results, {:class => 'label'}%> &nbsp;

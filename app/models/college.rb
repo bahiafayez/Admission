@@ -7,5 +7,7 @@ class College < ActiveRecord::Base
   validates_date :attended_from, :attended_to
   validates :gpa, :format => {:with => /^[0-4]([\.,]\d+)?$/ , :message => "Invalid Number"}
   #validates :gpa, :numericality => {:less_than_or_equal_to => 5}
+  validates_inclusion_of :language, :in => ["Arabic", "English", "French", "German"]
+  
   
 end

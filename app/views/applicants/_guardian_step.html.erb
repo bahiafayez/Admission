@@ -20,11 +20,11 @@
     
    <div class="field">
         <%= u.label :telephone, "Telephone Number" , {:class => 'label'}%> &nbsp;
-    	<label class="tooltip1"><b><%=  u.telephone_field :telephone ,{:class => 'span3'}%><%= mark_required(u.object, :telephone) %><span>Only numbers are allowed</span></b></label>
+    	<b><%=  u.telephone_field :telephone ,{:class => 'span3'}%></b><label class="tooltip1NatID"><b><%= image_tag ('InfoIcon1.png'),{:height => 20, :width => 20, :class=>'required1'} %><span>Please fill in guardian's telephone number or guardian's mobile number. Only numbers are allowed</span></b></label>
     </div>
 <div class="field">
 	<%= u.label :mobile, "Mobile Number" , {:class => 'label'}%> &nbsp;
-	<label class="tooltip1"><b><%= u.telephone_field :mobile ,{:class => 'span3'}%><%= mark_required(u.object, :mobile) %><span>Only numbers are allowed</span></b></label>
+	<b><%= u.telephone_field :mobile ,{:class => 'span3'}%></b><label class="tooltip1NatID"><b><%= image_tag ('InfoIcon1.png'),{:height => 20, :width => 20, :class=>'required1'} %><span>Please fill in guardian's mobile number or guardian's telephone number. Only numbers allowed</span></b></label>
 </div>
 
 <div class="field">
@@ -33,15 +33,15 @@
     </div>
 <div class="field">
 	<%= u.label :company_name , {:class => 'label'}%> &nbsp;
-	<label class="tooltip1"><b><%= u.text_field :company_name ,{:class => 'span3'}%><%= mark_required(u.object, :company_name) %><span>Only alphabets are allowed</span></b></label>
+	<b><%= u.text_field :company_name ,{:class => 'span3'}%><%= mark_required(u.object, :company_name) %></b>
 </div>
 <div class="field">
 	<%= u.label :business_telephone , {:class => 'label'}%> &nbsp;
-	<label class="tooltip1"><b><%= u.telephone_field :business_telephone ,{:class => 'span3'}%><%= mark_required(u.object, :business_telephone) %><span>Only numbers are allowed</span></b></label>
+	<b><%= u.telephone_field :business_telephone ,{:class => 'span3'}%></b><label class="tooltip1NatID"><b><%= image_tag ('InfoIcon1.png'),{:height => 20, :width => 20, :class=>'required1'} %><span>Please fill in guardian's business telphone number or guardian's email. Only numbers are allowed</span></b></label>
 </div>
 <div class="field">
 	<%= u.label :email, "E-mail" , {:class => 'label'}%> &nbsp;
-	<b><%= u.email_field :email ,{:class => 'span3', :placeholder => "example@example.com"}%><%= mark_required(u.object, :email) %></b>
+	<b><%= u.email_field :email ,{:class => 'span3', :placeholder => "example@example.com"}%></b><label class="tooltip1NatID"><b><%= image_tag ('InfoIcon1.png'),{:height => 20, :width => 20, :class=>'required1'} %><span>Please fill in guardian's business telphone number or guardian's email. Only vaild email format is allowed</span></b></label>
 </div>
 <div class="field">
 	<%= u.label :fax, "Fax Number", {:class => 'label'}%> &nbsp;
@@ -71,7 +71,7 @@
 <div class="field">
 	<%= u.label :financial , "Will that person be responsible for your financial expenses", {:class => 'label'}%> 
 	<br /> &nbsp;
-	<label class="tooltip1"><b><%= u.select :financial, options_for_select([["Yes",true],["No",false]], u.object.financial) , {:include_blank=> true},{:class=>'smallcellspan'}  %><%= mark_required(u.object, :financial) %><span>Only numbers are allowed</span></b></label>
+	<b><%= u.select :financial, options_for_select([["Yes",true],["No",false]], u.object.financial) , {:include_blank=> true},{:class=>'smallcellspan'}  %><%= image_tag ('required-star.gif'),{:class=>'required'} %></b>
 </div>
 </div>
 <% end %>

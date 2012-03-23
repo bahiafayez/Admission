@@ -3,7 +3,7 @@
 <div>
     <div class="field">
         <%= u.label :name , {:class => 'label'}%> &nbsp;
-    	<label class="tooltip1"><b><%= u.text_field :name ,{:class => 'span3'}%><%= mark_required(u.object, :name) %><span>Only alphabets are allowed</span></b></label>
+    	<b><%= u.text_field :name ,{:class => 'span3'}%><%= mark_required(u.object, :name) %></b>
     </div>
     <div class="field">
         <%= u.label :address , {:class => 'label'}%> &nbsp;
@@ -11,7 +11,7 @@
     </div>
 <div class="field">
 	<%= u.label :language , {:class => 'label'}%> &nbsp;
-	<label class="tooltip1"><b><%= u.text_field :language ,{:class => 'span3'}%><%= mark_required(u.object, :language) %><span>Only alphabets are allowed</span></b></label>
+	<b><%= u.select :language ,options_for_select(["Arabic", "English", "French", "German"],  u.object.language), :include_blank=> true%><%= mark_required(u.object, :language) %></b>
 </div>
 <div class="field">
 	<%= u.label :attended_from , {:class => 'label'}%> &nbsp;
@@ -24,7 +24,7 @@
 
 <div class="field">
 	<%= u.label :certificate_type, {:class => 'label'}%> &nbsp;
-	<label class="tooltip1"><b><%= u.select :certificate_type, options_for_select(["IG", "American Diploma", "GCSE", "Thanaweya Amma"],  u.object.certificate_type), :include_blank=> true %><%= mark_required(u.object, :certificate_type) %><span>Choose:IG/American Diploma/GCSE/Thanaweya Amma</span></b></label>
+	<b><%= u.select :certificate_type, options_for_select(["IG", "American Diploma", "GCSE", "Thanaweya Amma"],  u.object.certificate_type), :include_blank=> true %><%= mark_required(u.object, :certificate_type) %></b>
 </div>
 <div class="field">
 	<%= u.label :graduation_date , {:class => 'label'}%> &nbsp;

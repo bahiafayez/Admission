@@ -31,7 +31,7 @@
 </div>
 <div class="field">
 	<%= u.label :language, {:class => 'label'}%> &nbsp;
-	<label class="tooltip1"><b><%= u.text_field :language ,{:class => 'span3'}%><%= mark_required(u.object, :language) %><span>Only alphabets are allowed</span></b></label>  
+	<b><%= u.select :language ,options_for_select(["Arabic", "English", "French", "German"],  u.object.language), :include_blank=> true%><%= mark_required(u.object, :language) %></b>  
 </div>
 <div class="field">
 	<%= u.label :gpa, "GPA" , {:class => 'label'}%> &nbsp;

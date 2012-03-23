@@ -39,7 +39,7 @@
 </div>
 <div class="field">
 	<%= f.label :national_id , "National ID", {:class => 'label'}%> &nbsp;
-	<label class="tooltip1"><b><%= f.text_field :national_id ,{:class => 'span3'}%><%= mark_required(@applicant, :national_id) %><span>Only numbers are allowed</span></b></label>
+	<b><%= f.text_field :national_id ,{:class => 'span3'}%></b><label class="tooltip1NatID"><b><%= image_tag ('InfoIcon1.png'),{:height => 20, :width => 20, :class=>'required1'} %><span>Please fill in your National ID or your Passport Number. Only numbers are allowed</span></b></label>
 </div>
 <div class="field">
 	<%= f.label :national_id_expiry_date, {:class => 'label'}%> &nbsp;
@@ -48,7 +48,7 @@
 <br />
 <div class="field">
 	<%= f.label :passport_number, {:class => 'label'}%> &nbsp;
-	<label class="tooltip1"><b><%= f.text_field :passport_number,{:class => 'span3'}%><%= mark_required(@applicant, :passport_number) %><span>Only numbers are allowed</span></b></label>
+	<b><%= f.text_field :passport_number,{:class => 'span3'}%></b><label class="tooltip1NatID"><b><%= image_tag ('InfoIcon1.png'),{:height => 20, :width => 20, :class=>'required1'} %><span>Please fill in your National ID or your Passport Number. Only numbers are allowed</span></b></label>
 </div>
 <div class="field">
 	<%= f.label :country_of_issuance, {:class => 'label'}%> &nbsp;

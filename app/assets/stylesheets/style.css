@@ -113,7 +113,44 @@ ul h4 {
     color: #49afcd;
 	padding: 0px 5px 5px 5px;
 	}
-
+.tooltip1PhNum {
+	position: relative;
+}
+.tooltip1PhNum b span {
+	display: none;
+	color: #FFFFFF;
+}
+.tooltip1PhNum b:hover span {
+	display: block;
+	position: absolute;
+	width: 150px;
+	/*height: 50px;*/
+	left: -130px;
+	top: -7px;
+	font-size: 11px;
+	font-style:oblique;
+    color: #49afcd;
+	padding: 0px 5px 5px 5px;
+	}
+.tooltip1NatID {
+	position: relative;
+}
+.tooltip1NatID b span {
+	display: none;
+	color: #FFFFFF;
+}
+.tooltip1NatID b:hover span {
+	display: block;
+	position: absolute;
+	width: 200px;
+	/*height: 50px;*/
+	left: 35px;
+	top: -7px;
+	font-size: 11px;
+	font-style:oblique;
+    color: #49afcd;
+	padding: 0px 5px 5px 5px;
+	}
 /*taken from bootstrap */
 .control-group.warning > label, .control-group.warning .help-block, .control-group.warning .help-inline {
   color: #c09853;
@@ -320,6 +357,11 @@ color: #999999;
 	
   padding-bottom: 7px;
   padding-left: 5px;
+}
+.required1 {
+  position: absolute;
+  padding-left: 5px;
+
 }
 .span2 {
   width: 230px;
