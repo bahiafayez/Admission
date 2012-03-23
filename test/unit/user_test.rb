@@ -57,7 +57,7 @@ class UserTest < ActiveSupport::TestCase
     
     one = users(:good1) 
     assert one.invalid?
-    assert_equal "email has already taken", one.errors[:email].join('; ')
+    assert_equal "Email has already taken", one.errors[:email].join('; ')
   end
   
   

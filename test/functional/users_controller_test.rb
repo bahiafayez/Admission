@@ -8,21 +8,24 @@ class UsersControllerTest < ActionController::TestCase
   setup do
     @applicant = applicants(:good)
   end
-  
+
+#####################new################################# 
   #the user is not logged in
   test "should get new" do
+     @request.session[:user_id] = nil
     get :new
     assert_response :success
   end
   
   #the creature is already logged in
   test "already logged in" do
-    @request.session[:user_id] = users("one").id
+    @request.session[:user_id] = users("good").id
     get :new
     assert_response :redirect
-    assert_equal "#{users('one').email} is already logged in, Please Log out first", flash[:notice]
+    assert_equal "#{users('good').email} is already logged in, Please Log out first", flash[:notice]
   end
-  
+
+####################create#############################
   #user signs up
   test "should create user" do
     get :create, :id => @user.to_param
@@ -37,24 +40,25 @@ class UsersControllerTest < ActionController::TestCase
     
    #user fails validation,goes to new? sucess?
    test "should create user:but he fails validation" do
-    get :create, :id => @user.to_param
+    post :create, :id => @user.to_param
     assert_response :success
-    end
+
     
-   test "should show user" do
+    end
+   #######################user############################
+   test "should show user(html)" do
     @user.password="123qwe"
-    get :show, :id => @user.id
+    get :show, :format => 'html', :id =>@user.id
     assert_response :success
    end
-   #test "should show user" do
-   #   @user.password="123qwe"
-   #   get :show, :id => @user.to_param
-   #   assert_response :success
-   #   assert_template 'show'
-   #   assert_not_nil assigns(:user)
-   #   assert assigns(:user).valid?
-   #   end
    
+   test "should show user(json)" do
+    @user.password="123qwe"
+    get :show, :format => 'json', :id =>@user.id
+    assert_response :success
+   end
+   
+   ######################application#################
    test "user don't have applicant" do  
       get :application, :id => @user.to_param
       assert_response :redirect
