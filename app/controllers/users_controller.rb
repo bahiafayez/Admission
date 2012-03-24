@@ -34,9 +34,9 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     if @user.applicant == nil
       flash[:flag]=true
-      redirect_to new_applicant_url,:notice => "no applicant"
+      redirect_to new_applicant_url#,:notice => "no applicant"
     else
-      redirect_to @user.applicant,:notice => "applicant exists"
+      redirect_to @user.applicant#,:notice => "applicant exists"
     end
   end
   
