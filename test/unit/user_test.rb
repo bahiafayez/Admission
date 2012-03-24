@@ -12,7 +12,10 @@ class UserTest < ActiveSupport::TestCase
    
    test "should create user" do
     user = User.new
-    user = users(:good)
+    user.email="goodemail2@mail.com"
+    user.password="password"
+    user.password_confirmation="password"
+    #user = users(:good2)
     assert user.save
   end
 
@@ -22,7 +25,11 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test "should update user" do
-     user = users(:good)
+     user = User.new
+     user.email="goodemail2@mail.com"
+     user.password="password"
+     user.password_confirmation="password"
+     user.save
      assert user.update_attributes(:email => 'Donald@mail.com')
   end
   
