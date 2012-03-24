@@ -1,21 +1,36 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
+  #id: 1
   email: asds
   password_hash: MyString
   #pasword_salt: MyString
-
+  #password_salt: efvfvffdv
+  #created_at: <%=Time.now%>
 two:
+  #id: 2
   email: MyString
   password_hash: MyString
   #pasword_salt: MyString
-
+  #password_salt: efvfvffdv
+  #created_at: <%=Time.now%>
 good:
+  #id: 3
   email: good@mail.com
   password_hash: MyString
+  #password_salt: efvfvffdv
+  #created_at: <%=Time.now%>
   #pasword_salt: MyString
 
 good1:
+  #id: 4
   email: good@mail.com
   password_hash: MyString
-  #pasword_salt: MyString
+  #password_salt: efvfvffdv
+  #created_at: <%=Time.now%>
+user1:
+  #id: 5
+  email: user1@test.eu
+  password_hash: abcdef1
+  #password_salt: efvfvffdv
+  #created_at: <%=Time.now%>

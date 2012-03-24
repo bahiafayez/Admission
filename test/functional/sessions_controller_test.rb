@@ -6,6 +6,15 @@ class SessionsControllerTest < ActionController::TestCase
     @user = users(:good)
   end
   
+   setup do
+    @user1=User.new
+    @user1.email="good@gmail.com"
+    @user1.password="123qwe"
+    @user1.password_confirmation="123qwe"
+    @user1.save
+  end
+  
+  
   setup do
     @applicant = applicants(:good)
   end
@@ -19,21 +28,18 @@ class SessionsControllerTest < ActionController::TestCase
   
   #########################create#############################3
   test "should create user, but render new" do
-      
-    post(:create, {:email => 'good@gmail.com'},{:password => '123qwer'})
+    #get :create, :id => @user.to_param  
+    get(:create, {:email => 'good@gmail.com'},{:password => '123qwer'})
+    #post(:create, {:email => 'good@gmail.com'},{:password => '123qwer'})
     assert_response :success
     assert_equal "Invalid Email or Password", flash[:alert]
   end
   #####doesn't work acts like pervious test
   test "should create user, authenticated" do
-    user=User.new
-    user.email="good@gmail.com"  
-    user.password="123qwer"
-    user.save
-    post(:create, {:email => 'good@gmail.com'},{:password => '123qwer'})
-    
-    assert_response :success
-    assert_equal "Invalid Email or Password", flash[:alert]
+    #@request.session[:user_id] = @user1.id
+    post(:create , {:email => 'good@gmail.com',:password => '123qwe'})
+    assert_redirected_to @user1
+    assert_equal "Thanks for signing in, ", flash[:notice]
   end
   
   

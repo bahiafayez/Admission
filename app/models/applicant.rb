@@ -41,23 +41,23 @@ class Applicant < ActiveRecord::Base
   #validate :passport_must_be_unique
   #validate :national_must_be_unique
 
-  def passport_must_be_unique
-    return if passport_number.blank?
-    num_duplicates = self.class.count(:conditions => ["passport_number = ?", passport_number])
-    if num_duplicates > 1 #not 0 because i already saved it..
-      errors.add(:passport_number, :taken)
-    end
-  end
+  #def passport_must_be_unique
+  #  return if passport_number.blank?
+  #  num_duplicates = self.class.count(:conditions => ["passport_number = ?", passport_number])
+  #  if num_duplicates > 1 #not 0 because i already saved it..
+  #    errors.add(:passport_number, :taken)
+  #  end
+  #end
   
-  def national_must_be_unique
-    return if national_id.blank?
-    num_duplicates = Applicant.count(:conditions => ["national_id = ?", national_id])
-    logger.debug "National COUNT!!!!!!!!!!!!!!"
-    logger.debug num_duplicates
-    if num_duplicates > 1 #not 0 because i already saved it.. 
-      errors.add(:national_id, :taken)
-    end
-  end
+  #def national_must_be_unique
+  #  return if national_id.blank?
+  #  num_duplicates = Applicant.count(:conditions => ["national_id = ?", national_id])
+  #  logger.debug "National COUNT!!!!!!!!!!!!!!"
+  #  logger.debug num_duplicates
+  #  if num_duplicates > 1 #not 0 because i already saved it.. 
+  #    errors.add(:national_id, :taken)
+  #  end
+  #end
   
   
   attr_writer :current_step

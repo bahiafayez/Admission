@@ -17,6 +17,7 @@ class UsersController < ApplicationController
       ApplicationNotifier.created(@user).deliver
       redirect_to @user, :notice => "Signed up!"
     else
+      flash[:notice]="Not signed up!"
       render "new"
     end
   end
