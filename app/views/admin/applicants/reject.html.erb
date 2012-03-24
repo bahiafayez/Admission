@@ -1,8 +1,8 @@
 <%= form_for app, :url => "/admin/applicants/#{app.id}/savereject" do |form| %>
-
-    	<%= form.label :notes %><br/>
-        <%= form.text_area :notes %><br/>
+<div class="well">
+    	<%= form.label :notes ,"Please write your notes here, if you wish to send them with the rejection email." ,{:class => 'label'} %><br/><br />
+        <%= form.text_area :notes, :class => 'input-xlarge' %><br/><br />
         
-        <%= form.submit :value => 'Reject' %>
-
+        <%= form.submit :value => 'Reject',:style=>'position:relative;left:230px' %>
+</div> 
 <% end %>
