@@ -53,18 +53,18 @@ hideAddress1 = ->
     console.log $(this).val()
     if $(this).val()=="Both"
       console.log("in Both")
-      $(this).parent().parent().parent().parent().children('div').eq(1).hide()
+      $(this).parent().parent().parent().parent().parent().children('div').eq(1).hide()
     else
-      $(this).parent().parent().parent().parent().children('div').eq(1).show()
+      $(this).parent().parent().parent().parent().parent().children('div').eq(1).show()
      
 hideAddress0 = ->
   #console.log("in here")
     console.log $(this).val()
     if $(this).val()=="Both"
       console.log("in Both")
-      $(this).parent().parent().parent().parent().children('div').eq(0).hide()
+      $(this).parent().parent().parent().parent().parent().children('div').eq(0).hide()
     else
-      $(this).parent().parent().parent().parent().children('div').eq(0).show()
+      $(this).parent().parent().parent().parent().parent().children('div').eq(0).show()
      
 
 changeGender = ->
