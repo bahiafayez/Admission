@@ -17,13 +17,14 @@ class ApplicantsControllerTest < ActionController::TestCase
     # @applicant.guardians.build
     # @applicant.admission_information= AdmissionInformation.new
     # @applicant.attachment = Attachment.new
-    @applicant.uni_related_info = UniRelatedInfo.new
+    @applicant= Applicant.new
+    @applicant.uni_related_info = UniRelatedInfo.create
 #     
     # @applicant.uni_related_info.uni_choice= UniChoice.new
     # @applicant.uni_related_info.other_choice= OtherChoice.new
     @applicant.uni_related_info.uni_choice= UniChoice.new
     @applicant.uni_related_info.other_choice= OtherChoice.new
-    @user.applicant=@applicant
+    #@user.applicant=@applicant
    
   end
   
