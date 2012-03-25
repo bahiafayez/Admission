@@ -7,11 +7,11 @@
     </div>
     <div class="field">
         <%= u.label :telephone, "Telephone Number", {:class => 'label'}%> &nbsp;
-    	<label class="tooltip1PhNum"><b><%=  u.telephone_field :telephone,{:class => 'span3'}%><%= mark_required(u.object, :telephone) %><span>Only numbers are allowed</span></b></label>
+    	<b><%=  u.telephone_field :telephone,{:class => 'span3'}%></b><label class="tooltip1NatID"><b><%= image_tag ('InfoIcon1.png'),{:height => 20, :width => 20, :class=>'required1'} %><span>Please fill in your telephone number or your mobile number. Only numbers are allowed</span></b></label>
     </div>
 <div class="field">
 	<%= u.label :mobile, "Mobile Number" ,{:class => 'label'}%> &nbsp;
-	<label class="tooltip1"><b><%= u.telephone_field :mobile,{:class => 'span3'}%><%= mark_required(u.object, :mobile) %><span>Only numbers are allowed</span></b></label>
+	<b><%= u.telephone_field :mobile,{:class => 'span3'}%></b><label class="tooltip1NatID"><b><%= image_tag ('InfoIcon1.png'),{:height => 20, :width => 20, :class=>'required1'} %><span>Please fill in your telephone number or your mobile number. Only numbers are allowed</span></b></label>
 </div>
 <div class="field">
 	<%= u.label :fax, "Fax Number", {:class => 'label'}%> &nbsp;
