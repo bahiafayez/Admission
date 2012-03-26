@@ -892,6 +892,10 @@ table {
 	font-size: 12px;
 }
 
+.field_with_errors .span2{
+	background-color:#FBE3E4;
+}
+
 .checkbox {
 	position:relative;   
 	left:600px;  
