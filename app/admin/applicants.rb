@@ -153,8 +153,15 @@ end
     panel "User Information" do
     attributes_table_for applicant.user do
       row :email
-      row :password_hash
-      row :password_salt
+      row :encrypted_password
+      row :reset_password_token
+      row :reset_password_sent_at
+      row :remember_created_at
+      row :sign_in_count
+      row :current_sign_in_at
+      row :last_sign_in_at
+      row :current_sign_in_ip
+      row :last_sign_in_ip
       row :created_at
       row :updated_at
     end

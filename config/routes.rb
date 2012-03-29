@@ -1,12 +1,14 @@
 Admission::Application.routes.draw do
   
  
+  devise_for :users
+
   #match '/getStream', :to => 'streams#getStream'
   get "home/index"
 
-  get "log_in" => "sessions#new", :as => "log_in"
-  get "log_out" => "sessions#destroy", :as => "log_out"
-  get "sign_up" => "users#new", :as => "sign_up"
+  # get "log_in" => "sessions#new", :as => "log_in"
+  # get "log_out" => "sessions#destroy", :as => "log_out"
+  # get "sign_up" => "users#new", :as => "sign_up"
   root :to => "home#index"
 
   resources :users do
@@ -15,7 +17,8 @@ Admission::Application.routes.draw do
       end
     end
     
-  resources :sessions
+  match 'user_root' => 'users#move', as: :user_root
+  #resources :sessions
 
 
   ActiveAdmin.routes(self)
