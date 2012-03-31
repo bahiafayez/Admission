@@ -53,7 +53,7 @@ class ApplicantsController < ApplicationController
     
     #logger.debug "in new action"
     #logger.debug(@applicant.addresses)
-    
+     
     else
       redirect_to root_path,:notice => "redirected to root"
       

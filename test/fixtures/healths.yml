@@ -1,11 +1,15 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
-
-one:
-  illness: MyString
-  description: MyText
+good:
+  illness: duck disease
+  description: duck disease 
+  applicant_id: 3
+  
+bad:
+  illness: 11112
+  description: 1111
   applicant_id: 1
 
 two:
   illness: MyString
-  description: MyText
-  applicant_id: 1
+  description: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod Lorem ipsum dolor sit amet, consectetu
+  applicant_id: 2
