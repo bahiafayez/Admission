@@ -1,8 +1,8 @@
-ActiveAdmin.register Program do
-  menu :parent => "Programs and Semesters"
+ActiveAdmin.register Program, :as => "School" do
+  menu :parent => "Schools and Semesters"
   show  do |app|
-    panel "Program Details" do
-    attributes_table_for program do
+    panel "School Details" do
+    attributes_table_for school do
 
         row :name
         row :status do
@@ -19,7 +19,7 @@ ActiveAdmin.register Program do
      end 
      
     panel "Majors" do
-    table_for program.majors do
+    table_for school.majors do
       column "Name" do |major|
         major.name
       end

@@ -5,3 +5,5 @@ div#header{display: none}
 div#titlebar_right{display: none}
 div.action_items{display: none}
 div#footer{display: none}
+#active_admin_comment_body_input{display: none}
+#active_admin_comment_submit{display: none}

@@ -1,5 +1,17 @@
 ActiveAdmin.register Applicant do
   
+  filter :user
+  filter :last_name
+  filter :first_name
+  filter :admission_information_semester_name, :as => :string , label: 'Semester'#, :collection => proc { Semester.all }
+  filter :admission_information_program_name, :as => :string , label: 'Program'#, :collection => proc { Semester.all }
+  filter :admission_information_major_name, :as => :string, label: 'Major' #, :collection => proc { Semester.all }
+  
+  
+  action_item only:[:index] do
+   link_to "Email Applicants", "/admin/applicants/batch_email"
+ end
+  
   action_item only:[:show] do
    link_to "Approve", "/admin/applicants/#{applicant.id}/accept"
  end
@@ -98,15 +110,80 @@ end
   member_action :email do
       applicant = Applicant.find(params[:id])
       @app= applicant
+      @to=[]
+      @to << applicant.user.email
+      @app.guardians.each do |g|
+        if g.email != nil
+          @to<<g.email
+        end
+      end
+  end
+  
+  collection_action :batch_email do
+  end
+ 
+  collection_action :send_batch_email, :method => :post do
+    status=params[:status]
+    semester=params[:semester]
+    program=params[:program]
+    logger.debug "semester isssssss"
+    logger.debug status
+    
+    if params[:all_semesters]=="1"
+      semester=[]
+      Semester.all.each do |s|
+        semester<<s.id
+      end
+      semester<<nil
+    end
+    
+    if params[:all_programs]=="1"
+      program=[]
+      Program.all.each do |p|
+        program<<p.id
+      end
+      program<<nil
+    end
+    
+    if params[:all_statuses]=="1"
+      status=["Saved", "Submitted", "Just Created", "Approved", "Rejected"]
+    end
+    
+    logger.debug "they areeeee"
+    logger.debug status
+    logger.debug semester
+    logger.debug program
+    if status.nil? or semester.nil? or program.nil?
+      redirect_to "/admin/applicants/batch_email", :alert => "Select at least one from each group"
+    else
+      logger.debug "here" 
+        @apps= Applicant.joins(:admission_information).where(:applicants => {:status => status}, :admission_informations => { :semester_id => semester , :program_id => program})
+        @to=[]
+        @apps.each do |a|
+          @to << a.user.email
+        end 
+        @subject=params[:subject]
+        @body=params[:body]
+        if @to.nil? or @to.size==0
+          redirect_to "/admin/applicants/batch_email", :alert => "the <to> field is empty"
+        else
+          ApplicationNotifier.batch_email(@to,@subject, @body).deliver
+          redirect_to "/admin/applicants", :notice => "Email sent"
+        end
+    end
   end
   
    member_action :sendemail, :method =>:post do
       @applicant = Applicant.find(params[:id])
+      @to=params[:to]
       @subject=params[:subject]
       @body=params[:body]
-      ApplicationNotifier.email(@applicant.user,@subject, @body).deliver
-      redirect_to "/admin/applicants/#{params[:id]}", :notice => "Email sent"
-   
+      if @to.nil? or @to.size==0
+        redirect_to "/admin/applicants/#{params[:id]}/email", :alert => "the <to> field is empty"
+      else
+        ApplicationNotifier.email(@applicant.user,@to,@subject, @body).deliver
+        redirect_to "/admin/applicants/#{params[:id]}", :notice => "Email sent"
+      end
   end
   
   scope :all, :default => true
@@ -138,8 +215,9 @@ end
     end
     column :middle_name
     column :last_name
-    column :created_at
-    column :updated_at
+    column :last_sign_in do |app|
+      app.user.last_sign_in_at
+    end
     column :status do |app|
       strong {app.status}
     end
@@ -237,7 +315,10 @@ end
       row :toefl_test_results
       row :toefl_test_date
       row :proficiency_test
-      row :program_id
+      #row :program_id
+      row "School" do
+            applicant.admission_information.program
+        end
       row :major_id
       row :applicant_id
     end
@@ -245,6 +326,13 @@ end
   
   panel "Attachments" do
     attributes_table_for applicant.attachment do
+        row :school_certificates do
+          if app.attachment.school_certificates.file?
+            link_to image_tag(app.attachment.school_certificates.url(:thumb)), app.attachment.school_certificates.url
+          else
+            "No Document Uploaded"
+          end
+        end
       row :personal_experience do
         if app.attachment.personal_experience.file?  
           link_to image_tag(app.attachment.personal_experience.url(:thumb)), app.attachment.personal_experience.url
@@ -428,7 +516,7 @@ end
   end
   
   
-  #active_admin_comments
+  active_admin_comments
 end #show
 
 end

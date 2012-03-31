@@ -45,5 +45,10 @@ class User < ActiveRecord::Base
       # self.password_hash = BCrypt::Engine.hash_secret(password, password_salt)
     # end
   # end
+  after_create :send_welcome_mail
+  
+  def send_welcome_mail
+     ApplicationNotifier.created(self).deliver
+  end
   
 end

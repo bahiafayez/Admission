@@ -4,7 +4,7 @@ class AdmissionInformation < ActiveRecord::Base
   belongs_to :semester
   belongs_to :major
   
-  validates :semester_id, :program_id, :major_id, :toefl_test_results, :toefl_test_date, :presence => true
+  validates :semester_id, :program_id, :toefl_test_results, :toefl_test_date, :presence => true #:major_id
   validates_date :toefl_test_date
 
   #validates :intended_major, :format => {:with => /^[a-zA-Z\s]+$/, :message => "intended_major contains non alphabetical characters"}

@@ -1,0 +1,23 @@
+<h2>Sign up</h2>
+
+<%= form_for @user,  :url => registration_path(resource_name), :validate => true do |f| %>
+
+   <p>
+  	<%= f.label :email %>
+    <%= f.text_field :email , :required => true%>
+    </p>
+    <p>
+    <%= f.label :password %>
+    <%= f.password_field :password, :required => true %><br/>
+    </p>
+    <p>
+    <%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation, :required => true %><br/>
+	</p>  
+
+  <div class="actions">
+    <%= f.submit "Sign up",:class => 'btn'%>
+  </div>
+<% end %>
+
+<%= render "links" %>
