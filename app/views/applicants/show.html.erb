@@ -435,21 +435,6 @@
 				</div>
 			</tr>
 			
-			<tr>
-				<div>
-					
-					
-					<td><b>School Certificates</b></td>
-					<% if @applicant.attachment.school_certificates.file? %>
-					<td><%= link_to image_tag(@applicant.attachment.school_certificates.url(:thumb)), @applicant.attachment.school_certificates.url %></td>
-					<% else %>
-					<td><b> You have not uploaded your school certificates</b></td>
-					<% end %>
-					<!-- <%= link_to "Download", @applicant.attachment.personal_experience.url %> -->
-					
-					
-				</div>
-			</tr>
 		</tbody>
 	</table>
 </div>

@@ -1,10 +1,9 @@
 <h2 style="font-size: 30px; color:#999999;">New Application</h2>
-	<!-- <%=session[:applicant_params]%>
-	<%=session[:address_params]%> -->
-	<!-- Applicant addresses <%= @applicant.addresses%> -->
-	
-	<div class="btn-group">
-		<button class="btn-small" id="applicantbutton">
+<!-- <%=session[:applicant_params]%>
+<%=session[:address_params]%> -->
+<!-- Applicant addresses <%= @applicant.addresses%> -->
+<div class="btn-group">
+	<button class="btn-small" id="applicantbutton">
 		Applicant
 	</button>
 	<button class="btn-small" id="addressbutton">
@@ -32,66 +31,92 @@
 		Attachments
 	</button>
 	<button class="btn-small" id="unirelatedinfobutton">
-		Uni Related Info
+		NU Related Info
 	</button>
-	</div>
-	<br /><br />
-	
-	<%= nested_form_for @applicant, :html => { :multipart => true }  do |f| %> 
-	
-	
-	<div class="well">
+</div>
+<br />
+<%= nested_form_for @applicant, :html => { :multipart => true }  do |f| %>
+<div class="well">
 	<% if @applicant.errors.any? %>
 	<div id="error_explanation">
-		<h5 align="center" style="color:#F5071D; font-size:18px; "> You've got some validation errors </h5><br />
+		<h5 align="center" style="color:#F5071D; font-size:18px; "> You've got some validation errors </h5>
+		<br />
 		<!-- <h2><%= pluralize(@applicant.errors.count, "error") %> prohibited this applicant from being saved</h2> -->
 		<!-- <ul>
-			<% @applicant.errors.full_messages.uniq.each do |msg| %>
-			<li>
- 				<%= msg %>
-			</li>
-			<% end %>
-		</ul> -->	</div>
-	<% end %>
-	<div id="allforms">
-		<div id="applicantform">
-			<%= render "applicant_step", :f => f %>
-		</div>
-		<div id="addressform" class="fields">
-			<%= render "address_step", :f => f %>
-		</div>
-		<div id="admissionform">
-			<%= render "admission_information_step", :f => f %>
-		</div>
-		<div id="workform">
-			<%= render "work_step", :f => f %>
-		</div>
-		<div id="secondaryform">
-			<%= render "secondary_school_step", :f => f %>
-		</div>
-		<div id="collegeform">
-			<%= render "college_step", :f => f %>
-		</div>
-		<div id="uniform">
-			<%= render "uni_related_info_step", :f => f %>
-		</div>
-		<div id="healthform">
-			<%= render "health_step", :f => f %>
-		</div>
-		<div id="attachmentform">
-			<%= render "attachment_step", :f => f %>
-		</div>
-		<div id="guardianform">
-			<%= render "guardian_step", :f => f %>
-		</div>
-	</div>
-	
-	<div class="actions" style="padding-left: 350px;">
-		<%= f.submit "Save", :name => "save", :class => 'btn'%> &nbsp;&nbsp;&nbsp;
-		<%= f.submit "Submit", :name => "submit", :class => 'btn' %> 
-	    
-	</div>
+		<% @applicant.errors.full_messages.uniq.each do |msg| %>
+		<li>
+		<%= msg %>
+		</li>
+		<% end %>
+		</ul> -->
 	</div>
 	<% end %>
-	
-	
+		<div id="SignupForm">
+			<fieldset>
+				<legend style="display: none;">Applicant</legend>
+				<div id="applicantform">
+					<%= render "applicant_step", :f => f %>
+				</div>
+			</fieldset>
+			<fieldset>
+				<legend style="display: none;">Address</legend>
+				<div id="addressform" class="fields">
+					<%= render "address_step", :f => f %>
+				</div>
+			</fieldset>
+			<fieldset>
+				<legend style="display: none;">Admission Info.</legend>
+				<div id="admissionform">
+					<%= render "admission_information_step", :f => f %>
+				</div>
+			</fieldset>
+			<fieldset>
+				<legend style="display: none;">Guardians</legend>
+				<div id="guardianform">
+					<%= render "guardian_step", :f => f %>
+				</div>
+			</fieldset>
+			<fieldset>
+				<legend style="display: none;">Secondary School</legend>
+				<div id="secondaryform">
+					<%= render "secondary_school_step", :f => f %>
+				</div>
+			</fieldset>			
+			<fieldset>
+				<legend style="display: none;">College</legend>
+				<div id="collegeform">
+					<%= render "college_step", :f => f %>
+				</div>
+			</fieldset>
+			<fieldset>
+				<div id="workform">
+					<legend style="display: none;">Work</legend>
+					<%= render "work_step", :f => f %>
+				</div>
+			</fieldset>			
+			<fieldset>
+				<legend style="display: none;">Health</legend>
+				<div id="healthform">
+					<%= render "health_step", :f => f %>
+				</div>
+			</fieldset>
+			<fieldset>
+				<legend style="display: none;">Attatchments</legend>
+				<div id="attachmentform">
+					<%= render "attachment_step", :f => f %>
+				</div>
+			</fieldset>
+			<fieldset>
+				<legend style="display: none;">NU Related Info. </legend>
+				<div id="uniform">
+					<%= render "uni_related_info_step", :f => f %>
+				</div>
+			</fieldset>
+
+		</div>
+		<div class="actions" style="padding-left: 350px;">
+			<%= f.submit "Save", :name => "save", :class => 'btn'%> &nbsp;&nbsp;&nbsp;
+			<%= f.submit "Submit", :name => "submit", :class => 'btn' %>
+		</div>
+	</div>
+	<% end %>

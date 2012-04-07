@@ -100,10 +100,6 @@ ActiveRecord::Schema.define(:version => 20120329130442) do
   end
 
   create_table "attachments", :force => true do |t|
-    t.string   "school_certificates_file_name"
-    t.string   "school_certificates_content_type"
-    t.integer  "school_certificates_file_size"
-    t.datetime "school_certificates_updated_at"
     t.string   "personal_experience_file_name"
     t.string   "personal_experience_content_type"
     t.integer  "personal_experience_file_size"

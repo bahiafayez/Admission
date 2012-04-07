@@ -53,7 +53,7 @@ h2 {
 
 h2,h3,h4 {
 	color: #2C2B2B;
-	margin-bottom: 1em;
+	margin-bottom: 0.7em;
 }
 
 h3 {
@@ -93,6 +93,58 @@ ul h4 {
 	margin-bottom: 0.35em;
 }
 
+.prev, .next {
+	background-color: #49afcd;
+	padding: 5px 10px;
+	color: #fff;
+	text-decoration: none;
+}
+.prev:hover, .next:hover {
+	background-color: #2786A2;
+	text-decoration: none;
+}
+.prev {
+	float: left;
+}
+.next {
+	float: right;
+}
+fieldset {
+	border: none;
+}
+
+#steps {
+	list-style: none;	
+	overflow: hidden;
+	margin: 0px;
+	padding: 0px;
+}
+
+#steps li {
+	width:auto;
+	font-size: 24px;
+	text-align: center;
+	float: left;
+	padding: 10px;
+	color: #b0b1b3;
+}
+#steps li span {
+	font-size: 11px;
+	text-align: center;
+	display: block;
+}
+#steps li.current {
+	color: #49afcd;
+}
+#makeWizard {
+	background-color: #b0232a;
+	color: #fff;
+	text-decoration: none;
+	font-size: 18px;
+}
+#makeWizard:hover {
+	background-color: #000;
+}
 
 .tooltip1 {
 	position: relative;
@@ -469,7 +521,7 @@ color: #999999;
   margin-top: 1px;
 }
 .btn-small {
-  padding: 5px 9px;
+  padding: 5px 12px;
   font-size: 11px;
   line-height: 16px;
   background-color: #7E8084;
@@ -790,8 +842,8 @@ table {
 }
 
 #page ul li {
-	border-top: solid 1px #D4D4D4;
-	padding: 15px 0 15px 0;
+
+	padding: 15px 4px 15px 5px;
 }
 
 #page ul li.first {
@@ -895,7 +947,9 @@ table {
 .field_with_errors .span2{
 	background-color:#FBE3E4;
 }
-
+.string .email .optional #user_email{
+	size:30 ;
+}
 .field_with_errors #user_email{
 	background-color:#FBE3E4;
 }

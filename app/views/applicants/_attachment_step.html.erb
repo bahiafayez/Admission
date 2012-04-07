@@ -1,15 +1,7 @@
 <p align="center" style="font-size: 14px; color:#999999;">Attachments</p>
 <%= f.fields_for :attachment do |u| %>
     
-    <%= u.hidden_field :id %> <!-- If not there disappers if empty -->
-    
-    <div class="field">
-        <%= u.label :school_certificates , {:class => 'label1'}%> <br />	&nbsp;
-    	<% if @applicant.attachment.school_certificates.file? %>
-    	<%= image_tag @applicant.attachment.school_certificates.url %>&nbsp; &nbsp; &nbsp;
-    	<% end %>
-    	<%= u.file_field :school_certificates %> <br /><br />
-    </div>
+   <%= u.hidden_field :id %> <!-- If not there disappers if empty -->
     
     <div class="field">
         <%= u.label :additional_information , {:class => 'label1'}%> <br />	&nbsp;
