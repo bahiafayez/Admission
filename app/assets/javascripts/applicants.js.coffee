@@ -106,72 +106,94 @@ $ ->
   $('#applicantbutton').click ->
     console.log "I was Clicked"
     #$('#applicantform').show()
-    #$('#addressform').hide()
-    $('#applicantform').allBut('#allforms').fadeOut();
-    $('#applicantform').show()
+    #$('#addressform').hide()    
+    $('#step0').allBut('#SignupForm').fadeOut();
+    $("#steps li").removeClass("current");
+    $("#stepDesc0").addClass("current");    
+    $('#step0').show()
     
   $('#addressbutton').click ->
     console.log "I was Clicked"
-    #$('#applicantform').show()
-    #$('#addressform').hide()
-    $('#addressform').allBut('#allforms').fadeOut();
-    $('#addressform').show()
+    #$('#applicantform').show();
+    #$('#addressform').hide()    
+    $('#step1').allBut('#SignupForm').fadeOut();
+    $("#steps li").removeClass("current");
+    $("#stepDesc1").addClass("current");
+    $('#step1').show()
+
+    
     
   $('#admissioninformationbutton').click ->
     console.log "I was Clicked"
     #$('#applicantform').show()
-    #$('#addressform').hide()
-    $('#admissionform').allBut('#allforms').fadeOut();
-    $('#admissionform').show()
+    #$('#addressform').hide()    
+    $('#step2').allBut('#SignupForm').fadeOut();
+    $("#steps li").removeClass("current");
+    $("#stepDesc2").addClass("current");
+    $('#step2').show()
     
   $('#workbutton').click ->
     console.log "I was Clicked"
     #$('#applicantform').show()
-    #$('#addressform').hide()
-    $('#workform').allBut('#allforms').fadeOut();
-    $('#workform').show()
+    #$('#addressform').hide()    
+    $('#step6').allBut('#SignupForm').fadeOut();
+    $("#steps li").removeClass("current");
+    $("#stepDesc6").addClass("current");
+    $('#step6').show()
 
   $('#secondaryschoolbutton').click ->
     console.log "I was Clicked"
     #$('#applicantform').show()
-    #$('#addressform').hide()
-    $('#secondaryform').allBut('#allforms').fadeOut();
-    $('#secondaryform').show()
+    #$('#addressform').hide()    
+    $('#step4').allBut('#SignupForm').fadeOut();
+    $("#steps li").removeClass("current");
+    $("#stepDesc4").addClass("current");
+    $('#step4').show()
 
   $('#collegebutton').click ->
     console.log "I was Clicked"
     #$('#applicantform').show()
-    #$('#addressform').hide()
-    $('#collegeform').allBut('#allforms').fadeOut();
-    $('#collegeform').show()        
+    #$('#addressform').hide()    
+    $('#step5').allBut('#SignupForm').fadeOut();
+    $("#steps li").removeClass("current");
+    $("#stepDesc5").addClass("current");
+    $('#step5').show()        
     
   $('#unirelatedinfobutton').click ->
     console.log "I was Clicked"
     #$('#applicantform').show()
-    #$('#addressform').hide()
-    $('#uniform').allBut('#allforms').fadeOut();
-    $('#uniform').show()
+    #$('#addressform').hide()    
+    $('#step9').allBut('#SignupForm').fadeOut();
+    $("#steps li").removeClass("current");
+    $("#stepDesc9").addClass("current");
+    $('#step9').show()
     
   $('#healthbutton').click ->
     console.log "I was Clicked"
     #$('#applicantform').show()
-    #$('#addressform').hide()
-    $('#healthform').allBut('#allforms').fadeOut();
-    $('#healthform').show()
+    #$('#addressform').hide()    
+    $('#step7').allBut('#SignupForm').fadeOut();
+    $("#steps li").removeClass("current");
+    $("#stepDesc7").addClass("current");
+    $('#step7').show()
 
   $('#attachmentbutton').click ->
     console.log "I was Clicked"
     #$('#applicantform').show()
-    #$('#addressform').hide()
-    $('#attachmentform').allBut('#allforms').fadeOut();
-    $('#attachmentform').show()
+    #$('#addressform').hide()    
+    $('#step8').allBut('#SignupForm').fadeOut();
+    $("#steps li").removeClass("current");
+    $("#stepDesc8").addClass("current");
+    $('#step8').show()
 
   $('#guardianbutton').click ->
     console.log "I was Clicked"
     #$('#applicantform').show()
-    #$('#addressform').hide()
-    $('#guardianform').allBut('#allforms').fadeOut();
-    $('#guardianform').show()  
+    #$('#addressform').hide()    
+    $('#step3').allBut('#SignupForm').fadeOut();
+    $("#steps li").removeClass("current");
+    $("#stepDesc3").addClass("current");
+    $('#step3').show()  
     
   $('#applicant_uni_related_info_attributes_uni_choice_attributes_print_advertisements').click ->
     console.log "wohoo"

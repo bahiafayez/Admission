@@ -1,6 +1,6 @@
 ActiveAdmin::Dashboards.build do
 
-section "Recent Applicants" do
+section "Recent Applicants" , :priority => 1 do
     table_for Applicant.order("created_at desc").limit(10) do
       column :id do |applicant|
         link_to applicant.id, admin_applicant_path(applicant)
@@ -15,6 +15,26 @@ section "Recent Applicants" do
     end
     strong { link_to "View All Applicants", admin_applicants_path }
   end
+
+section "Applications" , :priority => 3 do
+  # table_for Applicant.limit(1) do
+    # column :all do |applicant|
+          # strong {Applicant.count}
+    # end
+    # column :submitted do |applicant|
+          # strong { Applicant.where(:status => "Submitted").count}
+    # end
+    # column :approved do |applicant|
+          # strong { Applicant.where(:status => "Approved").count}
+    # end
+    # column :rejected do |applicant|
+          # strong { Applicant.where(:status => "Rejected").count}
+    # end
+  # end
+  div do
+    render 'stats'
+  end
+end
   # Define your dashboard sections here. Each block will be
   # rendered on the dashboard in the context of the view. So just
   # return the content which you would like to display.

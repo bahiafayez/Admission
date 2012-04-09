@@ -18,6 +18,7 @@
 //= require bootstrap-tooltip.js
 //= require bootstrap-popover.js
 //= require jquery.selectboxes.js
+//= require formToWizard.js
 
 // $(function() {
   // return $("#applicant_admission_information_attributes_program_id").change(function() {
@@ -35,5 +36,6 @@
     // });
   // });
 // });
-         
-  
+         $(document).ready(function(){
+            $("#SignupForm").formToWizard({ submitButton: 'SaveAccount' })
+        });

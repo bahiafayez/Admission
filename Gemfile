@@ -7,7 +7,7 @@ gem 'rails', '3.2.1'
 
 gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
 #gem 'activeadmin'
-gem 'activeadmin'
+gem 'activeadmin'#, :git => "git://github.com/gregbell/active_admin.git"
 gem 'sass-rails'
 gem "meta_search", '>= 1.1.0.pre'
 gem 'validates_timeliness', '~> 3.0.2'

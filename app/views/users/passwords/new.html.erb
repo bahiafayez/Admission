@@ -1,0 +1,18 @@
+<div class="sign_up_bg">
+<h2>Forgot your Password?</h2>
+<div class="forget_pass">
+<%= simple_form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="inputs">
+    <%= f.input  :email, :required => true, :input_html => {:class => 'span4', :placeholder => "example@example.com"} %>
+  </div>
+<br />
+  <div class="actions">
+    <%= f.button :submit, "Send me reset password instructions" ,:class => 'btn', :style=>'position:relative;left:15px'%>
+  </div>
+<% end %>
+
+<!--<%= render "links" %>-->
+</div>
+</div>

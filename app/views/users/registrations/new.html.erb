@@ -1,0 +1,26 @@
+<div class="sign_up_bg">
+	<h2>Sign Up</h2>
+	<div class="sign_up">
+		<%= form_for @user,  :url => registration_path(resource_name), :validate => true do |f| %>
+		<p>
+			<%= f.label :email %> <%= mark_required(@user, :email) %>
+			<%= f.text_field :email , :required => true, :class => 'span2', :placeholder => "example@example.com"%>
+		</p>
+		<p>
+			<%= f.label :password %><%= mark_required(@user, :password) %>
+			<%= f.password_field :password, :required => true,:class => 'span2' %>
+			<br/>
+		</p>
+		<p>
+			<%= f.label :password_confirmation,"Confirm Password" %><%= mark_required(@user, :password) %>
+			<%= f.password_field :password_confirmation, :required => true, :class => 'span2' %>
+			<br/>
+		</p>
+		<div class="actions">
+			<%= f.submit "Sign up",:class => 'btn'%>
+		</div>
+		<% end %>
+<br />
+		<!--<%= render "links" %>-->
+	</div>
+</div>

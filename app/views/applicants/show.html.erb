@@ -1,5 +1,12 @@
+
 <p id="notice" align="center" style="color:#1C6CB7; font-size: 16px;">
 	<%= notice %>
+</p>
+<p id="remove" align="center" style="padding-top:5px; padding-bottom: 10px;">
+<%= link_to 'Edit Application', edit_applicant_path(@applicant), :class => 'btn btn-primary btn-large', :id => "edit", :style=>'width:200px'%> 
+&nbsp; &nbsp;
+<%= link_to 'Download Application (PDF)', applicant_path(@applicant, :format => "pdf"), :class => 'btn btn-primary btn-large', :id=>"pdf_link", :style=>'width:200px'%> 
+
 </p>
 <h2 style="font-size: 30px; color:#999999;">Applicant Info</h2>
 <div class="well">
@@ -434,6 +441,7 @@
 					
 				</div>
 			</tr>
+			
 		</tbody>
 	</table>
 </div>

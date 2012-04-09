@@ -1,5 +1,5 @@
 class ApplicantsController < ApplicationController
-   before_filter :authorize
+   before_filter :authenticate_user!
    before_filter :correct_user, :only => [:edit, :update, :show, :destroy]
    
   # def index
@@ -25,7 +25,7 @@ class ApplicantsController < ApplicationController
     logger.debug flash[:flag]
     
     
-    @user=User.find(session[:user_id])
+    @user=User.find(current_user.id)
     
     #don't need to write anything here, since it creates (new+save) in the create action
     @applicant = @user.build_applicant
@@ -64,7 +64,7 @@ class ApplicantsController < ApplicationController
 
   def create
     
-     @user=User.find(session[:user_id])
+     @user=User.find(current_user.id)
      @applicant= @user.build_applicant(params[:applicant])
      #@applicant = Applicant.new( params[:applicant] )
      #logger.debug "Applicant isssssssssssssss"
@@ -267,7 +267,7 @@ class ApplicantsController < ApplicationController
   
   def update
     
-    @user=User.find(session[:user_id])
+    @user=User.find(current_user.id)
     #@applicant= @user.build_applicant(params[:applicant])
     @applicant=@user.applicant 
      

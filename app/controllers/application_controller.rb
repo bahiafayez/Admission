@@ -4,29 +4,34 @@ class ApplicationController < ActionController::Base
   #somthing
   #blabla
   #something else
-  helper_method :current_user  #to make it available in the view.. i think an alternative would be to implement it in the application_helper directly..
+ # helper_method :current_user  #to make it available in the view.. i think an alternative would be to implement it in the application_helper directly..
 
-  private
+ # private
   
   def current_user?(user)
     user == current_user
   end
+#   
+  # def current_user
+    # @current_user ||= User.find(session[:user_id]) if session[:user_id]
+  # end
   
-  def current_user
-    @current_user ||= User.find(session[:user_id]) if session[:user_id]
-  end
-  
-  protected
+#  protected
     
-  def authorize
-    unless User.find_by_id(session[:user_id])
-      redirect_to log_in_url, notice: "Please Log in"
-    end
-  end
-  
+  # def authorize
+    # unless User.find_by_id(session[:user_id])
+      # redirect_to log_in_url, notice: "Please Log in"
+    # end
+  # end
+#   
   def correct_user
       @app = Applicant.find(params[:id])
       @user = @app.user
+      redirect_to(root_path) unless current_user?(@user)
+  end
+  
+  def correct_user2
+      @user = User.find(params[:id])
       redirect_to(root_path) unless current_user?(@user)
   end
 

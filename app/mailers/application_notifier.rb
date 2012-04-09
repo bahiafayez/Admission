@@ -10,7 +10,7 @@ class ApplicationNotifier < ActionMailer::Base
     @greeting = "Hi"
     logger.debug "In created METHOD!!!!"
     @user = user
-    mail to: user.email, subject: 'Application Confirmation'
+    mail to: user.email, subject: 'Registration complete', :cc => "bahia.sharkawy@gmail.com"
   end
 
   # Subject can be set in your I18n file at config/locales/en.yml
@@ -21,15 +21,23 @@ class ApplicationNotifier < ActionMailer::Base
   def submitted(user, email)
     @greeting = "Hi"
     @name = user.applicant.first_name
-    mail to: user.email, subject: 'Application Submission Confirmation'
+    mail to: user.email, subject: 'Application Submission Confirmation', :cc => "bahia.sharkawy@gmail.com"
     attachments["#{user.applicant.first_name}-Application.pdf"] = email
   end
   
-  def email(user, subject, body)
+  def email(user, to, subject, body)
     @greeting = "Dear #{user.applicant.first_name}"
     @name = user.applicant.first_name
     @body=body
-    mail to: user.email, subject: subject
+    mail to: to, subject: subject, :cc => "bahia.sharkawy@gmail.com"
+    
+    #attachments["#{user.applicant.first_name}-Application.pdf"] = email
+  end
+  
+  def batch_email(to, subject, body)
+    @greeting = "Dear all,"
+    @body=body
+    mail subject: subject,:cc => "bahia.sharkawy@gmail.com", :bcc => to
     
     #attachments["#{user.applicant.first_name}-Application.pdf"] = email
   end
@@ -47,6 +55,6 @@ class ApplicationNotifier < ActionMailer::Base
     if user.applicant.notes!="" and user.applicant.notes!=nil
       @notes="Extra notes: #{user.applicant.notes}"
     end
-    mail to: user.email, subject: 'Application Feedback'
+    mail to: user.email, subject: 'Application Feedback', :cc => "bahia.sharkawy@gmail.com"
   end
 end
