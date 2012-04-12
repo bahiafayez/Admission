@@ -43,7 +43,7 @@ class UsersController < ApplicationController
         flash[:flag]=true
         redirect_to new_applicant_url#,:notice => "no applicant"
       else
-        redirect_to @user.applicant#,:notice => "applicant exists"
+        redirect_to @user.applicant,:notice => "applicant exists"
       end
     else
        redirect_to @user, :notice => "Admission Closed"

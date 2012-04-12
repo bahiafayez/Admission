@@ -7,15 +7,15 @@ class ApplicantsControllerTest < ActionController::TestCase
     @user.email="good@gmail.com"
     @user.password="123qwe"
     @user.password_confirmation="123qwe"
-
+    @user.save
   end
   
  
 ########################new##########################
    test "should get new,not pressing at button" do
-     user1=@user
-     user1.save
-    @request.session[:user_id] =user1.id
+   
+     sign_in @user 
+    @request.session[:user_id] =@user.id
     #session[:user_id] =@user.id
     get(:new,  nil, nil,{:flag => false})
   
@@ -24,13 +24,12 @@ class ApplicantsControllerTest < ActionController::TestCase
    end
 
  test "should get new,pressing at button" do
-    user1=@user
-    user1.save
-    @request.session[:user_id] = user1.id
+    sign_in @user
+    @request.session[:user_id] = @user.id
     #session[:user_id] = @user.id
     get(:new,nil, nil,{:flag => true})
 
-    assert_redirected_to '/applicants/new/'
+    assert_response :success
 
    end
   
