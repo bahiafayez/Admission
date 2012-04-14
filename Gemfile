@@ -25,10 +25,9 @@ gem "country-select"
 gem 'simplecov', :require => false, :group => :test
 gem 'webrat'
 gem 'capybara'
-
 #gem 'htmldoc'
 #gem "breadcrumbs_on_rails"
-
+gem "gchartrb", :require => "google_chart"
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do

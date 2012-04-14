@@ -102,7 +102,7 @@ $ ->
       # for key of data
         # console.log key + " => " + data[key]
       $("#applicant_admission_information_attributes_major_id").addOption data, false
-        
+
   $('#applicantbutton').click ->
     console.log "I was Clicked"
     #$('#applicantform').show()
@@ -120,9 +120,7 @@ $ ->
     $("#steps li").removeClass("current");
     $("#stepDesc1").addClass("current");
     $('#step1').show()
-
-    
-    
+       
   $('#admissioninformationbutton').click ->
     console.log "I was Clicked"
     #$('#applicantform').show()
