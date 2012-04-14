@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
  # helper_method :current_user  #to make it available in the view.. i think an alternative would be to implement it in the application_helper directly..
 
  # private
-  
+
   def current_user?(user)
     user == current_user
   end

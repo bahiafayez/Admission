@@ -7,6 +7,7 @@ class UsersControllerTest < ActionController::TestCase
   
   setup do
     @applicant = applicants(:good)
+    #@semester=Semester.create!(:name => "winter2011", :status=> true)
   end
   
   setup do
@@ -19,9 +20,9 @@ class UsersControllerTest < ActionController::TestCase
 #####################new################################# 
   #the user is not logged in
   #test "should get new" do
-    # @request.session[:user_id] = nil
-    #get :new
-    #assert_response :success
+   #   :authenticate
+   #   get :new
+   #   assert_response :success
   #end
   
   #the creature is already logged in
@@ -51,29 +52,53 @@ class UsersControllerTest < ActionController::TestCase
    # end
    #######################user############################
    
-   #test "should show user(html)" do
-    
-   # get :show, :format => 'html', :id =>@user1.id
-   # assert_response :success
-   #end
+   test "should show user(html)" do
+    sign_in @user1
+
+    get :show, :format => 'html', :id =>@user1.id
+    assert_response :success
+   end
    
-   #test "should show user(json)" do
+   test "should show user(json)" do
     # #@user.password="123qwe"
-    #get :show, :format => 'json', :id =>@user1.id
-    #assert_response :success
-   #end
+    sign_in @user1
+    get :show, :format => 'json', :id =>@user1.id
+    assert_response :success
+   end
    
    ######################application#################
-   #test "user don't have applicant" do  
-    #  get :application, :id => @user1.to_param
-    #  assert_response :redirect
-    #  #assert_equal "no applicant", flash[:notice]
-   #end
+   test "user don't have applicant" do 
+    semester=Semester.create!(:name => "winter2011", :status=> true)
+     sign_in @user1 
+     get :application, :id => @user1.to_param
+      assert_response :redirect
+       #assert_equal "no applicant", flash[:notice]
+   end
    
-   #test "user has applicant" do  
-   #   @user1.applicant=@applicant
-   #   get :application, :id => @user1.to_param
-   #   assert_response :redirect
-     # #assert_equal "applicant exists", flash[:notice]
-   #end
+   test "user has applicant" do
+    
+      semester=Semester.create!(:name => "winter2011", :status=> true)
+     sign_in @user1  
+      @user1.applicant=@applicant
+      get :application, :id => @user1.to_param
+       assert_response :redirect
+      assert_equal "applicant exists", flash[:notice]
+   end
+   
+   test "user has applicant and the semesters are closed" do
+      
+      sign_in @user1  
+      
+      @user1.applicant=@applicant
+      get :application, :id => @user1.to_param
+       assert_response :redirect
+      assert_equal "Admission Closed", flash[:notice]
+   end
+   
+   test "user: move" do
+      sign_in @user1
+      get :move
+      assert_response :redirect
+      
+   end
 end
