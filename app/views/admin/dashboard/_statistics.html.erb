@@ -1,0 +1,22 @@
+<div align="center">
+<%
+ require 'google_chart'
+%>
+<%
+@saved = Applicant.where(:status => "Saved").count 
+@submitted = Applicant.where(:status => "Submitted").count
+@rejected = Applicant.where(:status => "Rejected").count
+@approved = Applicant.where(:status => "Approved").count
+
+  GoogleChart::PieChart.new('500x200', "Applicants Status", false) do |pc|  
+  		
+    pc.data "Approved"+" (#{@approved})", @approved  ,'1BBB0A'
+    pc.data "Submmited"+" (#{@submitted})", @submitted , 'FBED0B'
+    pc.data "Rejected"+" (#{@rejected})", @rejected , 'c53711'
+    pc.data "Saved"+" (#{@saved})", @saved, '1892A4'
+   
+    @line_graph = pc.to_url
+  end
+%>
+<%= image_tag(@line_graph) %>
+</div>

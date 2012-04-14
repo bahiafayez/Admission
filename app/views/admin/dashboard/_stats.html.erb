@@ -22,18 +22,3 @@
 	</tr>
 	</tbody>
 </table>
-<div>
-<%=
- require 'google_chart'
-%>
-<%=
-  GoogleChart::PieChart.new('320x200', "Applicants Status", false) do |pc|
-    pc.data "Approved", Applicant.where(:status => "Approved").count
-    pc.data "Submmited", Applicant.where(:status => "Submitted").count
-    pc.data "Rejected", Applicant.where(:status => "Rejected").count
-    pc.data "Saved", Applicant.where(:status => "Saved").count
-    @line_graph = pc.to_url
-  end
-%>
-<%= image_tag(@line_graph) %>
-</div>
