@@ -184,7 +184,13 @@ class ApplicantsController < ApplicationController
           format.json { render json: @applicant.errors, status: :unprocessable_entity }
         end
       end
-      
+      elsif params[:cont]
+        @applicant.status="Saved"
+        respond_to do |format|
+        if @applicant.save(:validate => false)         
+          format.html { render action: "edit" }
+         end      
+      end
    else
     
      #before validation..
@@ -258,6 +264,7 @@ class ApplicantsController < ApplicationController
     end
   end
   def edit
+    logger.debug "IN EDIT!!!!!!!!"
     @applicant = Applicant.find(params[:id])
     if @applicant.status=="Closed" or Semester.where(:status => true).count==0
       redirect_to @applicant, notice: "Sorry Admission Closed"
@@ -367,6 +374,14 @@ class ApplicantsController < ApplicationController
           format.json { render json: @applicant.errors, status: :unprocessable_entity }
         end
       end
+      elsif params[:cont]
+        @applicant.status="Saved"
+        respond_to do |format|
+        if @applicant.save(:validate => false)         
+          format.html { render action: "edit" }
+         end      
+      end
+      
    else
      
      
@@ -436,6 +451,7 @@ class ApplicantsController < ApplicationController
      end
    end
   end
+  
 
   def destroy
   end
