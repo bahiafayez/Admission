@@ -1,22 +1,64 @@
-<div align="center">
 <%
  require 'google_chart'
 %>
+<div align="center">
 <%
-@saved = Applicant.where(:status => "Saved").count 
+@saved = Applicant.where(:status => "Saved").count
 @submitted = Applicant.where(:status => "Submitted").count
 @rejected = Applicant.where(:status => "Rejected").count
 @approved = Applicant.where(:status => "Approved").count
 
-  GoogleChart::PieChart.new('500x200', "Applicants Status", false) do |pc|  
-  		
-    pc.data "Approved"+" (#{@approved})", @approved  ,'1BBB0A'
-    pc.data "Submmited"+" (#{@submitted})", @submitted , 'FBED0B'
-    pc.data "Rejected"+" (#{@rejected})", @rejected , 'c53711'
-    pc.data "Saved"+" (#{@saved})", @saved, '1892A4'
-   
-    @line_graph = pc.to_url
-  end
+GoogleChart::PieChart.new('400x200', "Applicants Status", false) do |pc|
+
+  pc.data "Approved"+" (#{@approved})", @approved  ,'1BBB0A'
+  pc.data "Submmited"+" (#{@submitted})", @submitted , 'FBED0B'
+  pc.data "Rejected"+" (#{@rejected})", @rejected , 'c53711'
+  pc.data "Saved"+" (#{@saved})", @saved, '1892A4'
+
+  @pie_graph = pc.to_url
+end
 %>
-<%= image_tag(@line_graph) %>
+<%= image_tag(@pie_graph) %>
+</div>
+<br />
+<div align="center">
+<%
+approved_applicants = []
+Semester.all.each do |s|
+approved = Applicant.joins(:admission_information).where(:applicants => {:status => "Approved"}, :admission_informations => { :semester_id =>  s.id}).readonly(false).count
+approved_applicants<<5-(5-approved)
+end
+semesters=[] #array contains all semesters
+Semester.all.each do |s|
+semesters<<s.name
+end
+
+bar_1_data = [5] #approved applicants in the each semester
+color_1 = 'ffffff'
+color_2 = '1BBB0A'
+
+GoogleChart::BarChart.new("400x200", "Accepted Applicants", :vertical, false) do |bc|
+  
+  bc.data "secondResultBar", approved_applicants, color_2
+  bc.data "FixingProblem", bar_1_data, color_1 #Omnia put this to fix the problem that the largest value hits the top of the y axis
+  bc.axis :x, :labels => semesters, :font_size => 10,:alignment => :center
+  bc.axis :y, :range => [0,5], :alignment => :center
+  bc.show_legend = false
+  bc.stacked = true
+  bc.data_encoding = :extended
+ # bc.shape_marker :circle, :color => '00ff00', :data_set_index => 0, :data_point_index => -1, :pixel_size => 10
+  bc.width_spacing_options :bar_width => 25, :bar_spacing => 70, :group_spacing => 100
+
+  @bar_graph = bc.to_url
+end
+
+#GoogleChart::PieChart.new('500x200', "Applicants Status", false) do |pc|
+
+ # pc.data " (#{@s})", @approved1
+  #pc.data "Submmited", 10
+
+  #@line_graph2 = pc.to_url
+#end
+%>
+<%= image_tag(@bar_graph) %>
 </div>
