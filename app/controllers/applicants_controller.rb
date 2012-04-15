@@ -1,5 +1,5 @@
 class ApplicantsController < ApplicationController
-   before_filter :authenticate_user!
+   before_filter :authenticate_user!, :except => [:get_semester]
    before_filter :correct_user, :only => [:edit, :update, :show, :destroy]
    
   # def index
@@ -66,6 +66,12 @@ class ApplicantsController < ApplicationController
     
      @user=User.find(current_user.id)
      @applicant= @user.build_applicant(params[:applicant])
+     
+     
+    if Semester.where(:status => "true").count==0
+      redirect_to @user, notice: 'Sorry, Admission Closed.'
+      
+    else
      #@applicant = Applicant.new( params[:applicant] )
      #logger.debug "Applicant isssssssssssssss"
      #logger.debug @applicant.attributes
@@ -249,12 +255,12 @@ class ApplicantsController < ApplicationController
         end
       end
      end
-    
+    end
   end
   def edit
     @applicant = Applicant.find(params[:id])
-    if @applicant.status!="Saved" and @applicant.status!="Just Created"
-      redirect_to @applicant, notice: "Sorry Application Already Submitted"
+    if @applicant.status=="Closed" or Semester.where(:status => true).count==0
+      redirect_to @applicant, notice: "Sorry Admission Closed"
     end
     @applicant.guardians.each do |guardian|
        guardian.relation3=guardian.relation
@@ -267,9 +273,15 @@ class ApplicantsController < ApplicationController
   
   def update
     
+    
     @user=User.find(current_user.id)
     #@applicant= @user.build_applicant(params[:applicant])
     @applicant=@user.applicant 
+    
+    if @applicant.status== "Closed"
+      redirect_to @user.applicant, notice: 'Sorry, Admission Closed.'
+      logger.debug "in here in update condition!!!!!"
+    else
      
     #@applicant = Applicant.find(params[:id])
     #logger.debug "GENDERRRRRRRRRRRRRRR"
@@ -422,7 +434,7 @@ class ApplicantsController < ApplicationController
         end
       end
      end
-   
+   end
   end
 
   def destroy
@@ -455,5 +467,24 @@ class ApplicantsController < ApplicationController
 
     options = majors.collect{|x| "\"#{x.id}\" : \"#{x.name}\""}    
     render json: "{#{options.join(",")}}" 
+  end
+  
+  def get_semester
+    val = params[:sem]
+    #Use val to find records
+    logger.debug "val isssssssssssssssss"
+    logger.debug val
+    all= Applicant.joins(:admission_information).where(:admission_informations => { :semester_id => val}).readonly(false).count
+    saved= Applicant.joins(:admission_information).where(:applicants => {:status => "Saved"}, :admission_informations => { :semester_id => val}).readonly(false).count
+    submitted= Applicant.joins(:admission_information).where(:applicants => {:status => "Submitted"}, :admission_informations => { :semester_id => val}).readonly(false).count
+    approved= Applicant.joins(:admission_information).where(:applicants => {:status => "Approved"}, :admission_informations => { :semester_id => val}).readonly(false).count
+    rejected= Applicant.joins(:admission_information).where(:applicants => {:status => "Rejected"}, :admission_informations => { :semester_id => val}).readonly(false).count
+    closed= Applicant.joins(:admission_information).where(:applicants => {:status => "Closed"}, :admission_informations => { :semester_id => val}).readonly(false).count
+    
+    
+    #render :partial => "majors", :locals => { :majors => majors }
+
+    #options = majors.collect{|x| "\"#{x.id}\" : \"#{x.name}\""}    
+    render json: "{\"all\":\"#{all}\", \"saved\":\"#{saved}\", \"submitted\": \"#{submitted}\", \"approved\": \"#{approved}\", \"rejected\" : \"#{rejected}\", \"closed\": \"#{closed}\" }" 
   end
 end

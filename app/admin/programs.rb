@@ -1,5 +1,6 @@
 ActiveAdmin.register Program, :as => "School" do
   menu :parent => "Schools and Semesters"
+  actions :index, :show, :new, :create, :edit, :update
   show  do |app|
     panel "School Details" do
     attributes_table_for school do

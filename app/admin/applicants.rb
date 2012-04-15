@@ -11,6 +11,10 @@ ActiveAdmin.register Applicant do
   action_item only:[:index] do
    link_to "Email Applicants", "/admin/applicants/batch_email"
  end
+ 
+ action_item only:[:index] do
+   link_to "Close Admission", "/admin/applicants/close_admission"
+ end
   
   action_item only:[:show] do
    link_to "Approve", "/admin/applicants/#{applicant.id}/accept"
@@ -26,6 +30,10 @@ ActiveAdmin.register Applicant do
  
  action_item only:[:show] do
    link_to "Email Applicant", "/admin/applicants/#{applicant.id}/email"
+ end
+ 
+ action_item only:[:show] do
+   link_to "Close application", "/admin/applicants/#{applicant.id}/applicant_close"
  end
  
  controller do
@@ -119,7 +127,20 @@ end
       end
   end
   
+  member_action :applicant_close do
+      applicant = Applicant.find(params[:id])
+      logger.debug "inside closeeeeeeeee"
+      @app= applicant
+      @app.status="Closed"
+      @app.save(:validate => false)
+      ApplicationNotifier.close_user(applicant.user).deliver
+      redirect_to "/admin/applicants/#{params[:id]}", :notice => "Application Closed"      
+  end
+  
   collection_action :batch_email do
+  end
+  
+  collection_action :close_admission do
   end
  
   collection_action :send_batch_email, :method => :post do
@@ -169,6 +190,50 @@ end
         else
           ApplicationNotifier.batch_email(@to,@subject, @body).deliver
           redirect_to "/admin/applicants", :notice => "Email sent"
+        end
+    end
+  end
+  
+  collection_action :close, :method => :post do
+    
+    semester=params[:semester]
+    
+    
+    if params[:all_semesters]=="1"
+      semester=[]
+      Semester.all.each do |s|
+        semester<<s.id
+      end
+      semester<<nil
+    end
+    
+    
+    if semester.nil?
+      redirect_to "/admin/applicants/close_admission", :alert => "Select at least one semester"
+    else
+      logger.debug "here" 
+        @apps= Applicant.joins(:admission_information).where(:admission_informations => { :semester_id => semester}).readonly(false)
+        @to=[]
+        @apps.each do |a|
+          @to << a.user.email
+          a.status="Closed"
+          a.save(:validate => false)
+        end
+        
+        logger.debug semester 
+        semester.each do |s|
+          if s!=nil
+            ss=Semester.find(s)
+            ss.status=false
+            ss.save
+          end
+        end
+        
+        if @to.nil? or @to.size==0
+          redirect_to "/admin/applicants", :alert => "Admission closed but no email was sent since no applicants enrolled in specified semesters"
+        else
+          ApplicationNotifier.close_email(@to).deliver
+          redirect_to "/admin/applicants", :notice => "Admission closed and Emails sent"
         end
     end
   end
