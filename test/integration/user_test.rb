@@ -84,43 +84,27 @@ class UserTest < ActionDispatch::IntegrationTest
      visit last_request.url
 
      click_link "Application"
-      assert_contain "Edit Application"
+      click_button "save"
+      follow_redirect!  
+      assert_contain "Applicant was successfully created" 
    end
   
-  
-  #test "application but admission open and applicant there" do
-  #  semester=Semester.create!(:name => "winter2011", :status=> true)
-      #applicant.save(:validate => false)
-  #   @user.applicant=applicant
-   #   visit 'users/sign_in'
-   #   fill_in 'email', :with=> "ryan@example.com"
-   #   fill_in "Password", :with =>"secret"
-   #  click_button "Sign in"
-   #  follow_redirect!  
-   #  visit last_request.url
-     #assert_contain "You are being redirected."
-   #  click_link "Application"
-   #   assert_contain "Edit Application"
-   #   click_button "save"
-   #end
-  #  
-  #  visit "users/sign_in"
-  #  fill_in 'email', :with=> "user@example.com"
-  #  fill_in "Password", :with =>"123qwe"
-  #  click_button "Sign in"
-  #  assert_contain "Logged in successfully."
-    #follow_redirect!
-    
-    #assert_equal('http://example.org/user_root', last_request.url)
-    
-    #assert_contain "Application"
-  #end
-    
-  # test "user" do
-  #  id=@user.id
-  
-  #  visit 'users/'+id.to_s
-  #  follow_redirect!
-  #  assert_contain "You are being redirected."
-  #end
+   test "application but admission open (edit)" do
+       semester=Semester.create!(:name => "winter2011", :status=> true)
+      visit 'users/sign_in'
+      fill_in 'email', :with=> "ryan@example.com"
+      fill_in "Password", :with =>"secret"
+     click_button "Sign in"
+     follow_redirect!  
+     visit last_request.url
+
+     click_link "Application"
+      click_button "save"
+      follow_redirect!  
+      assert_contain "Applicant was successfully created" 
+      click_link "Edit Application"
+      assert_contain "Editing Applicant"
+       click_button "save"
+   end
+
 end
