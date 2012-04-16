@@ -12,26 +12,26 @@ class ApplicantsControllerTest < ActionController::TestCase
   
  
 ########################new##########################
-   test "should get new,not pressing at button" do
+  # test "should get new,not pressing at button" do
    
-     sign_in @user 
-    @request.session[:user_id] =@user.id
+  #   sign_in @user 
+  #  @request.session[:user_id] =@user.id
     #session[:user_id] =@user.id
-    get(:new,  nil, nil,{:flag => false})
+  #  get(:new,  nil, nil,{:flag => false})
   
-    assert_redirected_to root_path 
-    assert_equal "redirected to root", flash[:notice]
-   end
+  #  assert_redirected_to root_path 
+  #  assert_equal "redirected to root", flash[:notice]
+  # end
 
- test "should get new,pressing at button" do
-    sign_in @user
-    @request.session[:user_id] = @user.id
+ #test "should get new,pressing at button" do
+ #   sign_in @user
+ #   @request.session[:user_id] = @user.id
     #session[:user_id] = @user.id
-    get(:new,nil, nil,{:flag => true})
+ #   get(:new,nil, nil,{:flag => true})
 
-    assert_response :success
+ #   assert_response :success
 
-   end
+ #  end
   
   #########################create############################
   
