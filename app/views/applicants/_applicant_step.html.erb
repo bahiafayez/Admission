@@ -27,7 +27,7 @@
 </div>
 <div class="field">
 	<%= f.label :place_of_birth, {:class => 'label'}%> &nbsp;
-	<label class="tooltip1"><b><%= f.text_field :place_of_birth,{:class => 'span3'}%><%= mark_required(@applicant, :place_of_birth) %><span>Only alphapets are allowed</span></b></label>
+	<label class="tooltip1PhNum"><b><%= f.text_field :place_of_birth,{:class => 'span3', :placeholder => "City, Country"}%><%= mark_required(@applicant, :place_of_birth) %><span>Only alphapets are allowed with the format City, Country</span></b></label>
 </div>
 <div class="field">
 	<%= f.label :gender, {:class => 'label'}%> &nbsp;

@@ -178,7 +178,13 @@ class ApplicantsController < ApplicationController
           format.json { render json: @applicant.errors, status: :unprocessable_entity }
         end
       end
-      
+      elsif params[:cont]
+        @applicant.status="Saved"
+        respond_to do |format|
+        if @applicant.save(:validate => false)         
+          format.html { render action: "edit" }
+         end      
+      end
    else
     
      #before validation..
@@ -355,6 +361,14 @@ class ApplicantsController < ApplicationController
           format.json { render json: @applicant.errors, status: :unprocessable_entity }
         end
       end
+      elsif params[:cont]
+        @applicant.status="Saved"
+        respond_to do |format|
+        if @applicant.save(:validate => false)         
+          format.html { render action: "edit" }
+         end      
+      end
+      
    else
      
      
@@ -424,6 +438,7 @@ class ApplicantsController < ApplicationController
      end
    
   end
+  
 
   def destroy
   end
