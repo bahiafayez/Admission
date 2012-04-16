@@ -7,7 +7,9 @@ gem 'rails', '3.2.1'
 
 gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
 #gem 'activeadmin'
-gem 'activeadmin'#, :git => "git://github.com/gregbell/active_admin.git"
+gem "formtastic", "~> 2.1.1"
+gem "activeadmin", "~> 0.4.3"
+#gem 'activeadmin'#, :git => "git://github.com/gregbell/active_admin.git"
 gem 'sass-rails'
 gem "meta_search", '>= 1.1.0.pre'
 gem 'validates_timeliness', '~> 3.0.2'
@@ -25,6 +27,8 @@ gem "country-select"
 gem 'simplecov', :require => false, :group => :test
 gem 'webrat'
 gem 'capybara'
+gem 'populator'
+gem 'faker'
 #gem 'htmldoc'
 #gem "breadcrumbs_on_rails"
 gem "gchartrb", :require => "google_chart"

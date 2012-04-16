@@ -42,6 +42,14 @@ class ApplicationNotifier < ActionMailer::Base
     #attachments["#{user.applicant.first_name}-Application.pdf"] = email
   end
   
+  def close_email(to)
+    @greeting = "Dear all,"
+    
+    mail subject: "Admission Closed",:cc => "bahia.sharkawy@gmail.com", :bcc => to
+    
+    #attachments["#{user.applicant.first_name}-Application.pdf"] = email
+  end
+  
   def reason(user)
     #@greeting = "Hi"
     if user.applicant.status== "Approved"
@@ -56,5 +64,9 @@ class ApplicationNotifier < ActionMailer::Base
       @notes="Extra notes: #{user.applicant.notes}"
     end
     mail to: user.email, subject: 'Application Feedback', :cc => "bahia.sharkawy@gmail.com"
+  end
+  
+  def close_user(user)
+    mail to: user.email, subject: 'Application Closed', :cc => "bahia.sharkawy@gmail.com"
   end
 end

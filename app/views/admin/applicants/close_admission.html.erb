@@ -1,0 +1,10 @@
+<%= form_tag "/admin/applicants/close" do %>
+<div class="well2">
+    	
+    	<b><%= label_tag 'Semester', nil, :style=>'position:relative;left:30px' %></b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>All</b>&nbsp;&nbsp;&nbsp;<%= check_box_tag 'all_semesters'%><br/>
+    	<%= select_tag :semester , options_from_collection_for_select(Semester.all,:id, :name ), :multiple => true, :class => 'span3', :style=>'position:relative;left:30px'%><br/><br/>
+    	
+    
+        <%= submit_tag "Close" ,:style=>'position:relative;left:300px'%>
+</div>
+<% end %>

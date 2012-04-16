@@ -39,6 +39,7 @@ Admission::Application.routes.draw do
     end
     collection do
       get 'update_major_select'
+      get 'get_semester'
     end
   end
   

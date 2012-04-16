@@ -1,24 +1,32 @@
 <table>
+	<%= select_tag "semester_sel", options_from_collection_for_select(Semester.all, :id, :name) %>
+	
+	<div id="semester_body">
 	<tbody>
 	<tr class="<%= cycle("even", "odd") %>">
 	<td>All</td>
-	<td><%= Applicant.count %></td>
+	<td id="all_apps"><%= Applicant.count %></td>
 	</tr>
 	<tr class="<%= cycle("even", "odd") %>">
 	<td>Saved</td>
-	<td> <%= Applicant.where(:status => "Saved").count %></td>
+	<td  id="saved_apps"> <%= Applicant.where(:status => "Saved").count %></td>
 	</tr>
 	<tr class="<%= cycle("even", "odd") %>">
 	<td>Submitted</td>
-	<td> <%= Applicant.where(:status => "Submitted").count %></td>
+	<td id="submitted_apps"> <%= Applicant.where(:status => "Submitted").count %></td>
 	</tr>
 	<tr class="<%= cycle("even", "odd") %>">
 	<td>Approved:</td>
-	<td> <%= Applicant.where(:status => "Approved").count %></td>
+	<td id="approved_apps"> <%= Applicant.where(:status => "Approved").count %></td>
 	</tr>
 	<tr class="<%= cycle("even", "odd") %>">
 	<td>Rejected:</td>
-	<td> <%= Applicant.where(:status => "Rejected").count %></td>
+	<td id="rejected_apps"> <%= Applicant.where(:status => "Rejected").count %></td>
+	</tr>
+	<tr class="<%= cycle("even", "odd") %>">
+	<td>Closed:</td>
+	<td id="closed_apps"> <%= Applicant.where(:status => "Closed").count %></td>
 	</tr>
 	</tbody>
+	</div>
 </table>

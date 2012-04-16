@@ -16,7 +16,8 @@ section "Recent Applicants" , :priority => 1 do
     strong { link_to "View All Applicants", admin_applicants_path }
   end
 
-section "Applications" , :priority => 3 do
+
+section "Applications", :priority => 3 do
   # table_for Applicant.limit(1) do
     # column :all do |applicant|
           # strong {Applicant.count}
