@@ -1,4 +1,5 @@
 <h2 style="font-size: 30px; color:#999999;">Editing Applicant</h2>
+<!--
 <div class="btn-group">
 	<button class="btn-small" id="applicantbutton">
 		Applicant
@@ -32,6 +33,7 @@
 	</button>
 </div>
 <br />
+-->
 <%= nested_form_for @applicant , :html => { :multipart => true }  do |f| %>
 <div class="well">
 	<% if @applicant.errors.any? %>

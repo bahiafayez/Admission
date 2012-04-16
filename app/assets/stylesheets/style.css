@@ -133,9 +133,14 @@ fieldset {
 	text-align: center;
 	display: block;
 }
-#steps li.current {
+#steps li a.current {
 	color: #49afcd;
 }
+
+#steps li a {
+	color: #b0b1b3;
+}
+
 
 
 

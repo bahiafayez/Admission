@@ -24,7 +24,7 @@
             var name = $(this).find("legend").html();
             
             var stepName = "step" + i;
-            $("#steps").append("<li id='stepDesc" + i + "'><a href='#' id='" + stepName + "button' class='nodec' >Step " + (i + 1) + "<span>" + name + "</span></a></li>");
+            $("#steps").append("<li id='stepDesc" + i + "'><a href='#' id='" + stepName + "button' >Step " + (i + 1) + "<span>" + name + "</span></a></li>");
 			
 			$("#" + stepName + "button").bind("click", function(e) {
                 //$("#" + stepName).hide();
@@ -81,8 +81,8 @@
         }
 
         function selectStep(i) {
-            $("#steps li").removeClass("current");
-            $("#stepDesc" + i).addClass("current");
+            $("#steps li a").removeClass("current");
+            $("#step" + i+"button").addClass("current");
         }
 
     }
