@@ -22,8 +22,24 @@
 
             // 2
             var name = $(this).find("legend").html();
-            $("#steps").append("<li id='stepDesc" + i + "'>Step " + (i + 1) + "<span>" + name + "</span></li>");
-
+            
+            var stepName = "step" + i;
+            $("#steps").append("<li id='stepDesc" + i + "'><a href='#' id='" + stepName + "button' class='nodec' >Step " + (i + 1) + "<span>" + name + "</span></a></li>");
+			
+			$("#" + stepName + "button").bind("click", function(e) {
+                //$("#" + stepName).hide();
+                // now must just hide all others.
+                //$(element).find("fieldset").removeChild();
+                $(element).find("fieldset").each(function (j){
+                	console.log(j)
+                	$("#step"+j).hide();
+                	});
+                $("#step" + (i)).show();
+                $(submmitButtonName).hide(); //what's that?
+                selectStep(i);
+                console.log(i);
+            });
+            
             if (i == 0) {
                 createNextButton(i);
                 selectStep(i);

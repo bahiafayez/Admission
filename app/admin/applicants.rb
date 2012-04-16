@@ -215,9 +215,11 @@ end
         @apps= Applicant.joins(:admission_information).where(:admission_informations => { :semester_id => semester}).readonly(false)
         @to=[]
         @apps.each do |a|
-          @to << a.user.email
-          a.status="Closed"
-          a.save(:validate => false)
+          if a.status!="Approved" and a.status!="Rejected"
+            a.status="Closed"
+            a.save(:validate => false)
+            @to << a.user.email
+          end
         end
         
         logger.debug semester 

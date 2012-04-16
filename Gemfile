@@ -25,6 +25,8 @@ gem "country-select"
 gem 'simplecov', :require => false, :group => :test
 gem 'webrat'
 gem 'capybara'
+gem 'populator'
+gem 'faker'
 #gem 'htmldoc'
 #gem "breadcrumbs_on_rails"
 gem "gchartrb", :require => "google_chart"

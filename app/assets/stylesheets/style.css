@@ -136,6 +136,13 @@ fieldset {
 #steps li.current {
 	color: #49afcd;
 }
+
+
+
+#nodec {text-decoration: none;}
+
+
+
 #makeWizard {
 	background-color: #b0232a;
 	color: #fff;
