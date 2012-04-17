@@ -76,6 +76,7 @@ class UserTest < ActionDispatch::IntegrationTest
       #applicant.save(:validate => false)
   #   @user.applicant=applicant
       semester=Semester.create!(:name => "winter2011", :status=> true)
+      
       visit 'users/sign_in'
       fill_in 'email', :with=> "ryan@example.com"
       fill_in "Password", :with =>"secret"
@@ -106,5 +107,111 @@ class UserTest < ActionDispatch::IntegrationTest
       assert_contain "Editing Applicant"
        click_button "save"
    end
-
+   
+   test "application but admission open (fill)" do
+       semester=Semester.create!(:name => "winter2011", :status=> true)
+       program=Program.create!(:name => "prog", :status=> true)
+        applicant=applicants(:good)
+        address=addresses(:good)
+        admission_info=admission_informations(:good)
+        guardian=guardians(:good)
+        secondaryschool=secondary_schools(:good)
+        college=colleges(:good)
+        visit 'users/sign_in'
+      fill_in 'email', :with=> "ryan@example.com"
+      fill_in "Password", :with =>"secret"
+      click_button "Sign in"
+      follow_redirect!  
+      visit last_request.url
+   
+      click_link "Application"
+       assert_contain "New Application"
+       #first_name: Mohamed
+       #middle_name: Mohamed
+        #last_name: Yassen       #validates :first_name, :middle_name,:last_name,:date_of_birth, :place_of_birth, :gender,:military_status, :transportation, :presence => true
+        fill_in 'First Name', :with=> applicant.first_name
+        fill_in 'Middle Name', :with=> applicant.middle_name
+        fill_in 'Last Name', :with=> applicant.last_name
+        select "1988", :from => "applicant_date_of_birth_1i"
+        select "March", :from => "applicant_date_of_birth_2i"
+        select "2", :from => "applicant_date_of_birth_3i"
+        
+        #fill_in 'Date of birth', :with=> applicant.date_of_birth
+        fill_in 'Place of birth', :with=> applicant.place_of_birth
+        fill_in 'Gender', :with=> applicant.gender
+        fill_in 'Military status', :with=> applicant.military_status
+        fill_in 'Transportation', :with=> applicant.transportation
+        
+        fill_in 'Place of birth', :with=> applicant.place_of_birth
+        fill_in 'Gender', :with=> applicant.gender
+        fill_in 'Military status', :with=> applicant.military_status
+        fill_in 'Transportation', :with=> applicant.transportation
+        
+        fill_in 'applicant_addresses_attributes_0_address', :with=> address.address
+        select "Both", :from => "applicant_addresses_attributes_0_address_type"
+        
+        fill_in 'applicant_addresses_attributes_1_address', :with=> address.address
+        select "Both", :from => "applicant_addresses_attributes_1_address_type"
+        
+       
+       
+       select "winter2011", :from => "applicant_admission_information_attributes_semester_id"
+        
+        select "prog", :from => "applicant_admission_information_attributes_program_id"
+        fill_in 'Toefl test results', :with=> admission_info.toefl_test_results
+        
+        select "2010", :from => "applicant_admission_information_attributes_toefl_test_date_1i"
+        select "June", :from => "applicant_admission_information_attributes_toefl_test_date_2i"
+        select "2", :from => "applicant_admission_information_attributes_toefl_test_date_3i"
+        
+        fill_in 'applicant_guardians_attributes_0_first_name', :with=>guardian.first_name
+        fill_in 'applicant_guardians_attributes_0_last_name', :with=> guardian.last_name
+        fill_in 'applicant_guardians_attributes_0_occupation', :with=>guardian.occupation
+        fill_in 'applicant_guardians_attributes_0_address', :with=>guardian.address
+        select "Yes", :from => "applicant_guardians_attributes_0_financial"
+        
+        fill_in 'applicant_guardians_attributes_1_first_name', :with=>guardian.first_name
+        fill_in 'applicant_guardians_attributes_1_last_name', :with=> guardian.last_name
+        fill_in 'applicant_guardians_attributes_1_occupation', :with=>guardian.occupation
+        fill_in 'applicant_guardians_attributes_1_address', :with=>guardian.address
+        select "Yes", :from => "applicant_guardians_attributes_1_financial"
+        
+        fill_in 'applicant_secondary_schools_attributes_0_name', :with=>secondaryschool.name
+        fill_in 'applicant_secondary_schools_attributes_0_address', :with=>secondaryschool.address
+        select "English", :from =>"applicant_secondary_schools_attributes_0_language"
+        
+        select "2005", :from => "applicant_secondary_schools_attributes_0_attended_from_1i"
+        select "March", :from => "applicant_secondary_schools_attributes_0_attended_from_2i"
+        select "2", :from => "applicant_secondary_schools_attributes_0_attended_from_3i"
+        
+        select "2008", :from => "applicant_secondary_schools_attributes_0_attended_to_1i"
+        select "March", :from => "applicant_secondary_schools_attributes_0_attended_to_2i"
+        select "3", :from => "applicant_secondary_schools_attributes_0_attended_to_3i"
+        
+        select "IG", :from => "applicant_secondary_schools_attributes_0_certificate_type"
+        select "Private", :from =>"applicant_secondary_schools_attributes_0_school_type"
+        
+        fill_in 'applicant_colleges_attributes_0_name',:with=>college.name
+        fill_in 'applicant_colleges_attributes_0_faculty',:with=>college.faculty
+        fill_in 'applicant_colleges_attributes_0_major',:with=>college.major
+        fill_in 'applicant_colleges_attributes_0_city',:with=>college.city
+        select "Egypt", :from =>"applicant_colleges_attributes_0_country"
+        
+        select "2008", :from => "applicant_colleges_attributes_0_attended_from_1i"
+        select "March", :from => "applicant_colleges_attributes_0_attended_from_2i"
+        select "2", :from => "applicant_colleges_attributes_0_attended_from_3i"
+        
+        select "2009", :from => "applicant_colleges_attributes_0_attended_to_1i"
+        select "March", :from => "applicant_colleges_attributes_0_attended_to_2i"
+        select "3", :from => "applicant_colleges_attributes_0_attended_to_3i"
+        
+        select "English", :from =>"applicant_colleges_attributes_0_language"
+        fill_in 'applicant_colleges_attributes_0_gpa',:with=>college.gpa
+        
+        fill_in 'applicant_healths_attributes_0_illness',:with=>"fever"
+        
+        click_button "submit"
+        
+        assert_contain "You've got some validation errors" 
+   end
 end

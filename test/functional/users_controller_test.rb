@@ -16,13 +16,18 @@ class UsersControllerTest < ActionController::TestCase
     @user1.password="123qwe"
     @user1.password_confirmation="123qwe"
     @user1.save
+    
+
+   #@user1.applicant=@applicant
+   # @user1.save
+    
   end
-#####################new################################# 
+#####################new#################################
   #the user is not logged in
   #test "should get new" do
-   #   :authenticate
-   #   get :new
-   #   assert_response :success
+   # :authenticate
+   # get :new
+   # assert_response :success
   #end
   
   #the creature is already logged in
@@ -41,7 +46,7 @@ class UsersControllerTest < ActionController::TestCase
    # post :create, :user => { :email => 'somemail@mail.com',:password =>'123bob' }
    # end
    # assert_response :redirect
-   #  assert_equal "Signed up!", flash[:notice]
+   # assert_equal "Signed up!", flash[:notice]
    # end
     
    #user fails validation,goes to new? sucess?
@@ -67,19 +72,21 @@ class UsersControllerTest < ActionController::TestCase
    end
    
    ######################application#################
-   test "user don't have applicant" do 
+   test "user don't have applicant" do
+     
     semester=Semester.create!(:name => "winter2011", :status=> true)
-     sign_in @user1 
+     sign_in @user1
      get :application, :id => @user1.to_param
       assert_response :redirect
        #assert_equal "no applicant", flash[:notice]
    end
    
    test "user has applicant" do
-    
+      
+      @user1.build_applicant(@applicant.attributes)
+      @user1.save(:validate => false)
       semester=Semester.create!(:name => "winter2011", :status=> true)
-     sign_in @user1  
-      @user1.applicant=@applicant
+     sign_in @user1
       get :application, :id => @user1.to_param
        assert_response :redirect
       assert_equal "applicant exists", flash[:notice]
@@ -87,9 +94,11 @@ class UsersControllerTest < ActionController::TestCase
    
    test "user has applicant and the semesters are closed" do
       
-      sign_in @user1  
+    
+      @user1.build_applicant(@applicant.attributes)
+      @user1.save(:validate => false)
+      sign_in @user1
       
-      @user1.applicant=@applicant
       get :application, :id => @user1.to_param
        assert_response :redirect
       assert_equal "Admission Closed", flash[:notice]
@@ -102,3 +111,6 @@ class UsersControllerTest < ActionController::TestCase
       
    end
 end
+
+
+
