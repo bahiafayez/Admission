@@ -2,6 +2,7 @@
 <!-- <%=session[:applicant_params]%>
 <%=session[:address_params]%> -->
 <!-- Applicant addresses <%= @applicant.addresses%> -->
+<!--
 <div class="btn-group">
 	<button class="btn-small" id="applicantbutton">
 		Applicant
@@ -35,6 +36,7 @@
 	</button>
 </div>
 <br />
+-->
 <%= nested_form_for @applicant, :html => { :multipart => true }  do |f| %>
 <div class="well">
 	<% if @applicant.errors.any? %>
@@ -114,7 +116,7 @@
 			</fieldset>
 
 		</div>
-		<div class="actions" style="padding-left: 350px;">
+		<div class="actions" style="padding-left: 285px;">
 			<%= f.submit "Save", :name => "save", :class => 'btn'%> &nbsp;&nbsp;&nbsp;
 			<%= f.submit "Save & Continue", :name => "cont" , :class => 'btn' %> &nbsp;&nbsp;&nbsp;
 			<%= f.submit "Submit", :name => "submit", :class => 'btn' %>
