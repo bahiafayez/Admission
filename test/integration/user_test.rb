@@ -116,6 +116,7 @@ class UserTest < ActionDispatch::IntegrationTest
         admission_info=admission_informations(:good)
         guardian=guardians(:good)
         secondaryschool=secondary_schools(:good)
+       
         college=colleges(:good)
         visit 'users/sign_in'
       fill_in 'email', :with=> "ryan@example.com"
@@ -132,27 +133,38 @@ class UserTest < ActionDispatch::IntegrationTest
         fill_in 'First Name', :with=> applicant.first_name
         fill_in 'Middle Name', :with=> applicant.middle_name
         fill_in 'Last Name', :with=> applicant.last_name
+        fill_in 'National ID', :with=> "8375"
+        fill_in 'Passport number', :with=> "989123"
+        
         select "1988", :from => "applicant_date_of_birth_1i"
         select "March", :from => "applicant_date_of_birth_2i"
         select "2", :from => "applicant_date_of_birth_3i"
-        
+        select "2012", :from => "applicant_national_id_expiry_date_1i"
+        select "June", :from => "applicant_national_id_expiry_date_2i"
+        select "2", :from => "applicant_national_id_expiry_date_3i"
+        select "Egypt", :from => "Country of issuance" 
+        select "2012", :from => "applicant_passport_expiry_date_1i"
+        select "June", :from => "applicant_passport_expiry_date_2i"
+        select "2", :from => "applicant_passport_expiry_date_3i" 
         #fill_in 'Date of birth', :with=> applicant.date_of_birth
-        fill_in 'Place of birth', :with=> applicant.place_of_birth
+        fill_in 'Place of birth', :with=> "Cairo, Egypt"
         fill_in 'Gender', :with=> applicant.gender
         fill_in 'Military status', :with=> applicant.military_status
         fill_in 'Transportation', :with=> applicant.transportation
         
-        fill_in 'Place of birth', :with=> applicant.place_of_birth
-        fill_in 'Gender', :with=> applicant.gender
-        fill_in 'Military status', :with=> applicant.military_status
-        fill_in 'Transportation', :with=> applicant.transportation
+        #fill_in 'Place of birth', :with=> applicant.place_of_birth
+        #fill_in 'Gender', :with=> applicant.gender
+        #fill_in 'Military status', :with=> applicant.military_status
+        #fill_in 'Transportation', :with=> applicant.transportation
         
         fill_in 'applicant_addresses_attributes_0_address', :with=> address.address
         select "Both", :from => "applicant_addresses_attributes_0_address_type"
-        
+        fill_in 'applicant_addresses_attributes_0_telephone', :with=> address.telephone
+         fill_in 'applicant_addresses_attributes_1_mobile', :with=> address.mobile
         fill_in 'applicant_addresses_attributes_1_address', :with=> address.address
         select "Both", :from => "applicant_addresses_attributes_1_address_type"
-        
+        fill_in 'applicant_addresses_attributes_1_telephone', :with=> address.telephone
+         fill_in 'applicant_addresses_attributes_1_mobile', :with=> address.mobile
        
        
        select "winter2011", :from => "applicant_admission_information_attributes_semester_id"
@@ -168,12 +180,20 @@ class UserTest < ActionDispatch::IntegrationTest
         fill_in 'applicant_guardians_attributes_0_last_name', :with=> guardian.last_name
         fill_in 'applicant_guardians_attributes_0_occupation', :with=>guardian.occupation
         fill_in 'applicant_guardians_attributes_0_address', :with=>guardian.address
+         fill_in 'applicant_guardians_attributes_0_telephone', :with=>guardian.telephone
+        fill_in 'applicant_guardians_attributes_0_mobile', :with=>guardian.mobile
+         fill_in 'applicant_guardians_attributes_0_business_telephone', :with=>guardian.telephone
+         fill_in 'applicant_guardians_attributes_0_email', :with=>"email@email.com"
         select "Yes", :from => "applicant_guardians_attributes_0_financial"
         
         fill_in 'applicant_guardians_attributes_1_first_name', :with=>guardian.first_name
         fill_in 'applicant_guardians_attributes_1_last_name', :with=> guardian.last_name
+        fill_in 'applicant_guardians_attributes_1_telephone', :with=>guardian.telephone
+        fill_in 'applicant_guardians_attributes_1_mobile', :with=>guardian.mobile
         fill_in 'applicant_guardians_attributes_1_occupation', :with=>guardian.occupation
         fill_in 'applicant_guardians_attributes_1_address', :with=>guardian.address
+        fill_in 'applicant_guardians_attributes_1_business_telephone', :with=>guardian.telephone
+         fill_in 'applicant_guardians_attributes_1_email', :with=>"email1@email.com"
         select "Yes", :from => "applicant_guardians_attributes_1_financial"
         
         fill_in 'applicant_secondary_schools_attributes_0_name', :with=>secondaryschool.name
@@ -187,6 +207,9 @@ class UserTest < ActionDispatch::IntegrationTest
         select "2008", :from => "applicant_secondary_schools_attributes_0_attended_to_1i"
         select "March", :from => "applicant_secondary_schools_attributes_0_attended_to_2i"
         select "3", :from => "applicant_secondary_schools_attributes_0_attended_to_3i"
+        select "2008", :from => "applicant_secondary_schools_attributes_0_graduation_date_1i"
+        select "March", :from => "applicant_secondary_schools_attributes_0_graduation_date_2i"
+        select "30", :from => "applicant_secondary_schools_attributes_0_graduation_date_3i"
         
         select "IG", :from => "applicant_secondary_schools_attributes_0_certificate_type"
         select "Private", :from =>"applicant_secondary_schools_attributes_0_school_type"
@@ -196,6 +219,7 @@ class UserTest < ActionDispatch::IntegrationTest
         fill_in 'applicant_colleges_attributes_0_major',:with=>college.major
         fill_in 'applicant_colleges_attributes_0_city',:with=>college.city
         select "Egypt", :from =>"applicant_colleges_attributes_0_country"
+        
         
         select "2008", :from => "applicant_colleges_attributes_0_attended_from_1i"
         select "March", :from => "applicant_colleges_attributes_0_attended_from_2i"
@@ -210,8 +234,27 @@ class UserTest < ActionDispatch::IntegrationTest
         
         fill_in 'applicant_healths_attributes_0_illness',:with=>"fever"
         
-        click_button "submit"
+       
+        fill_in "Employer", :with=>"IT"
+        fill_in "tasks", :with=>:"IT"
         
-        assert_contain "You've got some validation errors" 
+        select "2010", :from => "applicant_works_attributes_0_worked_from_1i"
+        select "March", :from => "applicant_works_attributes_0_worked_from_2i"
+        select "2", :from => "applicant_works_attributes_0_worked_from_3i"
+        select "2010", :from => "applicant_works_attributes_0_worked_to_1i"
+        select "April", :from => "applicant_works_attributes_0_worked_to_2i"
+        select "2", :from => "applicant_works_attributes_0_worked_to_3i"
+        click_button "submit"
+        #assert_contain "You are being redirected."
+        follow_redirect!
+        assert_contain "Applicant Info"
+        click_link "Edit Application"
+        assert_contain "Editing Applicant"
+        click_button "Save & Continue" 
+        follow_redirect!
+        click_button "Save"
+        #click_link "Sign Out"
+        #assert_contain "You are being redirected."
+        #assert_contain "You've got some validation errors" 
    end
 end
