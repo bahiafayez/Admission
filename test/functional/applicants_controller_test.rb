@@ -2,13 +2,13 @@ require 'test_helper'
 
 class ApplicantsControllerTest < ActionController::TestCase
   fixtures :applicants 
-   setup do
-    @user=User.new
-    @user.email="good@gmail.com"
-    @user.password="123qwe"
-    @user.password_confirmation="123qwe"
-    @user.save
-  end
+   #setup do
+    #@user=User.new
+    #@user.email="good@gmail.com"
+    #@user.password="123qwe"
+    #@user.password_confirmation="123qwe"
+    #@user.save
+  #end
   
  
 ########################new##########################
