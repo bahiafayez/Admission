@@ -111,7 +111,7 @@ $ ->
     $("#steps li").removeClass("current");
     $("#stepDesc0").addClass("current");    
     $('#step0').show()
-    
+   
   $('#addressbutton').click ->
     console.log "I was Clicked"
     #$('#applicantform').show();

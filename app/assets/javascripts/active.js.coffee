@@ -1,7 +1,7 @@
 $(document).ready ->
   $("#semester_sel").change(changeSemester).trigger "change"
   
-
+ 
 changeSemester = ->
   url = undefined
   url = "/applicants/get_semester?sem=" + $(this).val()
@@ -18,3 +18,4 @@ changeSemester = ->
     #for key of data
       # console.log key + " => " + data[key]
     #$("#applicant_admission_information_attributes_major_id").addOption data, false
+    

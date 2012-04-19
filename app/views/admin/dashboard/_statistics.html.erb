@@ -50,14 +50,8 @@ GoogleChart::BarChart.new("400x200", "Approved Applicants per Semester", :vertic
   @bar_graph = bc.to_url
 end
 
-#GoogleChart::PieChart.new('500x200', "Applicants Status", false) do |pc|
-
- # pc.data " (#{@s})", @approved1
-  #pc.data "Submmited", 10
-
-  #@line_graph2 = pc.to_url
-#end
 %>
 <%= image_tag(@bar_graph) %>
+
 </div>
 

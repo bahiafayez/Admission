@@ -1,5 +1,5 @@
 <table>
-	<%= select_tag "semester_sel", options_from_collection_for_select(Semester.all, :id, :name) %>
+	<%= select_tag "semester_sel", options_from_collection_for_select(Semester.all, :id, :name),{:id=>"ooo"} %>
 	
 	<div id="semester_body">
 	<tbody>
