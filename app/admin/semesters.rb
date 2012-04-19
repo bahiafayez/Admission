@@ -1,5 +1,5 @@
 ActiveAdmin.register Semester do
-  menu :parent => "Schools and Semesters"
+  menu :if => proc{ can?(:manage, Semester) }, :parent => "Schools and Semesters"
   actions :index, :show, :new, :create, :edit, :update
   
   action_item only:[:index] do

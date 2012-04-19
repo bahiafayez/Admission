@@ -1,5 +1,9 @@
 ActiveAdmin.register Program, :as => "School" do
-  menu :parent => "Schools and Semesters"
+  
+  menu :if => proc{ can?(:manage, Program) } , :parent => "Schools and Semesters"    
+  controller.authorize_resource
+  
+ # menu 
   actions :index, :show, :new, :create, :edit, :update
   show  do |app|
     panel "School Details" do
