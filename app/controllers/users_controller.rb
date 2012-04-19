@@ -41,7 +41,7 @@ class UsersController < ApplicationController
     if Semester.where(:status => true).count>0
       if @user.applicant == nil
         flash[:flag]=true
-        redirect_to new_applicant_url#,:notice => "no applicant"
+        redirect_to new_applicant_url
       else
         redirect_to @user.applicant,:notice => "applicant exists"
       end
