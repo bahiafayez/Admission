@@ -1,6 +1,8 @@
 ActiveAdmin.register Applicant do
   
-  filter :user
+  
+  filter :user,  :if => proc{ can?(:manage, Applicant) }
+  filter :user, :collection => proc { Applicant.where(:status=> "Approved").order("first_name") },  :if => proc{ cannot?(:manage, Applicant) }
   filter :last_name
   filter :first_name
   filter :admission_information_semester_name, :as => :string , label: 'Semester'#, :collection => proc { Semester.all }
@@ -8,19 +10,23 @@ ActiveAdmin.register Applicant do
   filter :admission_information_major_name, :as => :string, label: 'Major' #, :collection => proc { Semester.all }
   
   
-  action_item only:[:index] do
+ action_item only:[:index], :if => proc{ can?(:manage, Applicant) } do
    link_to "Email Applicants", "/admin/applicants/batch_email"
  end
  
- action_item only:[:index] do
+ action_item only:[:index], :if => proc{ cannot?(:manage, Applicant) } do
+   link_to "Email Applicants", "/admin/applicants/batch_email2"
+ end
+ 
+ action_item only:[:index] , :if => proc{ can?(:manage, Applicant) } do
    link_to "Close Admission", "/admin/applicants/close_admission"
  end
   
-  action_item only:[:show] do
+  action_item only:[:show], :if => proc{ can?(:manage, Applicant) } do
    link_to "Approve", "/admin/applicants/#{applicant.id}/accept"
  end
  
- action_item only:[:show] do
+ action_item only:[:show], :if => proc{ can?(:manage, Applicant) } do
    link_to "Reject", "/admin/applicants/#{applicant.id}/reject"
  end
  
@@ -32,11 +38,15 @@ ActiveAdmin.register Applicant do
    link_to "Email Applicant", "/admin/applicants/#{applicant.id}/email"
  end
  
- action_item only:[:show] do
+ action_item only:[:show], :if => proc{ can?(:manage, Applicant) } do
    link_to "Close application", "/admin/applicants/#{applicant.id}/applicant_close"
  end
  
  controller do
+   
+   authorize_resource
+   include ActiveAdminCanCan
+   
   def show
     @applicant = Applicant.find(params[:id])
     respond_to do |format|
@@ -140,6 +150,10 @@ end
   collection_action :batch_email do
   end
   
+  collection_action :batch_email2  do
+    @page_title="Batch Email"
+  end
+  
   collection_action :close_admission do
   end
  
@@ -187,6 +201,53 @@ end
         @body=params[:body]
         if @to.nil? or @to.size==0
           redirect_to "/admin/applicants/batch_email", :alert => "the <to> field is empty"
+        else
+          ApplicationNotifier.batch_email(@to,@subject, @body).deliver
+          redirect_to "/admin/applicants", :notice => "Email sent"
+        end
+    end
+  end
+  
+  collection_action :send_batch_email2, :method => :post do
+    
+    semester=params[:semester]
+    program=params[:program]
+    logger.debug "semester isssssss"
+    logger.debug status
+    
+    if params[:all_semesters]=="1"
+      semester=[]
+      Semester.all.each do |s|
+        semester<<s.id
+      end
+      semester<<nil
+    end
+    
+    if params[:all_programs]=="1"
+      program=[]
+      Program.all.each do |p|
+        program<<p.id
+      end
+      program<<nil
+    end
+    
+    
+    logger.debug "they areeeee"
+    logger.debug semester
+    logger.debug program
+    if semester.nil? or program.nil?
+      redirect_to "/admin/applicants/batch_email2", :alert => "Select at least one from each group"
+    else
+      logger.debug "here" 
+        @apps= Applicant.joins(:admission_information).where(:applicants => {:status => "Approved"}, :admission_informations => { :semester_id => semester , :program_id => program})
+        @to=[]
+        @apps.each do |a|
+          @to << a.user.email
+        end 
+        @subject=params[:subject]
+        @body=params[:body]
+        if @to.nil? or @to.size==0
+          redirect_to "/admin/applicants/batch_email2", :alert => "the <to> field is empty"
         else
           ApplicationNotifier.batch_email(@to,@subject, @body).deliver
           redirect_to "/admin/applicants", :notice => "Email sent"
@@ -253,21 +314,24 @@ end
       end
   end
   
-  scope :all, :default => true
-  scope :just_created do |applicants|
+  scope :all,:if => proc{ can?(:manage, Applicant) }, :default => true
+  scope :just_created,:if => proc{ can?(:manage, Applicant) } do |applicants|
     applicants.where(:status => "Just Created")
   end
-  scope :saved do |applicants|
+  scope :saved,:if => proc{ can?(:manage, Applicant) } do |applicants|
     applicants.where(:status => "Saved")
   end
-  scope :submitted do |applicants|
+  scope :submitted,:if => proc{ can?(:manage, Applicant) } do |applicants|
     applicants.where(:status => "Submitted")
   end
-  scope :approved do |applicants|
+  scope :approved,:if => proc{ can?(:manage, Applicant) } do |applicants|
     applicants.where(:status => "Approved")
   end
-  scope :rejected do |applicants|
+  scope :rejected, :if => proc{ can?(:manage, Applicant) } do |applicants|
     applicants.where(:status => "Rejected")
+  end
+  scope :closed,:if => proc{ can?(:manage, Applicant) } do |applicants|
+    applicants.where(:status => "Closed")
   end
   
   #menu :parent => "Applicant Information"

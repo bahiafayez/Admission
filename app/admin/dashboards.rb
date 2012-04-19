@@ -1,6 +1,32 @@
 ActiveAdmin::Dashboards.build do
 
-section "Recent Applicants" , :priority => 1 do
+#Within DashboardController
+      def index
+        if defined? CanCan then
+            authorize! :index, self.class.name
+        end
+        @dashboard_sections = find_sections
+        render_or_default 'index'
+      end
+
+section "Recent Applicants" , :priority => 1 , :if => proc{ cannot?(:manage, Applicant) } do
+    table_for Applicant.where(:status => "Approved").order("created_at desc").limit(10) do
+      column :id do |applicant|
+        link_to applicant.id, admin_applicant_path(applicant)
+     end
+      column :name do |applicant|
+        link_to applicant.first_name, admin_applicant_path(applicant)
+      end
+      column :created_at
+      column :status do |applicant|
+        strong {applicant.status}
+      end
+    end
+    strong { link_to "View All Applicants", admin_applicants_path }
+  end
+
+
+section "Recent Applicants" , :priority => 1 , :if => proc{ can?(:manage, Applicant) } do
     table_for Applicant.order("created_at desc").limit(10) do
       column :id do |applicant|
         link_to applicant.id, admin_applicant_path(applicant)
@@ -17,7 +43,7 @@ section "Recent Applicants" , :priority => 1 do
   end
 
 
-section "Applications", :priority => 3 do
+section "Applications", :priority => 3, :if => proc{ can?(:manage, Applicant) } do
   # table_for Applicant.limit(1) do
     # column :all do |applicant|
           # strong {Applicant.count}
@@ -36,7 +62,8 @@ section "Applications", :priority => 3 do
     render 'stats'
   end
 end
-section "Statistics" , :priority => 4 do  
+
+section "Statistics" , :priority => 4 , :if => proc{ can?(:manage, Applicant) } do  
   div  :class => 'stat' do
     render 'statistics'
   end

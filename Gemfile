@@ -9,6 +9,8 @@ gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
 #gem 'activeadmin'
 gem "formtastic", "~> 2.1.1"
 gem "activeadmin", "~> 0.4.3"
+#gem 'activeadmin-cancan'
+gem 'cancan'
 #gem 'activeadmin'#, :git => "git://github.com/gregbell/active_admin.git"
 gem 'sass-rails'
 gem "meta_search", '>= 1.1.0.pre'
