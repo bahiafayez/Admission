@@ -27,8 +27,10 @@ end
 
 class ActionController::TestCase
   include Devise::TestHelpers
+  
   #fixtures :users
 end
+
 
 
 Webrat.configure do |config|

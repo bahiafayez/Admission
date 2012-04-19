@@ -130,7 +130,6 @@ class UserTest < ActionDispatch::IntegrationTest
        #first_name: Mohamed
        #middle_name: Mohamed
         #last_name: Yassen       #validates :first_name, :middle_name,:last_name,:date_of_birth, :place_of_birth, :gender,:military_status, :transportation, :presence => true
-        fill_in 'First Name', :with=> applicant.first_name
         fill_in 'Middle Name', :with=> applicant.middle_name
         fill_in 'Last Name', :with=> applicant.last_name
         fill_in 'National ID', :with=> "8375"
@@ -245,14 +244,35 @@ class UserTest < ActionDispatch::IntegrationTest
         select "April", :from => "applicant_works_attributes_0_worked_to_2i"
         select "2", :from => "applicant_works_attributes_0_worked_to_3i"
         click_button "submit"
-        #assert_contain "You are being redirected."
+        #oops u didn't fill the first name
+        assert_contain "You've got some validation errors" 
+        fill_in 'First Name', :with=> applicant.first_name
+        
+        click_button "Save & Continue"
+        #click_button "submit"
+        assert_contain "You are being redirected."
         follow_redirect!
-        assert_contain "Applicant Info"
-        click_link "Edit Application"
-        assert_contain "Editing Applicant"
-        click_button "Save & Continue" 
-        follow_redirect!
+        assert_contain " Editing Applicant"
         click_button "Save"
+        assert_contain "You are being redirected."
+        follow_redirect!
+        click_link "Edit Application"
+        #assert_contain "You are being redirected."
+        #follow_redirect!
+        assert_contain " Editing Applicant"
+        click_button "submit"
+        assert_contain "You are being redirected."
+        follow_redirect!
+        click_link "Sign Out"
+        assert_contain "You are being redirected."
+        follow_redirect!
+        #follow_redirect!
+        #click_link "Edit Application"
+        #assert_contain "Editing Applicant"
+        #click_button "Save & Continue" 
+        #follow_redirect!
+        #click_button "Save"
+        #follow_redirect!
         #click_link "Sign Out"
         #assert_contain "You are being redirected."
         #assert_contain "You've got some validation errors" 
