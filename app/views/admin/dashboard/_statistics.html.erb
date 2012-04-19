@@ -2,23 +2,81 @@
  require 'google_chart'
 %>
 <div align="center">
-<%
-@saved = Applicant.where(:status => "Saved").count
-@submitted = Applicant.where(:status => "Submitted").count
-@rejected = Applicant.where(:status => "Rejected").count
-@approved = Applicant.where(:status => "Approved").count
 
-GoogleChart::PieChart.new('400x200', "Applicants Status", false) do |pc|
+<%= select_tag "semester_sel2", options_from_collection_for_select(Semester.all, :id, :name) %>
 
-  pc.data "Approved"+" (#{@approved})", @approved  ,'1BBB0A'
-  pc.data "Submmited"+" (#{@submitted})", @submitted , 'FBED0B'
-  pc.data "Rejected"+" (#{@rejected})", @rejected , 'c53711'
-  pc.data "Saved"+" (#{@saved})", @saved, '1892A4'
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+    
+    
+    var submit,save,close,reject,accept=0
+    
+      // Load the Visualization API and the piechart package.
+      google.load('visualization', '1.0', {'packages':['corechart']});
+      
+      // Set a callback to run when the Google Visualization API is loaded.
+      google.setOnLoadCallback(drawChart);
 
-  @pie_graph = pc.to_url
-end
-%>
-<%= image_tag(@pie_graph) %>
+
+      // Callback that creates and populates a data table, 
+      // instantiates the pie chart, passes in the data and
+      // draws it.
+      function drawChart() {
+
+      // Create the data table.
+      var data = new google.visualization.DataTable();
+      data.addColumn('string', 'Topping');
+      data.addColumn('number', 'Slices');
+      
+      data.addRows([
+        ['Approved', parseFloat(accept)],
+        ['Submitted', parseFloat(submit)],
+        ['Rejected', parseFloat(reject)], 
+        ['Saved', parseFloat(save)],
+        ['Closed', parseFloat(close)]
+      ]);
+
+      // Set chart options
+      var options = {'title':'Applicants Status',
+                     'width':400,
+                     'height':200};
+
+      // Instantiate and draw our chart, passing in some options.
+      var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+      chart.draw(data, options);
+     
+    }
+ $(document).ready(function() {
+  return $("#semester_sel2").change(changeSemester2).trigger("change");
+});
+
+    
+changeSemester2 = function() {
+  var url;
+  url = void 0;
+  url = "/applicants/get_semester?sem=" + $(this).val();
+  return $.getJSON(url, function(data) {
+    console.log(data);
+    accept=data['approved']
+    reject=data['rejected']
+    submit=data['submitted']
+    save=data['saved']
+    close=data['closed']
+    drawChart()
+    //$('#all_apps').html(data['all']);
+    //$('#saved_apps').html(data['saved']);
+    //$('#submitted_apps').html(data['submitted']);
+    //$('#approved_apps').html(data['approved']);
+    //$('#rejected_apps').html(data['rejected']);
+    //return $('#closed_apps').html(data['closed']);
+  });
+};
+
+</script>
+
+<div id="chart_div" style="width:400; height:300"></div>
+
+
 &nbsp;&nbsp;&nbsp;
 <%
 approved_applicants = []
