@@ -37,7 +37,7 @@
 </div>
 <br />
 -->
-<%= nested_form_for @applicant, :html => { :multipart => true }  do |f| %>
+<%= nested_form_for @applicant, :validate => true , :html => { :multipart => true }  do |f| %>
 <div class="well">
 	<% if @applicant.errors.any? %>
 	<div id="error_explanation">
