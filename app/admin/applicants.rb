@@ -6,7 +6,7 @@ ActiveAdmin.register Applicant do
   filter :last_name
   filter :first_name
   filter :admission_information_semester_name, :as => :string , label: 'Semester'#, :collection => proc { Semester.all }
-  filter :admission_information_program_name, :as => :string , label: 'Program'#, :collection => proc { Semester.all }
+  filter :admission_information_school_name, :as => :string , label: 'School'#, :collection => proc { Semester.all }
   filter :admission_information_major_name, :as => :string, label: 'Major' #, :collection => proc { Semester.all }
   
   
@@ -174,7 +174,7 @@ end
     
     if params[:all_programs]=="1"
       program=[]
-      Program.all.each do |p|
+      School.all.each do |p|
         program<<p.id
       end
       program<<nil
@@ -192,7 +192,7 @@ end
       redirect_to "/admin/applicants/batch_email", :alert => "Select at least one from each group"
     else
       logger.debug "here" 
-        @apps= Applicant.joins(:admission_information).where(:applicants => {:status => status}, :admission_informations => { :semester_id => semester , :program_id => program})
+        @apps= Applicant.joins(:admission_information).where(:applicants => {:status => status}, :admission_informations => { :semester_id => semester , :school_id => program})
         @to=[]
         @apps.each do |a|
           @to << a.user.email
@@ -225,7 +225,7 @@ end
     
     if params[:all_programs]=="1"
       program=[]
-      Program.all.each do |p|
+      School.all.each do |p|
         program<<p.id
       end
       program<<nil
@@ -239,7 +239,7 @@ end
       redirect_to "/admin/applicants/batch_email2", :alert => "Select at least one from each group"
     else
       logger.debug "here" 
-        @apps= Applicant.joins(:admission_information).where(:applicants => {:status => "Approved"}, :admission_informations => { :semester_id => semester , :program_id => program})
+        @apps= Applicant.joins(:admission_information).where(:applicants => {:status => "Approved"}, :admission_informations => { :semester_id => semester , :school_id => program})
         @to=[]
         @apps.each do |a|
           @to << a.user.email
@@ -478,7 +478,7 @@ end
       row :proficiency_test
       #row :program_id
       row "School" do
-            applicant.admission_information.program
+            applicant.admission_information.school
         end
       row :major_id
       row :applicant_id

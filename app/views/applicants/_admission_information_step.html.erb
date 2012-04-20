@@ -7,12 +7,12 @@
     </div>
     <div class="field">
         <%= u.label :school , {:class => 'label'}%> &nbsp;
-    	<b><%= u.collection_select :program_id, Program.where(:status => true), :id, :name , {:include_blank=> true}, {:class=>'span4'}%><%= mark_required(u.object, :program_id) %></b>
+    	<b><%= u.collection_select :school_id, School.where(:status => true), :id, :name , {:include_blank=> true}, {:class=>'span4'}%><%= mark_required(u.object, :school_id) %></b>
     </div>
 
     <div class="field" id="programMajors">
         <%= u.label :major_id , {:class => 'label'}%> &nbsp;
-        <b><%= u.collection_select :major_id , Major.where(:status => true, :program_id => u.object.program_id ), :id, :name , {:include_blank=> true}, {:class=>'span4'}%><%= mark_required(u.object, :intended_major) %></b>
+        <b><%= u.collection_select :major_id , Major.where(:status => true, :school_id => u.object.school_id ), :id, :name , {:include_blank=> true}, {:class=>'span4'}%><%= mark_required(u.object, :intended_major) %></b>
     </div>
 <div class="field">
 	<%= u.label :toefl_test_results, {:class => 'label'}%> &nbsp;

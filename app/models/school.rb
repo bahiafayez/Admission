@@ -1,4 +1,4 @@
-class Program < ActiveRecord::Base
+class School < ActiveRecord::Base
   has_many :admission_informations
   has_many :majors, :dependent => :destroy
   

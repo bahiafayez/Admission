@@ -94,9 +94,9 @@ changeGender = ->
       # $("#applicant_admission_information_attributes_major_id").addOption data, false
 
 $ ->
-  $("#applicant_admission_information_attributes_program_id").change ->
+  $("#applicant_admission_information_attributes_school_id").change ->
     url = undefined
-    url = "/applicants/update_major_select?program_id=" + $(this).val()
+    url = "/applicants/update_major_select?school_id=" + $(this).val()
     $("#applicant_admission_information_attributes_major_id").removeOption /./
     $.getJSON url, (data) ->
       # for key of data

@@ -68,7 +68,7 @@ class ApplicantsController < ApplicationController
      @applicant= @user.build_applicant(params[:applicant])
      
      
-    if Semester.where(:status => true).count==0 || Program.where(:status => true).count==0 
+    if Semester.where(:status => true).count==0 || School.where(:status => true).count==0 
       redirect_to @user, notice: 'Sorry, Admission Closed.'
       
     else
@@ -266,7 +266,7 @@ class ApplicantsController < ApplicationController
   def edit
     logger.debug "IN EDIT!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
     @applicant = Applicant.find(params[:id])
-    if @applicant.status=="Closed" or @applicant.status=="Approved" or @applicant.status=="Rejected" or Semester.where(:status => true).count==0 or Program.where(:status => true).count==0
+    if @applicant.status=="Closed" or @applicant.status=="Approved" or @applicant.status=="Rejected" or Semester.where(:status => true).count==0 or School.where(:status => true).count==0
       redirect_to @applicant, notice: "Sorry Admission Closed"
     end
     @applicant.guardians.each do |guardian|
@@ -285,7 +285,7 @@ class ApplicantsController < ApplicationController
     #@applicant= @user.build_applicant(params[:applicant])
     @applicant=@user.applicant 
     
-    if @applicant.status== "Closed" or @applicant.status=="Approved" or @applicant.status=="Rejected" or Semester.where(:status => true).count==0 or Program.where(:status => true).count==0
+    if @applicant.status== "Closed" or @applicant.status=="Approved" or @applicant.status=="Rejected" or Semester.where(:status => true).count==0 or School.where(:status => true).count==0
       redirect_to @user.applicant, notice: 'Sorry, Admission Closed.'
       logger.debug "in here in update condition!!!!!"
     else
@@ -479,11 +479,11 @@ class ApplicantsController < ApplicationController
   end
   
   def update_major_select
-    val = params[:program_id]
+    val = params[:school_id]
     #Use val to find records
     logger.debug "val isssssssssssssssss"
     logger.debug val
-    majors = Major.where(:program_id=>params[:program_id] , :status => true).order(:name) unless params[:program_id].blank?
+    majors = Major.where(:school_id=>params[:school_id] , :status => true).order(:name) unless params[:school_id].blank?
     #render :partial => "majors", :locals => { :majors => majors }
 
     options = majors.collect{|x| "\"#{x.id}\" : \"#{x.name}\""}    

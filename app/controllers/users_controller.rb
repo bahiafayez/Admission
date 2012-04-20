@@ -38,7 +38,7 @@ class UsersController < ApplicationController
   
   def application  #ADJUST THIS!!!!   
     @user = User.find(params[:id])
-    if Semester.where(:status => true).count>0 and Program.where(:status => true).count>0
+    if Semester.where(:status => true).count>0 and School.where(:status => true).count>0
       if @user.applicant == nil
         flash[:flag]=true
         redirect_to new_applicant_url

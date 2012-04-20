@@ -133,8 +133,8 @@
 			<tr>
 				<td><b>Applying To</b></td>
 				<td>
-					<% if @applicant.admission_information.program!= nil %> 
-					<%= @applicant.admission_information.program.name %>
+					<% if @applicant.admission_information.school!= nil %> 
+					<%= @applicant.admission_information.school.name %>
 					<% end %>
 				</td>
 			</tr>
