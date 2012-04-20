@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120420204941) do
+ActiveRecord::Schema.define(:version => 20120420221900) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -59,12 +59,12 @@ ActiveRecord::Schema.define(:version => 20120420204941) do
   add_index "admin_users", ["reset_password_token"], :name => "index_admin_users_on_reset_password_token", :unique => true
 
   create_table "admission_informations", :force => true do |t|
-    t.string   "toefl_test_results"
+    t.float    "toefl_test_results", :limit => 255
     t.date     "toefl_test_date"
     t.boolean  "proficiency_test"
     t.integer  "applicant_id"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
     t.integer  "school_id"
     t.integer  "semester_id"
     t.integer  "major_id"
