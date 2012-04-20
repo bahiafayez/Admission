@@ -15,11 +15,11 @@
 </div>
 <div class="field">
 	<%= u.label :attended_from , {:class => 'label'}%> &nbsp;
-	<b> <%= u.date_select :attended_from , {:start_year => Time.now.year - 30, :end_year => Time.now.year + 1 , :include_blank=> true},{:class=>'datespan'} %><%= mark_required(u.object, :attended_from) %></b>
+	<b> <%= u.date_select :attended_from , {:start_year => Time.now.year - 12, :end_year => Time.now.year + 1 , :include_blank=> true},{:class=>'datespan'} %><%= mark_required(u.object, :attended_from) %></b>
 </div>
 <div class="field">
 	<%= u.label :attended_to , {:class => 'label'}%> &nbsp;
-	<b> <%= u.date_select :attended_to , {:start_year => Time.now.year - 30, :end_year => Time.now.year + 1 , :include_blank=> true},{:class=>'datespan'} %><%= mark_required(u.object, :attended_to) %></b>
+	<b> <%= u.date_select :attended_to , {:start_year => Time.now.year - 6, :end_year => Time.now.year + 1 , :include_blank=> true},{:class=>'datespan'} %><%= mark_required(u.object, :attended_to) %></b>
 </div>
 
 <div class="field">
@@ -28,7 +28,7 @@
 </div>
 <div class="field">
 	<%= u.label :graduation_date , {:class => 'label'}%> &nbsp;
-	<b> <%= u.date_select :graduation_date, {:start_year => Time.now.year - 30, :end_year => Time.now.year + 1 , :include_blank=> true},{:class=>'datespan'} %><%= mark_required(u.object, :graduation_date) %></b>
+	<b> <%= u.date_select :graduation_date, {:start_year => Time.now.year - 6, :end_year => Time.now.year + 1 , :include_blank=> true},{:class=>'datespan'} %><%= mark_required(u.object, :graduation_date) %></b>
 </div>
 <div class="field">
 	<%= u.label :division , "If Thanaweya Amma Please specify division", {:class => 'label'}%> <br />&nbsp;

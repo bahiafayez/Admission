@@ -69,7 +69,7 @@ namespace :db do
               AdmissionInformation.populate 1 do |ad|
                 ad.applicant_id=applicant.id
                 ad.toefl_test_date= Time.now..7.days.from_now
-                ad.toefl_test_results=500..600
+                ad.toefl_test_results=450..650
                 ad.proficiency_test=[true, false]
                 ad.program_id=program.id
                 ad.semester_id=semester.id

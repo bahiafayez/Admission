@@ -379,7 +379,12 @@ class ApplicantsController < ApplicationController
         respond_to do |format|
         if @applicant.save(:validate => false)         
           format.html { redirect_to edit_applicant_path(@applicant), notice: 'Saved' }
-         end      
+          format.json { render json: @applicant, status: :created, location: @applicant }
+        else
+          format.html { render action: "edit" }
+          format.json { render json: @applicant.errors, status: :unprocessable_entity }
+       
+        end      
       end
       
    else

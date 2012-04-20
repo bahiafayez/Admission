@@ -1,4 +1,7 @@
 <h2 style="font-size: 30px; color:#999999;">Editing Applicant</h2>
+<p id="notice" align="center" style="color:#1C6CB7; font-size: 16px;">
+	<%= notice %>
+</p>
 <!--
 <div class="btn-group">
 	<button class="btn-small" id="applicantbutton">
@@ -34,7 +37,7 @@
 </div>
 <br />
 -->
-<%= nested_form_for @applicant , :html => { :multipart => true }  do |f| %>
+<%= nested_form_for @applicant ,  :html => { :multipart => true }  do |f| %>
 <div class="well">
 	<% if @applicant.errors.any? %>
 	<div id="error_explanation">
