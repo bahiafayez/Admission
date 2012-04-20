@@ -12,7 +12,7 @@
 
     <div class="field" id="programMajors">
         <%= u.label :major_id , {:class => 'label'}%> &nbsp;
-        <b><%= u.collection_select :major_id , Major.where(:status => true, :program_id => u.object.program_id ), :id, :name , {:include_blank=> true}, {:class=>'span4'}%><%= mark_required(u.object, :intended_major) %></b>
+        <b><%= u.collection_select :major_id , Major.where(:status => true, :program_id => u.object.program_id ), :id, :name , {:include_blank=> true}, {:class=>'span4'}%></b><label class="tooltip1NatID"><b><%= image_tag ('InfoIcon1.png'),{:height => 20, :width => 20, :class=>'required1'} %><span>If not decided, leave it empty</span></b></label>
     </div>
 <div class="field">
 	<%= u.label :toefl_test_results, {:class => 'label'}%> &nbsp;
