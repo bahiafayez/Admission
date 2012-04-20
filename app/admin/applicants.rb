@@ -375,8 +375,37 @@ end
       row :updated_at
     end
   end
-    
-    
+  
+    div :id=>"photo2" do
+      attributes_table do
+        row :first_name
+        row :middle_name
+        row :last_name
+        row :date_of_birth
+        row :place_of_birth
+        row :gender
+        
+        row :military_status
+        row :national_id
+        row :national_id_expiry_date
+        row :passport_number
+        row :country_of_issuance
+        row :passport_expiry_date
+        
+        row :academic_honours
+        row :extra_activities
+        row :transportation
+        row :status
+        row :notes
+        row :created_at
+        row :updated_at
+        row :user_id
+        
+
+      end
+  end
+  
+    div :id=>"photo" do
       attributes_table do
         row :photo do
           if app.photo.file?
@@ -410,7 +439,7 @@ end
         
 
       end
-  
+  end
     
   panel "Addresses" do
     table_for applicant.addresses do
@@ -439,6 +468,7 @@ end
     end
   end
   
+  
   panel "Admission Information" do
     attributes_table_for applicant.admission_information do
       row :semester_id
@@ -455,6 +485,7 @@ end
     end
   end
   
+  div :id => "attachment" do
   panel "Attachments" do
     attributes_table_for applicant.attachment do
         row :school_certificates do
@@ -479,6 +510,7 @@ end
         end
       end
     end
+  end
   end
   
   panel "Guardians" do

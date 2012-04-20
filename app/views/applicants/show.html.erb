@@ -12,7 +12,7 @@
 <div class="well">
 	<table class="table">
 		<thead>
-			<tr>
+			<tr id="remove">
 				<th><b>Photo</b></th>
 				<% if @applicant.photo.file? %>
 				<th><%= link_to image_tag(@applicant.photo.url(:thumb)), @applicant.photo.url %></th>
@@ -410,8 +410,8 @@
 	</table>
 </div>
 
-<h2 style="font-size: 30px; color:#999999;">Attachments</h2>
-<div class="well">
+<h2 id="remove" style="font-size: 30px; color:#999999;">Attachments</h2>
+<div id="remove" class="well">
 	<table class="table">
 		<thead>
 			<tr>
@@ -435,6 +435,24 @@
 					<td><%= link_to image_tag(@applicant.attachment.personal_experience.url(:thumb)), @applicant.attachment.personal_experience.url %></td>
 					<% else %>
 					<td><b> You have not uploaded the personal experience document</b></td>
+					<% end %>
+					<!-- <%= link_to "Download", @applicant.attachment.personal_experience.url %> -->
+					
+					
+				</div>
+			</tr>
+			
+		</tbody>
+		<tbody>
+			<tr>
+				<div>
+					
+					
+					<td><b>School Certificates</b></td>
+					<% if @applicant.attachment.school_certificates.file? %>
+					<td><%= link_to image_tag(@applicant.attachment.school_certificates.url(:thumb)), @applicant.attachment.school_certificates.url %></td>
+					<% else %>
+					<td><b> You have not uploaded your school certificates</b></td>
 					<% end %>
 					<!-- <%= link_to "Download", @applicant.attachment.personal_experience.url %> -->
 					

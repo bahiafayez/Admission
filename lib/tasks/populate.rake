@@ -50,7 +50,7 @@ namespace :db do
               applicant.military_status=["Exempted","Postponed"]
               applicant.national_id=1..500
               applicant.national_id_expiry_date=Time.now..2.years.from_now
-              applicant.transportation=["Private","NU Buses"]
+              applicant.transportation=["Private", "Nu buses"]
               applicant.status=["Saved","Submitted", "Approved", "Rejected"]
               applicant.created_at=2.weeks.ago..Time.now
               applicant.updated_at=2.weeks.ago..Time.now

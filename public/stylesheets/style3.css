@@ -2242,3 +2242,10 @@ div#footer {
 #active_admin_comment_submit {
 	display: none
 }
+#photo {
+	display: none
+}
+#attachment{
+  display:none;
+}
+
