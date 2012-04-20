@@ -1,7 +1,6 @@
 <script type="text/javascript" src="/assets/active.js.coffee"></script>
 <table>
 	<%= select_tag "semester_sel", options_from_collection_for_select(Semester.all, :id, :name) %>
-	
 	<div id="semester_body">
 	<tbody>
 	<tr class="<%= cycle("even", "odd") %>">
