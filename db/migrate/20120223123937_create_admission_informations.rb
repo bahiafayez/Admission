@@ -4,7 +4,7 @@ class CreateAdmissionInformations < ActiveRecord::Migration
       t.string :semester
       t.string :applying_to
       t.string :intended_major
-      t.string :toefl_test_results
+      t.float :toefl_test_results
       t.date :toefl_test_date
       t.boolean :proficiency_test
       t.integer :applicant_id
