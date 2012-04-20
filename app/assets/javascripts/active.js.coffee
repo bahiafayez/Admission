@@ -1,5 +1,6 @@
 $(document).ready ->
-  $("#semester_sel").change(changeSemester).trigger "change"
+  console.log "hrtrrrr"
+  $("#semester_sel").change(changeSemester).trigger('change')
   
  
 changeSemester = ->

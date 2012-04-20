@@ -1,4 +1,4 @@
-ActiveAdmin.register Program, :as => "School" do
+ActiveAdmin.register Program do
   
   menu :if => proc{ can?(:manage, Program) } , :parent => "Schools and Semesters"    
   controller.authorize_resource
@@ -7,7 +7,7 @@ ActiveAdmin.register Program, :as => "School" do
   actions :index, :show, :new, :create, :edit, :update
   show  do |app|
     panel "School Details" do
-    attributes_table_for school do
+    attributes_table_for program do
 
         row :name
         row :status do
@@ -24,7 +24,7 @@ ActiveAdmin.register Program, :as => "School" do
      end 
      
     panel "Majors" do
-    table_for school.majors do
+    table_for program.majors do
       column "Name" do |major|
         major.name
       end

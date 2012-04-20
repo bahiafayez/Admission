@@ -68,7 +68,7 @@ class ApplicantsController < ApplicationController
      @applicant= @user.build_applicant(params[:applicant])
      
      
-    if Semester.where(:status => true).count==0
+    if Semester.where(:status => true).count==0 || Program.where(:status => true).count==0 
       redirect_to @user, notice: 'Sorry, Admission Closed.'
       
     else
@@ -266,7 +266,7 @@ class ApplicantsController < ApplicationController
   def edit
     logger.debug "IN EDIT!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
     @applicant = Applicant.find(params[:id])
-    if @applicant.status=="Closed" or @applicant.status=="Approved" or @applicant.status=="Rejected" or Semester.where(:status => true).count==0
+    if @applicant.status=="Closed" or @applicant.status=="Approved" or @applicant.status=="Rejected" or Semester.where(:status => true).count==0 or Program.where(:status => true).count==0
       redirect_to @applicant, notice: "Sorry Admission Closed"
     end
     @applicant.guardians.each do |guardian|
@@ -285,7 +285,7 @@ class ApplicantsController < ApplicationController
     #@applicant= @user.build_applicant(params[:applicant])
     @applicant=@user.applicant 
     
-    if @applicant.status== "Closed" or @applicant.status=="Approved" or @applicant.status=="Rejected" 
+    if @applicant.status== "Closed" or @applicant.status=="Approved" or @applicant.status=="Rejected" or Semester.where(:status => true).count==0 or Program.where(:status => true).count==0
       redirect_to @user.applicant, notice: 'Sorry, Admission Closed.'
       logger.debug "in here in update condition!!!!!"
     else
