@@ -278,7 +278,7 @@ i=0
   bc.data_encoding = :extended
   
   School.all.each do |s|
-  	bc.shape_marker :diamond, :color => '375134', :data_set_index => s.id - 1, :data_point_index => -1, :pixel_size => 9
+  	bc.shape_marker :diamond, :color => '375134', :data_set_index => s.id - 1, :data_point_index => -1, :pixel_size => 4
   end
 	
   bc.width_spacing_options :bar_width => 8, :bar_spacing => 3, :group_spacing => 10
