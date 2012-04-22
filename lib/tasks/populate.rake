@@ -5,7 +5,7 @@ namespace :db do
     require 'faker'
     
     #[Category, Product, Person].each(&:delete_all)
-    [User, Applicant, Semester, Program, Address, AdmissionInformation, Major, Guardian, SecondarySchool, College, Work, Health, Attachment, UniRelatedInfo, UniChoice, OtherChoice].each(&:delete_all)
+    [User, Applicant, Semester, School, Address, AdmissionInformation, Major, Guardian, SecondarySchool, College, Work, Health, Attachment, UniRelatedInfo, UniChoice, OtherChoice].each(&:delete_all)
     
     Semester.populate 4 do |semester|
       semester.name= "Spring #{semester.id}"
@@ -14,7 +14,7 @@ namespace :db do
       semester.updated_at=2.weeks.ago..Time.now
       
       
-      Program.populate 2..4 do |program|
+      School.populate 2..4 do |program|
         
         program.name= Populator.words(1..5).titleize
         program.status=[true,false]
@@ -26,7 +26,7 @@ namespace :db do
           major.status=[true,false]
           major.created_at=2.weeks.ago..Time.now
           major.updated_at=2.weeks.ago..Time.now
-          major.program_id=program.id
+          major.school_id=program.id
       
           User.populate 10 do |person|
             person.email   = Faker::Internet.email
@@ -71,7 +71,7 @@ namespace :db do
                 ad.toefl_test_date= Time.now..7.days.from_now
                 ad.toefl_test_results=450..650
                 ad.proficiency_test=[true, false]
-                ad.program_id=program.id
+                ad.school_id=program.id
                 ad.semester_id=semester.id
                 ad.major_id=major.id
                 ad.created_at=2.weeks.ago..Time.now

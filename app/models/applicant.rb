@@ -21,8 +21,8 @@ class Applicant < ActiveRecord::Base
   validates :middle_name,  :format => {:with => /^[a-zA-Z]+$/, :message => "middle name contains non alphabetical characters"}
   validates :last_name, :format => {:with => /^[a-zA-Z]+$/, :message => "last name contains non alphabetical characters"}
   validates :place_of_birth, :format => {:with => /^\w+[^\d]\,\s*\w+[^\d]$/, :message => "Place of Birth contains non alphabetical characters or not in the format City, Country"}
-  validates_date :national_id_expiry_date, :after => lambda { Date.current }
-  validates_date :passport_expiry_date, :after => lambda { Date.current }
+  validates_date :national_id_expiry_date, :after => lambda { Date.current } , :allow_blank => true
+  validates_date :passport_expiry_date, :after => lambda { Date.current } , :allow_blank => true
   
   #validates_attachment_presence :photo
   #validates_attachment_content_type :photo, :content_type=>['image/jpeg', 'image/png', 'image/gif'], :message => 'Image must be of type jpeg, png or gif'
