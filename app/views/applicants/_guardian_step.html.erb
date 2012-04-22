@@ -3,15 +3,15 @@
 <div>
     <div class="field">
 	<%= u.label :first_name , {:class => 'label'}%> &nbsp;
-	<label class="tooltip1"><b><%= u.text_field :first_name ,:width=>'10px', :size=>"20", :maxlength=>"20", :class => 'span3'%><%= mark_required(u.object, :first_name) %><span>Only alphapets are allowed</span></b></label>
+	<label class="tooltip1"><b><%= u.text_field :first_name ,:width=>'10px', :size=>"20", :maxlength=>"20", :class => 'span3'%><%= mark_required(u.object, :first_name) %><span>Only alphabets are allowed</span></b></label>
 </div>
 <div class="field">
 	<%= u.label :middle_name, {:class => 'label'}%> &nbsp;
-    <label class="tooltip1"><b><%= u.text_field :middle_name ,{:class => 'span3'}%><%= mark_required(u.object, :middle_name) %><span>Only alphapets are allowed</span></b></label>
+    <label class="tooltip1"><b><%= u.text_field :middle_name ,{:class => 'span3'}%><%= mark_required(u.object, :middle_name) %><span>Only alphabets are allowed</span></b></label>
 </div>
 <div class="field">
 	<%= u.label :last_name , {:class => 'label'}%> &nbsp;
-    <label class="tooltip1"><b><%= u.text_field :last_name,{:class => 'span3'}%><%= mark_required(u.object, :last_name) %><span>Only alphapets are allowed</span></b></label>
+    <label class="tooltip1"><b><%= u.text_field :last_name,{:class => 'span3'}%><%= mark_required(u.object, :last_name) %><span>Only alphabets are allowed</span></b></label>
 </div>
     <div class="field">
         <%= u.label :address , {:class => 'label'}%> &nbsp;

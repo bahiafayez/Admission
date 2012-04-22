@@ -26,7 +26,7 @@ section "Recent Applicants" , :priority => 1 , :if => proc{ cannot?(:manage, App
   end
 
 
-section "Recent Applicants" , :priority => 1 , :if => proc{ can?(:manage, Applicant) } do
+section "Recent Applicants" , :priority => 3 , :if => proc{ can?(:manage, Applicant) } do
     table_for Applicant.order("created_at desc").limit(10) do
       column :id do |applicant|
         link_to applicant.id, admin_applicant_path(applicant)
@@ -43,7 +43,7 @@ section "Recent Applicants" , :priority => 1 , :if => proc{ can?(:manage, Applic
   end
 
 
-section "Applications", :priority => 3, :if => proc{ can?(:manage, Applicant) } do
+section "Applications", :priority => 2, :if => proc{ can?(:manage, Applicant) } do
   # table_for Applicant.limit(1) do
     # column :all do |applicant|
           # strong {Applicant.count}
@@ -63,7 +63,7 @@ section "Applications", :priority => 3, :if => proc{ can?(:manage, Applicant) } 
   end
 end
 
-section "Statistics" , :priority => 4 , :if => proc{ can?(:manage, Applicant) } do  
+section "Statistics" , :priority => 1 , :if => proc{ can?(:manage, Applicant) } do  
   div  :class => 'stat' do
     render 'statistics'
   end

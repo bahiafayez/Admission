@@ -222,4 +222,74 @@ end
 <%= image_tag(@bar_graph3) %> 
 </td>
 </tr>
+<tr>
+<td colspan="2">
+<center><p style="font-size: 14px; font-weight:bold">Number of Approved Applicants per Program per Semester</p></center>
+
+<%
+
+programs={}
+
+Semester.all.each do |s|
+	School.all.each do |p|
+		if programs[p.name].nil?
+			programs[p.name]=[Applicant.joins(:admission_information).where(:applicants => {:status => "Approved"}, :admission_informations => { :semester_id =>  s.id, :school_id => p.id}).readonly(false).count]
+		else
+			programs[p.name]<<Applicant.joins(:admission_information).where(:applicants => {:status => "Approved"}, :admission_informations => { :semester_id =>  s.id, :school_id => p.id}).readonly(false).count
+		end
+	end
+end
+
+semesters=[] #array contains all semesters
+Semester.all.each do |s|
+semesters<<s.name
+end
+#@lessthanfivehundred=Applicant.all(:conditions=>["toefl_test_results<?", 500], :joins => :admission_information).count
+#@between = Applicant.all(:conditions=>["toefl_test_results< ? AND toefl_test_results >?",600,500], :joins => :admission_information).count
+#@gretaerthansixhundred=Applicant.all(:conditions=>["toefl_test_results>?", 600], :joins => :admission_information).count
+
+bar_2_data = [between_applicants.max+50] #approved applicants in the each semester
+color_2 = 'ffffff'
+color_1 = '1BBB0A'
+color_3 = '1892A4'
+color_4 = 'FBED0B'
+colors=[color_1,color_3,color_4, 'ABED0B', 'CBEA0B','F75D07','1DB4D2','3BED6B','53ED00','7BE40B','9BE764','FBED0B','222222','FBED02','FBED0B','222222','FBED0B','FBED0B','FBED0B','FBED0B']
+
+logger.debug "HEREEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE!!!!!!!!!!!!!!!!!!!!!!!!!!"
+logger.debug programs
+
+GoogleChart::BarChart.new("1000x300", "Approved Applicants per Program per Semester", :vertical, false) do |bc|
+i=0
+  programs.each do |key, value|
+  	bc.data key, value ,colors[i]
+  	i=i+1
+  	if i>=colors.length
+  		i=0
+  	end
+  end	
+  	#bc.data "Less than 500", lessthanfivehundred_applicants,color_1
+  	#bc.data "500-600", between_applicants, color_3
+  	#bc.data "Greater than 600", greaterthansixhundred_applicants, color_4
+  bc.data nil, bar_2_data, color_2 #Omnia put this to fix the problem that the largest value hits the top of the y axis
+  bc.axis :x, :labels => semesters, :font_size => 10
+  bc.axis :y, :range => [0,between_applicants.max+50], :alignment => :center
+  bc.show_legend = true
+  bc.stacked = false
+  bc.data_encoding = :extended
+  
+  School.all.each do |s|
+  	bc.shape_marker :diamond, :color => '375134', :data_set_index => s.id - 1, :data_point_index => -1, :pixel_size => 9
+  end
+	
+  bc.width_spacing_options :bar_width => 8, :bar_spacing => 3, :group_spacing => 10
+  @bar_graph8 = bc.to_url
+end
+%>
+<center>
+<%= 
+image_tag(@bar_graph8)
+%>
+</center>
+</td>
+</tr>
 </table>
