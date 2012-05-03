@@ -5,9 +5,10 @@ ActiveAdmin.register Applicant do
   filter :user, :collection => proc { Applicant.where(:status=> "Approved").order("first_name") },  :if => proc{ cannot?(:manage, Applicant) }
   filter :last_name
   filter :first_name
-  filter :admission_information_semester_name, :as => :string , label: 'Semester'#, :collection => proc { Semester.all }
-  filter :admission_information_school_name, :as => :string , label: 'School'#, :collection => proc { Semester.all }
-  filter :admission_information_major_name, :as => :string, label: 'Major' #, :collection => proc { Semester.all }
+  filter :status, :as => :select, :collection => ["Approved", "Rejected", "Saved", "Submitted"],:if => proc{ can?(:manage, Applicant) }
+  filter :admission_information_semester_name, :as => :select , label: 'Semester', :collection => Semester.all.map(&:name)#proc { Semester.all }
+  filter :admission_information_school_name, :as => :select , label: 'School',:collection => School.all.map(&:name)#, :collection => proc { Semester.all }
+  filter :admission_information_major_name, :as => :select, label: 'Major' ,:collection => Major.all.map(&:name)#, :collection => proc { Semester.all }
   
   
  action_item only:[:index], :if => proc{ can?(:manage, Applicant) } do
@@ -42,6 +43,42 @@ ActiveAdmin.register Applicant do
    link_to "Close application", "/admin/applicants/#{applicant.id}/applicant_close"
  end
  
+ 
+ csv do
+      column :first_name
+      column :middle_name
+      column :last_name
+      column("User") {
+        |app| app.user.email
+      }
+      column("Semester"){
+        |app| app.admission_information.semester
+      }
+      column("School"){
+        |app| app.admission_information.school
+      }
+      column("Major"){
+        |app| app.admission_information.major
+      }
+      #column("Author") { |post| post.author.full_name }
+      
+        column :date_of_birth
+        column :place_of_birth
+        column :gender
+        
+        column :military_status
+        column :national_id
+        column :national_id_expiry_date
+        column :passport_number
+        column :country_of_issuance
+        column :passport_expiry_date
+        
+       
+        column :status
+        column :notes
+ end
+    
+    
  controller do
    
    authorize_resource
@@ -314,25 +351,25 @@ end
       end
   end
   
-  scope :all,:if => proc{ can?(:manage, Applicant) }, :default => true
-  scope :just_created,:if => proc{ can?(:manage, Applicant) } do |applicants|
-    applicants.where(:status => "Just Created")
-  end
-  scope :saved,:if => proc{ can?(:manage, Applicant) } do |applicants|
-    applicants.where(:status => "Saved")
-  end
-  scope :submitted,:if => proc{ can?(:manage, Applicant) } do |applicants|
-    applicants.where(:status => "Submitted")
-  end
-  scope :approved,:if => proc{ can?(:manage, Applicant) } do |applicants|
-    applicants.where(:status => "Approved")
-  end
-  scope :rejected, :if => proc{ can?(:manage, Applicant) } do |applicants|
-    applicants.where(:status => "Rejected")
-  end
-  scope :closed,:if => proc{ can?(:manage, Applicant) } do |applicants|
-    applicants.where(:status => "Closed")
-  end
+  # scope :all,:if => proc{ can?(:manage, Applicant) }, :default => true
+  # scope :just_created,:if => proc{ can?(:manage, Applicant) } do |applicants|
+    # applicants.where(:status => "Just Created")
+  # end
+  # scope :saved,:if => proc{ can?(:manage, Applicant) } do |applicants|
+    # applicants.where(:status => "Saved")
+  # end
+  # scope :submitted,:if => proc{ can?(:manage, Applicant) } do |applicants|
+    # applicants.where(:status => "Submitted")
+  # end
+  # scope :approved,:if => proc{ can?(:manage, Applicant) } do |applicants|
+    # applicants.where(:status => "Approved")
+  # end
+  # scope :rejected, :if => proc{ can?(:manage, Applicant) } do |applicants|
+    # applicants.where(:status => "Rejected")
+  # end
+  # scope :closed,:if => proc{ can?(:manage, Applicant) } do |applicants|
+    # applicants.where(:status => "Closed")
+  # end
   
   #menu :parent => "Applicant Information"
   actions :index, :show

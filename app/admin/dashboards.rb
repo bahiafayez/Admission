@@ -26,22 +26,12 @@ section "Recent Applicants" , :priority => 1 , :if => proc{ cannot?(:manage, App
   end
 
 
-section "Recent Applicants" , :priority => 3 , :if => proc{ can?(:manage, Applicant) } do
-    table_for Applicant.order("created_at desc").limit(10) do
-      column :id do |applicant|
-        link_to applicant.id, admin_applicant_path(applicant)
-     end
-      column :name do |applicant|
-        link_to applicant.first_name, admin_applicant_path(applicant)
-      end
-      column :created_at
-      column :status do |applicant|
-        strong {applicant.status}
-      end
-    end
-    strong { link_to "View All Applicants", admin_applicants_path }
-  end
 
+section "Statistics" , :priority => 1 , :if => proc{ can?(:manage, Applicant) } do  
+  div  :class => 'stat' do
+    render 'statistics'
+  end
+end
 
 section "Applications", :priority => 2, :if => proc{ can?(:manage, Applicant) } do
   # table_for Applicant.limit(1) do
@@ -63,11 +53,21 @@ section "Applications", :priority => 2, :if => proc{ can?(:manage, Applicant) } 
   end
 end
 
-section "Statistics" , :priority => 1 , :if => proc{ can?(:manage, Applicant) } do  
-  div  :class => 'stat' do
-    render 'statistics'
+section "Recent Applicants" , :priority => 3 , :if => proc{ can?(:manage, Applicant) } do
+    table_for Applicant.order("created_at desc").limit(10) do
+      column :id do |applicant|
+        link_to applicant.id, admin_applicant_path(applicant)
+     end
+      column :name do |applicant|
+        link_to applicant.first_name, admin_applicant_path(applicant)
+      end
+      column :created_at
+      column :status do |applicant|
+        strong {applicant.status}
+      end
+    end
+    strong { link_to "View All Applicants", admin_applicants_path }
   end
-end
 
   # Define your dashboard sections here. Each block will be
   # rendered on the dashboard in the context of the view. So just
