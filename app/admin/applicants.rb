@@ -6,6 +6,7 @@ ActiveAdmin.register Applicant do
   filter :last_name
   filter :first_name
   filter :status, :as => :select, :collection => ["Approved", "Rejected", "Saved", "Submitted"],:if => proc{ can?(:manage, Applicant) }
+  filter :closed, :as => :select, :collection => [true, false]
   filter :admission_information_semester_name, :as => :select , label: 'Semester', :collection => Semester.all.map(&:name)#proc { Semester.all }
   filter :admission_information_school_name, :as => :select , label: 'School',:collection => School.all.map(&:name)#, :collection => proc { Semester.all }
   filter :admission_information_major_name, :as => :select, label: 'Major' ,:collection => Major.all.map(&:name)#, :collection => proc { Semester.all }
@@ -41,6 +42,9 @@ ActiveAdmin.register Applicant do
  
  action_item only:[:show], :if => proc{ can?(:manage, Applicant) } do
    link_to "Close application", "/admin/applicants/#{applicant.id}/applicant_close"
+ end
+ action_item only:[:show], :if => proc{ can?(:manage, Applicant) } do
+   link_to "Open application", "/admin/applicants/#{applicant.id}/applicant_open"
  end
  
  
@@ -178,10 +182,20 @@ end
       applicant = Applicant.find(params[:id])
       logger.debug "inside closeeeeeeeee"
       @app= applicant
-      @app.status="Closed"
+      @app.closed=1
       @app.save(:validate => false)
       ApplicationNotifier.close_user(applicant.user).deliver
       redirect_to "/admin/applicants/#{params[:id]}", :notice => "Application Closed"      
+  end
+  
+  member_action :applicant_open do
+      applicant = Applicant.find(params[:id])
+      logger.debug "inside open"
+      @app= applicant
+      @app.closed=0
+      @app.save(:validate => false)
+      #ApplicationNotifier.close_user(applicant.user).deliver
+      redirect_to "/admin/applicants/#{params[:id]}", :notice => "Application Open"      
   end
   
   collection_action :batch_email do
@@ -314,7 +328,7 @@ end
         @to=[]
         @apps.each do |a|
           if a.status!="Approved" and a.status!="Rejected"
-            a.status="Closed"
+            a.closed=1
             a.save(:validate => false)
             @to << a.user.email
           end
@@ -389,6 +403,7 @@ end
     column :status do |app|
       strong {app.status}
     end
+    column  :closed
     column :notes
     
   end
@@ -433,6 +448,7 @@ end
         row :extra_activities
         row :transportation
         row :status
+        row :closed
         row :notes
         row :created_at
         row :updated_at
@@ -469,6 +485,7 @@ end
         row :extra_activities
         row :transportation
         row :status
+        row :closed
         row :notes
         row :created_at
         row :updated_at
