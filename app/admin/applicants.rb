@@ -182,7 +182,7 @@ end
       applicant = Applicant.find(params[:id])
       logger.debug "inside closeeeeeeeee"
       @app= applicant
-      @app.closed=1
+      @app.closed=true
       @app.save(:validate => false)
       ApplicationNotifier.close_user(applicant.user).deliver
       redirect_to "/admin/applicants/#{params[:id]}", :notice => "Application Closed"      
@@ -192,7 +192,7 @@ end
       applicant = Applicant.find(params[:id])
       logger.debug "inside open"
       @app= applicant
-      @app.closed=0
+      @app.closed=false
       @app.save(:validate => false)
       #ApplicationNotifier.close_user(applicant.user).deliver
       redirect_to "/admin/applicants/#{params[:id]}", :notice => "Application Open"      
@@ -328,7 +328,7 @@ end
         @to=[]
         @apps.each do |a|
           if a.status!="Approved" and a.status!="Rejected"
-            a.closed=1
+            a.closed=true
             a.save(:validate => false)
             @to << a.user.email
           end
