@@ -266,7 +266,7 @@ class ApplicantsController < ApplicationController
   def edit
     logger.debug "IN EDIT!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
     @applicant = Applicant.find(params[:id])
-    if @applicant.status=="Closed" or @applicant.status=="Approved" or @applicant.status=="Rejected" or Semester.where(:status => true).count==0 or School.where(:status => true).count==0
+    if @applicant.closed==true or @applicant.status=="Approved" or @applicant.status=="Rejected" or Semester.where(:status => true).count==0 or School.where(:status => true).count==0
       redirect_to @applicant, notice: "Sorry Admission Closed"
     end
     @applicant.guardians.each do |guardian|
@@ -285,7 +285,7 @@ class ApplicantsController < ApplicationController
     #@applicant= @user.build_applicant(params[:applicant])
     @applicant=@user.applicant 
     
-    if @applicant.status== "Closed" or @applicant.status=="Approved" or @applicant.status=="Rejected" or Semester.where(:status => true).count==0 or School.where(:status => true).count==0
+    if @applicant.closed== true or @applicant.status=="Approved" or @applicant.status=="Rejected" or Semester.where(:status => true).count==0 or School.where(:status => true).count==0
       redirect_to @user.applicant, notice: 'Sorry, Admission Closed.'
       logger.debug "in here in update condition!!!!!"
     else
@@ -500,7 +500,7 @@ class ApplicantsController < ApplicationController
     submitted= Applicant.joins(:admission_information).where(:applicants => {:status => "Submitted"}, :admission_informations => { :semester_id => val}).readonly(false).count
     approved= Applicant.joins(:admission_information).where(:applicants => {:status => "Approved"}, :admission_informations => { :semester_id => val}).readonly(false).count
     rejected= Applicant.joins(:admission_information).where(:applicants => {:status => "Rejected"}, :admission_informations => { :semester_id => val}).readonly(false).count
-    closed= Applicant.joins(:admission_information).where(:applicants => {:status => "Closed"}, :admission_informations => { :semester_id => val}).readonly(false).count
+    closed= Applicant.joins(:admission_information).where(:applicants => {:closed => true}, :admission_informations => { :semester_id => val}).readonly(false).count
     
     
     #render :partial => "majors", :locals => { :majors => majors }

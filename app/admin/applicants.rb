@@ -5,9 +5,11 @@ ActiveAdmin.register Applicant do
   filter :user, :collection => proc { Applicant.where(:status=> "Approved").order("first_name") },  :if => proc{ cannot?(:manage, Applicant) }
   filter :last_name
   filter :first_name
-  filter :admission_information_semester_name, :as => :string , label: 'Semester'#, :collection => proc { Semester.all }
-  filter :admission_information_school_name, :as => :string , label: 'School'#, :collection => proc { Semester.all }
-  filter :admission_information_major_name, :as => :string, label: 'Major' #, :collection => proc { Semester.all }
+  filter :status, :as => :select, :collection => ["Approved", "Rejected", "Saved", "Submitted"],:if => proc{ can?(:manage, Applicant) }
+  filter :closed, :as => :select, :collection => [true, false]
+  filter :admission_information_semester_name, :as => :select , label: 'Semester', :collection => Semester.all.map(&:name)#proc { Semester.all }
+  filter :admission_information_school_name, :as => :select , label: 'School',:collection => School.all.map(&:name)#, :collection => proc { Semester.all }
+  filter :admission_information_major_name, :as => :select, label: 'Major' ,:collection => Major.all.map(&:name)#, :collection => proc { Semester.all }
   
   
  action_item only:[:index], :if => proc{ can?(:manage, Applicant) } do
@@ -41,7 +43,46 @@ ActiveAdmin.register Applicant do
  action_item only:[:show], :if => proc{ can?(:manage, Applicant) } do
    link_to "Close application", "/admin/applicants/#{applicant.id}/applicant_close"
  end
+ action_item only:[:show], :if => proc{ can?(:manage, Applicant) } do
+   link_to "Open application", "/admin/applicants/#{applicant.id}/applicant_open"
+ end
  
+ 
+ csv do
+      column :first_name
+      column :middle_name
+      column :last_name
+      column("User") {
+        |app| app.user.email
+      }
+      column("Semester"){
+        |app| app.admission_information.semester
+      }
+      column("School"){
+        |app| app.admission_information.school
+      }
+      column("Major"){
+        |app| app.admission_information.major
+      }
+      #column("Author") { |post| post.author.full_name }
+      
+        column :date_of_birth
+        column :place_of_birth
+        column :gender
+        
+        column :military_status
+        column :national_id
+        column :national_id_expiry_date
+        column :passport_number
+        column :country_of_issuance
+        column :passport_expiry_date
+        
+       
+        column :status
+        column :notes
+ end
+    
+    
  controller do
    
    authorize_resource
@@ -141,10 +182,20 @@ end
       applicant = Applicant.find(params[:id])
       logger.debug "inside closeeeeeeeee"
       @app= applicant
-      @app.status="Closed"
+      @app.closed=true
       @app.save(:validate => false)
       ApplicationNotifier.close_user(applicant.user).deliver
       redirect_to "/admin/applicants/#{params[:id]}", :notice => "Application Closed"      
+  end
+  
+  member_action :applicant_open do
+      applicant = Applicant.find(params[:id])
+      logger.debug "inside open"
+      @app= applicant
+      @app.closed=false
+      @app.save(:validate => false)
+      #ApplicationNotifier.close_user(applicant.user).deliver
+      redirect_to "/admin/applicants/#{params[:id]}", :notice => "Application Open"      
   end
   
   collection_action :batch_email do
@@ -277,7 +328,7 @@ end
         @to=[]
         @apps.each do |a|
           if a.status!="Approved" and a.status!="Rejected"
-            a.status="Closed"
+            a.closed=true
             a.save(:validate => false)
             @to << a.user.email
           end
@@ -314,25 +365,25 @@ end
       end
   end
   
-  scope :all,:if => proc{ can?(:manage, Applicant) }, :default => true
-  scope :just_created,:if => proc{ can?(:manage, Applicant) } do |applicants|
-    applicants.where(:status => "Just Created")
-  end
-  scope :saved,:if => proc{ can?(:manage, Applicant) } do |applicants|
-    applicants.where(:status => "Saved")
-  end
-  scope :submitted,:if => proc{ can?(:manage, Applicant) } do |applicants|
-    applicants.where(:status => "Submitted")
-  end
-  scope :approved,:if => proc{ can?(:manage, Applicant) } do |applicants|
-    applicants.where(:status => "Approved")
-  end
-  scope :rejected, :if => proc{ can?(:manage, Applicant) } do |applicants|
-    applicants.where(:status => "Rejected")
-  end
-  scope :closed,:if => proc{ can?(:manage, Applicant) } do |applicants|
-    applicants.where(:status => "Closed")
-  end
+  # scope :all,:if => proc{ can?(:manage, Applicant) }, :default => true
+  # scope :just_created,:if => proc{ can?(:manage, Applicant) } do |applicants|
+    # applicants.where(:status => "Just Created")
+  # end
+  # scope :saved,:if => proc{ can?(:manage, Applicant) } do |applicants|
+    # applicants.where(:status => "Saved")
+  # end
+  # scope :submitted,:if => proc{ can?(:manage, Applicant) } do |applicants|
+    # applicants.where(:status => "Submitted")
+  # end
+  # scope :approved,:if => proc{ can?(:manage, Applicant) } do |applicants|
+    # applicants.where(:status => "Approved")
+  # end
+  # scope :rejected, :if => proc{ can?(:manage, Applicant) } do |applicants|
+    # applicants.where(:status => "Rejected")
+  # end
+  # scope :closed,:if => proc{ can?(:manage, Applicant) } do |applicants|
+    # applicants.where(:status => "Closed")
+  # end
   
   #menu :parent => "Applicant Information"
   actions :index, :show
@@ -352,6 +403,7 @@ end
     column :status do |app|
       strong {app.status}
     end
+    column  :closed
     column :notes
     
   end
@@ -396,6 +448,7 @@ end
         row :extra_activities
         row :transportation
         row :status
+        row :closed
         row :notes
         row :created_at
         row :updated_at
@@ -432,6 +485,7 @@ end
         row :extra_activities
         row :transportation
         row :status
+        row :closed
         row :notes
         row :created_at
         row :updated_at

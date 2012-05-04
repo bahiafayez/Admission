@@ -67,7 +67,7 @@ ActiveAdmin.register Semester do
         @to=[]
         @apps.each do |a|
           if a.status!="Approved" and a.status!="Rejected"
-            a.status="Closed"
+            a.closed=true
             a.save(:validate => false)
             @to << a.user.email
           end
