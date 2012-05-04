@@ -59,7 +59,7 @@ ActiveRecord::Schema.define(:version => 20120503114654) do
   add_index "admin_users", ["reset_password_token"], :name => "index_admin_users_on_reset_password_token", :unique => true
 
   create_table "admission_informations", :force => true do |t|
-    t.float    "toefl_test_results"
+    t.string   "toefl_test_results"
     t.date     "toefl_test_date"
     t.boolean  "proficiency_test"
     t.integer  "applicant_id"
