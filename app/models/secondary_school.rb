@@ -10,8 +10,9 @@ class SecondarySchool < ActiveRecord::Base
   validates_inclusion_of :language, :in => ["Arabic", "English", "French", "German"]
   validate :attended_validate
 
-def attended_validate
-errors.add(:attended_from, "Please choose a date before 'attended to' date") if attended_from > attended_to
-errors.add(:graduation_date, "Please choose a date after 'attended from' date") if graduation_date < attended_from
-end
+  def attended_validate
+  errors.add(:attended_from, "Please choose a date before 'attended to' date") if attended_from > attended_to
+  errors.add(:graduation_date, "Please choose a date after 'attended from' date") if graduation_date < attended_from
+  end
+
 end
