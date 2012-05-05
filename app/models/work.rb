@@ -9,7 +9,7 @@ class Work < ActiveRecord::Base
   validate :attended_validate
 
   def attended_validate
-    errors.add(:worked_from, "Please choose a date before 'attended to' date") if worked_from > worked_to
+    errors.add(:worked_from, "Please choose a date before 'attended to' date") if worked_from && worked_to && worked_from > worked_to
   end
 
 end
