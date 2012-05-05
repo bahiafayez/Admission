@@ -11,7 +11,7 @@ class College < ActiveRecord::Base
   validate :attended_validate
 
   def attended_validate
-    errors.add(:attended_from, "Please choose a date before 'attended to' date") if attended_from > attended_to
+    errors.add(:attended_from, "Please choose a date before 'attended to' date") if attended_from && attended_to && attended_from > attended_to
   end
 
   
