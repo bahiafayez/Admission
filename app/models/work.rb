@@ -7,4 +7,10 @@ class Work < ActiveRecord::Base
   validates_length_of :employer, :maximum => 30
   validates_length_of :tasks, :maximum => 500
   
+  validate :attended_validate
+
+  def attended_validate
+    errors.add(:worked_from, "Please choose a date before 'attended to' date") if worked_from && worked_to && worked_from > worked_to
+  end
+  
 end

@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+
+<title>class Applicant - Rails Application Documentation</title>
+
+<link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script type="text/javascript" charset="utf-8" src="./js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/darkfish.js"></script>
+
+
+<body id="top" class="class">
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="./index.html">Home</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
+
+
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
+
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
+
+
+  <div id="file-metadata">
+    <nav id="file-list-section" class="section">
+  <h3 class="section-header">Defined In</h3>
+  <ul>
+    <li>app/models/applicant.rb
+  </ul>
+</nav>
+
+    
+  </div>
+
+  <div id="class-metadata">
+    
+    <nav id="parent-class-section" class="section">
+  <h3 class="section-header">Parent</h3>
+  
+  <p class="link">ActiveRecord::Base
+  
+</nav>
+
+    
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
+    
+    <li><a href="#method-i-a_number_present">#a_number_present</a>
+    
+    <li><a href="#method-i-atleast_one">#atleast_one</a>
+    
+    <li><a href="#method-i-current_step">#current_step</a>
+    
+    <li><a href="#method-i-date_present">#date_present</a>
+    
+    <li><a href="#method-i-display_name">#display_name</a>
+    
+    <li><a href="#method-i-first_step-3F">#first_step?</a>
+    
+    <li><a href="#method-i-last_step-3F">#last_step?</a>
+    
+    <li><a href="#method-i-next_step">#next_step</a>
+    
+    <li><a href="#method-i-previous_step">#previous_step</a>
+    
+    <li><a href="#method-i-steps">#steps</a>
+    
+    <li><a href="#method-i-to_s">#to_s</a>
+    
+  </ul>
+</nav>
+
+  </div>
+
+  <div id="project-metadata">
+    <nav id="fileindex-section" class="section project-section">
+  <h3 class="section-header">Pages</h3>
+
+  <ul>
+  
+    <li class="file"><a href="./doc/README_FOR_APP.html">README_FOR_APP</a>
+  
+  </ul>
+</nav>
+
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="./Ability.html">Ability</a>
+  
+    <li><a href="./Address.html">Address</a>
+  
+    <li><a href="./AdminUser.html">AdminUser</a>
+  
+    <li><a href="./AdmissionInformation.html">AdmissionInformation</a>
+  
+    <li><a href="./Applicant.html">Applicant</a>
+  
+    <li><a href="./ApplicantsController.html">ApplicantsController</a>
+  
+    <li><a href="./ApplicantsHelper.html">ApplicantsHelper</a>
+  
+    <li><a href="./ApplicationController.html">ApplicationController</a>
+  
+    <li><a href="./ApplicationHelper.html">ApplicationHelper</a>
+  
+    <li><a href="./ApplicationNotifier.html">ApplicationNotifier</a>
+  
+    <li><a href="./Attachment.html">Attachment</a>
+  
+    <li><a href="./College.html">College</a>
+  
+    <li><a href="./Guardian.html">Guardian</a>
+  
+    <li><a href="./Health.html">Health</a>
+  
+    <li><a href="./HomeController.html">HomeController</a>
+  
+    <li><a href="./HomeHelper.html">HomeHelper</a>
+  
+    <li><a href="./Major.html">Major</a>
+  
+    <li><a href="./Object.html">Object</a>
+  
+    <li><a href="./OtherChoice.html">OtherChoice</a>
+  
+    <li><a href="./School.html">School</a>
+  
+    <li><a href="./SecondarySchool.html">SecondarySchool</a>
+  
+    <li><a href="./Semester.html">Semester</a>
+  
+    <li><a href="./SessionsHelper.html">SessionsHelper</a>
+  
+    <li><a href="./UniChoice.html">UniChoice</a>
+  
+    <li><a href="./UniRelatedInfo.html">UniRelatedInfo</a>
+  
+    <li><a href="./User.html">User</a>
+  
+    <li><a href="./UsersController.html">UsersController</a>
+  
+    <li><a href="./UsersHelper.html">UsersHelper</a>
+  
+    <li><a href="./Work.html">Work</a>
+  
+  </ul>
+</nav>
+
+  </div>
+</nav>
+
+<div id="documentation">
+  <h1 class="class">class Applicant</h1>
+
+  <div id="description" class="description">
+    
+<p>Omnia Commenting to test git</p>
+
+  </div><!-- description -->
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+    <!-- Attributes -->
+    <section id="attribute-method-details" class="method-section section">
+      <h3 class="section-header">Attributes</h3>
+
+      
+      <div id="attribute-i-current_step" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">current_step</span><span
+            class="attribute-access-type">[W]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>def national_must_be_unique</p>
+
+<pre class="ruby"><span class="ruby-keyword">return</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">national_id</span>.<span class="ruby-identifier">blank?</span>
+<span class="ruby-identifier">num_duplicates</span> = <span class="ruby-constant">Applicant</span>.<span class="ruby-identifier">count</span>(:<span class="ruby-identifier">conditions</span> =<span class="ruby-operator">&gt;</span> [<span class="ruby-string">&quot;national_id = ?&quot;</span>, <span class="ruby-identifier">national_id</span>])
+<span class="ruby-identifier">logger</span>.<span class="ruby-identifier">debug</span> <span class="ruby-string">&quot;National COUNT!!!!!!!!!!!!!!&quot;</span>
+<span class="ruby-identifier">logger</span>.<span class="ruby-identifier">debug</span> <span class="ruby-identifier">num_duplicates</span>
+<span class="ruby-keyword">if</span> <span class="ruby-identifier">num_duplicates</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span> <span class="ruby-comment">#not 0 because i already saved it.. </span>
+  <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(:<span class="ruby-identifier">national_id</span>, :<span class="ruby-identifier">taken</span>)
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>end</p>
+        
+        </div>
+      </div>
+      
+    </section><!-- attribute-method-details -->
+    
+
+    <!-- Methods -->
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="method-i-a_number_present" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">a_number_present</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="a_number_present-source">
+            <pre><span class="ruby-comment"># File app/models/applicant.rb, line 89</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">a_number_present</span> 
+  <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:national_id</span>, <span class="ruby-string">&quot;can't be blank&quot;</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">national_id</span>.<span class="ruby-identifier">blank?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">passport_number</span>.<span class="ruby-identifier">blank?</span> 
+  <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:passport_number</span>, <span class="ruby-string">&quot;can't be blank&quot;</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">national_id</span>.<span class="ruby-identifier">blank?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">passport_number</span>.<span class="ruby-identifier">blank?</span> 
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- a_number_present-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- a_number_present-method -->
+
+    
+      <div id="method-i-atleast_one" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">atleast_one</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="atleast_one-source">
+            <pre><span class="ruby-comment"># File app/models/applicant.rb, line 100</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">atleast_one</span>
+  <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">debug</span> <span class="ruby-string">&quot;address sizeeeee s333333333333333333333333333333333333333333333333333&quot;</span>
+  <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">debug</span> <span class="ruby-identifier">addresses</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- atleast_one-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- atleast_one-method -->
+
+    
+      <div id="method-i-current_step" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">current_step</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="current_step-source">
+            <pre><span class="ruby-comment"># File app/models/applicant.rb, line 105</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">current_step</span>
+  <span class="ruby-ivar">@current_step</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">steps</span>.<span class="ruby-identifier">first</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- current_step-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- current_step-method -->
+
+    
+      <div id="method-i-date_present" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">date_present</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="date_present-source">
+            <pre><span class="ruby-comment"># File app/models/applicant.rb, line 94</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">date_present</span> 
+  <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:national_id_expiry_date</span>, <span class="ruby-string">&quot;can't be blank&quot;</span>) <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">national_id</span>.<span class="ruby-identifier">blank?</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">national_id_expiry_date</span>.<span class="ruby-identifier">blank?</span>
+  <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:country_of_issuance</span>, <span class="ruby-string">&quot;can't be blank&quot;</span>) <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">passport_number</span>.<span class="ruby-identifier">blank?</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">country_of_issuance</span>.<span class="ruby-identifier">blank?</span>
+  <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:passport_expiry_date</span>, <span class="ruby-string">&quot;can't be blank&quot;</span>) <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">passport_number</span>.<span class="ruby-identifier">blank?</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">passport_expiry_date</span>.<span class="ruby-identifier">blank?</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- date_present-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- date_present-method -->
+
+    
+      <div id="method-i-display_name" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">display_name</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="display_name-source">
+            <pre><span class="ruby-comment"># File app/models/applicant.rb, line 85</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">display_name</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-node">&quot;#{first_name} #{last_name}&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- display_name-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- display_name-method -->
+
+    
+      <div id="method-i-first_step-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">first_step?</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="first_step-3F-source">
+            <pre><span class="ruby-comment"># File app/models/applicant.rb, line 121</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">first_step?</span>
+  <span class="ruby-identifier">current_step</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">steps</span>.<span class="ruby-identifier">first</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- first_step-3F-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- first_step-3F-method -->
+
+    
+      <div id="method-i-last_step-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">last_step?</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="last_step-3F-source">
+            <pre><span class="ruby-comment"># File app/models/applicant.rb, line 125</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">last_step?</span>
+  <span class="ruby-identifier">current_step</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">steps</span>.<span class="ruby-identifier">last</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- last_step-3F-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- last_step-3F-method -->
+
+    
+      <div id="method-i-next_step" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">next_step</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="next_step-source">
+            <pre><span class="ruby-comment"># File app/models/applicant.rb, line 113</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">next_step</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">current_step</span> = <span class="ruby-identifier">steps</span>[<span class="ruby-identifier">steps</span>.<span class="ruby-identifier">index</span>(<span class="ruby-identifier">current_step</span>)<span class="ruby-operator">+</span><span class="ruby-value">1</span>]
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- next_step-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- next_step-method -->
+
+    
+      <div id="method-i-previous_step" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">previous_step</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="previous_step-source">
+            <pre><span class="ruby-comment"># File app/models/applicant.rb, line 117</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">previous_step</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">current_step</span> = <span class="ruby-identifier">steps</span>[<span class="ruby-identifier">steps</span>.<span class="ruby-identifier">index</span>(<span class="ruby-identifier">current_step</span>)<span class="ruby-operator">-</span><span class="ruby-value">1</span>]
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- previous_step-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- previous_step-method -->
+
+    
+      <div id="method-i-steps" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">steps</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="steps-source">
+            <pre><span class="ruby-comment"># File app/models/applicant.rb, line 109</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">steps</span>
+  <span class="ruby-node">%w[applicant address admission_information]</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- steps-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- steps-method -->
+
+    
+      <div id="method-i-to_s" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">to_s</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="to_s-source">
+            <pre><span class="ruby-comment"># File app/models/applicant.rb, line 81</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">to_s</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-node">&quot;#{first_name} #{last_name}&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- to_s-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- to_s-method -->
+
+    
+    </section><!-- public-instance-method-details -->
+  
+  </section><!-- 5Buntitled-5D -->
+
+</div><!-- documentation -->
+
+
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.12.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
+

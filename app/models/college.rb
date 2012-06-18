@@ -9,5 +9,10 @@ class College < ActiveRecord::Base
   #validates :gpa, :numericality => {:less_than_or_equal_to => 5}
   validates_inclusion_of :language, :in => ["Arabic", "English", "French", "German"]
   
+  validate :attended_validate
+
+  def attended_validate
+    errors.add(:attended_from, "Please choose a date before 'attended to' date") if attended_from && attended_to && attended_from > attended_to
+  end
   
 end
