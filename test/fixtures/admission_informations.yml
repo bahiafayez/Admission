@@ -6,7 +6,7 @@ good:
   toefl_test_results: 123
   toefl_test_date: 2012-02-23
   semester_id: 1 
-  program_id: 1
+  school_id: 1
 
 info1:
   major_id: 999()i

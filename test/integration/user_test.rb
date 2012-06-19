@@ -48,6 +48,7 @@ class UserTest < ActionDispatch::IntegrationTest
   
    test "application but admission open" do
      semester=Semester.create!(:name => "winter2011", :status=> true)
+     school=School.create!(:name => "abc", :status => true)
     visit 'users/sign_in'
     fill_in 'email', :with=> "ryan@example.com"
     fill_in "Password", :with =>"secret"
@@ -61,6 +62,7 @@ class UserTest < ActionDispatch::IntegrationTest
   
   test "application but admission open and there is applicant" do
      semester=Semester.create!(:name => "winter2011", :status=> true)
+     program= School.create!(:name => "abc", :status=> true)
     visit 'users/sign_in'
     fill_in 'email', :with=> "ryan@example.com"
     fill_in "Password", :with =>"secret"
@@ -76,7 +78,7 @@ class UserTest < ActionDispatch::IntegrationTest
       #applicant.save(:validate => false)
   #   @user.applicant=applicant
       semester=Semester.create!(:name => "winter2011", :status=> true)
-      
+      school=School.create!(:name => "abc", :status => true)
       visit 'users/sign_in'
       fill_in 'email', :with=> "ryan@example.com"
       fill_in "Password", :with =>"secret"
@@ -92,6 +94,7 @@ class UserTest < ActionDispatch::IntegrationTest
   
    test "application but admission open (edit)" do
        semester=Semester.create!(:name => "winter2011", :status=> true)
+       school=School.create!(:name => "abc", :status => true)
       visit 'users/sign_in'
       fill_in 'email', :with=> "ryan@example.com"
       fill_in "Password", :with =>"secret"
@@ -100,17 +103,17 @@ class UserTest < ActionDispatch::IntegrationTest
      visit last_request.url
 
      click_link "Application"
-      click_button "save"
+      click_button "Save"
       follow_redirect!  
       assert_contain "Applicant was successfully created" 
       click_link "Edit Application"
       assert_contain "Editing Applicant"
-       click_button "save"
+       click_button "Save"
    end
    
    test "application but admission open (fill)" do
        semester=Semester.create!(:name => "winter2011", :status=> true)
-       program=Program.create!(:name => "prog", :status=> true)
+       program=School.create!(:name => "prog", :status=> true)
         applicant=applicants(:good)
         address=addresses(:good)
         admission_info=admission_informations(:good)
@@ -168,7 +171,7 @@ class UserTest < ActionDispatch::IntegrationTest
        
        select "winter2011", :from => "applicant_admission_information_attributes_semester_id"
         
-        select "prog", :from => "applicant_admission_information_attributes_program_id"
+        select "prog", :from => "applicant_admission_information_attributes_school_id"
         fill_in 'Toefl test results', :with=> admission_info.toefl_test_results
         
         select "2010", :from => "applicant_admission_information_attributes_toefl_test_date_1i"

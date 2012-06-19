@@ -3,9 +3,9 @@
 one:
   name: MyString
   status: false
-  program_id: 1
+  school_id: 1
 
 two:
   name: MyString
   status: false
-  program_id: 1
+  school_id: 1

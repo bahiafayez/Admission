@@ -92,7 +92,7 @@ Semester.all.each do |s|
 semesters<<s.name
 end
 
-bar_1_data = [approved_applicants.max+50] #approved applicants in the each semester
+bar_1_data = [approved_applicants.max.to_i+50] #approved applicants in the each semester
 color_1 = 'ffffff'
 color_2 = '1BBB0A'
 
@@ -101,7 +101,7 @@ GoogleChart::BarChart.new("550x200", "Approved Applicants per Semester", :vertic
   bc.data "Approved Applicants", approved_applicants, color_2
   bc.data nil, bar_1_data, color_1 #Omnia put this to fix the problem that the largest value hits the top of the y axis
   bc.axis :x, :labels => semesters, :font_size => 10,:alignment => :center
-  bc.axis :y, :range => [0,approved_applicants.max+50], :alignment => :center
+  bc.axis :y, :range => [0,approved_applicants.max.to_i+50], :alignment => :center
   bc.show_legend = true
   bc.stacked = true
   bc.data_encoding = :extended
@@ -144,7 +144,7 @@ end
 #@between = Applicant.all(:conditions=>["toefl_test_results< ? AND toefl_test_results >?",600,500], :joins => :admission_information).count
 #@gretaerthansixhundred=Applicant.all(:conditions=>["toefl_test_results>?", 600], :joins => :admission_information).count
 
-bar_2_data = [between_applicants.max+50] #approved applicants in the each semester
+bar_2_data = [between_applicants.max.to_i+50] #approved applicants in the each semester
 color_2 = 'ffffff'
 color_1 = '1BBB0A'
 color_3 = '1892A4'
@@ -156,7 +156,7 @@ GoogleChart::BarChart.new("550x200", "TOFEL Results", :vertical, false) do |bc|
   bc.data "Greater than 600", greaterthansixhundred_applicants, color_4
   bc.data nil, bar_2_data, color_2 #Omnia put this to fix the problem that the largest value hits the top of the y axis
   bc.axis :x, :labels => semesters, :font_size => 10
-  bc.axis :y, :range => [0,between_applicants.max+50], :alignment => :center
+  bc.axis :y, :range => [0,between_applicants.max.to_i+50], :alignment => :center
   bc.show_legend = true
   bc.stacked = false
   bc.data_encoding = :extended
@@ -195,7 +195,7 @@ end
 #@a = Applicant.where(:applicants => {:transportation => "Private"}).count
 #@b = Applicant.where(:applicants => {:transportation => "Nu buses"}).count
 bar_1_data = [@a,@b]
-bar_2_data = [private_applicants.max+50] #approved applicants in the each semester
+bar_2_data = [private_applicants.max.to_i+50] #approved applicants in the each semester
 color_2 = 'ffffff'
 color_1 = '1BBB0A'
 color_3 = '1892A4'
@@ -207,7 +207,7 @@ GoogleChart::BarChart.new("550x200", "Transportation", :vertical, false) do |bc|
   bc.data nil, bar_2_data, color_2 #Omnia put this to fix the problem that the largest value hits the top of the y axis
   
   bc.axis :x, :labels => semesters, :font_size => 10
-  bc.axis :y, :range => [0,private_applicants.max+50], :alignment => :center
+  bc.axis :y, :range => [0,private_applicants.max.to_i+50], :alignment => :center
   bc.show_legend = true
   bc.stacked = false
   bc.data_encoding = :extended
@@ -248,7 +248,7 @@ end
 #@between = Applicant.all(:conditions=>["toefl_test_results< ? AND toefl_test_results >?",600,500], :joins => :admission_information).count
 #@gretaerthansixhundred=Applicant.all(:conditions=>["toefl_test_results>?", 600], :joins => :admission_information).count
 
-bar_2_data = [between_applicants.max+50] #approved applicants in the each semester
+bar_2_data = [between_applicants.max.to_i+50] #approved applicants in the each semester
 color_2 = 'ffffff'
 color_1 = '1BBB0A'
 color_3 = '1892A4'
@@ -272,7 +272,7 @@ i=0
   	#bc.data "Greater than 600", greaterthansixhundred_applicants, color_4
   bc.data nil, bar_2_data, color_2 #Omnia put this to fix the problem that the largest value hits the top of the y axis
   bc.axis :x, :labels => semesters, :font_size => 10
-  bc.axis :y, :range => [0,between_applicants.max+50], :alignment => :center
+  bc.axis :y, :range => [0,between_applicants.max.to_i+50], :alignment => :center
   bc.show_legend = true
   bc.stacked = false
   bc.data_encoding = :extended

@@ -31,7 +31,7 @@ test "admission information attributes must not be empty" do
     assert admission_information.invalid?
     
     assert admission_information.errors[:semester_id].any?
-    assert admission_information.errors[:program_id].any?
+    assert admission_information.errors[:school_id].any?
     assert admission_information.errors[:major_id].any?
     assert admission_information.errors[:toefl_test_results].any?
     assert admission_information.errors[:toefl_test_date].any?
